@@ -1,0 +1,36 @@
+[routing] 20 runs on 12 workers (cuda)
+[routing 1/20] free     s0 kl=0.0003 behav=0.3672 cut=0.3672 t=0.0055 t+1=0.3224 a1=0.31 a2=0.19 dev=0.0e+00  770s
+[routing 2/20] free     s1 kl=0.0001 behav=0.3687 cut=0.3687 t=0.0001 t+1=0.3652 a1=0.34 a2=0.08 dev=0.0e+00  802s
+[routing 3/20] free     s2 kl=0.0001 behav=0.3669 cut=0.3669 t=0.0425 t+1=0.3448 a1=0.34 a2=0.13 dev=0.0e+00  802s
+[routing 4/20] free     s3 kl=0.0000 behav=0.3681 cut=0.3681 t=0.3453 t+1=0.0059 a1=0.13 a2=0.37 dev=0.0e+00  831s
+[routing 5/20] l1_diag  s0 kl=0.0001 behav=0.3682 cut=0.3682 t=0.3682 t+1=0.0000 a1=0.00 a2=0.41 dev=0.0e+00  831s
+[routing 6/20] l1_diag  s1 kl=0.0002 behav=0.3690 cut=0.3690 t=0.3690 t+1=0.0000 a1=0.00 a2=0.65 dev=0.0e+00  836s
+[routing 7/20] l1_diag  s2 kl=0.0003 behav=0.3688 cut=0.3688 t=0.3688 t+1=0.0000 a1=0.00 a2=0.24 dev=0.0e+00  837s
+[routing 8/20] l1_diag  s3 kl=0.0001 behav=0.3682 cut=0.3682 t=0.3682 t+1=0.0000 a1=0.00 a2=0.51 dev=0.0e+00  849s
+[routing 9/20] l2_diag  s0 kl=0.0003 behav=0.3681 cut=0.3681 t=0.0000 t+1=0.3681 a1=0.65 a2=0.00 dev=0.0e+00  849s
+[routing 10/20] l2_diag  s1 kl=0.0003 behav=0.3675 cut=0.3675 t=0.0000 t+1=0.3675 a1=0.31 a2=0.00 dev=0.0e+00  849s
+[routing 11/20] l2_diag  s2 kl=0.3252 behav=0.3173 cut=0.3173 t=0.0000 t+1=0.3173 a1=0.06 a2=0.00 dev=0.0e+00  849s
+[routing 12/20] l2_diag  s3 kl=0.2124 behav=0.2983 cut=0.2983 t=0.0000 t+1=0.2983 a1=0.79 a2=0.00 dev=0.0e+00  849s
+[routing 13/20] pen_l2   s0 kl=0.0000 behav=0.3675 cut=0.3675 t=-0.0000 t+1=0.3675 a1=0.13 a2=0.00 dev=0.0e+00  2057s
+[routing 14/20] pen_l2   s1 kl=0.0000 behav=0.3680 cut=0.3680 t=0.0000 t+1=0.3680 a1=0.44 a2=0.00 dev=0.0e+00  2057s
+[routing 15/20] pen_l2   s2 kl=0.0004 behav=0.3666 cut=0.3666 t=-0.0000 t+1=0.3666 a1=0.60 a2=0.00 dev=0.0e+00  2057s
+[routing 16/20] pen_l2   s3 kl=0.0000 behav=0.3680 cut=0.3680 t=0.0000 t+1=0.3680 a1=0.24 a2=0.00 dev=0.0e+00  2057s
+[routing 17/20] pen_l1   s0 kl=0.0000 behav=0.3694 cut=0.3694 t=0.3694 t+1=-0.0000 a1=0.00 a2=0.50 dev=0.0e+00  2061s
+[routing 18/20] pen_l1   s1 kl=0.0001 behav=0.3680 cut=0.3680 t=0.3680 t+1=-0.0000 a1=0.00 a2=0.82 dev=0.0e+00  2067s
+[routing 19/20] pen_l1   s2 kl=0.3917 behav=0.0000 cut=0.0000 t=0.0000 t+1=0.0000 a1=0.00 a2=0.00 dev=0.0e+00  2067s
+[routing 20/20] pen_l1   s3 kl=0.0001 behav=0.3663 cut=0.3663 t=0.3663 t+1=0.0000 a1=0.00 a2=0.78 dev=0.0e+00  2090s
+[factorization] 102 runs on 12 workers (cuda)
+[factor 1/102] none_c0.1_d0.4     s0 kl=0.0000 klrel=0.0001 C=4.217/4.394 g=0.117 D=61.74 cos=0.582 |g|=nan  3492s
+[factor 2/102] none_c0.1_d0.4     s1 kl=0.0001 klrel=0.0004 C=4.215/4.394 g=0.133 D=46.19 cos=0.688 |g|=nan  3492s
+[factor 3/102] none_c0.1_d0.4     s2 kl=0.1033 klrel=0.2256 C=4.111/4.394 g=0.138 D=40.52 cos=0.733 |g|=nan  3503s
+[factor 4/102] none_c0.125_d0.4   s0 kl=0.0000 klrel=0.0001 C=4.215/4.394 g=0.158 D=47.93 cos=0.555 |g|=nan  3503s
+[factor 5/102] none_c0.125_d0.4   s1 kl=0.0004 klrel=0.0001 C=4.215/4.394 g=0.180 D=28.77 cos=0.813 |g|=nan  3503s
+[factor 6/102] none_c0.125_d0.4   s2 kl=0.0000 klrel=0.0000 C=4.220/4.394 g=0.128 D=40.24 cos=0.818 |g|=nan  3503s
+[factor 7/102] none_c0.15_d0.4    s0 kl=0.0000 klrel=0.0000 C=4.228/4.394 g=0.176 D=27.58 cos=0.873 |g|=nan  3503s
+[factor 8/102] none_c0.15_d0.4    s1 kl=0.0013 klrel=0.0043 C=4.178/4.394 g=0.219 D=31.23 cos=0.610 |g|=nan  3503s
+[factor 9/102] none_c0.15_d0.4    s2 kl=0.0005 klrel=0.0013 C=4.219/4.394 g=0.193 D=28.80 cos=0.758 |g|=nan  3503s
+[factor 10/102] none_c0.2_d0.4     s0 kl=0.0350 klrel=0.0681 C=4.380/4.394 g=0.250 D=28.75 cos=0.611 |g|=nan  3503s
+[factor 11/102] none_c0.2_d0.4     s1 kl=0.0000 klrel=0.0000 C=4.214/4.394 g=0.217 D=26.95 cos=0.719 |g|=nan  3504s
+[factor 12/102] none_c0.2_d0.4     s2 kl=0.0003 klrel=0.0003 C=4.215/4.394 g=0.228 D=40.49 cos=0.456 |g|=nan  3504s
+/usr/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

@@ -1,0 +1,57 @@
+[lr control] 8 models, 25000 steps, lr=0.003, one stacked model on cuda
+  [lr control] step 2500/25000  loss mean 0.9405 max 1.4882  303s
+  [lr control] step 5000/25000  loss mean 0.8597 max 0.9158  551s
+  [lr control] step 7500/25000  loss mean 0.8581 max 0.9145  778s
+  [lr control] step 10000/25000  loss mean 0.8586 max 0.9141  954s
+  [lr control] step 12500/25000  loss mean 0.8581 max 0.9124  1124s
+  [lr control] step 15000/25000  loss mean 0.8605 max 0.9158  1277s
+  [lr control] step 17500/25000  loss mean 0.8583 max 0.9132  1462s
+  [lr control] step 20000/25000  loss mean 0.8581 max 0.9125  1643s
+  [lr control] step 22500/25000  loss mean 0.8587 max 0.9140  1837s
+  [lr control] step 25000/25000  loss mean 0.8592 max 0.9147  2024s
+  frozen_c0.2_d0.4   s0 kl=0.0796 klrel=0.0890 C=3.077/4.394 g=0.268 D=11.46 cos=1.000 |g|=8.00 conv=0
+  frozen_c0.2_d0.4   s1 kl=0.0797 klrel=0.0893 C=3.072/4.394 g=0.268 D=11.45 cos=1.000 |g|=8.00 conv=0
+  frozen_c0.3_d0.4   s0 kl=0.0176 klrel=0.0181 C=3.977/4.394 g=0.374 D=10.63 cos=1.000 |g|=8.00 conv=0
+  frozen_c0.3_d0.4   s1 kl=0.0177 klrel=0.0182 C=3.990/4.394 g=0.374 D=10.67 cos=1.000 |g|=8.00 conv=0
+  frozen_c0.4_d0.4   s0 kl=0.0036 klrel=0.0036 C=4.231/4.394 g=0.445 D=9.52 cos=1.000 |g|=8.00 conv=1
+  frozen_c0.4_d0.4   s1 kl=0.0036 klrel=0.0036 C=4.235/4.394 g=0.445 D=9.52 cos=1.000 |g|=8.00 conv=1
+  frozen_c0.6_d0.4   s0 kl=0.0003 klrel=0.0002 C=4.372/4.394 g=0.562 D=7.83 cos=0.993 |g|=8.00 conv=1
+  frozen_c0.6_d0.4   s1 kl=0.0005 klrel=0.0002 C=4.293/4.394 g=0.565 D=7.62 cos=0.997 |g|=8.00 conv=1
+[lr control] done at 2028s
+[long control] 4 models, 100000 steps, lr=0.001, one stacked model on cuda
+  [long control] step 10000/100000  loss mean 0.8775 max 0.9707  1014s
+  [long control] step 20000/100000  loss mean 0.8435 max 0.8505  1969s
+  [long control] step 30000/100000  loss mean 0.9057 max 1.1035  2694s
+  [long control] step 40000/100000  loss mean 0.8436 max 0.8521  3678s
+  [long control] step 50000/100000  loss mean 0.8430 max 0.8504  4645s
+  [long control] step 60000/100000  loss mean 0.8442 max 0.8517  5622s
+  [long control] step 70000/100000  loss mean 0.8441 max 0.8523  6583s
+  [long control] step 80000/100000  loss mean 0.8741 max 0.9696  7549s
+  [long control] step 90000/100000  loss mean 0.8434 max 0.8507  8771s
+  [long control] step 100000/100000  loss mean 0.8429 max 0.8507  9417s
+  frozen_c0.3_d0.4   s0 kl=0.0176 klrel=0.0181 C=4.026/4.394 g=0.374 D=10.77 cos=1.000 |g|=8.00 conv=0
+  frozen_c0.3_d0.4   s1 kl=0.0182 klrel=0.0188 C=4.030/4.394 g=0.371 D=10.88 cos=1.000 |g|=8.00 conv=0
+  frozen_c0.4_d0.4   s0 kl=0.0042 klrel=0.0039 C=4.329/4.394 g=0.445 D=9.74 cos=1.000 |g|=8.00 conv=1
+  frozen_c0.4_d0.4   s1 kl=0.0036 klrel=0.0035 C=4.320/4.394 g=0.442 D=9.77 cos=1.000 |g|=8.00 conv=1
+[long control] done at 11446s
+
+routing:
+  HELD   P1 max|phi_complete - phi_behav| < 1e-5
+  HELD   P2 CV(phi_complete) <= 0.02
+  HELD   P3 CV(phi_L1{t}) >= 0.5
+  HELD   P3b phi_L1{t} < 0.02 in l2_diag
+  HELD   P4 CV(phi_L1{t+1}) >= 0.3
+  FAILED P5 corr(attn2, phi_L1{t}) > 0.8
+  HELD   P6 CV(phi_t + phi_t+1) >= 0.1
+
+factor:
+  HELD   P7 |C/C*-1| <= 0.03 and CV(C)<=0.03 < CV(D)
+  FAILED P8 none: slope logD ~ -1 +- 0.15
+  HELD   P9a frozen: D <= 2*sqrt(d) = 16
+  FAILED P9b frozen: slope logD >= -0.5
+  HELD   P9c frozen: cos rises as c falls (slope < 0), >= 0.9 at smallest converged c
+  FAILED P10 frozen fails below c_crit(0.4), converges above; none/learn converge below
+  FAILED P10b ceiling tracking within 25%
+  FAILED P11 boundary moves with delta (frozen d0.2: fail <=0.04, pass >=0.07)
+  FAILED P12 learn: slope log||gamma|| ~ -1 +- 0.3 for c <= 0.3
+done in 11464s -> results10/
