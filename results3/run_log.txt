@@ -1,0 +1,81 @@
+[task1] hard               acc=1.000 h3 RSA target=0.78 policy=0.78 occ=0.35 adv=0.32 PR=3.10  27s
+[task1] boltzmann_tau0.02  acc=1.000 h3 RSA target=0.59 policy=0.56 occ=0.59 adv=0.63 PR=4.08  56s
+[task1] boltzmann_tau0.05  acc=1.000 h3 RSA target=0.57 policy=0.52 occ=0.57 adv=0.59 PR=5.09  84s
+[task1] boltzmann_tau0.1   acc=1.000 h3 RSA target=0.51 policy=0.46 occ=0.52 adv=0.55 PR=7.90  111s
+[task1] boltzmann_tau0.2   acc=1.000 h3 RSA target=0.24 policy=0.41 occ=0.36 adv=0.42 PR=11.93  138s
+[task1] boltzmann_tau0.5   acc=1.000 h3 RSA target=0.06 policy=0.34 occ=0.26 adv=0.33 PR=15.19  164s
+[task1] boltzmann_tau1     acc=1.000 h3 RSA target=0.06 policy=0.21 occ=0.16 adv=0.20 PR=16.06  189s
+[task1] boltzmann_tau2     acc=1.000 h3 RSA target=0.01 policy=0.11 occ=0.09 adv=0.13 PR=15.28  215s
+[task1] boltzmann_tau5     acc=1.000 h3 RSA target=0.01 policy=0.05 occ=0.04 adv=0.04 PR=13.87  242s
+[task3] hard               synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.4699999988079071, 0.41999998688697815, 0.4699999988079071, 0.49000000953674316, 0.36000001430511475, 0.3499999940395355, 0.4300000071525574, 0.4099999964237213] | natural low/high |Δmargin|: 0.44/0.51
+[task3] boltzmann_tau0.02  synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.7099999785423279, 0.699999988079071, 0.6800000071525574, 0.6600000262260437, 0.550000011920929, 0.4399999976158142, 0.27000001072883606, 0.33000001311302185] | natural low/high |Δmargin|: 0.50/0.58
+[task3] boltzmann_tau0.05  synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.8500000238418579, 0.8500000238418579, 0.8299999833106995, 0.8299999833106995, 0.75, 0.6700000166893005, 0.49000000953674316, 0.3499999940395355] | natural low/high |Δmargin|: 0.59/0.66
+[task3] boltzmann_tau0.1   synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.6899999976158142, 0.699999988079071, 0.6899999976158142, 0.7099999785423279, 0.6299999952316284, 0.5299999713897705, 0.4099999964237213, 0.3499999940395355] | natural low/high |Δmargin|: 0.68/0.74
+[task3] boltzmann_tau0.2   synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.7099999785423279, 0.7099999785423279, 0.75, 0.75, 0.7099999785423279, 0.5600000023841858, 0.47999998927116394, 0.4399999976158142] | natural low/high |Δmargin|: 0.77/0.82
+[task3] boltzmann_tau0.5   synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.7799999713897705, 0.7400000095367432, 0.7599999904632568, 0.7900000214576721, 0.7400000095367432, 0.6499999761581421, 0.550000011920929, 0.550000011920929] | natural low/high |Δmargin|: 0.85/0.90
+[task3] boltzmann_tau1     synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.7900000214576721, 0.75, 0.7599999904632568, 0.8700000047683716, 0.8199999928474426, 0.7699999809265137, 0.6000000238418579, 0.6299999952316284] | natural low/high |Δmargin|: 0.90/0.94
+[task3] boltzmann_tau2     synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.8299999833106995, 0.75, 0.8600000143051147, 0.8999999761581421, 0.8500000238418579, 0.7900000214576721, 0.6399999856948853, 0.7099999785423279] | natural low/high |Δmargin|: 0.93/0.97
+[task3] boltzmann_tau5     synthetic d_h(probe)/median at h3 for |Δm| = [0.5, 0.49, 0.48, 0.45, 0.4, 0.3, 0.2, 0.0]: [0.9100000262260437, 0.7799999713897705, 0.9300000071525574, 0.9900000095367432, 0.949999988079071, 0.8700000047683716, 0.8100000023841858, 0.8299999833106995] | natural low/high |Δmargin|: 0.96/0.99
+[task4] hard               acc=1.000 h3 RSA target=0.78 policy=0.78 occ=0.35 adv=0.31  312s
+[task4] boltzmann_tau0.05  acc=1.000 h3 RSA target=0.56 policy=0.49 occ=0.57 adv=0.59  316s
+[task4] boltzmann_tau0.5   acc=1.000 h3 RSA target=0.03 policy=0.35 occ=0.25 adv=0.34  321s
+[task4] advantage          acc=1.000 h3 RSA target=0.35 policy=0.24 occ=0.21 adv=0.35  337s
+[task4] q                  acc=1.000 h3 RSA target=0.37 policy=0.22 occ=0.44 adv=0.39  353s
+[task4] occupancy          acc=nan h3 RSA target=0.93 policy=0.32 occ=0.93 adv=0.55  371s
+[task5] hard               classes=  15 rank=  3 PR=2.89 rsa(Q)=0.10 recover Q/adv/occ R²=0.06/0.57/0.11 hidden PR=2.81
+[task5] boltzmann_tau0.05  classes= 347 rank=  3 PR=2.82 rsa(Q)=0.26 recover Q/adv/occ R²=0.07/0.69/0.07 hidden PR=4.30
+[task5] boltzmann_tau0.5   classes= 344 rank=  3 PR=2.65 rsa(Q)=0.35 recover Q/adv/occ R²=0.08/0.76/0.05 hidden PR=18.98
+[task5] advantage          classes= 347 rank=  4 PR=3.60 rsa(Q)=0.50 recover Q/adv/occ R²=0.65/1.00/0.04 hidden PR=21.37
+[task5] q                  classes= 347 rank=  4 PR=1.21 rsa(Q)=1.00 recover Q/adv/occ R²=1.00/0.91/0.05 hidden PR=5.31
+[task5] occupancy          classes=  57 rank= 56 PR=2.79 rsa(Q)=0.02 recover Q/adv/occ R²=-0.12/-0.02/1.00 hidden PR=4.62
+[task5] boltzmann_tau0.02  classes= 333 rank=  3 PR=2.88 rsa(Q)=0.17 recover Q/adv/occ R²=0.06/0.60/0.10 hidden PR=3.51
+[task5] boltzmann_tau0.1   classes= 346 rank=  3 PR=2.74 rsa(Q)=0.33 recover Q/adv/occ R²=0.08/0.73/0.06 hidden PR=6.43
+[task5] boltzmann_tau0.2   classes= 342 rank=  3 PR=2.68 rsa(Q)=0.35 recover Q/adv/occ R²=0.08/0.75/0.05 hidden PR=9.98
+[task5] boltzmann_tau1     classes= 335 rank=  3 PR=2.64 rsa(Q)=0.35 recover Q/adv/occ R²=0.08/0.76/0.05 hidden PR=26.07
+[task5] boltzmann_tau2     classes= 310 rank=  3 PR=2.63 rsa(Q)=0.34 recover Q/adv/occ R²=0.08/0.76/0.05 hidden PR=28.03
+[task5] boltzmann_tau5     classes= 207 rank=  3 PR=2.63 rsa(Q)=0.34 recover Q/adv/occ R²=0.08/0.74/0.05 hidden PR=24.30
+[task7] hard               within/between ratio over steps [0, 10, 30, 100, 300, 1000, 3000]: [0.98, 0.85, 0.65, 0.54, 0.51, 0.49, 0.46]; between rel. to init: [1.0, 2.1, 9.49, 20.68, 25.88, 27.95, 27.81]
+[task7] boltzmann_tau0.05  within/between ratio over steps [0, 10, 30, 100, 300, 1000, 3000]: [0.98, 0.86, 0.67, 0.57, 0.59, 0.6, 0.58]; between rel. to init: [1.0, 2.02, 4.6, 5.82, 6.42, 6.48, 6.3]
+[task7] boltzmann_tau0.5   within/between ratio over steps [0, 10, 30, 100, 300, 1000, 3000]: [0.98, 0.92, 0.87, 0.88, 0.88, 0.87, 0.85]; between rel. to init: [1.0, 1.06, 1.28, 1.76, 1.78, 1.68, 1.41]
+[task8] base/hard              acc train/heldout=1.000/0.919 ratio train/heldout=0.45/0.61 centroid acc=0.50 (chance 0.16)
+[task8] base/boltzmann_tau0.05 acc train/heldout=1.000/0.787 ratio train/heldout=0.61/0.78 centroid acc=0.40 (chance 0.16)
+[task8] twins/hard             acc train/heldout=1.000/0.943 ratio train/heldout=0.43/0.59 centroid acc=0.62 (chance 0.25)
+[task8] twins/boltzmann_tau0.05 acc train/heldout=1.000/0.859 ratio train/heldout=0.68/0.80 centroid acc=0.55 (chance 0.25)
+[task8] corridor-coord/hard    acc train/unseen-states=1.000/1.000; unseen cell's nearest seen cell in same run: 1.00 (chance 0.41)
+[task8] corridor-coord/boltzmann_tau0.05 acc train/unseen-states=1.000/1.000; unseen cell's nearest seen cell in same run: 1.00 (chance 0.41)
+[task9] mlp3         hard               acc=1.000 last-layer RSA target=0.78 policy=0.78 occ=0.35  450s
+[task9] mlp3         boltzmann_tau0.1   acc=1.000 last-layer RSA target=0.51 policy=0.44 occ=0.51  473s
+[task9] mlp3         boltzmann_tau0.5   acc=1.000 last-layer RSA target=0.03 policy=0.35 occ=0.25  489s
+[task9] mlp6         hard               acc=1.000 last-layer RSA target=0.73 policy=0.73 occ=0.37  528s
+[task9] mlp6         boltzmann_tau0.1   acc=1.000 last-layer RSA target=0.59 policy=0.49 occ=0.62  566s
+[task9] mlp6         boltzmann_tau0.5   acc=1.000 last-layer RSA target=0.29 policy=0.49 occ=0.60  595s
+[task9] resmlp       hard               acc=1.000 last-layer RSA target=0.78 policy=0.77 occ=0.41  639s
+[task9] resmlp       boltzmann_tau0.1   acc=1.000 last-layer RSA target=0.10 policy=0.19 occ=0.14  683s
+[task9] resmlp       boltzmann_tau0.5   acc=1.000 last-layer RSA target=-0.05 policy=0.07 occ=0.01  714s
+[task9] transformer  hard               acc=1.000 last-layer RSA target=0.78 policy=0.77 occ=0.46  801s
+[task9] transformer  boltzmann_tau0.1   acc=1.000 last-layer RSA target=0.07 policy=0.17 occ=0.16  885s
+[task9] transformer  boltzmann_tau0.5   acc=1.000 last-layer RSA target=-0.01 policy=0.01 occ=0.01  947s
+[task10] h1: interaction=0.124 unique fraction of it=0.43 (of total 0.053); acc base/−unique/−random/−all = 1.000/1.000/1.000/0.985
+[task10] h2: interaction=0.106 unique fraction of it=0.17 (of total 0.018); acc base/−unique/−random/−all = 1.000/1.000/1.000/0.975
+[task10] h3: interaction=0.115 unique fraction of it=0.02 (of total 0.002); acc base/−unique/−random/−all = 1.000/1.000/1.000/0.974
+[task11] hard               h3: steer@1=0.85 ρ(α*,·): lin=+1.00 logit=+0.81 target=+0.27 m1=+0.46 m2=+0.19
+[task11] boltzmann_tau0.02  h3: steer@1=0.66 ρ(α*,·): lin=+1.00 logit=+0.92 target=+0.19 m1=+0.62 m2=-0.00
+[task11] boltzmann_tau0.05  h3: steer@1=0.66 ρ(α*,·): lin=+1.00 logit=+0.91 target=+0.16 m1=+0.60 m2=-0.02
+[task11] boltzmann_tau0.1   h3: steer@1=0.66 ρ(α*,·): lin=+1.00 logit=+0.92 target=+0.10 m1=+0.66 m2=+0.04
+[task11] boltzmann_tau0.2   h3: steer@1=0.66 ρ(α*,·): lin=+1.00 logit=+0.92 target=+0.05 m1=+0.59 m2=-0.02
+[task11] boltzmann_tau0.5   h3: steer@1=0.66 ρ(α*,·): lin=+0.98 logit=+0.90 target=+0.09 m1=+0.64 m2=+0.05
+[task11] boltzmann_tau1     h3: steer@1=0.66 ρ(α*,·): lin=+1.00 logit=+0.93 target=+0.07 m1=+0.60 m2=+0.04
+[task11] boltzmann_tau2     h3: steer@1=0.66 ρ(α*,·): lin=+0.99 logit=+0.90 target=+0.11 m1=+0.62 m2=+0.09
+[task11] boltzmann_tau5     h3: steer@1=0.66 ρ(α*,·): lin=+0.99 logit=+0.91 target=+0.07 m1=+0.57 m2=+0.03
+[task13] tau0.05/ce       acc=1.000 h3 RSA target=0.56 policy=0.49 occ=0.57  971s
+[task13] tau0.05/kl       acc=1.000 h3 RSA target=0.56 policy=0.49 occ=0.57  986s
+[task13] tau0.05/mse_prob acc=1.000 h3 RSA target=0.55 policy=0.47 occ=0.56  1002s
+[task13] tau0.05/mse_logit acc=1.000 h3 RSA target=0.55 policy=0.43 occ=0.61  1019s
+[task13] tau0.5/ce        acc=1.000 h3 RSA target=0.03 policy=0.35 occ=0.25  1034s
+[task13] tau0.5/kl        acc=1.000 h3 RSA target=0.03 policy=0.35 occ=0.25  1050s
+[task13] tau0.5/mse_prob  acc=1.000 h3 RSA target=0.05 policy=0.39 occ=0.28  1067s
+[task13] tau0.5/mse_logit acc=1.000 h3 RSA target=0.05 policy=0.26 occ=0.21  1084s
+[task14] hard             h3 d_h/median A/B/C = 0.53/1.12/0.52
+[task14] boltzmann_tau0.02 h3 d_h/median A/B/C = 0.96/0.87/0.65
+[task14] random init      h3 d_h/median A/B/C = 1.00/1.01/0.98
+done in 1106s -> results3/

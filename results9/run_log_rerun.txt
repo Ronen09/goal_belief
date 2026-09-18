@@ -1,0 +1,12 @@
+resumed 51 runs
+running 9 runs on 3 workers (cuda) ...
+[1/9] base         s2  kl=0.0001 P=0.63 acc_pre(l1/final/pn)=0.97/0.98/0.98 g=0.99 sep_pn=7.14 sep_fin=21.82 gap=4.21 JS=0.362 D_F=0.21  98s
+[2/9] d0.1         s2  kl=0.0005 P=0.65 acc_pre(l1/final/pn)=0.81/0.99/0.99 g=1.07 sep_pn=1.06 sep_fin=3.55 gap=0.77 JS=0.262 D_F=0.40  98s
+[3/9] gain0.5      s1  kl=0.0000 P=0.39 acc_pre(l1/final/pn)=0.98/0.98/0.98 g=0.43 sep_pn=10.06 sep_fin=23.61 gap=4.22 JS=0.000 D_F=0.00  99s
+[4/9] gain0.5      s2  kl=0.0010 P=0.46 acc_pre(l1/final/pn)=0.98/0.98/0.98 g=0.45 sep_pn=11.36 sep_fin=15.33 gap=4.20 JS=0.000 D_F=0.00  145s
+[5/9] gain8        s1  kl=0.0010 P=1.27 acc_pre(l1/final/pn)=0.98/0.98/0.98 g=11.13 sep_pn=3.35 sep_fin=8.24 gap=4.24 JS=0.291 D_F=0.82  191s
+[6/9] d0.1_noln    s1  kl=0.0001 P=1.03 acc_pre(l1/final/pn)=0.98/0.98/0.98 g=0.78 sep_pn=5.95 sep_fin=5.95 gap=0.77 JS=0.000 D_F=0.00  191s
+[7/9] d0.1_noln    s2  kl=0.0001 P=0.94 acc_pre(l1/final/pn)=0.95/0.98/0.98 g=0.67 sep_pn=8.87 sep_fin=8.87 gap=0.76 JS=0.005 D_F=0.13  214s
+[8/9] gain8_noln   s1  kl=0.2166 P=0.99 acc_pre(l1/final/pn)=0.89/0.97/0.97 g=10.30 sep_pn=1.84 sep_fin=1.84 gap=4.86 JS=0.202 D_F=0.22  283s
+[9/9] lr10_noln    s1  kl=0.0001 P=1.44 acc_pre(l1/final/pn)=0.98/0.98/0.98 g=0.98 sep_pn=9.19 sep_fin=9.19 gap=4.21 JS=0.000 D_F=0.00  284s
+done in 285s -> results9/

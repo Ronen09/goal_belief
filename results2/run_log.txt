@@ -1,0 +1,61 @@
+[task1-2] switch env S=32 K=10; (s,g) pairs with a boundary: 56; flips/step [10, 0, 8, 0, 11, 7, 4, 2, 2, 2, 2, 1, 2, 0, 1, 2, 1, 1, 0]  0s
+[task3] λ=0.00 acc=1.000  16s
+[task3] λ=0.05 acc=1.000  32s
+[task3] λ=0.10 acc=1.000  48s
+[task3] λ=0.15 acc=1.000  63s
+[task3] λ=0.20 acc=1.000  79s
+[task3] λ=0.25 acc=1.000  93s
+[task3] λ=0.30 acc=1.000  107s
+[task3] λ=0.35 acc=1.000  121s
+[task3] λ=0.40 acc=1.000  136s
+[task3] λ=0.45 acc=1.000  150s
+[task3] λ=0.50 acc=1.000  165s
+[task3] λ=0.55 acc=1.000  180s
+[task3] λ=0.60 acc=1.000  194s
+[task3] λ=0.65 acc=1.000  209s
+[task3] λ=0.70 acc=1.000  224s
+[task3] λ=0.75 acc=1.000  238s
+[task3] λ=0.80 acc=1.000  253s
+[task3] λ=0.85 acc=1.000  267s
+[task3] λ=0.90 acc=1.000  282s
+[task3] λ=0.95 acc=1.000  296s
+[task3] chains done  399s
+[task4] h1: chain change flipped/same-state/other = 2.67/1.38/1.01 (x noise floor); β(occ,sr,margin,flip)=(-0.14, 0.11, 0.06, 0.12) ρ(occ|unflipped)=-0.03
+[task4] h2: chain change flipped/same-state/other = 2.68/1.01/0.91 (x noise floor); β(occ,sr,margin,flip)=(-0.16, 0.05, 0.1, 0.12) ρ(occ|unflipped)=-0.06
+[task4] h3: chain change flipped/same-state/other = 3.50/1.10/0.97 (x noise floor); β(occ,sr,margin,flip)=(-0.16, 0.05, 0.12, 0.11) ρ(occ|unflipped)=-0.04
+[extra] base: acc=1.000  417s
+[extra] twins: acc=1.000  428s
+[extra] portal: acc=1.000  441s
+[extra] barrier: acc=1.000  454s
+[extra] corridor: acc=1.000  459s
+[task5] corridor: A=18 B=21 d_occ A/B=1.01/0.67; h3 d_h A/B = 0.27/1.21 (random 1.03/0.96)
+[task5] base: no pairs (A=0, B=216)
+[task5] twins: A=33 B=382 d_occ A/B=1.89/0.46; h3 d_h A/B = 0.38/0.96 (random 0.96/1.02)
+[task5] switch0.0: A=12 B=46 d_occ A/B=1.85/0.72; h3 d_h A/B = 0.45/0.98 (random 0.98/0.99)
+[task5] switch0.2: A=15 B=44 d_occ A/B=1.86/0.72; h3 d_h A/B = 0.35/1.08 (random 1.00/0.98)
+[task5] switch0.5: A=6 B=52 d_occ A/B=1.81/0.58; h3 d_h A/B = 0.41/1.04 (random 1.04/0.98)
+[task5] switch0.9: A=6 B=52 d_occ A/B=1.86/0.49; h3 d_h A/B = 0.36/1.03 (random 1.03/0.98)
+[task6] base       h2 β: occupancy=-0.24 SR=+0.07 policy=+0.69 advantage=-0.22 margin=-0.03 spatial=+0.42 R²=0.59 | partial policy|rest=+0.65
+[task6] twins      h2 β: occupancy=-0.02 SR=+0.03 policy=+0.76 advantage=+0.01 margin=+0.02 spatial=+0.04 R²=0.60 | partial policy|rest=+0.66
+[task6] portal     h2 β: occupancy=-0.23 SR=+0.20 policy=+0.49 advantage=-0.05 margin=-0.16 spatial=+0.28 R²=0.48 | partial policy|rest=+0.44
+[task6] barrier    h2 β: occupancy=+0.27 SR=-0.16 policy=+0.50 advantage=-0.12 margin=+0.01 spatial=+0.37 R²=0.57 | partial policy|rest=+0.45
+[task6] corridor   h2 β: occupancy=+0.05 SR=-0.51 policy=+0.56 advantage=+0.14 margin=-0.14 spatial=+0.61 R²=0.68 | partial policy|rest=+0.40
+[task6] switch0.0  h2 β: occupancy=+0.10 SR=+0.04 policy=+0.86 advantage=+0.01 margin=+0.01 spatial=-0.16 R²=0.74 | partial policy|rest=+0.66
+[task6] switch0.2  h2 β: occupancy=+0.08 SR=-0.07 policy=+0.77 advantage=+0.16 margin=-0.16 spatial=+0.01 R²=0.74 | partial policy|rest=+0.72
+[task6] switch0.5  h2 β: occupancy=+0.10 SR=-0.09 policy=+0.79 advantage=+0.13 margin=-0.12 spatial=-0.03 R²=0.69 | partial policy|rest=+0.78
+[task6] switch0.9  h2 β: occupancy=+0.07 SR=-0.03 policy=+0.81 advantage=+0.12 margin=-0.04 spatial=-0.10 R²=0.70 | partial policy|rest=+0.79
+[task7] base h1: acc base/−h_sg/−rand/−sub/−randsub = 1.00/0.98/1.00/0.61/0.79; goal-sens = 0.54/0.60/0.64; steer = 0.92/0.98/0.90; k=89 additive-var-in-subspace=0.74
+[task7] base h2: acc base/−h_sg/−rand/−sub/−randsub = 1.00/0.98/1.00/0.38/0.99; goal-sens = 0.54/0.60/0.64; steer = 0.89/0.96/0.90; k=57 additive-var-in-subspace=0.93
+[task7] base h3: acc base/−h_sg/−rand/−sub/−randsub = 1.00/0.97/1.00/0.36/1.00; goal-sens = 0.54/0.60/0.64; steer = 0.86/0.96/0.88; k=6 additive-var-in-subspace=0.97
+[task7] switch0.5 h1: acc base/−h_sg/−rand/−sub/−randsub = 1.00/0.95/1.00/0.62/0.93; goal-sens = 0.42/0.39/0.42; steer = 0.62/0.86/0.60; k=67 additive-var-in-subspace=0.62
+[task7] switch0.5 h2: acc base/−h_sg/−rand/−sub/−randsub = 1.00/0.93/1.00/0.15/1.00; goal-sens = 0.42/0.37/0.42; steer = 0.52/0.79/0.53; k=27 additive-var-in-subspace=0.90
+[task7] switch0.5 h3: acc base/−h_sg/−rand/−sub/−randsub = 1.00/0.93/1.00/0.12/1.00; goal-sens = 0.42/0.36/0.43; steer = 0.48/0.78/0.47; k=3 additive-var-in-subspace=0.95
+[task8] base h1: Spearman(α*,·) alpha_lin=+0.97 logit_margin=+0.84 m1=+0.42 m2=+0.20 d_occ=+0.13 occ_model=+0.29 | MAE lin=0.32 occ=0.28
+[task8] base h2: Spearman(α*,·) alpha_lin=+0.98 logit_margin=+0.84 m1=+0.43 m2=+0.21 d_occ=+0.13 occ_model=+0.29 | MAE lin=0.12 occ=0.32
+[task8] base h3: Spearman(α*,·) alpha_lin=+1.00 logit_margin=+0.85 m1=+0.45 m2=+0.20 d_occ=+0.13 occ_model=+0.31 | MAE lin=0.02 occ=0.34
+[task8] switch0.5 h1: Spearman(α*,·) alpha_lin=+0.92 logit_margin=+0.42 m1=-0.11 m2=+0.16 d_occ=-0.02 occ_model=-0.09 | MAE lin=0.24 occ=0.31
+[task8] switch0.5 h2: Spearman(α*,·) alpha_lin=+0.96 logit_margin=+0.52 m1=-0.09 m2=+0.17 d_occ=-0.04 occ_model=-0.07 | MAE lin=0.14 occ=0.36
+[task8] switch0.5 h3: Spearman(α*,·) alpha_lin=+1.00 logit_margin=+0.54 m1=-0.06 m2=+0.20 d_occ=-0.06 occ_model=-0.08 | MAE lin=0.03 occ=0.39
+[task9] h2 at λ=0.95: RSA policy(λ)=0.83 policy(0)=0.68; partial λ|0=+0.67 0|λ=-0.02  464s
+[task10] PR(h3) vs PR(occupancy) ρ=+0.47, vs PR(policy) ρ=+0.83, vs PR(SR) ρ=+0.70
+done in 465s -> results2/

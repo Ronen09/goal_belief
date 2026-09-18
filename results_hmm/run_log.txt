@@ -1,0 +1,20 @@
+device: cuda (AMD Radeon RX 7800 XT)
+[clean] gru/one-step               d(AB)/d(CD)=0.85  d_AB/med=0.55 d_CD/med=0.64 RSA belief/P1/P2/P3=0.64/0.75/0.52/0.83 decode belief R²=1.00 w/b 1-step classes=0.14  14s
+[clean] gru/2-step joint           d(AB)/d(CD)=1.06  d_AB/med=0.44 d_CD/med=0.42 RSA belief/P1/P2/P3=0.64/0.46/0.83/0.83 decode belief R²=1.00 w/b 1-step classes=0.12  25s
+[clean] gru/3-step joint           d(AB)/d(CD)=1.17  d_AB/med=0.51 d_CD/med=0.44 RSA belief/P1/P2/P3=0.64/0.46/0.82/0.83 decode belief R²=0.98 w/b 1-step classes=0.13  37s
+[clean] gru/2-step marginals       d(AB)/d(CD)=1.06  d_AB/med=0.43 d_CD/med=0.41 RSA belief/P1/P2/P3=0.64/0.76/0.67/0.83 decode belief R²=1.00 w/b 1-step classes=0.12  49s
+[clean] gru/sequential (exact)     d(AB)/d(CD)=0.84  d_AB/med=0.55 d_CD/med=0.64 RSA belief/P1/P2/P3=0.64/0.74/0.52/0.83 decode belief R²=1.00 w/b 1-step classes=0.12  74s
+[clean] gru/sequential (sampled)   d(AB)/d(CD)=0.83  d_AB/med=0.70 d_CD/med=0.85 RSA belief/P1/P2/P3=0.64/0.76/0.52/0.83 decode belief R²=1.00 w/b 1-step classes=0.21  97s
+[clean] mlp/one-step               d(AB)/d(CD)=0.24  d_AB/med=0.33 d_CD/med=1.45 RSA belief/P1/P2/P3=0.59/0.88/0.41/0.75 decode belief R²=0.98 w/b 1-step classes=0.08  105s
+[clean] mlp/2-step joint           d(AB)/d(CD)=1.05  d_AB/med=0.30 d_CD/med=0.28 RSA belief/P1/P2/P3=0.62/0.50/0.80/0.83 decode belief R²=0.99 w/b 1-step classes=0.12  113s
+[clean] gru/random init            d(AB)/d(CD)=1.34  d_AB/med=1.27 d_CD/med=0.95 RSA belief/P1/P2/P3=0.44/0.09/0.27/0.30
+[noisy] gru/one-step               d(AB)/d(CD)=1.13  d_AB/med=0.51 d_CD/med=0.45 RSA belief/P1/P2/P3=0.74/0.80/0.57/0.73 decode belief R²=1.00 w/b 1-step classes=0.23  129s
+[noisy] gru/2-step joint           d(AB)/d(CD)=1.21  d_AB/med=0.31 d_CD/med=0.26 RSA belief/P1/P2/P3=0.63/0.52/0.74/0.72 decode belief R²=1.00 w/b 1-step classes=0.20  141s
+[noisy] gru/3-step joint           d(AB)/d(CD)=1.18  d_AB/med=0.35 d_CD/med=0.30 RSA belief/P1/P2/P3=0.61/0.44/0.80/0.74 decode belief R²=1.00 w/b 1-step classes=0.22  156s
+[noisy] gru/2-step marginals       d(AB)/d(CD)=1.24  d_AB/med=0.33 d_CD/med=0.26 RSA belief/P1/P2/P3=0.67/0.78/0.69/0.70 decode belief R²=1.00 w/b 1-step classes=0.20  173s
+[noisy] gru/sequential (exact)     d(AB)/d(CD)=1.16  d_AB/med=0.53 d_CD/med=0.46 RSA belief/P1/P2/P3=0.75/0.79/0.57/0.74 decode belief R²=1.00 w/b 1-step classes=0.25  210s
+[noisy] gru/sequential (sampled)   d(AB)/d(CD)=1.06  d_AB/med=0.70 d_CD/med=0.66 RSA belief/P1/P2/P3=0.74/0.80/0.56/0.73 decode belief R²=1.00 w/b 1-step classes=0.39  245s
+[noisy] mlp/one-step               d(AB)/d(CD)=0.38  d_AB/med=0.41 d_CD/med=1.11 RSA belief/P1/P2/P3=0.70/0.89/0.51/0.68 decode belief R²=1.00 w/b 1-step classes=0.11  255s
+[noisy] mlp/2-step joint           d(AB)/d(CD)=1.09  d_AB/med=0.21 d_CD/med=0.19 RSA belief/P1/P2/P3=0.58/0.50/0.77/0.72 decode belief R²=1.00 w/b 1-step classes=0.15  265s
+[noisy] gru/random init            d(AB)/d(CD)=1.32  d_AB/med=1.24 d_CD/med=0.94 RSA belief/P1/P2/P3=0.26/0.11/0.23/0.26
+done in 268s -> results_hmm/

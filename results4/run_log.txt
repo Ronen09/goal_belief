@@ -1,0 +1,80 @@
+running 78 runs on 8 workers ...
+[1/78] r=0.00 d=0.40 k= 1 lam=1.00 seed=0  P_metric=0.21 pre=0.19 R2=0.98 acc=0.99 Gpar_int=0.001 kl=0.000  90s
+[2/78] r=0.00 d=0.40 k= 1 lam=1.00 seed=1  P_metric=0.32 pre=0.20 R2=0.98 acc=0.99 Gpar_int=0.002 kl=0.000  90s
+[3/78] r=0.00 d=0.40 k= 1 lam=1.00 seed=2  P_metric=0.45 pre=0.23 R2=0.99 acc=0.99 Gpar_int=0.001 kl=0.000  93s
+[4/78] r=0.05 d=0.40 k= 1 lam=1.00 seed=0  P_metric=0.80 pre=0.83 R2=0.99 acc=0.99 Gpar_int=0.003 kl=0.000  97s
+[5/78] r=0.05 d=0.40 k= 1 lam=1.00 seed=1  P_metric=1.00 pre=1.07 R2=1.00 acc=0.99 Gpar_int=0.002 kl=0.000  97s
+[6/78] r=0.05 d=0.40 k= 1 lam=1.00 seed=2  P_metric=0.93 pre=0.96 R2=1.00 acc=0.99 Gpar_int=0.001 kl=0.000  97s
+[7/78] r=0.10 d=0.40 k= 1 lam=1.00 seed=0  P_metric=0.78 pre=0.87 R2=0.99 acc=0.99 Gpar_int=0.002 kl=0.000  97s
+[8/78] r=0.10 d=0.40 k= 1 lam=1.00 seed=1  P_metric=1.01 pre=1.06 R2=1.00 acc=0.99 Gpar_int=0.003 kl=0.000  97s
+[9/78] r=0.10 d=0.40 k= 1 lam=1.00 seed=2  P_metric=0.94 pre=0.95 R2=1.00 acc=0.99 Gpar_int=0.002 kl=0.000  164s
+[10/78] r=0.25 d=0.40 k= 1 lam=1.00 seed=0  P_metric=0.80 pre=0.87 R2=0.99 acc=0.99 Gpar_int=0.003 kl=0.000  164s
+[11/78] r=0.25 d=0.40 k= 1 lam=1.00 seed=1  P_metric=0.84 pre=1.00 R2=0.99 acc=0.99 Gpar_int=0.004 kl=0.000  181s
+[12/78] r=0.25 d=0.40 k= 1 lam=1.00 seed=2  P_metric=0.93 pre=1.00 R2=0.99 acc=0.99 Gpar_int=0.004 kl=0.000  181s
+[13/78] r=0.50 d=0.40 k= 1 lam=1.00 seed=0  P_metric=0.74 pre=0.89 R2=1.00 acc=0.99 Gpar_int=0.004 kl=0.000  181s
+[14/78] r=0.50 d=0.40 k= 1 lam=1.00 seed=1  P_metric=0.83 pre=0.95 R2=0.99 acc=0.99 Gpar_int=0.003 kl=0.000  185s
+[15/78] r=0.50 d=0.40 k= 1 lam=1.00 seed=2  P_metric=0.90 pre=0.99 R2=0.99 acc=0.99 Gpar_int=0.003 kl=0.000  185s
+[16/78] r=0.75 d=0.40 k= 1 lam=1.00 seed=0  P_metric=0.79 pre=0.87 R2=0.98 acc=0.99 Gpar_int=0.002 kl=0.000  190s
+[17/78] r=0.75 d=0.40 k= 1 lam=1.00 seed=1  P_metric=0.96 pre=1.06 R2=0.98 acc=0.99 Gpar_int=0.003 kl=0.000  229s
+[18/78] r=0.75 d=0.40 k= 1 lam=1.00 seed=2  P_metric=0.93 pre=1.11 R2=0.99 acc=0.99 Gpar_int=0.006 kl=0.000  232s
+[19/78] r=1.00 d=0.40 k= 1 lam=1.00 seed=0  P_metric=0.97 pre=0.97 R2=0.83 acc=0.99 Gpar_int=0.003 kl=0.000  235s
+[20/78] r=1.00 d=0.40 k= 1 lam=1.00 seed=1  P_metric=0.83 pre=0.93 R2=0.97 acc=0.99 Gpar_int=0.003 kl=0.000  235s
+[21/78] r=1.00 d=0.40 k= 1 lam=1.00 seed=2  P_metric=1.05 pre=1.06 R2=0.91 acc=0.99 Gpar_int=0.005 kl=0.000  274s
+[22/78] r=1.00 d=0.00 k= 1 lam=1.00 seed=0  P_metric=0.16 pre=0.14 R2=0.80 acc=0.99 Gpar_int=0.001 kl=0.000  279s
+[23/78] r=1.00 d=0.00 k= 1 lam=1.00 seed=1  P_metric=0.18 pre=0.17 R2=0.84 acc=0.99 Gpar_int=0.001 kl=0.000  286s
+[24/78] r=1.00 d=0.00 k= 1 lam=1.00 seed=2  P_metric=0.39 pre=0.20 R2=0.88 acc=0.99 Gpar_int=0.003 kl=0.000  288s
+[25/78] r=1.00 d=0.02 k= 1 lam=1.00 seed=0  P_metric=0.20 pre=0.16 R2=0.84 acc=0.99 Gpar_int=0.001 kl=0.000  301s
+[26/78] r=1.00 d=0.02 k= 1 lam=1.00 seed=1  P_metric=0.24 pre=0.21 R2=0.90 acc=0.99 Gpar_int=0.001 kl=0.000  310s
+[27/78] r=1.00 d=0.02 k= 1 lam=1.00 seed=2  P_metric=0.45 pre=0.21 R2=0.89 acc=0.99 Gpar_int=0.003 kl=0.000  315s
+[28/78] r=1.00 d=0.05 k= 1 lam=1.00 seed=0  P_metric=0.44 pre=0.21 R2=0.85 acc=0.99 Gpar_int=0.001 kl=0.000  315s
+[29/78] r=1.00 d=0.05 k= 1 lam=1.00 seed=1  P_metric=0.33 pre=0.25 R2=0.91 acc=0.99 Gpar_int=0.001 kl=0.000  343s
+[30/78] r=1.00 d=0.05 k= 1 lam=1.00 seed=2  P_metric=0.51 pre=0.25 R2=0.89 acc=0.99 Gpar_int=0.003 kl=0.000  379s
+[31/78] r=1.00 d=0.10 k= 1 lam=1.00 seed=0  P_metric=0.53 pre=0.31 R2=0.85 acc=0.99 Gpar_int=0.002 kl=0.000  379s
+[32/78] r=1.00 d=0.10 k= 1 lam=1.00 seed=1  P_metric=0.41 pre=0.34 R2=0.92 acc=0.99 Gpar_int=0.002 kl=0.000  383s
+[33/78] r=1.00 d=0.10 k= 1 lam=1.00 seed=2  P_metric=0.55 pre=0.36 R2=0.91 acc=0.99 Gpar_int=0.004 kl=0.000  383s
+[34/78] r=1.00 d=0.20 k= 1 lam=1.00 seed=0  P_metric=0.68 pre=0.51 R2=0.86 acc=0.99 Gpar_int=0.004 kl=0.000  383s
+[35/78] r=1.00 d=0.20 k= 1 lam=1.00 seed=1  P_metric=0.54 pre=0.49 R2=0.93 acc=0.99 Gpar_int=0.002 kl=0.000  383s
+[36/78] r=1.00 d=0.20 k= 1 lam=1.00 seed=2  P_metric=0.69 pre=0.56 R2=0.93 acc=0.99 Gpar_int=0.004 kl=0.000  400s
+[37/78] r=1.00 d=0.40 k= 1 lam=0.00 seed=0  P_metric=0.16 pre=0.22 R2=0.94 acc=0.99 Gpar_int=0.355 kl=0.832  421s
+[38/78] r=1.00 d=0.40 k= 1 lam=0.00 seed=1  P_metric=0.43 pre=0.30 R2=0.97 acc=0.99 Gpar_int=0.562 kl=1.748  424s
+[39/78] r=1.00 d=0.40 k= 1 lam=0.00 seed=2  P_metric=0.49 pre=0.30 R2=0.95 acc=0.99 Gpar_int=0.144 kl=1.637  456s
+[40/78] r=1.00 d=0.40 k= 1 lam=0.10 seed=0  P_metric=0.90 pre=0.92 R2=0.91 acc=0.99 Gpar_int=0.017 kl=0.000  476s
+[41/78] r=1.00 d=0.40 k= 1 lam=0.10 seed=1  P_metric=0.80 pre=0.95 R2=0.98 acc=0.99 Gpar_int=0.011 kl=0.000  476s
+[42/78] r=1.00 d=0.40 k= 1 lam=0.10 seed=2  P_metric=1.00 pre=0.97 R2=0.93 acc=0.99 Gpar_int=0.017 kl=0.000  476s
+[43/78] r=1.00 d=0.40 k= 1 lam=0.25 seed=0  P_metric=0.88 pre=0.91 R2=0.88 acc=0.99 Gpar_int=0.013 kl=0.000  476s
+[44/78] r=1.00 d=0.40 k= 1 lam=0.25 seed=1  P_metric=0.79 pre=0.91 R2=0.96 acc=0.99 Gpar_int=0.006 kl=0.000  493s
+[45/78] r=1.00 d=0.40 k= 1 lam=0.25 seed=2  P_metric=1.00 pre=0.97 R2=0.93 acc=0.99 Gpar_int=0.010 kl=0.000  509s
+[46/78] r=1.00 d=0.40 k= 1 lam=0.50 seed=0  P_metric=0.90 pre=0.91 R2=0.84 acc=0.99 Gpar_int=0.010 kl=0.000  509s
+[47/78] r=1.00 d=0.40 k= 1 lam=0.50 seed=1  P_metric=0.79 pre=0.92 R2=0.95 acc=0.99 Gpar_int=0.004 kl=0.000  540s
+[48/78] r=1.00 d=0.40 k= 1 lam=0.50 seed=2  P_metric=0.99 pre=0.99 R2=0.93 acc=0.99 Gpar_int=0.005 kl=0.000  540s
+[49/78] r=1.00 d=0.40 k= 1 lam=2.00 seed=0  P_metric=0.84 pre=0.93 R2=0.87 acc=0.99 Gpar_int=0.003 kl=0.000  540s
+[50/78] r=1.00 d=0.40 k= 1 lam=2.00 seed=1  P_metric=0.85 pre=0.99 R2=0.98 acc=0.99 Gpar_int=0.003 kl=0.000  540s
+[51/78] r=1.00 d=0.40 k= 1 lam=2.00 seed=2  P_metric=1.07 pre=1.06 R2=0.90 acc=0.99 Gpar_int=0.005 kl=0.000  575s
+[52/78] r=1.00 d=0.40 k= 1 lam=5.00 seed=0  P_metric=0.82 pre=0.93 R2=0.90 acc=0.99 Gpar_int=0.003 kl=0.000  575s
+[53/78] r=1.00 d=0.40 k= 1 lam=5.00 seed=1  P_metric=0.96 pre=1.00 R2=0.97 acc=0.99 Gpar_int=0.002 kl=0.000  575s
+[54/78] r=1.00 d=0.40 k= 1 lam=5.00 seed=2  P_metric=1.21 pre=1.05 R2=0.93 acc=0.99 Gpar_int=0.005 kl=0.000  610s
+[55/78] r=1.00 d=0.40 k= 2 lam=1.00 seed=0  P_metric=0.77 pre=0.85 R2=0.91 acc=0.98 Gpar_int=0.013 kl=0.000  610s
+[56/78] r=1.00 d=0.40 k= 2 lam=1.00 seed=1  P_metric=0.88 pre=0.86 R2=0.98 acc=0.98 Gpar_int=0.011 kl=0.000  610s
+[57/78] r=1.00 d=0.40 k= 2 lam=1.00 seed=2  P_metric=0.97 pre=1.01 R2=0.98 acc=0.98 Gpar_int=0.014 kl=0.000  610s
+[58/78] r=1.00 d=0.40 k= 4 lam=1.00 seed=0  P_metric=0.50 pre=0.68 R2=0.98 acc=0.97 Gpar_int=0.013 kl=0.000  626s
+[59/78] r=1.00 d=0.40 k= 4 lam=1.00 seed=1  P_metric=0.68 pre=0.84 R2=0.98 acc=0.97 Gpar_int=0.007 kl=0.000  633s
+[60/78] r=1.00 d=0.40 k= 4 lam=1.00 seed=2  P_metric=0.80 pre=0.85 R2=0.99 acc=0.97 Gpar_int=0.008 kl=0.000  662s
+[61/78] r=1.00 d=0.40 k= 8 lam=1.00 seed=0  P_metric=0.31 pre=0.46 R2=0.72 acc=0.92 Gpar_int=0.013 kl=0.000  679s
+[62/78] r=1.00 d=0.40 k= 8 lam=1.00 seed=1  P_metric=0.62 pre=0.58 R2=0.81 acc=0.93 Gpar_int=0.014 kl=0.000  679s
+[63/78] r=1.00 d=0.40 k= 8 lam=1.00 seed=2  P_metric=0.77 pre=0.85 R2=0.75 acc=0.92 Gpar_int=0.012 kl=0.000  682s
+[64/78] r=1.00 d=0.40 k=16 lam=1.00 seed=0  P_metric=0.36 pre=0.43 R2=0.31 acc=0.83 Gpar_int=0.037 kl=0.001  682s
+[65/78] r=1.00 d=0.40 k=16 lam=1.00 seed=1  P_metric=0.65 pre=0.60 R2=0.44 acc=0.84 Gpar_int=0.013 kl=0.000  714s
+[66/78] r=1.00 d=0.40 k=16 lam=1.00 seed=2  P_metric=0.86 pre=0.68 R2=0.47 acc=0.83 Gpar_int=0.037 kl=0.001  714s
+[67/78] r=1.00 d=0.40 k= 2 lam=1.20 seed=0  P_metric=0.78 pre=0.85 R2=0.93 acc=0.98 Gpar_int=0.012 kl=0.000  714s
+[68/78] r=1.00 d=0.40 k= 2 lam=1.20 seed=1  P_metric=0.85 pre=0.88 R2=0.97 acc=0.98 Gpar_int=0.011 kl=0.000  731s
+[69/78] r=1.00 d=0.40 k= 2 lam=1.20 seed=2  P_metric=1.00 pre=1.00 R2=0.98 acc=0.98 Gpar_int=0.013 kl=0.000  741s
+[70/78] r=1.00 d=0.40 k= 4 lam=1.60 seed=0  P_metric=0.52 pre=0.65 R2=0.98 acc=0.97 Gpar_int=0.009 kl=0.000  761s
+[71/78] r=1.00 d=0.40 k= 4 lam=1.60 seed=1  P_metric=0.70 pre=0.88 R2=0.99 acc=0.97 Gpar_int=0.009 kl=0.000  766s
+[72/78] r=1.00 d=0.40 k= 4 lam=1.60 seed=2  P_metric=0.83 pre=0.83 R2=0.99 acc=0.97 Gpar_int=0.010 kl=0.000  778s
+[73/78] r=1.00 d=0.40 k= 8 lam=2.40 seed=0  P_metric=0.32 pre=0.47 R2=0.74 acc=0.92 Gpar_int=0.009 kl=0.000  778s
+[74/78] r=1.00 d=0.40 k= 8 lam=2.40 seed=1  P_metric=0.58 pre=0.65 R2=0.73 acc=0.92 Gpar_int=0.012 kl=0.000  778s
+[75/78] r=1.00 d=0.40 k= 8 lam=2.40 seed=2  P_metric=0.78 pre=0.83 R2=0.78 acc=0.92 Gpar_int=0.007 kl=0.000  787s
+[76/78] r=1.00 d=0.40 k=16 lam=4.00 seed=0  P_metric=0.40 pre=0.48 R2=0.35 acc=0.83 Gpar_int=0.024 kl=0.001  803s
+[77/78] r=1.00 d=0.40 k=16 lam=4.00 seed=1  P_metric=0.58 pre=0.60 R2=0.26 acc=0.83 Gpar_int=0.030 kl=0.178  803s
+[78/78] r=1.00 d=0.40 k=16 lam=4.00 seed=2  P_metric=1.12 pre=0.68 R2=0.36 acc=0.84 Gpar_int=0.018 kl=0.008  814s
+done in 815s -> results4/  sweep effects {'frequency': 0.42857142857142866, 'strength': 1.0, 'weight': 0.8571428571428573, 'delay': -0.8999999999999998}  regression R² 0.227

@@ -1,0 +1,10 @@
+[project]
+name = "goalgeo"
+version = "0.1.0"
+description = "Goal-conditioned occupancy geometry in neural agents"
+requires-python = ">=3.12"
+dependencies = ["numpy", "scipy", "torch", "matplotlib"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning:amdsmi.*"]

@@ -1,0 +1,356 @@
+{
+ "slip0.2": {
+  "per_seed": [
+   {
+    "emb": {
+     "rsa_occupancy": -0.03973333163704857,
+     "rsa_shortest_path": -0.03843434549238422,
+     "rsa_spatial": -0.05342639717357335,
+     "partial_stoch_given_sp": -0.03370349357389195,
+     "partial_sp_given_stoch": 0.03216118337146075,
+     "decode_r2_stochastic": -1.5575483968475976,
+     "decode_r2_shortest_path": -1.5318433535637332,
+     "rsa_policy_stochastic": 0.013678762643535973,
+     "rsa_policy_shortest": 0.050936458555847525,
+     "partial_polstoch_given_poldet": -0.017061811082684498,
+     "partial_poldet_given_polstoch": 0.05194486740594096
+    },
+    "h1": {
+     "rsa_occupancy": 0.05788430380525132,
+     "rsa_shortest_path": 0.06159672928353315,
+     "rsa_spatial": 0.0842728643041389,
+     "partial_stoch_given_sp": -0.09304437105801781,
+     "partial_sp_given_stoch": 0.09538583572535796,
+     "decode_r2_stochastic": -0.47654745229282613,
+     "decode_r2_shortest_path": -0.4333492431914141,
+     "rsa_policy_stochastic": 0.18764453001282225,
+     "rsa_policy_shortest": 0.19284764794977707,
+     "partial_polstoch_given_poldet": 0.09981386501794927,
+     "partial_poldet_given_polstoch": 0.10951877220094097
+    },
+    "h2": {
+     "rsa_occupancy": 0.2589079132702783,
+     "rsa_shortest_path": 0.2638463836642818,
+     "rsa_spatial": 0.29975826413669576,
+     "partial_stoch_given_sp": -0.12435384914258937,
+     "partial_sp_given_stoch": 0.13486357504524418,
+     "decode_r2_stochastic": -0.09303122883482184,
+     "decode_r2_shortest_path": -0.06533683212062824,
+     "rsa_policy_stochastic": 0.7088691196697762,
+     "rsa_policy_shortest": 0.5310511215139343,
+     "partial_polstoch_given_poldet": 0.5894499421487536,
+     "partial_poldet_given_polstoch": 0.24137075444951028
+    },
+    "h3": {
+     "rsa_occupancy": 0.3038259668502172,
+     "rsa_shortest_path": 0.3090427775025825,
+     "rsa_spatial": 0.3502715990620692,
+     "partial_stoch_given_sp": -0.13260025216280413,
+     "partial_sp_given_stoch": 0.14506296793453646,
+     "decode_r2_stochastic": 0.24245598289464565,
+     "decode_r2_shortest_path": 0.2521112720092553,
+     "rsa_policy_stochastic": 0.7828061030934095,
+     "rsa_policy_shortest": 0.5781811917053891,
+     "partial_polstoch_given_poldet": 0.6826446968719234,
+     "partial_poldet_given_polstoch": 0.28625832245833344
+    }
+   },
+   {
+    "emb": {
+     "rsa_occupancy": 0.0302468630083816,
+     "rsa_shortest_path": 0.031467656722359565,
+     "rsa_spatial": 0.029151049327123993,
+     "partial_stoch_given_sp": -0.030332329523830873,
+     "partial_sp_given_stoch": 0.03154981016832938,
+     "decode_r2_stochastic": -0.9008902732734128,
+     "decode_r2_shortest_path": -0.8900101869982333,
+     "rsa_policy_stochastic": 0.07822913230820326,
+     "rsa_policy_shortest": 0.025183568792378094,
+     "partial_polstoch_given_poldet": 0.07705719823485489,
+     "partial_poldet_given_polstoch": -0.021241995014159933
+    },
+    "h1": {
+     "rsa_occupancy": 0.034539290951097576,
+     "rsa_shortest_path": 0.03588726764963516,
+     "rsa_spatial": 0.041520882485796336,
+     "partial_stoch_given_sp": -0.03347481965145527,
+     "partial_sp_given_stoch": 0.034864075951406066,
+     "decode_r2_stochastic": -0.0031831263992698755,
+     "decode_r2_shortest_path": 0.009520057893998124,
+     "rsa_policy_stochastic": 0.23289609308384923,
+     "rsa_policy_shortest": 0.1390129805130761,
+     "partial_polstoch_given_poldet": 0.18918427658477247,
+     "partial_poldet_given_polstoch": 0.01391284270266355
+    },
+    "h2": {
+     "rsa_occupancy": 0.2559493437023561,
+     "rsa_shortest_path": 0.2598461456924524,
+     "rsa_spatial": 0.2917266830456027,
+     "partial_stoch_given_sp": -0.09695794705329629,
+     "partial_sp_given_stoch": 0.10738472527284848,
+     "decode_r2_stochastic": 0.22859630930521424,
+     "decode_r2_shortest_path": 0.23778245190108915,
+     "rsa_policy_stochastic": 0.7677275082287376,
+     "rsa_policy_shortest": 0.513790334400667,
+     "partial_polstoch_given_poldet": 0.6774122519797502,
+     "partial_poldet_given_polstoch": 0.17325560782224206
+    },
+    "h3": {
+     "rsa_occupancy": 0.29253624616913537,
+     "rsa_shortest_path": 0.298763182593686,
+     "rsa_spatial": 0.3534219737958106,
+     "partial_stoch_given_sp": -0.1591818434448039,
+     "partial_sp_given_stoch": 0.17106547868146357,
+     "decode_r2_stochastic": 0.3226185841223552,
+     "decode_r2_shortest_path": 0.32501045051290156,
+     "rsa_policy_stochastic": 0.8212311749059189,
+     "rsa_policy_shortest": 0.5606893945519373,
+     "partial_polstoch_given_poldet": 0.7419954320045222,
+     "partial_poldet_given_polstoch": 0.2313708825028536
+    }
+   },
+   {
+    "emb": {
+     "rsa_occupancy": 0.00499272986025029,
+     "rsa_shortest_path": 0.0062708145099470945,
+     "rsa_spatial": 0.024630147933470226,
+     "partial_stoch_given_sp": -0.03226717099392776,
+     "partial_sp_given_stoch": 0.03248925140957054,
+     "decode_r2_stochastic": -1.558983083351313,
+     "decode_r2_shortest_path": -1.5561879407502066,
+     "rsa_policy_stochastic": 0.0321634603678547,
+     "rsa_policy_shortest": -0.012118808995094895,
+     "partial_polstoch_given_poldet": 0.046409279958724445,
+     "partial_poldet_given_polstoch": -0.035597657074405015
+    },
+    "h1": {
+     "rsa_occupancy": 0.07568704956979479,
+     "rsa_shortest_path": 0.07730966795683193,
+     "rsa_spatial": 0.10373995353503188,
+     "partial_stoch_given_sp": -0.03971476144018024,
+     "partial_sp_given_stoch": 0.04273820392789909,
+     "decode_r2_stochastic": -0.22153941445610914,
+     "decode_r2_shortest_path": -0.20796022223529542,
+     "rsa_policy_stochastic": 0.2042220093122459,
+     "rsa_policy_shortest": 0.16533392339711445,
+     "partial_polstoch_given_poldet": 0.1376974823471223,
+     "partial_poldet_given_polstoch": 0.06517788235836294
+    },
+    "h2": {
+     "rsa_occupancy": 0.2831172343777081,
+     "rsa_shortest_path": 0.28802483219215136,
+     "rsa_spatial": 0.34808343717654977,
+     "partial_stoch_given_sp": -0.12393993276685436,
+     "partial_sp_given_stoch": 0.13550454792573713,
+     "decode_r2_stochastic": 0.04122747099474444,
+     "decode_r2_shortest_path": 0.05256676197900367,
+     "rsa_policy_stochastic": 0.7323072683138593,
+     "rsa_policy_shortest": 0.5649790656912581,
+     "partial_polstoch_given_poldet": 0.6123416759806851,
+     "partial_poldet_given_polstoch": 0.287017303691138
+    },
+    "h3": {
+     "rsa_occupancy": 0.30898977844282505,
+     "rsa_shortest_path": 0.31549702986096323,
+     "rsa_spatial": 0.38552870162656905,
+     "partial_stoch_given_sp": -0.1672260891095593,
+     "partial_sp_given_stoch": 0.17980977494150188,
+     "decode_r2_stochastic": 0.11449979348914086,
+     "decode_r2_shortest_path": 0.12537356551192125,
+     "rsa_policy_stochastic": 0.7772034176830587,
+     "rsa_policy_shortest": 0.5934756267881417,
+     "partial_polstoch_given_poldet": 0.6712392657888615,
+     "partial_poldet_given_polstoch": 0.31798328116281327
+    }
+   }
+  ],
+  "meta": {
+   "rsa_stochastic_vs_shortest_path_hypotheses": 0.9992211957157574,
+   "rsa_policy_stochastic_vs_policy_shortest": 0.548304204129553,
+   "rsa_stochastic_vs_spatial": 0.9260375732999554,
+   "fraction_state_action_support_changed": 0.14356725146198832,
+   "train_accuracy": [
+    1.0,
+    1.0,
+    1.0
+   ]
+  }
+ },
+ "ice": {
+  "per_seed": [
+   {
+    "emb": {
+     "rsa_occupancy": -0.025212524975124315,
+     "rsa_shortest_path": -0.04656385222964801,
+     "rsa_spatial": -0.0587091551792901,
+     "partial_stoch_given_sp": 0.04027075332785672,
+     "partial_sp_given_stoch": -0.056149286463312784,
+     "decode_r2_stochastic": -1.5692122832207729,
+     "decode_r2_shortest_path": -1.6439646520082247,
+     "rsa_policy_stochastic": 0.0730246199143728,
+     "rsa_policy_shortest": 0.05051787453255014,
+     "partial_polstoch_given_poldet": 0.056787193504703806,
+     "partial_poldet_given_polstoch": 0.020936895912617853
+    },
+    "h1": {
+     "rsa_occupancy": 0.03103346292151982,
+     "rsa_shortest_path": 0.03269608666956462,
+     "rsa_spatial": 0.0786098945423607,
+     "partial_stoch_given_sp": 0.003310726613306883,
+     "partial_sp_given_stoch": 0.010817585451712587,
+     "decode_r2_stochastic": -0.41013511625732213,
+     "decode_r2_shortest_path": -0.4659182078430435,
+     "rsa_policy_stochastic": 0.2438293108448667,
+     "rsa_policy_shortest": 0.1363960809482559,
+     "partial_polstoch_given_poldet": 0.20686486350847003,
+     "partial_poldet_given_polstoch": 0.03493830651268044
+    },
+    "h2": {
+     "rsa_occupancy": 0.20393824486389153,
+     "rsa_shortest_path": 0.20030257430350845,
+     "rsa_spatial": 0.23703473156659388,
+     "partial_stoch_given_sp": 0.05408627392969368,
+     "partial_sp_given_stoch": 0.03736771919806263,
+     "decode_r2_stochastic": -0.2972242800790137,
+     "decode_r2_shortest_path": -0.43266252905129376,
+     "rsa_policy_stochastic": 0.6831773106762715,
+     "rsa_policy_shortest": 0.3667978938290715,
+     "partial_polstoch_given_poldet": 0.6251717481723191,
+     "partial_poldet_given_polstoch": 0.10664830705402172
+    },
+    "h3": {
+     "rsa_occupancy": 0.22631249972419387,
+     "rsa_shortest_path": 0.221401849777877,
+     "rsa_spatial": 0.2578323358980412,
+     "partial_stoch_given_sp": 0.062227968352167096,
+     "partial_sp_given_stoch": 0.03954796128608381,
+     "decode_r2_stochastic": -0.14729993140134146,
+     "decode_r2_shortest_path": -0.3431089859522525,
+     "rsa_policy_stochastic": 0.7258053767601869,
+     "rsa_policy_shortest": 0.3824757924424774,
+     "partial_polstoch_given_poldet": 0.6724952868545288,
+     "partial_poldet_given_polstoch": 0.10864479367408435
+    }
+   },
+   {
+    "emb": {
+     "rsa_occupancy": 0.024444220142597433,
+     "rsa_shortest_path": 0.028738023610896637,
+     "rsa_spatial": 0.028308618517708297,
+     "partial_stoch_given_sp": -0.0037984149394986277,
+     "partial_sp_given_stoch": 0.015585739949670793,
+     "decode_r2_stochastic": -1.1060407369719414,
+     "decode_r2_shortest_path": -1.0224142899339852,
+     "rsa_policy_stochastic": 0.007110171374753663,
+     "rsa_policy_shortest": 0.017262595165525654,
+     "partial_polstoch_given_poldet": -0.0004279249283771795,
+     "partial_poldet_given_polstoch": 0.015736525642026128
+    },
+    "h1": {
+     "rsa_occupancy": 0.009519434014318366,
+     "rsa_shortest_path": 0.04531794189080366,
+     "rsa_spatial": 0.07632926520740843,
+     "partial_stoch_given_sp": -0.0747806439667843,
+     "partial_sp_given_stoch": 0.08685873556178351,
+     "decode_r2_stochastic": -0.39274800258336673,
+     "decode_r2_shortest_path": -0.2079161826826763,
+     "rsa_policy_stochastic": 0.10090855823646736,
+     "rsa_policy_shortest": 0.08988488121553913,
+     "partial_polstoch_given_poldet": 0.06897238907326018,
+     "partial_poldet_given_polstoch": 0.05140444512942418
+    },
+    "h2": {
+     "rsa_occupancy": 0.19210081705186527,
+     "rsa_shortest_path": 0.19425636895279957,
+     "rsa_spatial": 0.2062036266764169,
+     "partial_stoch_given_sp": 0.038677709268692725,
+     "partial_sp_given_stoch": 0.04857360622512893,
+     "decode_r2_stochastic": -0.10525401833267511,
+     "decode_r2_shortest_path": 0.037156877136207855,
+     "rsa_policy_stochastic": 0.6864101578998044,
+     "rsa_policy_shortest": 0.3507509164011842,
+     "partial_polstoch_given_poldet": 0.6331460144702994,
+     "partial_poldet_given_polstoch": 0.08045490901496428
+    },
+    "h3": {
+     "rsa_occupancy": 0.2329923677959412,
+     "rsa_shortest_path": 0.2203950654111857,
+     "rsa_spatial": 0.24210784921241624,
+     "partial_stoch_given_sp": 0.08063996976474101,
+     "partial_sp_given_stoch": 0.022422582455382874,
+     "decode_r2_stochastic": 0.02476379484382152,
+     "decode_r2_shortest_path": 0.017056477078867482,
+     "rsa_policy_stochastic": 0.7779697081066884,
+     "rsa_policy_shortest": 0.380528766645654,
+     "partial_polstoch_given_poldet": 0.7355448174456356,
+     "partial_poldet_given_polstoch": 0.07549086966776049
+    }
+   },
+   {
+    "emb": {
+     "rsa_occupancy": -0.007532354479613804,
+     "rsa_shortest_path": 0.003429678224864753,
+     "rsa_spatial": 0.021473452785766345,
+     "partial_stoch_given_sp": -0.02519050713095035,
+     "partial_sp_given_stoch": 0.024281967931634972,
+     "decode_r2_stochastic": -1.8544412508959232,
+     "decode_r2_shortest_path": -1.702175600207429,
+     "rsa_policy_stochastic": -0.01345534079974111,
+     "rsa_policy_shortest": -0.02725828145363246,
+     "partial_polstoch_given_poldet": -0.0017985124269211045,
+     "partial_poldet_given_polstoch": -0.023776086750380593
+    },
+    "h1": {
+     "rsa_occupancy": 0.04071392198222564,
+     "rsa_shortest_path": 0.08840434442340012,
+     "rsa_spatial": 0.1413641767094243,
+     "partial_stoch_given_sp": -0.0936750204186692,
+     "partial_sp_given_stoch": 0.12201973033182467,
+     "decode_r2_stochastic": -0.7625428781732553,
+     "decode_r2_shortest_path": -0.718771677071637,
+     "rsa_policy_stochastic": 0.08554625031821145,
+     "rsa_policy_shortest": 0.1057476690389492,
+     "partial_polstoch_given_poldet": 0.044241211558085004,
+     "partial_poldet_given_polstoch": 0.07643665812072634
+    },
+    "h2": {
+     "rsa_occupancy": 0.21452407427312734,
+     "rsa_shortest_path": 0.22294664175391082,
+     "rsa_spatial": 0.28168421453157805,
+     "partial_stoch_given_sp": 0.030223030859331812,
+     "partial_sp_given_stoch": 0.069081683203127,
+     "decode_r2_stochastic": -0.2850226390990409,
+     "decode_r2_shortest_path": -0.29781208702937834,
+     "rsa_policy_stochastic": 0.6433255618483693,
+     "rsa_policy_shortest": 0.4041093664883946,
+     "partial_polstoch_given_poldet": 0.5678002452421108,
+     "partial_poldet_given_polstoch": 0.18091788483919327
+    },
+    "h3": {
+     "rsa_occupancy": 0.2528005442594617,
+     "rsa_shortest_path": 0.2508932068355534,
+     "rsa_spatial": 0.30173765438682065,
+     "partial_stoch_given_sp": 0.06209479793433176,
+     "partial_sp_given_stoch": 0.05322986077906987,
+     "decode_r2_stochastic": -0.41267381918121426,
+     "decode_r2_shortest_path": -0.48164894795825064,
+     "rsa_policy_stochastic": 0.7251608141704523,
+     "rsa_policy_shortest": 0.42469077662467847,
+     "partial_polstoch_given_poldet": 0.663065171361102,
+     "partial_poldet_given_polstoch": 0.17704669726963065
+    }
+   }
+  ],
+  "meta": {
+   "rsa_stochastic_vs_shortest_path_hypotheses": 0.9063984004113355,
+   "rsa_policy_stochastic_vs_policy_shortest": 0.43421012935649494,
+   "rsa_stochastic_vs_spatial": 0.8142103634798697,
+   "fraction_state_action_support_changed": 0.17339181286549707,
+   "train_accuracy": [
+    1.0,
+    1.0,
+    1.0
+   ]
+  }
+ }
+}

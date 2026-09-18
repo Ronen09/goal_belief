@@ -1,0 +1,21 @@
+[phase1-3] base: S=57 K=15 PR(Z_sa)=2.79  0s
+[phase4] onehot: acc=1.000 rollout success=1.000  21s
+[phase4] coord: acc=1.000 rollout success=1.000  40s
+[phase5] onehot: h2 RSA occ=0.29 spatial=0.39 decodeR2 occ=0.16 (random -0.19)  154s
+[phase5] coord: h2 RSA occ=0.92 spatial=0.99 decodeR2 occ=0.93 (random 0.59)  263s
+[phase6] base     onehot acc=1.000 h2: β_occ=-0.53 β_sp=+0.63 disagree ρ occ=+0.21 sp=+0.39  263s
+[phase6] base     coord  acc=1.000 h2: β_occ=-0.00 β_sp=+0.97 disagree ρ occ=+0.86 sp=+0.98  263s
+[phase6] barrier  onehot acc=1.000 h2: β_occ=-0.02 β_sp=+0.44 disagree ρ occ=+0.24 sp=+0.49 special=0.96 ctrl_sp=0.69  273s
+[phase6] barrier  coord  acc=1.000 h2: β_occ=+0.34 β_sp=+0.52 disagree ρ occ=+0.65 sp=+0.56 special=0.44 ctrl_sp=0.35  283s
+[phase6] portal   onehot acc=1.000 h2: β_occ=-0.34 β_sp=+0.39 disagree ρ occ=+0.13 sp=+0.38 special=0.81 ctrl_sp=1.13  292s
+[phase6] portal   coord  acc=1.000 h2: β_occ=-0.02 β_sp=+1.02 disagree ρ occ=+0.38 sp=+0.88 special=2.81 ctrl_sp=2.22  303s
+[phase6] twins    onehot acc=1.000 h2: β_occ=+0.03 β_sp=+0.53 disagree ρ occ=-0.07 sp=+0.13 special=0.89 ctrl_sp=0.98  314s
+[phase6] twins    coord  acc=1.000 h2: β_occ=-0.15 β_sp=+0.81 disagree ρ occ=-0.44 sp=+0.90 special=1.36 ctrl_sp=1.15  324s
+[phase7] variance fractions (state/goal/interaction) per layer: {'emb': (np.float64(0.52), np.float64(0.48), np.float64(0.0)), 'h1': (np.float64(0.51), np.float64(0.37), np.float64(0.13)), 'h2': (np.float64(0.44), np.float64(0.46), np.float64(0.11)), 'h3': (np.float64(0.37), np.float64(0.52), np.float64(0.11))} 331s
+[phase8] emb: agree g2 at α=1: 1.00, α=2: 0.88; flipped by α=1: 1.00; corr(flip α, margin)=+0.18
+[phase8] h1: agree g2 at α=1: 0.92, α=2: 0.86; flipped by α=1: 0.90; corr(flip α, margin)=+0.20
+[phase8] h2: agree g2 at α=1: 0.90, α=2: 0.84; flipped by α=1: 0.86; corr(flip α, margin)=+0.21
+[phase8] h3: agree g2 at α=1: 0.88, α=2: 0.84; flipped by α=1: 0.82; corr(flip α, margin)=+0.21
+[phase9] slip0.2: hypotheses RSA(stoch, shortest)=0.999; acc=1.000; h2 partial stoch|sp=-0.12, sp|stoch=+0.13  345s
+[phase9] ice: hypotheses RSA(stoch, shortest)=0.906; acc=1.000; h2 partial stoch|sp=+0.04, sp|stoch=+0.05  356s
+done in 356s -> results/

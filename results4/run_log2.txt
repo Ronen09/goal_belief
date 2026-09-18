@@ -1,0 +1,33 @@
+resumed 78 runs
+running 0 runs on 8 workers ...
+running 27 runs on 8 workers ...
+[1/27] r=0.10 d=0.05 k= 1 lam=1.00 seed=0  P_metric=0.28 pre=0.22 R2=0.98 acc=0.99 Gpar_int=0.002 kl=0.000  100s
+[2/27] r=0.10 d=0.05 k= 1 lam=1.00 seed=1  P_metric=0.32 pre=0.33 R2=0.99 acc=0.99 Gpar_int=0.001 kl=0.000  100s
+[3/27] r=0.10 d=0.05 k= 1 lam=1.00 seed=2  P_metric=0.49 pre=0.29 R2=0.98 acc=0.99 Gpar_int=0.001 kl=0.000  100s
+[4/27] r=0.10 d=0.10 k= 1 lam=1.00 seed=0  P_metric=0.37 pre=0.32 R2=0.99 acc=0.99 Gpar_int=0.002 kl=0.000  100s
+[5/27] r=0.10 d=0.10 k= 1 lam=1.00 seed=1  P_metric=0.44 pre=0.41 R2=0.99 acc=0.99 Gpar_int=0.002 kl=0.000  100s
+[6/27] r=0.10 d=0.10 k= 1 lam=1.00 seed=2  P_metric=0.59 pre=0.38 R2=0.99 acc=0.99 Gpar_int=0.001 kl=0.000  100s
+[7/27] r=0.10 d=0.20 k= 1 lam=1.00 seed=0  P_metric=0.52 pre=0.51 R2=0.99 acc=0.99 Gpar_int=0.002 kl=0.000  107s
+[8/27] r=0.10 d=0.20 k= 1 lam=1.00 seed=1  P_metric=0.63 pre=0.57 R2=0.99 acc=0.99 Gpar_int=0.002 kl=0.000  107s
+[9/27] r=0.10 d=0.20 k= 1 lam=1.00 seed=2  P_metric=0.73 pre=0.55 R2=0.99 acc=0.99 Gpar_int=0.001 kl=0.000  167s
+[10/27] r=0.25 d=0.05 k= 1 lam=1.00 seed=0  P_metric=0.31 pre=0.26 R2=0.98 acc=0.99 Gpar_int=0.001 kl=0.000  190s
+[11/27] r=0.25 d=0.05 k= 1 lam=1.00 seed=1  P_metric=0.33 pre=0.29 R2=0.97 acc=0.99 Gpar_int=0.002 kl=0.000  190s
+[12/27] r=0.25 d=0.05 k= 1 lam=1.00 seed=2  P_metric=0.50 pre=0.28 R2=0.97 acc=0.99 Gpar_int=0.001 kl=0.000  193s
+[13/27] r=0.25 d=0.10 k= 1 lam=1.00 seed=0  P_metric=0.41 pre=0.35 R2=0.98 acc=0.99 Gpar_int=0.001 kl=0.000  193s
+[14/27] r=0.25 d=0.10 k= 1 lam=1.00 seed=1  P_metric=0.44 pre=0.36 R2=0.98 acc=0.99 Gpar_int=0.002 kl=0.000  193s
+[15/27] r=0.25 d=0.10 k= 1 lam=1.00 seed=2  P_metric=0.56 pre=0.38 R2=0.98 acc=0.99 Gpar_int=0.001 kl=0.000  202s
+[16/27] r=0.25 d=0.20 k= 1 lam=1.00 seed=0  P_metric=0.57 pre=0.50 R2=0.99 acc=0.99 Gpar_int=0.002 kl=0.000  202s
+[17/27] r=0.25 d=0.20 k= 1 lam=1.00 seed=1  P_metric=0.62 pre=0.52 R2=0.99 acc=0.99 Gpar_int=0.003 kl=0.000  230s
+[18/27] r=0.25 d=0.20 k= 1 lam=1.00 seed=2  P_metric=0.69 pre=0.54 R2=0.99 acc=0.99 Gpar_int=0.002 kl=0.000  239s
+[19/27] r=0.50 d=0.05 k= 1 lam=1.00 seed=0  P_metric=0.24 pre=0.22 R2=0.95 acc=0.99 Gpar_int=0.001 kl=0.000  240s
+[20/27] r=0.50 d=0.05 k= 1 lam=1.00 seed=1  P_metric=0.38 pre=0.24 R2=0.96 acc=0.99 Gpar_int=0.001 kl=0.000  251s
+[21/27] r=0.50 d=0.05 k= 1 lam=1.00 seed=2  P_metric=0.48 pre=0.26 R2=0.95 acc=0.99 Gpar_int=0.002 kl=0.000  274s
+[22/27] r=0.50 d=0.10 k= 1 lam=1.00 seed=0  P_metric=0.37 pre=0.30 R2=0.96 acc=0.99 Gpar_int=0.001 kl=0.000  280s
+[23/27] r=0.50 d=0.10 k= 1 lam=1.00 seed=1  P_metric=0.51 pre=0.30 R2=0.96 acc=0.99 Gpar_int=0.002 kl=0.000  282s
+[24/27] r=0.50 d=0.10 k= 1 lam=1.00 seed=2  P_metric=0.52 pre=0.36 R2=0.96 acc=0.99 Gpar_int=0.002 kl=0.000  282s
+[25/27] r=0.50 d=0.20 k= 1 lam=1.00 seed=0  P_metric=0.57 pre=0.47 R2=0.97 acc=0.99 Gpar_int=0.003 kl=0.000  290s
+[26/27] r=0.50 d=0.20 k= 1 lam=1.00 seed=1  P_metric=0.65 pre=0.48 R2=0.97 acc=0.99 Gpar_int=0.002 kl=0.000  296s
+[27/27] r=0.50 d=0.20 k= 1 lam=1.00 seed=2  P_metric=0.65 pre=0.54 R2=0.97 acc=0.99 Gpar_int=0.002 kl=0.000  297s
+dense dynamics: 12 runs ...
+dense dynamics done in 79s
+done in 377s -> results4/  sweep effects {'frequency': 0.42857142857142866, 'strength': 1.0, 'weight': 0.8571428571428573, 'delay': -0.8999999999999998}  regression R² 0.223
