@@ -1,4 +1,4 @@
-# goalgeo — summary of results, rounds 1–14
+# goalgeo — summary of results, rounds 1–15
 
 Condensed from the per-round reports; numbers are seed means as reported there. See
 `README.md` for the round-to-file map.
@@ -206,6 +206,27 @@ readout interface. It is trained to output the exact posterior in both round-12 
   0.27–0.29). At full attention the network ignores the carry (iid: −0.005).
 - Cross-length equal filter states: 1.63× Bayes for carry, l = 1 (GRU 1.13×).
 - 7 of 7 pre-registered predictions held.
+
+## Round 15: prior or recomputation in a next-token transformer
+
+**Round 15 — does position t+1 use the belief exported by position t as a prior? (`results14/REPORT14.md`,
+predictions in `docs/task14_prior_theory.md`).** Standard full-attention transformers (2 or 4 layers,
+context 24 or 64) are trained on sampled next tokens in the channel environment. Position t+1 is
+recomputed from edited K/V sources of positions ≤ t: position t's belief-carrying exports swapped
+for another history's (or probe-edited toward its decoded state) with all tokens kept, or the
+older evidence replaced or hidden.
+
+- The transplanted belief gets 0.4–8 % of the weight at position t+1 (output predictive, calibrated
+  so baseline = 0 and the consistent counterfactual = 1).
+- With conflicting sources, position t+1 follows the tokens. Its output equals the exact Bayes
+  update of the token sequence it can attend to, within −0.016 to +0.029 over all 24 (model,
+  position) cells.
+- Hiding the older evidence breaks the inference even with position t's state intact.
+- The prior's weight rises slightly with context (≤ 0.02 → 0.03–0.06; the brief's hypothesised
+  direction) and does not track attention to position t (ρ = −0.61).
+- 2 of 9 pre-registered predictions held. Three failures come from reading raw probe-decoded λ
+  without calibrating against the baseline and positive control, and one (the sum rule) ignored
+  that the corrupted-evidence cell keeps the raw token at t.
 
 ## Cross-round findings
 

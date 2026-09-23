@@ -25,13 +25,14 @@ Two rounds of experiments:
 | 12b | `TASK11.md` claim 2 (is the decoded posterior the causal state? posterior transplant, equal-belief equivalence, same action / different belief) | cut analysis and pre-registered predictions in `docs/task11_causal_theory.md` | `scripts/run_task11_causal.py`, then `scripts/task11_causal_tables.py` (uses `results11/models/`) | `results11/causal/REPORT_causal.md`, `results11/causal/tables_causal.md` |
 | 13 | `TASK12.md` (the full filter state: is a recurrent network's future a function of the environment's minimal predictive state? full-state decoding, matched two-block interventions, an equivalence hierarchy, a hidden-size bottleneck) | minimal-statistic analysis and pre-registered predictions in `docs/task12_filter_theory.md` | `scripts/run_task12.py`, then `scripts/task12_tables.py` (uses `results11/models/`) | `results12/REPORT12.md`, `results12/tables12.md`, `results12/models/` |
 | 14 | TASK13 (windowed transformers: does restricting attention to the last l tokens force a steerable belief state? with and without a recurrent carry of the readout interface) | predictions in `docs/task13_window_theory.md` | `scripts/run_task13.py`, then `scripts/task13_tables.py` | `results13/REPORT13.md`, `results13/tables13.md`, `results13/models/` |
+| 15 | `TASK14.md` (prior or recomputation: does a next-token transformer's position t+1 use the belief exported through position t's K/V as a prior? 2×2 of edited prior / edited evidence) | predictions in `docs/task14_prior_theory.md` | `scripts/run_task14.py`, `scripts/task14_recompute.py`, then `scripts/task14_tables.py` | `results14/REPORT14.md`, `results14/tables14.md`, `results14/models/` |
 
 ## Setup
 
 ```bash
 uv venv --system-site-packages --python /usr/bin/python3 .venv   # reuses system torch/numpy/scipy/matplotlib
 uv pip install --python .venv/bin/python pytest
-.venv/bin/python -m pytest            # 112 tests, ~70 s
+.venv/bin/python -m pytest            # 113 tests, ~70 s
 .venv/bin/python scripts/run_all.py     # round 1, ~6 min on CPU -> results/
 .venv/bin/python scripts/run_task2.py   # round 2, ~8 min -> results2/
 .venv/bin/python scripts/run_task2.py --targets boltzmann --sweep-only --out results2/boltzmann   # soft-target sweep
@@ -48,6 +49,7 @@ uv pip install --python .venv/bin/python pytest
 .venv/bin/python scripts/run_task11_causal.py && .venv/bin/python scripts/task11_causal_tables.py   # round 12 part 2, causal tests on the round-12 models (~6 min) -> results11/causal/
 .venv/bin/python scripts/run_task12.py && .venv/bin/python scripts/task12_tables.py   # round 13, 60 bottleneck GRUs + measurements (~7 min, 96 CPU workers) -> results12/
 .venv/bin/python scripts/run_task13.py && .venv/bin/python scripts/task13_tables.py   # round 14, 60 windowed transformers (~31 min, CPU workers) -> results13/
+.venv/bin/python scripts/run_task14.py && .venv/bin/python scripts/task14_recompute.py && .venv/bin/python scripts/task14_tables.py   # round 15, 12 next-token transformers (~11 min, GPU) -> results14/
 .venv/bin/python scripts/run_all.py --quick --out /tmp/quick   # smoke runs (also for run_task2.py)
 ```
 
@@ -72,9 +74,10 @@ uv pip install --python .venv/bin/python pytest
 | `goalgeo/cuts.py`, `goalgeo/factorize.py` | round-11 experiments: minimal counterfactual pairs and interchange effects on complete vs incomplete causal cuts, attention route restrictions (hard masks in `tfm.py`'s `attn_diag`, soft attention penalties in `train_routed`); the readout-interface factorisation C = g·D·cos θ with the frozen-LayerNorm ceiling |
 | `goalgeo/latentgoal.py`, `goalgeo/belief_train.py`, `goalgeo/beliefprobe.py`, `goalgeo/beliefcausal.py`, `goalgeo/filterstate.py` | round-12 hidden-goal environment (iid or latent-channel evidence) with the exact joint filter and targets for four objectives; stacked transformer training with per-objective output masks and GRU training; affine log-odds probes with IID / EXT / CONF / TIME splits and the gain over the count-affine predictor; filtering from an arbitrary joint state, belief interventions along encoder or minimum-norm directions, equal-belief and same-action pair construction; round 13's full-filter-state coordinates, matched two-block interventions and equal-state pairs (same and different lengths) |
 | `goalgeo/wtfm.py` | round-14 windowed transformer: attention to the last l positions with a learned relative bias, optional recurrent carry of the readout interface, position-by-position execution with a key/value cache, edits of u_t or res1(t) |
+| `goalgeo/kvprior.py` | round-15 next-token training on sampled tokens; `forward_query` computes position t+1 from arbitrary exported per-layer residuals (the K/V sources) with optional attention masking; λ along A⁺ → B⁺ |
 | `goalgeo/steering.py` | round-9 primitives: propagate a (perturbed) state through the network's own future steps, effect curves, matched-effect steering, directional logit derivatives, depth curves |
 | `goalgeo/invariants.py` | round-8 measures from extracted arrays (OLS decoding, exact rank, sample-space projection, whitened RSA, readout/Jacobian/Fisher/finite-propagation functional measures), exact interface transforms h→Ah, W→WA⁻¹, J→JA⁻¹ |
 | `goalgeo/hmm4.py`, `goalgeo/prominence.py` | round-5 parametrised HMM family (relevance frequency r, strength δ, delay k, fixed immediate-relevance control branch, forgetful-filter cost) and measurements (pairwise metric prominence, decodability, RSA, cue-state gradients of the delayed loss) |
 | `goalgeo/plotting.py` … `goalgeo/plotting9.py` | figures per round |
 | `scripts/run_all.py` … `scripts/run_task4.py` | one runner per round |
-| `tests/` | 112 tests: analytic checks (e.g. `ρ(g|s,a) = γ^T` exactly), geometry invariances, model/patching identities, switch-env boundary, linearised steering threshold exact at the last layer |
+| `tests/` | 113 tests: analytic checks (e.g. `ρ(g|s,a) = γ^T` exactly), geometry invariances, model/patching identities, switch-env boundary, linearised steering threshold exact at the last layer |

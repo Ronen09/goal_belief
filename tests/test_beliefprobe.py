@@ -55,3 +55,15 @@ def test_window_transformer_edit_identity_and_receptive_field():
     with torch.no_grad():
         a = net.forward_all(Xt)[:, 14]; b = net.forward_all(torch.as_tensor(X2))[:, 14]
     assert torch.allclose(a, b)
+
+
+def test_forward_query_reproduces_the_full_forward_pass():
+    from goalgeo import kvprior as KP
+    env = LG.make_env("channel", 4)
+    X, _ = KP.lm_data(env, 8, 24, 0)
+    for L in (2, 4):
+        net = KP.make_net(KP.LMSpec(L, 24, 0)).to(DEV).eval()
+        R = KP.residuals(net, X); t = 9
+        res, u, p, _ = KP.forward_query(net, [r[:, :t + 1] for r in R[:L]], X[:, t + 1], t + 1)
+        assert np.abs(res[-1] - R[L][:, t + 1]).max() < 1e-4
+        assert np.abs(p - KP.predictive(net, X)[:, t + 1]).max() < 1e-5
