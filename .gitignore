@@ -2,4 +2,4 @@
 __pycache__/
 *.pyc
 .pytest_cache/
-results*/_smoke/
+rounds/*/_smoke/

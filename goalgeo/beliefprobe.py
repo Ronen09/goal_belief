@@ -1,7 +1,7 @@
 """TASK11: affine recoverability of the posterior log-odds, with held-out splits.
 
 All probes are unregularised least squares on [h, 1], so every number here is exactly invariant
-to invertible affine maps of h (docs/task11_theory.md §2.1)."""
+to invertible affine maps of h (rounds/r12_hidden_goal/THEORY.md §2.1)."""
 
 from __future__ import annotations
 

@@ -1,6 +1,6 @@
 """TASK10 experiment 1: complete cuts vs single nodes under forced routing.
 
-Claim A (docs/task10_theory.md): an interchange effect measured on a *complete causal cut*
+Claim A (rounds/r11_implementation_freedom/THEORY.md): an interchange effect measured on a *complete causal cut*
 between a flipped input token and a read node equals the behavioural divergence between the
 two inputs, so it descends to functional equivalence; a single-node effect measures only the
 share of the computation routed through that node, which the architecture and the optimiser

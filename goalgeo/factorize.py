@@ -1,6 +1,6 @@
 """TASK10 experiment 2: how the required contrast C = g * D * cos(theta) is factorised.
 
-Claim B (docs/task10_theory.md): C is fixed by the function (it is a difference of output
+Claim B (rounds/r11_implementation_freedom/THEORY.md): C is fixed by the function (it is a difference of output
 log-odds), while the architecture decides which of the three factors can absorb a change of
 budget. A frozen final LayerNorm pins ||h~|| = sqrt(d), which caps D at 2*sqrt(d) and hence
 caps C at 4*c*sqrt(d) for a fixed-gain readout with row norm c -- a hard failure boundary at

@@ -1,5 +1,5 @@
 """Phase-level analysis functions. Each returns plain dicts/arrays; plotting is
-separate (``plotting.py``) and orchestration lives in ``scripts/run_all.py``."""
+separate (``plotting.py``) and orchestration lives in ``rounds/r01_occupancy/run.py``."""
 
 from __future__ import annotations
 

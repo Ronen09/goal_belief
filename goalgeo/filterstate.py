@@ -1,5 +1,5 @@
 """TASK12 (round 13): the full filter state of the channel environment
-(docs/task12_filter_theory.md).
+(rounds/r13_filter_state/THEORY.md).
 
 Coordinates of the joint filter α(g, c) = P(G = g, c_t = c | history), K goals x {off, on}:
     y_g = log b(g) / b(K)             goal block (K-1)

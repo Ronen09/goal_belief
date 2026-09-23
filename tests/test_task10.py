@@ -1,5 +1,5 @@
 """TASK10: the cut-substitution identity, the route restrictions, and the interface
-factorisation identity / LayerNorm ceiling (docs/task10_theory.md)."""
+factorisation identity / LayerNorm ceiling (rounds/r11_implementation_freedom/THEORY.md)."""
 
 import numpy as np
 import torch

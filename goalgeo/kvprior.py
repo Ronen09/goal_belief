@@ -1,5 +1,5 @@
 """TASK14 (round 15): prior or recomputation? Belief transplants through the K/V cache of a
-next-token transformer (docs/task14_prior_theory.md).
+next-token transformer (rounds/r15_prior_vs_recompute/THEORY.md).
 
 Position t+1 of a pre-LN causal transformer reads positions s <= t only through keys and values
 computed from their residual streams res_i(s), one per block i. `forward_query` computes position
