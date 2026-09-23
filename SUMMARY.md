@@ -138,6 +138,29 @@ from network training) and later time steps.
   whatever the target, the first transformer block is not a running mean, and the channel
   hard-target models are capped.
 
+**Round 12, part 2 — is the decoded posterior the causal state? (`results11/causal/REPORT_causal.md`,
+predictions in `docs/task11_causal_theory.md`).** Interventions on the round-12 models (no
+retraining). The GRU state is a complete cut; no single transformer position is.
+
+- Posterior transplant, GRU `goal`: setting the decoded log-odds to another history's value along
+  the encoder directions makes the whole future indistinguishable from having seen that history
+  (gap closed 1.000 over 18 steps, iid). A half move gives the Bayes future of half the evidence
+  (0.999). The minimum-norm move with the same decoded value closes only 0.78 (iid) and 0.46
+  (channel), and a random direction ≈ 0. In the channel env the probe edit follows the Bayes
+  future of "b′ with the original channel belief" (KL 0.021 vs 0.030 to genuine-B).
+- Single transformer positions: the edit switches the immediate output (res2 SWAP 1.000) and
+  leaves the future almost untouched (≤ 0.16).
+- Equal-belief histories (8 of 12 tokens different): downstream effect < 10⁻⁵ of random pairs
+  in iid, although the states differ (0.20 of random distance, 0.8 % of it in the belief span).
+  In the channel env, equal-b histories with different channel beliefs diverge by exactly the
+  Bayes amount (ratio 1.01, Spearman 1.00); equal joint states do not.
+- Same action, different belief: every network, hard-action ones included, acts differently
+  once later evidence separates the pair (flip rate 0.991–0.999, iid). In the hard-action
+  transformer the last block makes the action exactly linear (0.95 → 1.000), discards history
+  detail (0.80 → 0.43) and compresses the belief within an action only slightly (0.973 → 0.932),
+  in the sites the future never reads.
+- 10 of 14 pre-registered predictions held.
+
 ## Cross-round findings
 
 1. Hidden geometry mirrors the distinctions the training target contains (policy quotient for
