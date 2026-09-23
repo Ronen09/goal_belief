@@ -21,13 +21,14 @@ Two rounds of experiments:
 | 9 | TASK8 (intervention equivalence, on/off-manifold local metrics, propagation depth on the TASK7 models) | `docs/task7_theory.md` §4 | `scripts/run_task8.py --jobs 6` | `results8/REPORT8.md`, `results8/tables8.md` |
 | 10 | TASK9 (transformer reproduction: 2-layer pre-LN causal decoder, with / without final LayerNorm; core dissociation, readout-scale allocation, invariance CVs, patching depth) | `results9/REPORT9.md` | `scripts/run_task9.py --jobs 8` | `results9/REPORT9.md`, `results9/tables9.md`, `results9/models/` |
 | 11 | TASK10 (implementation freedom: a cut-identifiability claim and a factorisation-freedom claim, each with an experiment designed to falsify it) | theory and pre-registered predictions in `docs/task10_theory.md` | `scripts/run_task10.py --exp both --jobs 12`, then `scripts/task10_followup.py` | `results10/REPORT10.md`, `results10/tables10.md`, `results10/models/` |
+| 12 | `TASK11.md` (hidden goal: is the exact Bayesian posterior over a latent goal affinely recoverable, out of distribution? claim 1 of the brief) | theory and pre-registered predictions in `docs/task11_theory.md` | `scripts/run_task11.py`, then `scripts/task11_followup.py`, `scripts/task11_tables.py` | `results11/REPORT11.md`, `results11/tables11.md`, `results11/models/` |
 
 ## Setup
 
 ```bash
 uv venv --system-site-packages --python /usr/bin/python3 .venv   # reuses system torch/numpy/scipy/matplotlib
 uv pip install --python .venv/bin/python pytest
-.venv/bin/python -m pytest            # 35 tests, ~3 s
+.venv/bin/python -m pytest            # 107 tests, ~70 s
 .venv/bin/python scripts/run_all.py     # round 1, ~6 min on CPU -> results/
 .venv/bin/python scripts/run_task2.py   # round 2, ~8 min -> results2/
 .venv/bin/python scripts/run_task2.py --targets boltzmann --sweep-only --out results2/boltzmann   # soft-target sweep
@@ -40,6 +41,7 @@ uv pip install --python .venv/bin/python pytest
 .venv/bin/python scripts/run_task8.py --jobs 6     # round 9, needs results7/models; 6 new delay-4 models, ~5 min -> results8/
 .venv/bin/python scripts/run_task9.py --jobs 4 && .venv/bin/python scripts/task9_followup.py   # round 10, 60 transformer runs on the GPU (~10 min; --only/--steps redo seeds) -> results9/
 .venv/bin/python scripts/run_task10.py --exp both --jobs 12 && .venv/bin/python scripts/task10_followup.py   # round 11, 122 transformer runs on the GPU (~1.5 h) -> results10/
+.venv/bin/python scripts/run_task11.py && .venv/bin/python scripts/task11_followup.py && .venv/bin/python scripts/task11_tables.py   # round 12, 160 + 14 models (~40 min, GPU + 96 CPU workers) -> results11/
 .venv/bin/python scripts/run_all.py --quick --out /tmp/quick   # smoke runs (also for run_task2.py)
 ```
 
@@ -62,9 +64,10 @@ uv pip install --python .venv/bin/python pytest
 | `goalgeo/hmm.py`, `goalgeo/seqmodels.py` | round-4 HMM (exact forward inference, k-step joint predictives, sampling) and GRU / window-MLP models trained under one-step, k-step or sequential objectives; `SeqNet(gain=c, out_scale=s)` gives the fixed-gain / rescaled-init readout and `train_weighted(lr_out=...)` the per-position-weighted sequential objective with checkpoints and a separate readout learning rate (rounds 5–7) |
 | `goalgeo/tfm.py`, `goalgeo/tfm_measure.py` | round-10 causal pre-LN transformer (residual-stream patching as the downstream computation) and its measurements at the layer-1 residual and the post-norm readout interface |
 | `goalgeo/cuts.py`, `goalgeo/factorize.py` | round-11 experiments: minimal counterfactual pairs and interchange effects on complete vs incomplete causal cuts, attention route restrictions (hard masks in `tfm.py`'s `attn_diag`, soft attention penalties in `train_routed`); the readout-interface factorisation C = g·D·cos θ with the frozen-LayerNorm ceiling |
+| `goalgeo/latentgoal.py`, `goalgeo/belief_train.py`, `goalgeo/beliefprobe.py` | round-12 hidden-goal environment (iid or latent-channel evidence) with the exact joint filter and targets for four objectives; stacked transformer training with per-objective output masks and GRU training; affine log-odds probes with IID / EXT / CONF / TIME splits and the gain over the count-affine predictor |
 | `goalgeo/steering.py` | round-9 primitives: propagate a (perturbed) state through the network's own future steps, effect curves, matched-effect steering, directional logit derivatives, depth curves |
 | `goalgeo/invariants.py` | round-8 measures from extracted arrays (OLS decoding, exact rank, sample-space projection, whitened RSA, readout/Jacobian/Fisher/finite-propagation functional measures), exact interface transforms h→Ah, W→WA⁻¹, J→JA⁻¹ |
 | `goalgeo/hmm4.py`, `goalgeo/prominence.py` | round-5 parametrised HMM family (relevance frequency r, strength δ, delay k, fixed immediate-relevance control branch, forgetful-filter cost) and measurements (pairwise metric prominence, decodability, RSA, cue-state gradients of the delayed loss) |
 | `goalgeo/plotting.py` … `goalgeo/plotting9.py` | figures per round |
 | `scripts/run_all.py` … `scripts/run_task4.py` | one runner per round |
-| `tests/` | 95 tests: analytic checks (e.g. `ρ(g|s,a) = γ^T` exactly), geometry invariances, model/patching identities, switch-env boundary, linearised steering threshold exact at the last layer |
+| `tests/` | 107 tests: analytic checks (e.g. `ρ(g|s,a) = γ^T` exactly), geometry invariances, model/patching identities, switch-env boundary, linearised steering threshold exact at the last layer |

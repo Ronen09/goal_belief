@@ -1,4 +1,4 @@
-# goalgeo — summary of results, rounds 1–11
+# goalgeo — summary of results, rounds 1–12
 
 Condensed from the per-round reports; numbers are seed means as reported there. See
 `README.md` for the round-to-file map.
@@ -107,6 +107,36 @@ predictions in `docs/task10_theory.md`).**
   (cos θ ≈ 0.3), not capped. The identity half of Claim B holds; the architecture-predicts-
   factorisation half holds only ordinally; the quantitative boundary is falsified.
 - 8 of 12 pre-registered predictions held (P1, P2, P3, P3b, P4, P7, P9a, P9c).
+
+## Round 12: a hidden goal
+
+**Round 12 — hidden goal (`results11/REPORT11.md`, theory and pre-registered predictions in
+`docs/task11_theory.md`).** A latent goal (K = 4; also 3, 5) is inferred from 24 noisy tokens, and
+the exact Bayesian posterior is computed. Two evidence processes are used: i.i.d. (log-odds
+exactly affine in token counts) and a latent sticky reliability channel (best count-affine R²
+0.869). Four objectives (posterior, soft and hard Bayes-optimal actions, next observation) are
+trained on a 2-layer transformer and a GRU, and an affine probe to the K−1 log-odds is scored on
+held-out sequences, confident posteriors (EXT), a held-out posterior region (CONF, also withheld
+from network training) and later time steps.
+
+- Posterior-trained models: interface R²_y ≥ 0.975 on every held-out split, both architectures,
+  K = 3–5. In the channel env the probe removes 94–97 % of the best tally's error. Networks never
+  trained on the conflict region decode it at 0.994–1.000 with unchanged output KL.
+- In-distribution R² does not discriminate: every trained iid transformer reaches ≥ 0.969 at its
+  best site and an untrained one 0.82. Extrapolation does: the `goal` interface is affine in
+  log-odds (EXT R²_y 0.98, R²_b −0.97) and the `act_soft` interface in probabilities (EXT R²_y
+  0.55, R²_b 0.999).
+- Gain over counts at the channel-env interface: goal 0.94 / 0.97, next_obs 0.51 / 0.79,
+  act_soft 0.39 / 0.73, untrained −0.78 / −1.28 (transformer / GRU). In the transformer the
+  nonlinear filter appears in block 2.
+- Hard-target transformers carry the posterior upstream and compress it to the decision at the
+  last block. Trained without the conflict region, they fail there (output KL 2.7 nats vs 0.01),
+  while posterior-trained models do not. In the channel env hard-target models are capped at
+  ≈ 98.5 % optimal-action agreement, and 4× training does not raise it (not pre-registered).
+- 4 of 11 pre-registered predictions held (P1, P2, P5, P10). The failures are three threshold
+  near-misses, one mis-specified criterion (P8) and three substantive: the GRU carries log-odds
+  whatever the target, the first transformer block is not a running mean, and the channel
+  hard-target models are capped.
 
 ## Cross-round findings
 
