@@ -28,4 +28,12 @@ $$ Ah_t+c \approx \left[ \log \frac{b_t(g_1)}{b_t(g_K)},\ldots, \log\frac{b_t(g_
 
 Generalisation matters more than train \(R^2\): hold out posterior values/evidence sequences.
 
-(Claims 2 and 3 were not included in the brief as given.)
+(Claim 3 was not included in the brief as given; claim 2 arrived separately and is below.)
+
+## Claim 2 (sent after claim 1 was tested)
+
+Take histories \(x\) and \(x'\) with known posteriors \(b\) and \(b'\). At some intermediate layer/time, use the learned affine map
+
+$$ z(h)\approx \left( \log\frac{b_1}{b_K},\dots, \log\frac{b_{K-1}}{b_K} \right). $$
+
+Then intervene so that the network's encoded belief moves from \(b\) toward \(b'\), and ask whether the entire future trajectory behaves as though it had actually observed evidence producing \(b'\).
