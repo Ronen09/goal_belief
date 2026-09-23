@@ -41,8 +41,21 @@ def lm_data(env, n, T, seed):
     return Xf[:, :-1], Xf[:, 1:]
 
 
+def drop_visible(p, n, T, gen=None, keep_prev=True, device="cpu"):
+    """Causal visibility [n, T, T] (query, key) with every key s < u - 1 (or s < u without keep_prev)
+    dropped independently with probability p; the query itself (and u - 1) always visible. TASK15."""
+    causal = torch.tril(torch.ones(T, T, dtype=torch.bool, device=device))
+    keep = torch.rand(n, T, T, generator=gen, device=device) >= p
+    guaranteed = torch.eye(T, dtype=torch.bool, device=device)
+    if keep_prev:
+        guaranteed = guaranteed | torch.diag(torch.ones(T - 1, dtype=torch.bool, device=device), -1)
+    return causal & (keep | guaranteed)
+
+
 def train_lm_stack(specs: list[LMSpec], steps: int, n_pool: int = 100000, batch: int = 128, lr: float = 1e-3,
-                   device="cuda", log=None):
+                   device="cuda", log=None, drop: list[float] | None = None):
+    """drop: per-model probability of dropping each historical K/V entry older than the previous
+    position, resampled every step (TASK15); None trains with full attention."""
     L, T = specs[0].L, specs[0].T; assert all(s.L == L and s.T == T for s in specs)
     env = LG.make_env("channel", 4); V = env.V
     model = Tb.BatchedTransformer([Tb.Spec(seed=s.seed, norm="learn") for s in specs], n_vocab=V, T=T + 1,
@@ -58,7 +71,11 @@ def train_lm_stack(specs: list[LMSpec], steps: int, n_pool: int = 100000, batch:
     for step in range(steps):
         idx = torch.as_tensor(np.stack([r.integers(0, n_pool, batch) for r in rngs]), device=device)
         X = torch.gather(Xp, 1, idx[:, :, None].expand(-1, -1, T + 1)); Y = torch.gather(Yp, 1, idx[:, :, None].expand(-1, -1, T + 1))
-        z = model.logits(X) + mask
+        am = None
+        if drop is not None:
+            vis = torch.stack([drop_visible(p, batch, T + 1, device=device) for p in drop])       # [M, B, T, T]
+            am = torch.zeros(vis.shape, device=device).masked_fill(~vis, float("-inf"))
+        z = model.logits(X, mask=am) + mask
         per = F.cross_entropy(z.reshape(-1, V), Y.reshape(-1), reduction="none").view(len(specs), -1).mean(1)
         opt.zero_grad(set_to_none=True); per.sum().backward(); opt.step()
         if step % 500 == 0 or step == steps - 1:
@@ -104,9 +121,9 @@ def forward_query(net, src, tok, pos, visible=None):
     tok = torch.as_tensor(tok, device=dev); n = len(tok)
     x = net.emb(tok) + net.pos[pos]
     S = src[0].shape[1]
-    allow = torch.ones(S + 1, dtype=torch.bool, device=dev)
-    if visible is not None:
-        allow[:S] = torch.as_tensor(visible, device=dev)
+    allow = torch.ones(n, S + 1, dtype=torch.bool, device=dev)
+    if visible is not None:                                                        # [S] or per sample [n, S]
+        allow[:, :S] = torch.as_tensor(visible, device=dev)
     res, attn = [], []
     for i, blk in enumerate(net.blocks):
         a = blk.ln1(x); kv = torch.cat([blk.ln1(to(src[i])), a[:, None]], 1)       # [n, S+1, d]
@@ -114,7 +131,7 @@ def forward_query(net, src, tok, pos, visible=None):
         q = a @ W[:d].T + b[:d]; k = kv @ W[d:2 * d].T + b[d:2 * d]; v = kv @ W[2 * d:].T + b[2 * d:]
         q = q.view(n, H, dh); k = k.view(n, S + 1, H, dh).transpose(1, 2); v = v.view(n, S + 1, H, dh).transpose(1, 2)
         s = (k @ q[..., None]).squeeze(-1) / dh ** 0.5                              # [n, H, S+1]
-        s = s.masked_fill(~allow, float("-inf"))
+        s = s.masked_fill(~allow[:, None, :], float("-inf"))
         w = torch.softmax(s, -1)
         o = (w[..., None] * v).sum(2).reshape(n, d)
         x = x + blk.attn.out_proj(o)
@@ -123,6 +140,26 @@ def forward_query(net, src, tok, pos, visible=None):
     u = net.ln_f(x)
     p = torch.softmax(net.out(u)[:, 1:], -1).double().cpu().numpy()
     return res, u.double().cpu().numpy(), p, attn
+
+
+@torch.no_grad()
+def predictive_masked(net, X, vis, batch=1000):
+    """Next-token predictive at every position with per-sample visibility vis [n, T, T] (query, key)."""
+    dev = net.pos.device; out = []
+    for b0 in range(0, len(X), batch):
+        Xb = torch.as_tensor(X[b0:b0 + batch], device=dev); V = torch.as_tensor(vis[b0:b0 + batch], device=dev)
+        n, T = Xb.shape
+        x = net.emb(Xb) + net.pos[:T]
+        for blk in net.blocks:
+            a = blk.ln1(x); W, bb = blk.attn.in_proj_weight, blk.attn.in_proj_bias; d = x.shape[-1]; H = blk.attn.num_heads; dh = d // H
+            q, k, v = (a @ W.T + bb).chunk(3, -1)
+            sh = lambda z: z.view(n, T, H, dh).transpose(1, 2)                         # noqa: E731
+            sc = (sh(q) @ sh(k).transpose(-1, -2)) / dh ** 0.5
+            w = torch.softmax(sc.masked_fill(~V[:, None], float("-inf")), -1)
+            x = x + blk.attn.out_proj((w @ sh(v)).transpose(1, 2).reshape(n, T, d))
+            x = x + blk.mlp(blk.ln2(x))
+        out.append(torch.softmax(net.out(net.ln_f(x))[..., 1:], -1).double().cpu().numpy())
+    return np.concatenate(out)
 
 
 # ---- read-out -----------------------------------------------------------------------------------

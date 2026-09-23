@@ -26,13 +26,14 @@ Two rounds of experiments:
 | 13 | `TASK12.md` (the full filter state: is a recurrent network's future a function of the environment's minimal predictive state? full-state decoding, matched two-block interventions, an equivalence hierarchy, a hidden-size bottleneck) | minimal-statistic analysis and pre-registered predictions in `docs/task12_filter_theory.md` | `scripts/run_task12.py`, then `scripts/task12_tables.py` (uses `results11/models/`) | `results12/REPORT12.md`, `results12/tables12.md`, `results12/models/` |
 | 14 | TASK13 (windowed transformers: does restricting attention to the last l tokens force a steerable belief state? with and without a recurrent carry of the readout interface) | predictions in `docs/task13_window_theory.md` | `scripts/run_task13.py`, then `scripts/task13_tables.py` | `results13/REPORT13.md`, `results13/tables13.md`, `results13/models/` |
 | 15 | `TASK14.md` (prior or recomputation: does a next-token transformer's position t+1 use the belief exported through position t's K/V as a prior? 2×2 of edited prior / edited evidence) | predictions in `docs/task14_prior_theory.md` | `scripts/run_task14.py`, `scripts/task14_recompute.py`, then `scripts/task14_tables.py` | `results14/REPORT14.md`, `results14/tables14.md`, `results14/models/` |
+| 16 | `TASK15.md` (inducing recurrence by incentive: random historical K/V dropout during training, plain and carry transformers; does the prior's weight vary continuously with the cost of recomputation?) | predictions in `docs/task15_incentive_theory.md` | `scripts/run_task15.py` (+ `--out results15/fine --ps 0.05 0.1 0.2 0.3 --plain-ps 0.1 0.25`), then `scripts/task15_tables.py` | `results15/REPORT15.md`, `results15/tables15.md`, `results15/models/` |
 
 ## Setup
 
 ```bash
 uv venv --system-site-packages --python /usr/bin/python3 .venv   # reuses system torch/numpy/scipy/matplotlib
 uv pip install --python .venv/bin/python pytest
-.venv/bin/python -m pytest            # 113 tests, ~70 s
+.venv/bin/python -m pytest            # 114 tests, ~70 s
 .venv/bin/python scripts/run_all.py     # round 1, ~6 min on CPU -> results/
 .venv/bin/python scripts/run_task2.py   # round 2, ~8 min -> results2/
 .venv/bin/python scripts/run_task2.py --targets boltzmann --sweep-only --out results2/boltzmann   # soft-target sweep
@@ -50,6 +51,7 @@ uv pip install --python .venv/bin/python pytest
 .venv/bin/python scripts/run_task12.py && .venv/bin/python scripts/task12_tables.py   # round 13, 60 bottleneck GRUs + measurements (~7 min, 96 CPU workers) -> results12/
 .venv/bin/python scripts/run_task13.py && .venv/bin/python scripts/task13_tables.py   # round 14, 60 windowed transformers (~31 min, CPU workers) -> results13/
 .venv/bin/python scripts/run_task14.py && .venv/bin/python scripts/task14_recompute.py && .venv/bin/python scripts/task14_tables.py   # round 15, 12 next-token transformers (~11 min, GPU) -> results14/
+.venv/bin/python scripts/run_task15.py && .venv/bin/python scripts/run_task15.py --out results15/fine --ps 0.05 0.1 0.2 0.3 --plain-ps 0.1 0.25 && .venv/bin/python scripts/task15_tables.py   # round 16, 54 models (~1 h, GPU + CPU workers) -> results15/
 .venv/bin/python scripts/run_all.py --quick --out /tmp/quick   # smoke runs (also for run_task2.py)
 ```
 
@@ -80,4 +82,4 @@ uv pip install --python .venv/bin/python pytest
 | `goalgeo/hmm4.py`, `goalgeo/prominence.py` | round-5 parametrised HMM family (relevance frequency r, strength δ, delay k, fixed immediate-relevance control branch, forgetful-filter cost) and measurements (pairwise metric prominence, decodability, RSA, cue-state gradients of the delayed loss) |
 | `goalgeo/plotting.py` … `goalgeo/plotting9.py` | figures per round |
 | `scripts/run_all.py` … `scripts/run_task4.py` | one runner per round |
-| `tests/` | 113 tests: analytic checks (e.g. `ρ(g|s,a) = γ^T` exactly), geometry invariances, model/patching identities, switch-env boundary, linearised steering threshold exact at the last layer |
+| `tests/` | 114 tests: analytic checks (e.g. `ρ(g|s,a) = γ^T` exactly), geometry invariances, model/patching identities, switch-env boundary, linearised steering threshold exact at the last layer |

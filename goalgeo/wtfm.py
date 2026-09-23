@@ -25,14 +25,18 @@ class WBlock(nn.Module):
         self.ln2 = nn.LayerNorm(d); self.mlp = nn.Sequential(nn.Linear(d, mlp), nn.GELU(), nn.Linear(mlp, d))
         self.rel = nn.Parameter(torch.zeros(n_heads, window))      # bias by offset 0..window-1
 
-    def step(self, x, cache):
-        """x [B, d] at the current position; cache: list of (k, v) [B, H, dh] for earlier positions."""
+    def step(self, x, cache, visible=None):
+        """x [B, d] at the current position; cache: list of (k, v) [B, H, dh] for earlier positions.
+        visible: optional bool [B, n] over the window's entries after appending (the last is the
+        current position), for K/V dropout (TASK15)."""
         B = x.shape[0]
         q, k, v = self.qkv(self.ln1(x)).view(B, 3, self.h, self.dh).unbind(1)
         cache = (cache + [(k, v)])[-self.w:]
         K = torch.stack([c[0] for c in cache], 2); V = torch.stack([c[1] for c in cache], 2)   # [B, H, n, dh]
         n = K.shape[2]
         s = (q[:, :, None] * K).sum(-1) / self.dh ** 0.5 + self.rel[:, :n].flip(-1)          # offset n-1 .. 0
+        if visible is not None:
+            s = s.masked_fill(~visible[:, None, -n:], float("-inf"))
         a = (torch.softmax(s, -1)[..., None] * V).sum(2).reshape(B, -1)
         x = x + self.o(a)
         return x + self.mlp(self.ln2(x)), cache
@@ -68,8 +72,36 @@ class WindowTransformer(nn.Module):
         out = (torch.stack(zs, 1), torch.stack(us, 1))
         return out + (torch.stack(res, 1),) if keep else out
 
-    def forward_all(self, X):
-        return self.run(X)[0]
+    def forward_all(self, X, drop: float = 0.0, gen=None):
+        if drop <= 0:
+            return self.run(X)[0]
+        B, T = X.shape; dev = self.emb.weight.device; X = X.to(dev)
+        caches = [[] for _ in self.blocks]; u = None; zs = []
+        for t in range(T):
+            n = min(t + 1, self.window)
+            vis = torch.rand(B, n, generator=gen, device=dev) >= drop; vis[:, -1] = True     # history dropped, self kept
+            z, u, caches = self.advance(X[:, t], caches, u, vis)
+            zs.append(z)
+        return torch.stack(zs, 1)
+
+    def advance(self, tok, caches, u_prev, visible=None):
+        """One position: token tok [B], caches from earlier positions, carried state u_prev."""
+        x = self.emb(tok.to(self.emb.weight.device))
+        if self.carry and u_prev is not None:
+            x = x + self.cw(u_prev)
+        new = []
+        for i, b in enumerate(self.blocks):
+            x, c = b.step(x, list(caches[i]), visible); new.append(c)
+        u = self.ln_f(x)
+        return self.out(u), u, new
+
+    @torch.no_grad()
+    def prefix(self, X, upto):
+        """Caches (per layer, one (k, v) per position 0..upto) and the carried state after position upto."""
+        caches = [[] for _ in self.blocks]; u = None
+        for t in range(upto + 1):
+            _, u, caches = self.advance(torch.as_tensor(X[:, t]), caches, u)
+        return caches, u
 
     @torch.no_grad()
     def run_edited(self, X, t, u_new=None, res1_new=None):

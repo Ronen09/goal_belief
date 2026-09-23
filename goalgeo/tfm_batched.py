@@ -108,13 +108,15 @@ class BatchedTransformer(torch.nn.Module):
         v = self.P["outv"]
         return self.gain * v / v.norm(dim=-1, keepdim=True)
 
-    def _attn(self, a, i, need_weights):
+    def _attn(self, a, i, need_weights, mask_override=None):
         M, B, T, d = a.shape; H = self.H; dh = d // H
         qkv = torch.einsum("mbtd,mfd->mbtf", a, self.P[f"qkvw{i}"]) + self.P[f"qkvb{i}"][:, None, None]
         q, k, v = qkv.chunk(3, dim=-1)
         sh = lambda z: z.reshape(M, B, T, H, dh).permute(0, 1, 3, 2, 4)        # noqa: E731  [M,B,H,T,dh]
         q, k, v = sh(q), sh(k), sh(v)
         mask = (self.mask0 if i == 0 else self.mask1)[:, None, None]           # [M,1,1,T,T]
+        if mask_override is not None:                                          # per-sample masks [M,B,T,T] (TASK15)
+            mask = mask_override[:, :, None]
         if need_weights:                       # explicit scores: the penalties read them
             w = torch.softmax(q @ k.transpose(-2, -1) / np.sqrt(dh) + mask, dim=-1)
             a_out = w @ v
@@ -125,7 +127,7 @@ class BatchedTransformer(torch.nn.Module):
         o = torch.einsum("mbtd,med->mbte", o, self.P[f"ow{i}"]) + self.P[f"ob{i}"][:, None, None]
         return o, (w.mean(2) if need_weights else None)                        # head-averaged [M,B,T,T]
 
-    def residuals(self, X, need_weights=False):
+    def residuals(self, X, need_weights=False, mask=None):
         """X long [M, B, T] -> list of residual streams [M, B, T, d] (+ per-block attention)."""
         M, B, T = X.shape
         e = self.P["emb"][torch.arange(M, device=X.device)[:, None, None], X]
@@ -133,7 +135,7 @@ class BatchedTransformer(torch.nn.Module):
         res = [x]; attn = []
         for i in range(self.L):
             g1, b1 = self.P[f"ln1g{i}"][:, None, None], self.P[f"ln1b{i}"][:, None, None]
-            o, w = self._attn(_ln(x, g1, b1), i, need_weights)
+            o, w = self._attn(_ln(x, g1, b1), i, need_weights, mask)
             x = x + o
             g2, b2 = self.P[f"ln2g{i}"][:, None, None], self.P[f"ln2b{i}"][:, None, None]
             h = _ln(x, g2, b2)
@@ -147,8 +149,8 @@ class BatchedTransformer(torch.nn.Module):
         normed = _ln(x, self.P["ln_fg"][:, None, None], self.P["ln_fb"][:, None, None])
         return self.use_ln * normed + (1 - self.use_ln) * x
 
-    def logits(self, X, need_weights=False):
-        out = self.residuals(X, need_weights)
+    def logits(self, X, need_weights=False, mask=None):
+        out = self.residuals(X, need_weights, mask)
         res, attn = out if need_weights else (out, None)
         h = self.readout_input(res[-1])
         z = torch.einsum("mbtd,mvd->mbtv", h, self.out_weight()) + self.P["outb"][:, None, None]

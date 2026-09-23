@@ -1,4 +1,4 @@
-# goalgeo — summary of results, rounds 1–15
+# goalgeo — summary of results, rounds 1–16
 
 Condensed from the per-round reports; numbers are seed means as reported there. See
 `README.md` for the round-to-file map.
@@ -227,6 +227,25 @@ older evidence replaced or hidden.
 - 2 of 9 pre-registered predictions held. Three failures come from reading raw probe-decoded λ
   without calibrating against the baseline and positive control, and one (the sum rule) ignored
   that the corrupted-evidence cell keeps the raw token at t.
+
+## Round 16: inducing recurrence by incentive
+
+**Round 16 — random historical K/V dropout during training (`results15/REPORT15.md`, predictions in
+`docs/task15_incentive_theory.md`).** Next-token models on the channel process are trained with each
+historical K/V entry removed with probability p. Plain 4-layer transformers keep self and the previous
+position; carry transformers (round 14) always keep the carried state. The prior's weight is round 15's
+calibrated λ when everything position t exports comes from another history.
+
+- Carry: the prior's weight rises smoothly with p, 0.36 (p = 0) → 0.65 (0.05) → 0.80 (0.2) → 0.90
+  (0.5) → 0.975 (0.9) → 1.000 (1). It is logit-linear in p (slope 0.69, R² 0.97), and the weight on
+  older evidence falls in step. The task is solved at every p (KL ≤ 0.006, best at high p), and the
+  learned weighting persists with full attention at test.
+- Plain: the weight rises from 0.03 to ~0.25 by p = 0.1–0.25 and saturates. Without same-layer
+  recurrence, extra dropout only costs accuracy.
+- A carry is used even at p = 0 (0.36), unlike round 14's goal-trained model; at low p its weight falls
+  with position.
+- 5 of 7 pre-registered predictions held. The carry transition is front-loaded, below the registered
+  grid's intermediate points; a follow-up grid (p = 0.05–0.3) resolves it.
 
 ## Cross-round findings
 

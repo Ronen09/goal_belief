@@ -67,3 +67,14 @@ def test_forward_query_reproduces_the_full_forward_pass():
         res, u, p, _ = KP.forward_query(net, [r[:, :t + 1] for r in R[:L]], X[:, t + 1], t + 1)
         assert np.abs(res[-1] - R[L][:, t + 1]).max() < 1e-4
         assert np.abs(p - KP.predictive(net, X)[:, t + 1]).max() < 1e-5
+
+
+def test_kv_dropout_masks_and_masked_forward():
+    from goalgeo import kvprior as KP
+    v = KP.drop_visible(1.0, 3, 6)
+    assert v[:, 4, 3].all() and v[:, 4, 4].all() and not v[:, 4, 2].any() and not v[:, 2, 4].any()
+    env = LG.make_env("channel", 4)
+    X, _ = KP.lm_data(env, 5, 10, 0)
+    net = KP.make_net(KP.LMSpec(2, 10, 0)).to(DEV).eval()
+    full = np.tril(np.ones((5, 11, 11), bool))
+    assert np.abs(KP.predictive_masked(net, X, full) - KP.predictive(net, X)).max() < 1e-5
