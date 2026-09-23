@@ -1,4 +1,4 @@
-# goalgeo — summary of results, rounds 1–12
+# goalgeo — summary of results, rounds 1–13
 
 Condensed from the per-round reports; numbers are seed means as reported there. See
 `README.md` for the round-to-file map.
@@ -160,6 +160,33 @@ retraining). The GRU state is a complete cut; no single transformer position is.
   detail (0.80 → 0.43) and compresses the belief within an action only slightly (0.973 → 0.932),
   in the sites the future never reads.
 - 10 of 14 pre-registered predictions held.
+
+## Round 13: the full filter state
+
+**Round 13 — does a recurrent network learn the minimal predictive state? (`results12/REPORT12.md`,
+predictions in `docs/task12_filter_theory.md`).** In the channel environment the minimal predictive
+state is the 8-state joint filter over (goal, channel), with 7 coordinates (observability rank 8).
+The marginals (b, P(on)) are not sufficient, and the round-12 objectives expose only 3 (`goal`,
+`act_soft`) or 5 (`next_obs`) of the 7 coordinates.
+
+- Every trained GRU decodes all 7 coordinates (goal block 0.96–0.996, channel block 0.99), but an
+  untrained GRU also decodes the channel block (0.98), a short-memory quantity. Only the goal
+  block separates trained from untrained (0.996 vs 0.70).
+- Matched edits of the decoded state: moving both blocks to another history's values closes
+  0.99 of the gap to that history's future (round 12's goal-only edit: 0.95–0.97). The goal block
+  alone follows its own counterfactual (0.96). The channel block alone is imprecise (0.54–0.63 of a
+  gap 1/40 as large).
+- Equivalence hierarchy (`goal` GRU): histories matched on b or on the marginals diverge by
+  exactly the Bayes amount (ratio 1.01, Spearman 1.00). Histories matched on the full state
+  agree to ~10⁻⁷ JS, below the model's own error against Bayes (~10⁻⁵). Histories of length 8
+  and 16 with the same full state diverge at 1.13× Bayes and 2 × 10⁻⁴ of random. The same holds
+  for `act_soft` and `next_obs`.
+- Hidden-size bottleneck: in iid the GRU is exact at n = 3, the minimal dimension (KL 0.028 →
+  10⁻⁴ from n = 2 to 3). In the channel env the largest single-step KL drop comes at n = 7, and
+  Bayes-level equivalence across lengths needs n ≥ 12. Under a bottleneck the supervised goal
+  block is kept before the channel block at every n ≤ 6.
+- 4 of 10 pre-registered predictions held. Two of the failures (F5, F7) come from a criterion
+  that divides by a Bayes divergence of ~10⁻⁸.
 
 ## Cross-round findings
 

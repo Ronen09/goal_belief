@@ -32,7 +32,8 @@ class Job:
 
     @property
     def name(self):
-        return f"{self.arch}_{self.kind}_K{self.K}_{self.objective}{'_netho' if self.netho else ''}_s{self.seed}"
+        n = f"_n{self.extra['hidden']}" if "hidden" in self.extra else ""
+        return f"{self.arch}_{self.kind}_K{self.K}_{self.objective}{'_netho' if self.netho else ''}{n}_s{self.seed}"
 
 
 def pool(job: Job, n: int):
@@ -94,7 +95,7 @@ def train_gru(job: Job, steps: int, n_pool: int = 20000, batch: int = 128, lr: f
     torch.set_num_threads(1)
     env = LG.make_env(job.kind, job.K)
     X, Y = pool(job, n_pool)
-    net = Sm.SeqNet(n_vocab=env.V, hidden=64, emb=16, out_dim=LG.out_dim(env, job.objective), seed=job.seed)
+    net = Sm.SeqNet(n_vocab=env.V, hidden=job.extra.get("hidden", 64), emb=16, out_dim=LG.out_dim(env, job.objective), seed=job.seed)
     Xt = torch.as_tensor(X); Yt = torch.as_tensor(Y, dtype=torch.float32)
     rng = np.random.default_rng(job.seed + 7)
     opt = torch.optim.Adam(net.parameters(), lr=lr); hist = []
@@ -109,7 +110,7 @@ def train_gru(job: Job, steps: int, n_pool: int = 20000, batch: int = 128, lr: f
 
 def make_gru(job: Job, state=None):
     env = LG.make_env(job.kind, job.K)
-    net = Sm.SeqNet(n_vocab=env.V, hidden=64, emb=16, out_dim=LG.out_dim(env, job.objective), seed=job.seed)
+    net = Sm.SeqNet(n_vocab=env.V, hidden=job.extra.get("hidden", 64), emb=16, out_dim=LG.out_dim(env, job.objective), seed=job.seed)
     if state is not None:
         net.load_state_dict(state)
     return net.eval()
