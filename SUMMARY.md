@@ -1,4 +1,4 @@
-# goalgeo — summary of results, rounds 1–13
+# goalgeo — summary of results, rounds 1–14
 
 Condensed from the per-round reports; numbers are seed means as reported there. See
 `README.md` for the round-to-file map.
@@ -187,6 +187,25 @@ The marginals (b, P(on)) are not sufficient, and the round-12 objectives expose 
   block is kept before the channel block at every n ≤ 6.
 - 4 of 10 pre-registered predictions held. Two of the failures (F5, F7) come from a criterion
   that divides by a Bayes divergence of ~10⁻⁸.
+
+## Round 14: windowed transformers
+
+**Round 14 — does restricting attention force a steerable belief state? (`results13/REPORT13.md`,
+predictions in `docs/task13_window_theory.md`).** A 2-layer transformer attends only to the last l
+positions (l = 1, 2, 4, 8, full), with or without a recurrent carry of the previous position's
+readout interface. It is trained to output the exact posterior in both round-12 environments.
+
+- Without the carry, every windowed model fails beyond its receptive field of 2l − 1 tokens (KL
+  0.04–0.45); only full attention converges. The window removes access to evidence and gives the
+  network nowhere to keep it.
+- With the carry, every window converges (KL ≤ 0.0003) and the carried vector holds the full
+  filter state (goal R² ≥ 0.985, channel 0.99).
+- With window 1 the carried vector is a complete cut and as steerable as the GRU: swapping it
+  transfers the whole future (1.000), and the affine probe edit closes 0.96–1.00. The share of the
+  future one edit controls falls with the window (l = 2: 0.81–0.84; l = 4: 0.42–0.46; l = 8:
+  0.27–0.29). At full attention the network ignores the carry (iid: −0.005).
+- Cross-length equal filter states: 1.63× Bayes for carry, l = 1 (GRU 1.13×).
+- 7 of 7 pre-registered predictions held.
 
 ## Cross-round findings
 

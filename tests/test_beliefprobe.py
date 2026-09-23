@@ -39,3 +39,19 @@ def test_masked_stack_unstacks_to_the_same_function():
         ref.load_state_dict(net.state_dict()); ref.out_mask = net.out_mask
         q = BP.tfm_sites(ref, X, device=DEV)["p"]
         assert np.allclose(p, q, atol=1e-6)
+
+
+def test_window_transformer_edit_identity_and_receptive_field():
+    from goalgeo import wtfm as W
+    X, _, _ = LG.sample(LG.make_env("iid", 3), 6, seed=2)
+    Xt = torch.as_tensor(X)
+    for carry in (False, True):
+        net = W.WindowTransformer(6, 3, 2, carry, seed=0).eval()
+        with torch.no_grad():
+            p = torch.softmax(net.forward_all(Xt), -1).double().numpy()
+        assert np.allclose(net.run_edited(Xt, 5), p[:, 5:], atol=1e-6)
+    net = W.WindowTransformer(6, 3, 2, False, seed=0).eval()        # no carry: sees 3 tokens back at most
+    X2 = X.copy(); X2[:, 1:10] = 1
+    with torch.no_grad():
+        a = net.forward_all(Xt)[:, 14]; b = net.forward_all(torch.as_tensor(X2))[:, 14]
+    assert torch.allclose(a, b)
