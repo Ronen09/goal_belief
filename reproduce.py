@@ -77,6 +77,8 @@ ROUNDS = [
           [Step("run.py", quick=True),
            Step("run.py", ("--out", "rounds/r16_kv_dropout/fine", "--ps", "0.05", "0.1", "0.2", "0.3", "--plain-ps", "0.1", "0.25")),
            Step("tables.py", tables=True)], needs=("r15",)),
+    Round("r17", "r17_read_cost", "Does a price on reading the history induce a selective, recurrent belief state?", "1 h GPU + CPU workers",
+          [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r16",)),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
