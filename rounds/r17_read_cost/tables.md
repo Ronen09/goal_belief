@@ -1,6 +1,6 @@
 # TASK16 tables (round 17: pricing recomputation with a learned read gate)
 
-Read rate = fraction of (block, position ≥ 2) with an open deterministic gate on 3000 held-out sequences. Prior weight = calibrated λ of R2 (position t's exports from B, A's tokens) at the output of t+1; 'open' = every gate forced open at test, 'own' = the learned gates. Entropy / movement split = mean exact-filter entropy / KL(J_u ‖ J_{u−1}) at open minus closed (block, position ≥ 8) pairs. 3 seeds, seed means. Positions 0–1 carry no gate, so 'u=2–4' is the earliest gated window.
+Read rate = fraction of (block, position ≥ 2) with an open deterministic gate on 3000 held-out sequences. Prior weight = calibrated λ of R2 (position t's exports from B, A's tokens) at the output of t+1; 'open' = every gate forced open at test, 'own' = the learned gates. Entropy / movement split = mean exact-filter entropy / KL(J_u ‖ J_{u−1}) at open minus closed (block, position ≥ 8) pairs. 3 seeds, seed means. The carry model has no gate at u = 0 and an unpriced gate at u = 1; plain gates at u = 0–1 change nothing; the read rate, and so 'u=2–4', counts u ≥ 2 only.
 
 ## carry
 
