@@ -27,9 +27,10 @@ with the learned gates, plus the read rate, KL to the exact predictive, and the 
 splits of the exact filter at open vs closed reads (u ≥ 8).
 
 The plain family trained in 1922 s on the GPU with the stacked trainer. The carry family ran on 12
-CPU workers alongside it and finished at 10338 s, about 1 h 53 min for each of the first 12 models,
-because the gate doubles the attention work inside the position-by-position loop; a stacked GPU
-trainer for the carry family, as `tfm_batched` is for the plain one, is the fix for a follow-up.
+CPU workers alongside it and finished at 10338 s: about 1 h 53 min for each of the first 12 models,
+run concurrently, then about 50 min more for the remaining 6. The gate doubles the attention work
+inside the position-by-position loop, which is what makes the carry family slow; a stacked GPU
+trainer for it, as `tfm_batched` is for the plain family, is the fix for a follow-up.
 
 ## 1. A price induces recurrence, and the carry model chooses the complete cut
 
@@ -57,8 +58,8 @@ Seed means (fig. 1, left and middle):
   close to round 16's 0.36), close one block (c = 0.003, 0.474), close everything (c ≥ 0.03, 1.000).
   c = 0.01 is a mix of seeds, not an intermediate model: seeds 0 and 2 read nothing (read rate 0.000,
   prior weight 1.000 at every t), and seed 1 reads at rate 0.285 (prior weight 0.792 at t = 16,
-  forced open). The seed that still reads is the least accurate of the three (KL 0.0035 vs 0.0021
-  and 0.0019).
+  forced open, calibrated per seed as in the tables). The seed that still reads is the least
+  accurate of the three (KL 0.0035 vs 0.0021 and 0.0019).
 
 ## 2. The reading is not selective: the price picks which block reads, not when
 
@@ -114,7 +115,7 @@ the carry is genuinely unreliable at identifiable positions, so that some reads 
   exceeds what they buy, then loses accuracy rather than becoming recurrent.
 * **At c = 0.003, block 1's reads grow with position.** The total read rate is 0.251 at u = 2–4 and
   0.447 at u ≥ 16. In seed 0, block 1 is open at t+1 = 5 for 0.028 of pairs and at t+1 = 17 for
-  0.747. The entropy split is +0.174 (seeds 0.165–0.193). This is the only position-dependent gate in
+  0.747. The entropy split is +0.174 (seeds 0.164–0.193). This is the only position-dependent gate in
   the round, and it is in the plain family. I have not separated it from the position dependence of
   the filter's entropy.
 

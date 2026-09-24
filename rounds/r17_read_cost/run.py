@@ -1,7 +1,7 @@
 # rounds/r17_read_cost/run.py
 """TASK16 (round 17): pricing recomputation with a learned read gate (rounds/r17_read_cost/THEORY.md).
 
-    .venv/bin/python rounds/r17_read_cost/run.py                 # ~1 h (GPU for plain, CPU workers for carry)
+    .venv/bin/python rounds/r17_read_cost/run.py                 # ~3 h (GPU for plain, CPU workers for carry)
     .venv/bin/python rounds/r17_read_cost/run.py --measure-only
     .venv/bin/python rounds/r17_read_cost/run.py --quick --out rounds/r17_read_cost/_smoke/run
 """
