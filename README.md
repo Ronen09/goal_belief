@@ -3,7 +3,7 @@
 A sequence of pre-registered experiments on what small networks represent about a goal or a belief,
 and when that representation is the state the network actually computes with. It starts from goal-conditioned
 occupancy geometry (round 1) and ends with when a sufficient statistic becomes the causal computational
-state of a transformer (round 16). `SUMMARY.md` gives every round's results on one page.
+state of a transformer (round 17). `SUMMARY.md` gives every round's results on one page.
 
 ## Reproduce
 
@@ -34,7 +34,7 @@ rounds/rNN_<name>/    everything for one round:
     tables.md           generated numbers;  *.png figures;  *.json per-model data;  models/ checkpoints
     run.py              training + measurement;  followup.py / tables.py / … further steps
     plots.py            the round's figures
-tests/                114 tests (exact identities, filter vs brute force, invariances)
+tests/                130 tests (exact identities, filter vs brute force, invariances)
 ```
 
 ## Rounds
@@ -57,6 +57,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r14 | Does a narrow attention window force a steerable belief state? | [report](rounds/r14_window_carry/REPORT.md) | 31 min |
 | r15 | Does a next-token transformer use its previous belief as a prior? | [report](rounds/r15_prior_vs_recompute/REPORT.md) | 11 min GPU |
 | r16 | Can K/V dropout induce recurrence continuously? | [report](rounds/r16_kv_dropout/REPORT.md) | 1 h |
+| r17 | Does a price on reading the history induce a selective, recurrent belief state? | [report](rounds/r17_read_cost/REPORT.md) | 3 h |
 
 ## Library
 
@@ -67,7 +68,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | `geometry`, `analysis`, `quotient`, `supervision` | r01–r03 | RDMs / RSA / CKA / decoding, and each round's analyses |
 | `hmm`, `hmm4`, `seqmodels`, `prominence` | r04–r09 | HMMs with exact inference, GRUs and objectives, prominence measures |
 | `invariants`, `steering` | r08–r09 | invariant measures under exact coordinate changes, propagation-based steering |
-| `tfm`, `tfm_batched`, `tfm_measure`, `cuts`, `factorize` | r10–r16 | causal transformer, stacked GPU trainer, complete-cut patching, readout factorisation |
+| `tfm`, `tfm_batched`, `tfm_measure`, `cuts`, `factorize` | r10–r17 | causal transformer, stacked GPU trainer, complete-cut patching, readout factorisation |
 | `latentgoal`, `belief_train`, `beliefprobe`, `beliefcausal`, `filterstate` | r12–r14 | hidden-goal environments with the exact joint filter; training; probes; transplant / equivalence tests; full-state coordinates |
-| `wtfm`, `kvprior` | r14–r16 | windowed transformer with a recurrent carry and K/V dropout; K/V-source splicing for position t+1 |
-| `plotting`, `style` | all | shared figure style (rounds 1–11, rounds 12–16) |
+| `wtfm`, `kvprior`, `readgate` | r14–r17 | windowed transformer with a recurrent carry, K/V dropout and a priced read gate; K/V-source splicing for position t+1 |
+| `plotting`, `style` | all | shared figure style (rounds 1–11, rounds 12–17) |

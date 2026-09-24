@@ -1,4 +1,4 @@
-# goalgeo — summary of results, rounds 1–16
+# goalgeo — summary of results, rounds 1–17
 
 Condensed from the per-round reports; numbers are seed means as reported there. See
 `README.md` for the round-to-file map.
@@ -246,6 +246,30 @@ calibrated λ when everything position t exports comes from another history.
   with position.
 - 5 of 7 pre-registered predictions held. The carry transition is front-loaded, below the registered
   grid's intermediate points; a follow-up grid (p = 0.05–0.3) resolves it.
+
+## Round 17: pricing recomputation
+
+**Round 17 — a learned read gate with a price per read (`rounds/r17_read_cost/REPORT.md`, predictions in
+`rounds/r17_read_cost/THEORY.md`).** Round 16's plain and carry families, with one binary gate per block
+and query position that decides whether the history's keys are visible. The loss charges c nats per
+token for reading everywhere, c ∈ {0, 0.003, 0.01, 0.03, 0.1, 0.3}.
+
+- Carry: from c = 0.03 every read closes and the prior's weight is 1.000, even with every gate
+  forced open; the closed models are the most accurate (KL 0.0019–0.0020 vs 0.0058 reading
+  everywhere). The transition is abrupt: read everything (0.401), close one block (c = 0.003,
+  0.474), close everything.
+- The reading is not selective. At c = 0.003 block 0 reads everywhere and block 1 nowhere, in every
+  seed, so the entropy and movement splits are zero by construction. The one partially open carry
+  gate (c = 0.01, one seed) makes identical decisions whatever the carried state: it is keyed on the
+  current token. A trained carry leaves no read worth paying for, so the price switches whole
+  blocks off.
+- Plain: the prior's weight stays ≤ 0.190 at t = 16 (round 16's ceiling holds). The price first
+  closes blocks 1–3, the reads of inferred states, at no cost (KL 0.0049 at c = 0.01). It keeps
+  block 0's read of the raw tokens until c = 0.1, when KL rises to 0.0215, the same as round 16's
+  p = 1 model under its own dropout.
+- 4 of 8 pre-registered predictions held. R4/R5 (selectivity) were not tested in the sense intended,
+  because the gate decided per block. R7's threshold was taken from round 16's full-access KL
+  instead of its own-dropout KL. R8 failed on substance: both families cross at c* = 0.003.
 
 ## Cross-round findings
 
