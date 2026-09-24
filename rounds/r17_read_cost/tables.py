@@ -73,10 +73,10 @@ def tables(d: D) -> str:
          "Read rate = fraction of (block, position ≥ 2) with an open deterministic gate on 3000 held-out sequences. Prior weight = "
          "calibrated λ of R2 (position t's exports from B, A's tokens) at the output of t+1; 'open' = every gate forced open at "
          "test, 'own' = the learned gates. Entropy / movement split = mean exact-filter entropy / KL(J_u ‖ J_{u−1}) at open minus "
-         "closed (block, position ≥ 8) pairs. 3 seeds, seed means.", ""]
+         "closed (block, position ≥ 8) pairs. 3 seeds, seed means. Positions 0–1 carry no gate, so 'u=2–4' is the earliest gated window.", ""]
     for fam in ("carry", "plain"):
         L += [f"## {fam}", "", "| c | read rate | KL own | KL open | " + " | ".join(f"prior t={t} (open)" for t in TS) + " | "
-              + " | ".join(f"prior t={t} (own)" for t in TS) + " | R3 t=16 (open) | entropy split | movement split | rate u≤4 | rate u≥16 |",
+              + " | ".join(f"prior t={t} (own)" for t in TS) + " | R3 t=16 (open) | entropy split | movement split | rate u=2–4 | rate u≥16 |",
               "|---|---|---|---|" + "---|" * (2 * len(TS) + 5)]
         for c in d.cs(fam):
             rp = d.rate_pos(fam, c)
@@ -108,7 +108,7 @@ def predictions(d: D):
     q = qualifying(d); e, m = d.mean("carry", q, "entropy_split"), d.mean("carry", q, "movement_split")
     add("R4 carry, intermediate c: entropy split ≥ +0.05, movement split ≥ +0.02", e >= 0.05 and m >= 0.02, f"c={q}: entropy {f(e)}, movement {f(m)}")
     rp = d.rate_pos("carry", q); early, late = float(rp[2:5].mean()), float(rp[16:].mean())
-    add("R5 carry, intermediate c: read rate u≤4 exceeds u≥16 by ≥ 0.2", early - late >= 0.2, f"c={q}: {f(early)} vs {f(late)}")
+    add("R5 carry, intermediate c: read rate at u=2–4 exceeds u≥16 by ≥ 0.2", early - late >= 0.2, f"c={q}: {f(early)} vs {f(late)}")
     pcs = [c for c in CS if c in d.cs("plain")]
     v = {c: d.cal("plain", c, 16, "R2") for c in pcs}
     add("R6 plain: prior weight under forced-open ≤ 0.4 at every c", max(v.values()) <= 0.4, "; ".join(f"c={c} {f(x)}" for c, x in v.items()))
