@@ -54,13 +54,15 @@ def drop_visible(p, n, T, gen=None, keep_prev=True, device="cpu"):
 
 
 def train_lm_stack(specs: list[LMSpec], steps: int, n_pool: int = 100000, batch: int = 128, lr: float = 1e-3,
-                   device="cuda", log=None, drop: list[float] | None = None):
+                   device="cuda", log=None, drop: list[float] | None = None, cost: list[float] | None = None):
     """drop: per-model probability of dropping each historical K/V entry older than the previous
-    position, resampled every step (TASK15); None trains with full attention."""
+    position, resampled every step (TASK15); None trains with full attention.
+    cost: per-model price c on the expected read rate (TASK16); the models are then built with a
+    read gate."""
     L, T = specs[0].L, specs[0].T; assert all(s.L == L and s.T == T for s in specs)
     env = LG.make_env("channel", 4); V = env.V
-    model = Tb.BatchedTransformer([Tb.Spec(seed=s.seed, norm="learn") for s in specs], n_vocab=V, T=T + 1,
-                                  n_layers=L, d=64, n_heads=4, mlp=128, device=device)
+    model = Tb.BatchedTransformer([Tb.Spec(seed=s.seed, norm="learn", gated=cost is not None) for s in specs],
+                                  n_vocab=V, T=T + 1, n_layers=L, d=64, n_heads=4, mlp=128, device=device)
     data = [lm_data(env, n_pool, T, s.seed + 1000) for s in specs]
     Xp = torch.stack([torch.as_tensor(x) for x, _ in data]).to(device)
     Yp = torch.stack([torch.as_tensor(y) for _, y in data]).to(device)
@@ -76,9 +78,13 @@ def train_lm_stack(specs: list[LMSpec], steps: int, n_pool: int = 100000, batch:
         if drop is not None:
             vis = torch.stack([drop_visible(p, batch, T + 1, device=device) for p in drop])       # [M, B, T, T]
             am = torch.zeros(vis.shape, device=device).masked_fill(~vis, float("-inf"))
-        z = model.logits(X, mask=am) + mask
+        if cost is None:
+            z = model.logits(X, mask=am) + mask; pen = 0.0
+        else:
+            z, p = model.logits_g(X, gate="train", mask=am); z = z + mask
+            pen = torch.as_tensor(cost, device=device) * p[:, :, 2:].mean((1, 2, 3))              # c_m * mean_{b, u >= 2, l}
         per = F.cross_entropy(z.reshape(-1, V), Y.reshape(-1), reduction="none").view(len(specs), -1).mean(1)
-        opt.zero_grad(set_to_none=True); per.sum().backward(); opt.step()
+        opt.zero_grad(set_to_none=True); (per + pen).sum().backward(); opt.step()
         if step % 500 == 0 or step == steps - 1:
             hist.append(per.detach().cpu().numpy())
             if log and step % 5000 == 0:

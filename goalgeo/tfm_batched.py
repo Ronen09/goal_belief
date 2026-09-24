@@ -25,6 +25,7 @@ import torch
 import torch.nn.functional as F
 
 from . import hmm4 as H4
+from . import readgate as RG
 from . import tfm as Tf
 
 NORM_ID = {"none": 0, "frozen": 1, "learn": 2}
@@ -46,6 +47,7 @@ class Spec:
     attn_diag: tuple[int, ...] = ()
     mu_l1: float = 0.0            # penalty on block-1 off-diagonal attention
     mu_l2: float = 0.0            # penalty on block-2 attention to the previous position
+    gated: bool = False
     label: str = ""
     extra: dict = field(default_factory=dict)
 
@@ -63,7 +65,7 @@ class BatchedTransformer(torch.nn.Module):
         super().__init__()
         self.specs = specs; self.M = len(specs); self.d = d; self.H = n_heads; self.L = n_layers; self.T = T
         nets = [Tf.CausalTransformer(n_vocab=n_vocab, d=d, n_heads=n_heads, n_layers=n_layers, mlp=mlp, T=T,
-                                     seed=s.seed, gain=s.gain, final_norm=s.norm, attn_diag=s.attn_diag)
+                                     seed=s.seed, gain=s.gain, final_norm=s.norm, attn_diag=s.attn_diag, gated=s.gated)
                 for s in specs]
         self.proto_kw = dict(n_vocab=n_vocab, d=d, n_heads=n_heads, n_layers=n_layers, mlp=mlp, T=T)
         sd = [n.state_dict() for n in nets]
@@ -78,6 +80,14 @@ class BatchedTransformer(torch.nn.Module):
                              (f"blocks.{i}.mlp.0.weight", f"m0w{i}"), (f"blocks.{i}.mlp.0.bias", f"m0b{i}"),
                              (f"blocks.{i}.mlp.2.weight", f"m1w{i}"), (f"blocks.{i}.mlp.2.bias", f"m1b{i}")):
                 self.P[dst] = stack(src)
+        self.gated = specs[0].gated
+        assert all(s.gated == self.gated for s in specs), "mix of gated and ungated models"
+        if self.gated:                                                  # TASK16 read gate, nn.Linear(d, 1) per block
+            for i in range(n_layers):
+                self.P[f"gw{i}"] = torch.nn.Parameter(torch.stack([s[f"blocks.{i}.gate.weight"][0] for s in sd]).to(device))   # [M, d]
+                self.P[f"gb{i}"] = torch.nn.Parameter(torch.stack([s[f"blocks.{i}.gate.bias"][0] for s in sd]).to(device))     # [M]
+        closed = torch.eye(T, dtype=torch.bool) | torch.diag(torch.ones(T - 1, dtype=torch.bool), -1)
+        self.register_buffer("mask_closed", torch.where(closed, 0.0, float("-inf")).to(device))     # [T, T]: self and u-1
         # final norm: keep affine parameters for every model, use / freeze them per model
         have = [k for k in sd[0] if k.startswith("ln_f.")]
         ones = torch.ones(self.M, d); zeros = torch.zeros(self.M, d)
@@ -108,7 +118,7 @@ class BatchedTransformer(torch.nn.Module):
         v = self.P["outv"]
         return self.gain * v / v.norm(dim=-1, keepdim=True)
 
-    def _attn(self, a, i, need_weights, mask_override=None):
+    def _attn(self, a, i, need_weights, mask_override=None, gate="open", gen=None):
         M, B, T, d = a.shape; H = self.H; dh = d // H
         qkv = torch.einsum("mbtd,mfd->mbtf", a, self.P[f"qkvw{i}"]) + self.P[f"qkvb{i}"][:, None, None]
         q, k, v = qkv.chunk(3, dim=-1)
@@ -117,37 +127,54 @@ class BatchedTransformer(torch.nn.Module):
         mask = (self.mask0 if i == 0 else self.mask1)[:, None, None]           # [M,1,1,T,T]
         if mask_override is not None:                                          # per-sample masks [M,B,T,T] (TASK15)
             mask = mask_override[:, :, None]
-        if need_weights:                       # explicit scores: the penalties read them
-            w = torch.softmax(q @ k.transpose(-2, -1) / np.sqrt(dh) + mask, dim=-1)
-            a_out = w @ v
-        else:                                  # fused kernel: no [T, T] tensor is materialised
-            w = None
-            a_out = F.scaled_dot_product_attention(q, k, v, attn_mask=mask.expand(M, B, H, T, T))
+
+        def attend(mask):
+            if need_weights:                   # explicit scores: the penalties read them
+                w = torch.softmax(q @ k.transpose(-2, -1) / np.sqrt(dh) + mask, dim=-1)
+                return w @ v, w
+            return F.scaled_dot_product_attention(q, k, v, attn_mask=mask.expand(M, B, H, T, T)), None
+
+        a_out, w = attend(mask); p = None
+        if self.gated and gate != "open":                                      # TASK16 read gate
+            logit = torch.einsum("mbtd,md->mbt", a, self.P[f"gw{i}"]) + self.P[f"gb{i}"][:, None, None]
+            g, p = RG.gate(logit, gate == "train", gen=gen)                     # [M,B,T]
+            a_closed, _ = attend(self.mask_closed[None, None, None])
+            a_out = RG.mix(g[..., None], a_out.transpose(2, 3), a_closed.transpose(2, 3)).transpose(2, 3)
         o = a_out.permute(0, 1, 3, 2, 4).reshape(M, B, T, d)
         o = torch.einsum("mbtd,med->mbte", o, self.P[f"ow{i}"]) + self.P[f"ob{i}"][:, None, None]
-        return o, (w.mean(2) if need_weights else None)                        # head-averaged [M,B,T,T]
+        return o, (w.mean(2) if need_weights else None), p                     # head-averaged [M,B,T,T]
 
-    def residuals(self, X, need_weights=False, mask=None):
-        """X long [M, B, T] -> list of residual streams [M, B, T, d] (+ per-block attention)."""
+    def residuals_g(self, X, gate="open", gen=None, need_weights=False, mask=None):
+        """Residual streams [M, B, T, d], per-block attention (or None) and open probabilities [M, B, T, L]."""
         M, B, T = X.shape
         e = self.P["emb"][torch.arange(M, device=X.device)[:, None, None], X]
         x = e + self.P["pos"][:, :T][:, None]
-        res = [x]; attn = []
+        res = [x]; attn = []; ps = []
         for i in range(self.L):
             g1, b1 = self.P[f"ln1g{i}"][:, None, None], self.P[f"ln1b{i}"][:, None, None]
-            o, w = self._attn(_ln(x, g1, b1), i, need_weights, mask)
+            o, w, p = self._attn(_ln(x, g1, b1), i, need_weights, mask, gate, gen)
             x = x + o
             g2, b2 = self.P[f"ln2g{i}"][:, None, None], self.P[f"ln2b{i}"][:, None, None]
             h = _ln(x, g2, b2)
             h = torch.einsum("mbtd,mfd->mbtf", h, self.P[f"m0w{i}"]) + self.P[f"m0b{i}"][:, None, None]
             h = torch.einsum("mbtf,mdf->mbtd", F.gelu(h), self.P[f"m1w{i}"]) + self.P[f"m1b{i}"][:, None, None]
             x = x + h
-            res.append(x); attn.append(w)
+            res.append(x); attn.append(w); ps.append(torch.ones(M, B, T, device=x.device) if p is None else p)
+        return res, attn, torch.stack(ps, -1)
+
+    def residuals(self, X, need_weights=False, mask=None):
+        """X long [M, B, T] -> list of residual streams [M, B, T, d] (+ per-block attention)."""
+        res, attn, _ = self.residuals_g(X, "open", None, need_weights, mask)
         return (res, attn) if need_weights else res
 
     def readout_input(self, x):
         normed = _ln(x, self.P["ln_fg"][:, None, None], self.P["ln_fb"][:, None, None])
         return self.use_ln * normed + (1 - self.use_ln) * x
+
+    def logits_g(self, X, gate="open", gen=None, mask=None):
+        res, _, p = self.residuals_g(X, gate, gen, False, mask)
+        h = self.readout_input(res[-1])
+        return torch.einsum("mbtd,mvd->mbtv", h, self.out_weight()) + self.P["outb"][:, None, None], p
 
     def logits(self, X, need_weights=False, mask=None):
         out = self.residuals(X, need_weights, mask)
@@ -171,6 +198,9 @@ class BatchedTransformer(torch.nn.Module):
                                  (f"m0w{i}", f"blocks.{i}.mlp.0.weight"), (f"m0b{i}", f"blocks.{i}.mlp.0.bias"),
                                  (f"m1w{i}", f"blocks.{i}.mlp.2.weight"), (f"m1b{i}", f"blocks.{i}.mlp.2.bias")):
                     put(key, self.P[src])
+            if self.gated:
+                for i in range(self.L):
+                    put(f"blocks.{i}.gate.weight", self.P[f"gw{i}"][:, None]); put(f"blocks.{i}.gate.bias", self.P[f"gb{i}"][:, None])
             if "ln_f.weight" in sd:
                 put("ln_f.weight", self.P["ln_fg"]); put("ln_f.bias", self.P["ln_fb"])
             if self.fixed_gain:
