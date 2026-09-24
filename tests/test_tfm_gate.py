@@ -52,3 +52,9 @@ def test_forward_query_own_gate_agrees_with_full_forward():
     assert np.allclose(p, full, atol=1e-5)
     assert np.array_equal(gates, (pfull[:, t + 1] > 0.5).numpy().astype(float))
     assert 0.1 < gates.mean() < 0.9                                  # both decisions occur in the sample
+
+
+def test_gate_refuses_route_restricted_blocks():
+    import pytest
+    with pytest.raises(AssertionError):
+        Tf.CausalTransformer(seed=0, gated=True, attn_diag=(0,), **KW)

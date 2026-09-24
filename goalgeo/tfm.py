@@ -64,6 +64,7 @@ class CausalTransformer(nn.Module):
                     p.mul_(out_scale)
         self.hidden_size = d; self.cut = cut; self.final_ln = self.final_norm != "none"
         self.attn_diag = tuple(attn_diag)
+        assert not (gated and self.attn_diag), "a read gate is not defined for route-restricted blocks (TASK10 attn_diag)"
 
     def _mask(self, T, dev, block: int | None = None):
         if block is not None and block in self.attn_diag:                 # self-attention only
