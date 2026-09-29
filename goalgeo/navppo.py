@@ -279,6 +279,7 @@ class Stacked:
 
 
 def clip_per_model(params, max_norm):
+    params = [p for p in params if p.grad is not None]
     sq = sum((p.grad.flatten(1) ** 2).sum(1) for p in params)
     scale = (max_norm / (sq.sqrt() + 1e-6)).clamp(max=1.0)
     for p in params:
