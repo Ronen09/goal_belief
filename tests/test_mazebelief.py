@@ -125,3 +125,37 @@ def test_graph_matches_solver_and_filter():
                 b, _ = m.observe(q, o)
                 node = G.nxt[node, a, o]
                 assert np.allclose(G.belief[node], b, atol=1e-9)
+
+
+def test_solver_occupancy_matches_simulation_and_value():
+    import torch
+    from goalgeo import mazegraph as MG, mazeocc as MO, mazeppo as P
+    m = MB.cross_maze(H=5)
+    G = MG.build(m, max_prefix=2)
+    D, per_action = MO.solver_occupancy(G)
+    dec = np.nonzero(G.k == m.H)[0]
+    # the occupancy of the goal cell is the value: visits to the goal happen once, and pay gamma^(k-1)
+    for gi, g in enumerate(m.goals):
+        sel = dec[G.goal[dec] == gi]
+        assert np.allclose(D[sel][:, g], G.V[sel], atol=1e-5)
+    # total discounted occupancy = expected discounted time alive
+    assert np.all(D[dec].sum(1) <= sum(m.gamma ** k for k in range(m.H)) + 1e-5)
+    # against simulation of the solver's policy
+    t = P.Tables(G, "cpu", max_prefix=2)
+    gen = torch.Generator().manual_seed(0)
+    node = torch.tensor(dec[[3, 40, 77]]).repeat_interleave(20000)
+    goal = torch.tensor(G.goal)[node]
+    cell = torch.multinomial(t.belief[node], 1, generator=gen).squeeze(1)
+    occ = torch.zeros(len(node), m.n); alive = torch.ones(len(node), dtype=torch.bool)
+    opt = torch.tensor(G.optimal())
+    for k in range(m.H):
+        a = torch.multinomial(opt[node].float(), 1, generator=gen).squeeze(1)
+        cell = torch.where(alive, t.nxt_cell[cell, a], cell)
+        occ[torch.arange(len(node)), cell] += (m.gamma ** k) * alive
+        hit = alive & (cell == t.goal_cell[goal])
+        o = torch.multinomial(t.E[cell], 1, generator=gen).squeeze(1)
+        nxt = t.node_nxt[node, a, o]
+        alive = alive & ~hit & (nxt >= 0)
+        node = torch.where(alive, nxt, node)
+    est = occ.view(3, 20000, m.n).mean(1).numpy()
+    assert np.abs(est - D[dec[[3, 40, 77]]]).max() < 0.02
