@@ -101,6 +101,8 @@ ROUNDS = [
           [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r18",)),
     Round("r21", "r21_pattern_specificity", "Is the Sigma-W edit specific? Replication with PCA, random and posterior-matched controls", "2 min GPU",
           [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r18", "r20")),
+    Round("r22", "r22_pair_types", "Three pair types: same posterior; same action under one goal; different action. Whole and PCA patches, all goals", "2 min GPU",
+          [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r18", "r21")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

@@ -334,6 +334,25 @@ models, no training. Round 20's post hoc edit, frozen, on new histories, against
 - Uncertainty pairs respond more than mode pairs at equal solver stake (the difference is unchanged by matching).
 - 4 of 9 expectations held, 3 in part; the one that would have shown specificity did not.
 
+## Round 22: three types of pair
+
+**Round 22 — does history matter beyond the belief, and is evidence kept beyond one goal's action?
+(`rounds/r22_pair_types/REPORT.md`, expectations in `rounds/r22_pair_types/PLAN.md`).** Round 18's models, no
+training. Pairs with the same posterior and different histories; with the same optimal action under one goal and a
+different one under another; with different optimal actions under every goal. Whole and rank-13 PCA patches, each
+pair under all three goals, natural access and direct route removed kept apart.
+
+- Same posterior, different history: the action distribution differs by 0.04–0.09, a tenth or less of the effect
+  of a different posterior; it grows with prefix length and is a difference in which cases the model gets wrong.
+- The same patched goal-free states give 0.93–0.98 of the model's own change under the goal where the optimal
+  action differs (direct route removed; 0.20–0.36 under natural access).
+- Where the solver predicts no change, the supervised model changes 0.07 and the reward-trained models 0.23–0.34:
+  their errors depend on the evidence, and the patch reproduces the model on the donor's evidence, errors included.
+- With the direct route removed the prefix states carry the model's whole response, and the ablated model is on
+  the optimal set with probability 0.56–0.80.
+- The PCA patch equals the whole patch within 0.02 under natural access.
+- 3 of 7 expectations held, 4 in part.
+
 ## Cross-round findings
 
 1. Hidden geometry mirrors the distinctions the training target contains (policy quotient for
