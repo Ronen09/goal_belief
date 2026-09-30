@@ -35,7 +35,14 @@ def decoder_subspaces(X, Y, rank=7, seed=0):
     g = torch.Generator().manual_seed(seed)
     Q, _ = torch.linalg.qr(torch.randn(X.shape[1], k, generator=g, dtype=torch.float64))
     Q = Q.to(X.device)
-    return dec, dict(belief=P, belief_rank=Pk, random_subspace=Q @ Q.T), k
+    # post hoc (after the registered edits gave a null): the directions along which the states co-vary with the
+    # decoded posterior (Sigma W), not the directions the decoder reads (W). pattern_shift is the oblique map
+    # Sigma W (W' Sigma W)^+ W': it moves the state along those directions until the decoder reads the donor's posterior.
+    Xc = X.double() - X.double().mean(0)
+    Sig = Xc.T @ Xc / len(Xc)
+    A = Sig @ W
+    shift = (A @ torch.linalg.pinv(W.T @ A, hermitian=True) @ W.T).T       # acts on row vectors: d @ shift
+    return dec, dict(belief=P, belief_rank=Pk, random_subspace=Q @ Q.T, pattern=projector(A), pattern_shift=shift), k
 
 
 def make_edit(kind, xA, xB, subs, gen):
@@ -43,10 +50,12 @@ def make_edit(kind, xA, xB, subs, gen):
     d = (xB - xA).double()
     if kind == "whole":
         return xB
-    if kind in ("belief", "belief_rank", "random_subspace"):
+    if kind in ("belief", "belief_rank", "random_subspace", "pattern", "pattern_shift"):
         return (xA.double() + d @ subs[kind]).float()
     if kind == "complement":
         return (xB.double() - d @ subs["belief"]).float()
+    if kind == "pattern_complement":
+        return (xB.double() - d @ subs["pattern"]).float()
     if kind == "random_norm":
         r = torch.randn(d.shape, device=d.device, generator=gen, dtype=torch.float64)
         return (xA.double() + r / r.norm(dim=1, keepdim=True) * (d @ subs["belief"]).norm(dim=1, keepdim=True)).float()
@@ -54,6 +63,7 @@ def make_edit(kind, xA, xB, subs, gen):
 
 
 EDITS = ("whole", "belief", "belief_rank", "complement", "random_subspace", "random_norm")
+POST_HOC = ("pattern", "pattern_shift", "pattern_complement")
 
 
 @torch.no_grad()
