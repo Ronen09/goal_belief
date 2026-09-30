@@ -370,6 +370,20 @@ round 22's pairs.
 - At coefficient 0.1 the head learns as well and the policy gains little.
 - 4 of 7 expectations held, 1 in part.
 
+## Round 24: the prediction head on identical-posterior histories
+
+**Round 24 — does the prediction head agree on identical-posterior histories?
+(`rounds/r24_head_consistency/REPORT.md`, criterion in `rounds/r24_head_consistency/PLAN.md`).** Round 23's models,
+no training.
+
+- The head's predictions for two histories with the same posterior differ by 0.026 (total variation) at the goal
+  token; relative to its response to a different posterior that is 0.82 of the policy's inconsistency.
+- It is 0.54 of the policy's on the move the policy takes and 0.33 at prefix tokens, and never absent.
+- The difference is below the head's error against the exact predictive distribution (0.043) in every seed.
+- It is larger in the cells where the policy's greedy action differs between the two histories (0.044 against
+  0.026).
+- By the registered criterion the auxiliary task is itself solved with history-dependent approximations.
+
 ## Cross-round findings
 
 1. Hidden geometry mirrors the distinctions the training target contains (policy quotient for

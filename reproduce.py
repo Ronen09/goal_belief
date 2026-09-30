@@ -108,6 +108,8 @@ ROUNDS = [
            Step("train.py", ("--aux", "1.0", "--seeds", *map(str, range(10)), "--out", "rounds/r23_obs_prediction/runs/aux1")),
            Step("train.py", ("--aux", "0.1", "--seeds", *map(str, range(10)), "--out", "rounds/r23_obs_prediction/runs/aux01")),
            Step("measure.py"), Step("tables.py", tables=True)], needs=("r18", "r22")),
+    Round("r24", "r24_head_consistency", "Does the prediction head agree on identical-posterior histories?", "1 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r22", "r23")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
