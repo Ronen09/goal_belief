@@ -24,6 +24,7 @@ sys.path.insert(0, str(HERE))
 import train as T                                                    # noqa: E402
 
 BANK_SEED = 170017
+KEY = (100, 300, 600, 900, 1200, 1500, 1800)      # with the first and last checkpoint: where patches and Adam decoders are run
 
 
 class Context:
@@ -218,9 +219,12 @@ def main():
         if a.only_final:
             cks = [cks[0], cks[-1]]
         res = dict(raw_baseline=ctx.raw, sites=PR.site_names(layers), targets=PR.TARGETS, checkpoints={})
+        us = [int(c.stem[1:]) for c in cks]
+        key = {us[0], us[-1]} | {min(us, key=lambda u: abs(u - k)) for k in KEY}
         for ck in cks:
             net.load_state_dict(torch.load(ck))
-            m = measure(net, ctx, adam=not a.quick)
+            full = int(ck.stem[1:]) in key
+            m = measure(net, ctx, causal=full, adam=full and not a.quick)
             if a.q == "grid":
                 m["on_policy_by_q"] = on_policy_by_q(net, ctx, 1024 if a.quick else 8192)
             res["checkpoints"][int(ck.stem[1:])] = m

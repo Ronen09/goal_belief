@@ -1,0 +1,8 @@
+rounds/r17_navigate_commit/runs/ppo_grid/seed0 u000000 bank regret 0.0623 use 0.000
+rounds/r17_navigate_commit/runs/ppo_grid/seed0 u003500 bank regret 0.0047 use 0.942
+rounds/r17_navigate_commit/runs/ppo_grid/seed1 u000000 bank regret 0.0623 use 0.000
+rounds/r17_navigate_commit/runs/ppo_grid/seed1 u003500 bank regret 0.0040 use 0.946
+rounds/r17_navigate_commit/runs/ppo_grid/seed2 u000000 bank regret 0.0626 use -0.000
+rounds/r17_navigate_commit/runs/ppo_grid/seed2 u003500 bank regret 0.0044 use 0.891
+rounds/r17_navigate_commit/runs/sup_grid/seed0 u000000 bank regret 0.0623 use 0.000
+rounds/r17_navigate_commit/runs/sup_grid/seed0 u001500 bank regret 0.0027 use 0.928

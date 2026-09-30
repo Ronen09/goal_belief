@@ -1,0 +1,21 @@
+## Scorecard
+
+|  | prediction | held | numbers |
+|---|---|---|---|
+| N1 | reward training: greedy regret ≤ 0.02 in ≥ 4 of 5 seeds | **yes** | 0.0105, 0.0094, 0.0129, 0.0115, 0.0111 |
+| N2 | supervised ≤ 0.005 and below every PPO seed | **yes** | 0.0020 |
+| N3 | frozen backbone: regret ≥ 0.05 and use ≤ 0.2 | **yes** | regret 0.1171, use 0.010; regret 0.1170, use 0.007 |
+| N4 | marginals decodable at initialisation (best site R² ≥ 0.6; raw ≤ 0.05) | **yes** | init 0.763 ± 0.010; raw 0.012 |
+| N5 | training does not change affine decodability (Δ in ±0.15; final < 0.9) | **yes** | Δ -0.001; final 0.763 ± 0.026 |
+| N6 | product term R² < 0.4 at every site | **yes** | max over sites: 0.204 ± 0.049 |
+| N7 | use tracks regret (ρ ≤ −0.8), decodability does not (ρ > −0.5) | **yes** | use -0.97 ± 0.01; decodability 0.35 ± 0.32 |
+| N8 | evidence enters at L0.attn (cf ≥ 0.7; L1–L3.attn ≤ 0.2) | no | L0 1.00 ± 0.01; later max 0.35 ± 0.41 |
+| N9 | controls flat (|cf| ≤ 0.05, every component) | **yes** | max |cf| 0.017 ± 0.008 |
+| N10 | a report moves its own marginal (other / own ≤ 0.2) | **yes** | 0.110 ± 0.012 |
+| N11 | no position-free belief carrier (L0.attn to donor ≥ 0.6; no component with to twin ≥ 0.6 and to donor ≤ 0.3) | **yes** | L0.attn to donor 0.88 ± 0.02; clean carriers: none |
+| N12 | L0.attn's twin difference grows ≥ 3× | **yes** | 0.053 ± 0.005 → 0.868 ± 0.031 |
+| N13 | grid models: trained pairs ≤ 0.03 in ≥ 2 of 3 seeds; held-out within 0.01 | **yes** | trained 0.0110 ± 0.0006; values 0.0125 ± 0.0007; combinations 0.0129 ± 0.0009 |
+| N14 | decoding generalises over reliability (held ≥ trained − 0.1) | **yes** | 0.648 ± 0.007 vs 0.661 ± 0.011 |
+| N15 | fixed-q models ignore reliability (regret at (0.6, 0.6) ≥ grid models' + 0.02) | **yes** | fixed 0.0610 ± 0.0071; grid 0.0032 |
+
+14 of 15 held.

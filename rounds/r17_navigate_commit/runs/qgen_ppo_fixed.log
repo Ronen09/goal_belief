@@ -1,0 +1,5 @@
+rounds/r17_navigate_commit/runs/ppo_fixed/seed0 {'train': 0.0223, 'held_value': 0.0205, 'held_combo': 0.0224} {'tv': 0.060954499989748, 'exact_disjoint': 0.039356429129838943}
+rounds/r17_navigate_commit/runs/ppo_fixed/seed1 {'train': 0.022, 'held_value': 0.019, 'held_combo': 0.0217} {'tv': 0.049781713634729385, 'exact_disjoint': 0.039356429129838943}
+rounds/r17_navigate_commit/runs/ppo_fixed/seed2 {'train': 0.0283, 'held_value': 0.0244, 'held_combo': 0.0306} {'tv': 0.0415014773607254, 'exact_disjoint': 0.039356429129838943}
+rounds/r17_navigate_commit/runs/ppo_fixed/seed3 {'train': 0.0248, 'held_value': 0.0212, 'held_combo': 0.0236} {'tv': 0.057089973241090775, 'exact_disjoint': 0.039356429129838943}
+rounds/r17_navigate_commit/runs/ppo_fixed/seed4 {'train': 0.0247, 'held_value': 0.0212, 'held_combo': 0.0253} {'tv': 0.05444033443927765, 'exact_disjoint': 0.039356429129838943}

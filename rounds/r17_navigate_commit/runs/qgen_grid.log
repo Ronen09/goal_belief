@@ -1,0 +1,3 @@
+rounds/r17_navigate_commit/runs/ppo_grid/seed0 {'train': 0.0119, 'held_value': 0.0135, 'held_combo': 0.0141} {'tv': 0.09130014479160309, 'exact_disjoint': 0.039356429129838943}
+rounds/r17_navigate_commit/runs/ppo_grid/seed1 {'train': 0.0106, 'held_value': 0.012, 'held_combo': 0.0124} {'tv': 0.10645847022533417, 'exact_disjoint': 0.039356429129838943}
+rounds/r17_navigate_commit/runs/ppo_grid/seed2 {'train': 0.0106, 'held_value': 0.0119, 'held_combo': 0.0121} {'tv': 0.13619403541088104, 'exact_disjoint': 0.039356429129838943}

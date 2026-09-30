@@ -15,6 +15,8 @@ import torch
 
 from goalgeo import navbank as B, navmodel as NM, navppo as P
 
+torch.backends.cuda.matmul.allow_tf32 = True                         # 1.3x faster; the pilot ran without it
+torch.backends.cudnn.allow_tf32 = True
 HERE = Path(__file__).resolve().parent
 ENV = dict(n=5, H=12, c=0.025)
 Q_GRID = (0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95)
@@ -94,6 +96,7 @@ def main():
             logs[m].append(dict(update=u, interactions=int(inter[m]), seconds=time.time() - t0, v_star=vstar,
                                 **{"sampled_" + k: v for k, v in s[m].items()}, **{"greedy_" + k: v for k, v in g[m].items()}))
             (out / f"seed{seed}" / "log.json").write_text(json.dumps(dict(args=vars(a), env=ENV, seed=seed, log=logs[m]), indent=1))
+        torch.cuda.empty_cache()
         print(f"[{a.cond} {a.q}] u={u} {time.time() - t0:.0f}s regret " + " ".join(f"{x['regret']:.4f}" for x in s) +
               " | queries " + " ".join(f"{x['queries']:.2f}" for x in s), flush=True)
 
