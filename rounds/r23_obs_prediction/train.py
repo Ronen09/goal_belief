@@ -29,6 +29,8 @@ def graph(quick):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--aux", type=float, default=0.0)
+    ap.add_argument("--sup", default="selected", choices=("selected", "all", "one"),
+                    help="round 25: targets for the head. selected: the symbol after the move taken; all / one: counterfactual symbols for four / one candidate move")
     ap.add_argument("--seeds", type=int, nargs="+", default=[0])
     ap.add_argument("--updates", type=int, default=1500)
     ap.add_argument("--n-env", type=int, default=4096)
@@ -94,8 +96,12 @@ def main():
             break
         for g_ in opt.param_groups:
             g_["lr"] = pc.lr * min(1, (u + 1) / pc.warmup)
-        b = P.rollout(stk, t, pc.n_env * M, gen)
-        AX.ppo_update(stk, opt, b, pc, pc.ent + (pc.ent_final - pc.ent) * u / a.updates, params, t.gamma, a.aux)
+        cf = None
+        if a.sup == "selected":
+            b = P.rollout(stk, t, pc.n_env * M, gen)
+        else:
+            b, *cf = AX.rollout_cf(stk, t, pc.n_env * M, gen, one=a.sup == "one")
+        AX.ppo_update(stk, opt, b, pc, pc.ent + (pc.ent_final - pc.ent) * u / a.updates, params, t.gamma, a.aux, cf)
         inter += b.alive.view(M, -1).sum(1).cpu().numpy()
 
 

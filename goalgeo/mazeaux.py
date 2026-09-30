@@ -71,8 +71,88 @@ def exact_nll(b: P.Batch, p_obs):
     return -p.gather(2, o[..., None]).squeeze(2).clamp(min=1e-12).log() * valid, valid
 
 
-def ppo_update(stk: StackedAux, opt, b: P.Batch, cfg: P.PPOConfig, ent_coef, params, gamma, aux_coef):
-    """mazeppo.ppo_update with aux_coef times the prediction loss added, computed in the same forward passes."""
+class EnvCF(P.Env):
+    """mazeppo.Env that also keeps the true cell at every prefix token, for counterfactual symbols."""
+
+    def __init__(self, t: P.Tables, N, gen=None, prefix=None, goal=None):
+        self.t, self.N, self.gen = t, N, gen
+        dev = t.dev
+        r = lambda hi: torch.randint(hi, (N,), device=dev, generator=gen)
+        self.cell = t.starts[r(len(t.starts))]
+        self.prefix = r(t.max_prefix + 1) if prefix is None else prefix
+        self.goal = r(len(t.goal_cell)) if goal is None else goal
+        self.tok = torch.zeros(N, t.L, MM.NF, dtype=torch.long, device=dev)
+        o = self.sample_symbol()
+        self.tok[:, 0, MM.F_TYPE], self.tok[:, 0, MM.F_SYM] = MM.OBS, o + 1
+        node = t.start[o]
+        self.pre_node = torch.full((N, t.max_prefix + 1), -1, device=dev)
+        self.pre_node[:, 0] = node
+        self.pre_cell = torch.zeros(N, t.max_prefix + 1, dtype=torch.long, device=dev)
+        self.pre_cell[:, 0] = self.cell
+        n = torch.arange(N, device=dev)
+        for i in range(t.max_prefix):
+            on = i < self.prefix
+            a = r(4)
+            self.cell = torch.where(on, t.nxt_cell[self.cell, a], self.cell)
+            o = self.sample_symbol()
+            node = torch.where(on, t.node_nxt[node, a, o], node)
+            self.tok[on, 1 + i] = torch.stack([torch.full_like(a, MM.EVT), o + 1, a + 1, torch.zeros_like(a), torch.zeros_like(a)], -1)[on]
+            self.pre_node[on, i + 1] = node[on]
+            self.pre_cell[:, i + 1] = self.cell
+        self.idx = 1 + self.prefix
+        self.tok[n, self.idx, MM.F_TYPE], self.tok[n, self.idx, MM.F_GOAL] = MM.GOAL, self.goal + 1
+        self.node = t.reveal[node, self.goal]
+        self.k = torch.full((N,), t.H, device=dev)
+        self.done = torch.zeros(N, dtype=torch.bool, device=dev)
+
+
+def _cf(t, cell, gen):
+    """A symbol for each candidate move from `cell`: [n, 4], and the cells reached."""
+    c2 = t.nxt_cell[cell]                                                # [n, 4]
+    return torch.multinomial(t.E[c2.reshape(-1)], 1, generator=gen).view(-1, 4), c2
+
+
+@torch.no_grad()
+def rollout_cf(net, t: P.Tables, N, gen=None, one=False):
+    """mazeppo.rollout (sampled actions) that also returns counterfactual next symbols: sym [N, L, 4] and valid
+    [N, L, 4]. Targets sit at the tokens that carry one under selected-action supervision: prefix tokens followed
+    by an event, and decisions with at least two moves left; a move that enters the goal has none. one=True keeps
+    one candidate move per token, drawn uniformly."""
+    env = EnvCF(t, N, gen)
+    H, dev = t.H, t.dev
+    z = lambda *s, dt=torch.float32: torch.zeros(N, H, *s, dtype=dt, device=dev)
+    pos, node, act, cell = z(dt=torch.long), z(dt=torch.long), z(dt=torch.long), z(dt=torch.long)
+    logp, val, rew, reg, alive = z(), z(), z(), z(), z(dt=torch.bool)
+    sym = torch.zeros(N, t.L, 4, dtype=torch.long, device=dev); valid = torch.zeros(N, t.L, 4, dtype=torch.bool, device=dev)
+    n = torch.arange(N, device=dev)
+    for i in range(t.max_prefix):
+        on = i < env.prefix
+        sym[:, i], _ = _cf(t, env.pre_cell[:, i], gen)
+        valid[:, i] = on[:, None]
+    for s in range(H):
+        live = ~env.done
+        top = int(env.idx.max()) + 1
+        lg, v = net(env.tok[:, :top], None)
+        lg, v = lg[n, env.idx], v[n, env.idx]
+        a = torch.distributions.Categorical(logits=lg).sample()
+        logp[:, s], val[:, s] = torch.log_softmax(lg, -1).gather(1, a[:, None]).squeeze(1), v
+        o, c2 = _cf(t, env.cell, gen)
+        ok = (live & (env.k > 1))[:, None] & (c2 != t.goal_cell[env.goal][:, None])
+        sym[n[live], env.idx[live]] = o[live]; valid[n[live], env.idx[live]] = ok[live]
+        q = t.Q[env.node]
+        reg[:, s] = torch.where(live, q.max(1).values - q.gather(1, a[:, None]).squeeze(1), 0.0)
+        pos[:, s], node[:, s], act[:, s], alive[:, s], cell[:, s] = env.idx, env.node, a, live, env.cell
+        rew[:, s] = env.step(a)
+    if one:
+        pick = torch.randint(4, (N, t.L), device=dev, generator=gen)
+        valid &= torch.nn.functional.one_hot(pick, 4).bool()
+    return P.Batch(env.tok, pos, node, act, logp, val, rew, alive, reg, env.goal, env.prefix, env.pre_node, cell), sym, valid
+
+
+def ppo_update(stk: StackedAux, opt, b: P.Batch, cfg: P.PPOConfig, ent_coef, params, gamma, aux_coef, cf=None):
+    """mazeppo.ppo_update with aux_coef times the prediction loss added, computed in the same forward passes.
+    cf = (sym, valid) from rollout_cf: counterfactual targets for the candidate moves; None: the symbol that
+    followed the move taken."""
     M = stk.M
     N, H = b.act.shape[0] // M, b.act.shape[1]
     dev = b.act.device
@@ -99,7 +179,11 @@ def ppo_update(stk: StackedAux, opt, b: P.Batch, cfg: P.PPOConfig, ent_coef, par
             pl = -per(torch.min(ratio * a, ratio.clamp(1 - cfg.clip, 1 + cfg.clip) * a))
             vl = per((v - target[idx]) ** 2)
             ent = per(-(lp.exp() * lp).sum(-1))
-            nll, valid = obs_nll(ob, b.tok[idx])
+            if cf is None:
+                nll, valid = obs_nll(ob, b.tok[idx])
+            else:
+                valid = cf[1][idx]
+                nll = -torch.log_softmax(ob, -1).gather(3, cf[0][idx][..., None]).squeeze(3) * valid
             al = nll.view(M, -1).sum(1) / valid.view(M, -1).sum(1).clamp(min=1)
             loss = (pl + cfg.vf * vl - ent_coef * ent).sum()
             if aux_coef > 0:
