@@ -1,0 +1,6 @@
+rounds/r18_maze_belief/runs/frozen/seed0 u000000 bank regret 0.1047 belief R2 0.298
+rounds/r18_maze_belief/runs/frozen/seed0 u001000 bank regret 0.0760 belief R2 0.298
+rounds/r18_maze_belief/runs/frozen/seed1 u000000 bank regret 0.1069 belief R2 0.294
+rounds/r18_maze_belief/runs/frozen/seed1 u001000 bank regret 0.0717 belief R2 0.294
+rounds/r18_maze_belief/runs/supervised/seed0 u000000 bank regret 0.1047 belief R2 0.298
+rounds/r18_maze_belief/runs/supervised/seed0 u001000 bank regret 0.0071 belief R2 0.454
