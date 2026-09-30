@@ -61,6 +61,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r18 | Does an inferred location belief support goal-dependent decisions? | [report](rounds/r18_maze_belief/REPORT.md) | 1.5 h GPU |
 | r19 | Is goal-conditioned occupancy represented beyond the posterior and the action values? | [report](rounds/r19_occupancy/REPORT.md) | 25 min GPU |
 | r20 | Does the policy use the decoded belief? | [report](rounds/r20_belief_edit/REPORT.md) | 20 min GPU |
+| r21 | Is the posterior-associated edit more specific than replacing the dominant history representation? | [report](rounds/r21_pattern_specificity/REPORT.md) | 2 min GPU |
 
 ## Library
 
@@ -75,7 +76,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | `latentgoal`, `belief_train`, `beliefprobe`, `beliefcausal`, `filterstate` | r12–r14 | hidden-goal environments with the exact joint filter; training; probes; transplant / equivalence tests; full-state coordinates |
 | `wtfm`, `kvprior` | r14–r16 | windowed transformer with a recurrent carry and K/V dropout; K/V-source splicing for position t+1 |
 | `navcommit`, `navmodel`, `navppo`, `navbank`, `navprobe`, `navcausal` | r17 | navigate / investigate / commit: exact solver, token format and transformer, vectorised environment and PPO, fixed evaluation histories, decoders, matched-pair patches |
-| `mazeedit` | r20 | edits of prefix-token states in decoder-defined and covariance-defined subspaces |
+| `mazeedit` | r20–r21 | edits of prefix-token states in decoder-defined and covariance-defined subspaces |
 | `mazeocc` | r19 | exact occupancy under the solver's policy; a model's own occupancy by rollouts |
 | `mazebelief`, `mazegraph`, `mazemodel`, `mazeppo`, `mazemeasure` | r18–r19 | aliased maze with a hidden location: exact filter and solver, belief graph, tokens and transformer, vectorised environment and PPO, decoders and cross-goal patches |
 | `plotting`, `style` | all | shared figure style (rounds 1–11, rounds 12–16) |

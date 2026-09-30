@@ -99,6 +99,8 @@ ROUNDS = [
           [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r18",)),
     Round("r20", "r20_belief_edit", "Does the policy use the decoded belief? Edits at the goal-free prefix interface", "20 min GPU",
           [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r18",)),
+    Round("r21", "r21_pattern_specificity", "Is the Sigma-W edit specific? Replication with PCA, random and posterior-matched controls", "2 min GPU",
+          [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r18", "r20")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

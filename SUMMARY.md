@@ -316,6 +316,24 @@ depend on the goal, are edited towards a donor with other evidence.
   47–91 % of cases. The edit is not selective for the posterior.
 - Registered: whole-state patches work, belief-directed edits do not.
 
+## Round 21: specificity of the ΣW edit
+
+**Round 21 — is the posterior-associated edit more specific than replacing the dominant history representation?
+(`rounds/r21_pattern_specificity/REPORT.md`, expectations in `rounds/r21_pattern_specificity/PLAN.md`).** Round 18's
+models, no training. Round 20's post hoc edit, frozen, on new histories, against controls.
+
+- It replicates: the pattern edit (rank 13) moves decisions 0.79–0.93 of the way with the direct route removed;
+  the decoder's row space 0.00–0.04.
+- It is not specific. The top 13 principal components move 0.89–0.96, and a random subspace capturing the same
+  share of the donor difference (rank 115) 0.85–0.93. At equal captured share the pattern edit is within
+  −0.07 to 0.05 of PCA. Thirteen random directions move 0.03–0.09.
+- Between histories with the same posterior (L1 < 0.05) the pattern edit carries 0.88–0.96 of the whole patch's
+  effect.
+- Across goals the pattern edit is appropriate by the solver as often as the model on the donor's evidence is, and
+  so are the controls.
+- Uncertainty pairs respond more than mode pairs at equal solver stake (the difference is unchanged by matching).
+- 4 of 9 expectations held, 3 in part; the one that would have shown specificity did not.
+
 ## Cross-round findings
 
 1. Hidden geometry mirrors the distinctions the training target contains (policy quotient for

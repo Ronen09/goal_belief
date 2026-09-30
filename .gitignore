@@ -4,3 +4,4 @@ __pycache__/
 .pytest_cache/
 rounds/*/_smoke/
 rounds/*/cache/
+rounds/r21_pattern_specificity/subspaces/
