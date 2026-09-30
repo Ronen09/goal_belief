@@ -384,6 +384,22 @@ no training.
   0.026).
 - By the registered criterion the auxiliary task is itself solved with history-dependent approximations.
 
+## Round 25: balanced candidate-action supervision
+
+**Round 25 — does balanced candidate-action supervision make predictions, and then the policy, more
+belief-consistent? (`rounds/r25_balanced_prediction/REPORT.md`, rule in `rounds/r25_balanced_prediction/PLAN.md`).**
+Round 23's setting; the head is given a simulator-sampled symbol for every candidate move (or one random candidate)
+and not only for the move taken. Ten seeds per arm.
+
+- The head's error against the exact predictive distribution falls from 0.043 to 0.017 and its inconsistency
+  between identical-posterior histories from 0.026 to 0.013, all of it on moves the policy does not take; on the
+  taken move nothing changes (0.014).
+- One random candidate per token does as well as four.
+- Policy inconsistency falls from 0.072 to 0.063 (p 0.018), to the reward-only level. At equal regret the
+  difference is 0.001 [−0.008, 0.011] (post hoc).
+- Across seeds the two inconsistencies are correlated (ρ 0.85 within the balanced arm).
+- 4 of 5 expectations held; the registered verdict is that both improve, and the policy's share is small.
+
 ## Cross-round findings
 
 1. Hidden geometry mirrors the distinctions the training target contains (policy quotient for

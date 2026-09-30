@@ -110,6 +110,10 @@ ROUNDS = [
            Step("measure.py"), Step("tables.py", tables=True)], needs=("r18", "r22")),
     Round("r24", "r24_head_consistency", "Does the prediction head agree on identical-posterior histories?", "1 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r22", "r23")),
+    Round("r25", "r25_balanced_prediction", "Selected-action against balanced candidate-action supervision of the prediction head", "1.5 h GPU",
+          [Step("train.py", ("--aux", "1.0", "--sup", "all", "--seeds", *map(str, range(10)), "--out", "rounds/r25_balanced_prediction/runs/all"), quick=True),
+           Step("train.py", ("--aux", "1.0", "--sup", "one", "--seeds", *map(str, range(10)), "--out", "rounds/r25_balanced_prediction/runs/one")),
+           Step("measure.py"), Step("matched.py"), Step("tables.py", tables=True)], needs=("r23", "r24")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
