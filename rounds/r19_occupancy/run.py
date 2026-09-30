@@ -66,7 +66,8 @@ class Data:
         # exact-feature predictors of the solver's occupancy
         self.exact = self.predictors(self.d)
 
-    def predictors(self, d):
+    def predictors(self, d, extra=None):
+        """extra: further exact features for a fifth predictor P4, affine in [b, Q*, extra] per goal."""
         fit = self.fit
         out = dict(P0=torch.zeros_like(d, dtype=torch.float64), P1=None, P2=torch.zeros_like(d, dtype=torch.float64),
                    P3=torch.zeros_like(d, dtype=torch.float64))
@@ -78,6 +79,9 @@ class Data:
             out["P2"][s] = Affine(self.b[fit & s], d[fit & s], lam=1e-6)(self.b[s])
             X3 = torch.cat([self.b, self.q], 1)
             out["P3"][s] = Affine(X3[fit & s], d[fit & s], lam=1e-6)(X3[s])
+            if extra is not None:
+                X4 = torch.cat([self.b, self.q, extra], 1)
+                out.setdefault("P4", torch.zeros_like(d, dtype=torch.float64))[s] = Affine(X4[fit & s], d[fit & s], lam=1e-6)(X4[s])
         return out
 
 
@@ -132,11 +136,12 @@ def analyse(net, data, K, quick=False):
     dm, ret, pi0 = MO.model_occupancy(net, data.t, data.tok, data.prefix, data.goal, data.node, K=K)
     fit = data.fit
     tests = dict(held_evidence=data.test_ev, held_combination=data.test_combo)
-    pm = data.predictors(dm)
+    pm = data.predictors(dm, extra=pi0)                                 # P4: with the model's own action distribution at the reveal
     targets = dict(posterior=data.b, action_values=data.q, advantage=data.q - data.q.max(1, keepdim=True).values,
                    occupancy_solver=data.d, occupancy_model=dm,
                    residual_solver=(data.d.double() - data.exact["P3"]).float(), residual_model=(dm.double() - pm["P3"]).float(),
-                   residual_solver_P2=(data.d.double() - data.exact["P2"]).float())
+                   residual_solver_P2=(data.d.double() - data.exact["P2"]).float(),
+                   residual_model_policy=(dm.double() - pm["P4"]).float())
     out = dict(model=dict(regret=float((pi0 * (data.q.max(1, keepdim=True).values - data.q)).sum(1).mean()),
                           **{f"regret_G{g + 1}": float((pi0 * (data.q.max(1, keepdim=True).values - data.q)).sum(1)[data.goal == g].mean()) for g in range(3)},
                           occupancy_gap_l1=float((dm - data.d).abs().sum(1).mean()),
@@ -147,6 +152,8 @@ def analyse(net, data, K, quick=False):
         out["exact"][nm] = {k: {tn: r2(v[ts], d[ts]) for tn, ts in tests.items()} for k, v in pr.items()}
         out["exact"][nm]["residual_share"] = float(((d.double() - pr["P3"]) ** 2).sum() / var)
         out["exact"][nm]["residual_share_P2"] = float(((d.double() - pr["P2"]) ** 2).sum() / var)
+        if "P4" in pr:
+            out["exact"][nm]["residual_share_P4"] = float(((d.double() - pr["P4"]) ** 2).sum() / var)
     probes = {}
     for tn_, Y in targets.items():
         out["decode"][tn_] = {}
@@ -185,7 +192,7 @@ def analyse(net, data, K, quick=False):
         out["pairs"][k] = dict(n=int(len(i)),
                                occupancy=dict(activations=slope(probes["occupancy_solver"], data.d, i, j),
                                               **{p: slope(data.exact[p], data.d, i, j) for p in ("P0", "P1", "P2", "P3")}),
-                               occupancy_model=dict(activations=slope(probes["occupancy_model"], dm, i, j), **{p: slope(pm[p], dm, i, j) for p in ("P0", "P1", "P2")}),
+                               occupancy_model=dict(activations=slope(probes["occupancy_model"], dm, i, j), **{p: slope(pm[p], dm, i, j) for p in ("P0", "P1", "P2", "P4")}),
                                action_values=dict(activations=slope(probes["action_values"], data.q, i, j)),
                                posterior=dict(activations=slope(probes["posterior"], data.b, i, j)) if k == "same_goal" else None,
                                true_l1=float((data.d[i] - data.d[j]).abs().sum(1).mean()) if len(i) else None,

@@ -1,0 +1,16 @@
+frozen seed0 init regret 0.0549 occ solver 0.641 residual 0.014
+frozen seed0 final regret 0.0432 occ solver 0.641 residual 0.014
+frozen seed1 init regret 0.0548 occ solver 0.628 residual -0.011
+frozen seed1 final regret 0.0429 occ solver 0.628 residual -0.011
+ppo seed0 init regret 0.0549 occ solver 0.641 residual 0.014
+ppo seed0 final regret 0.0175 occ solver 0.752 residual 0.101
+ppo seed1 init regret 0.0548 occ solver 0.628 residual -0.011
+ppo seed1 final regret 0.0021 occ solver 0.789 residual 0.137
+ppo seed2 init regret 0.0546 occ solver 0.633 residual -0.024
+ppo seed2 final regret 0.0192 occ solver 0.738 residual 0.075
+ppo seed3 init regret 0.0548 occ solver 0.613 residual -0.024
+ppo seed3 final regret 0.0025 occ solver 0.819 residual 0.261
+ppo seed4 init regret 0.0545 occ solver 0.659 residual -0.017
+ppo seed4 final regret 0.0024 occ solver 0.792 residual 0.217
+supervised seed0 init regret 0.0549 occ solver 0.641 residual 0.014
+supervised seed0 final regret 0.0006 occ solver 0.798 residual 0.306
