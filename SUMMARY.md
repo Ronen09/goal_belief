@@ -247,6 +247,75 @@ calibrated λ when everything position t exports comes from another history.
 - 5 of 7 pre-registered predictions held. The carry transition is front-loaded, below the registered
   grid's intermediate points; a follow-up grid (p = 0.05–0.3) resolves it.
 
+## Round 17: navigate, investigate, commit
+
+**Round 17 — how does a reward-trained full-attention transformer come to use a belief? (`rounds/r17_navigate_commit/REPORT.md`,
+predictions in `rounds/r17_navigate_commit/THEORY.md`).** A 5 × 5 grid with a hidden reward corner and two noisy clue
+stations; the agent moves, queries and commits. Exact belief-state solver; PPO on reward only, 5 seeds; all
+representation measures on fixed histories replayed at every checkpoint.
+
+- All seeds reach greedy regret 0.009–0.013 (never querying: 0.101). Supervised: 0.002. Frozen backbone: 0.117.
+- The belief's marginals are affinely decodable from the first attention layer before training (R² 0.76) and
+  no more so after (0.76, with a peak of 0.91 in between). Use of the evidence goes from 0.00 to 0.93 and tracks
+  regret (ρ = −0.97). The product of the marginals, which the joint posterior needs, stays at R² ≤ 0.30.
+- Two transitions 800 updates apart: acting on evidence that is present (updates 80–270), then walking to the
+  stations (1 000–1 800). The second gives most of the on-policy improvement and is a change in visitation.
+- Evidence reaches the decision through the first attention layer in every seed (patch: 1.00; controls ≤ 0.02).
+  Two of five seeds also use layer-1 attention. No component carries the evidence to another position without
+  importing that position's behaviour (0.88).
+- Trained over a reliability grid, models do as well on held-out reliabilities (0.0125 vs 0.0110); trained at
+  0.8 only, they ignore the stated reliability (regret 0.061 at 0.6).
+- 14 of 15 pre-registered predictions held.
+
+## Round 18: a location belief and goal-dependent decisions
+
+**Round 18 — does an inferred location belief support goal-dependent decisions? (`rounds/r18_maze_belief/REPORT.md`,
+predictions in `rounds/r18_maze_belief/THEORY.md`).** A fixed 14-cell maze with aliased noisy symbols; the agent
+never sees its cell. A passive prefix, then one of three goals is revealed, so the exact posterior at the reveal is
+the same for every goal. PPO on reward only, 5 seeds.
+
+- Three seeds reach greedy regret 0.004–0.005 (acting on the most likely cell loses 0.10); two had not learned
+  the goal that needs the belief most. Goals are learned in the order of how much they need the belief.
+- The posterior over cells decodes at the reveal at R² 0.64 before training and 0.77 after; at prefix tokens,
+  which never act, at 0.93. Use of the evidence goes from 0.00 to 0.64.
+- A goal swap changes the actions as much as an evidence swap and moves the decoded posterior a quarter as much.
+- Every seed has one goal head in the first attention layer. The other heads carry evidence across goals in
+  part (0.22 of the way, 4 of 5 seeds); states of prefix tokens after the first block, goal-free by construction,
+  carry 0.37. Whole sublayers carry the goal with the evidence (0.91 to the donor's behaviour).
+- 9 of 12 pre-registered predictions held; the cross-goal transfer seen in the pilot (0.5–0.7) did not replicate.
+
+## Round 19: occupancy
+
+**Round 19 — is goal-conditioned occupancy represented beyond the posterior and the action values?
+(`rounds/r19_occupancy/REPORT.md`, criteria in `rounds/r19_occupancy/PLAN.md`).** Round 18's models, no training.
+Occupancy is the expected discounted future visitation from the posterior at the reveal, exact under the solver's
+policy and estimated by rollouts under each model's own.
+
+- A linear function of the posterior and the action values, per goal, gives 79 % of the solver's occupancy.
+- At the goal token the action values decode best (0.91–0.94), then the posterior (0.79–0.82), then occupancy
+  (0.74–0.82). What is specific to occupancy decodes at 0.07–0.26 in reward-trained models (supervised: 0.31).
+- Futures that share a first action and differ in visitation are told apart (slope 0.70–0.84), and an untrained
+  network does it too (0.69).
+- The two seeds that had not learned the hardest goal differ from the solver's occupancy by 4.5 (L1) on that goal
+  and by 0.4–0.6 on the others.
+- Two of three criteria met; the causal test, conditional on all three, was not run.
+
+## Round 20: editing the decoded belief
+
+**Round 20 — does the policy use the decoded belief? (`rounds/r20_belief_edit/REPORT.md`, expectations in
+`rounds/r20_belief_edit/PLAN.md`).** Round 18's models, no training. The states of the prefix tokens, which cannot
+depend on the goal, are edited towards a donor with other evidence.
+
+- Replacing the donor's component in the posterior decoder's row space makes the decoder read the donor's
+  posterior (R² 0.9) and changes nothing else: decisions move 0.00, in all six models, with or without the
+  decision token's direct access to the raw tokens. That row space holds 2–3 % of the difference between states.
+- The whole prefix state moves decisions 0.12–0.45 of the way, and all the way once the direct route is removed.
+  The effect persists over later decisions.
+- Post hoc: the 14 directions along which the state co-varies with the posterior hold 90 % of the difference and
+  carry nearly the whole effect; one such edit gives different, appropriate actions under different goals in
+  47–91 % of cases. The edit is not selective for the posterior.
+- Registered: whole-state patches work, belief-directed edits do not.
+
 ## Cross-round findings
 
 1. Hidden geometry mirrors the distinctions the training target contains (policy quotient for
