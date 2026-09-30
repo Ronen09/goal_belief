@@ -103,6 +103,11 @@ ROUNDS = [
           [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r18", "r20")),
     Round("r22", "r22_pair_types", "Three pair types: same posterior; same action under one goal; different action. Whole and PCA patches, all goals", "2 min GPU",
           [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r18", "r21")),
+    Round("r23", "r23_obs_prediction", "Reward only against reward plus next-symbol prediction, on round 22's fixed pairs", "2.5 h GPU",
+          [Step("train.py", ("--aux", "0", "--seeds", *map(str, range(10)), "--out", "rounds/r23_obs_prediction/runs/reward"), quick=True),
+           Step("train.py", ("--aux", "1.0", "--seeds", *map(str, range(10)), "--out", "rounds/r23_obs_prediction/runs/aux1")),
+           Step("train.py", ("--aux", "0.1", "--seeds", *map(str, range(10)), "--out", "rounds/r23_obs_prediction/runs/aux01")),
+           Step("measure.py"), Step("tables.py", tables=True)], needs=("r18", "r22")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

@@ -353,6 +353,23 @@ pair under all three goals, natural access and direct route removed kept apart.
 - The PCA patch equals the whole patch within 0.02 under natural access.
 - 3 of 7 expectations held, 4 in part.
 
+## Round 23: reward plus observation prediction
+
+**Round 23 — does an observation-prediction objective reduce history dependence, incorrect action changes and
+regret? (`rounds/r23_obs_prediction/REPORT.md`, decision rule in `rounds/r23_obs_prediction/PLAN.md`).** Round 18's
+task and network; reward only against reward plus next-symbol prediction (coefficient 1 and 0.1), ten seeds each;
+round 22's pairs.
+
+- Regret falls from 0.0063 to 0.0042 at coefficient 1 (p < 0.001); no seed fails G2 (reward only: 2 of 10);
+  learning is about twice as fast.
+- Greedy action changes where the optimal action does not change fall from 28 % to 19 %. At equal regret the
+  difference is 0.016 [−0.039, 0.007]: most of it is a better policy.
+- Identical-posterior histories are treated as differently as before (0.072 against 0.066), and with the direct
+  route removed more differently (0.14 against 0.08).
+- Patch transfer from the prefix states does not change (0.15 against 0.13 of the way).
+- At coefficient 0.1 the head learns as well and the policy gains little.
+- 4 of 7 expectations held, 1 in part.
+
 ## Cross-round findings
 
 1. Hidden geometry mirrors the distinctions the training target contains (policy quotient for

@@ -1,0 +1,86 @@
+[aux 0.1] u=0 22s greedy regret 0.5987 0.6159 0.5237 0.6038 0.4141 0.5211 0.6066 0.4063 0.6248 0.6163 | excess nll 0.449 0.481 0.469 0.449 0.416 0.421 0.516 0.427 0.538 0.461
+[aux 0.1] u=10 82s greedy regret 0.3298 0.3351 0.3345 0.3311 0.3314 0.3320 0.3330 0.3347 0.3341 0.3324 | excess nll 0.342 0.365 0.389 0.404 0.351 0.383 0.326 0.372 0.383 0.365
+[aux 0.1] u=12 103s greedy regret 0.3298 0.3351 0.3345 0.3311 0.3314 0.3320 0.3330 0.3347 0.3341 0.3324 | excess nll 0.322 0.339 0.362 0.366 0.334 0.360 0.309 0.355 0.343 0.342
+[aux 0.1] u=15 126s greedy regret 0.3298 0.3351 0.3345 0.3311 0.3314 0.3320 0.3330 0.3347 0.3341 0.3324 | excess nll 0.291 0.308 0.318 0.322 0.308 0.328 0.291 0.333 0.302 0.323
+[aux 0.1] u=19 152s greedy regret 0.3298 0.3351 0.3345 0.3311 0.3314 0.3320 0.3330 0.3347 0.3341 0.3324 | excess nll 0.270 0.281 0.292 0.291 0.295 0.296 0.273 0.304 0.274 0.305
+[aux 0.1] u=24 181s greedy regret 0.3298 0.3351 0.3345 0.3311 0.3314 0.3320 0.3330 0.3347 0.3341 0.3324 | excess nll 0.254 0.263 0.284 0.267 0.279 0.270 0.255 0.277 0.250 0.283
+[aux 0.1] u=30 213s greedy regret 0.3298 0.3351 0.3345 0.3311 0.3314 0.3320 0.3330 0.3347 0.3341 0.3324 | excess nll 0.236 0.235 0.273 0.240 0.261 0.249 0.219 0.252 0.216 0.262
+[aux 0.1] u=37 249s greedy regret 0.3298 0.3010 0.3345 0.3269 0.3314 0.3320 0.3283 0.3347 0.3124 0.3324 | excess nll 0.192 0.199 0.261 0.175 0.238 0.223 0.150 0.223 0.171 0.227
+[aux 0.1] u=46 290s greedy regret 0.3222 0.2410 0.3345 0.2319 0.3244 0.3320 0.2322 0.3271 0.2446 0.2849 | excess nll 0.136 0.077 0.228 0.080 0.134 0.113 0.083 0.137 0.093 0.139
+[aux 0.1] u=57 339s greedy regret 0.2349 0.2272 0.2367 0.2269 0.2287 0.2481 0.2347 0.2322 0.2437 0.2295 | excess nll 0.051 0.054 0.057 0.054 0.048 0.045 0.048 0.042 0.051 0.060
+[aux 0.1] u=71 395s greedy regret 0.2234 0.2362 0.2352 0.2202 0.2211 0.2255 0.2203 0.2395 0.2336 0.2184 | excess nll 0.035 0.040 0.037 0.037 0.033 0.031 0.033 0.030 0.035 0.034
+[aux 0.1] u=88 462s greedy regret 0.2163 0.2218 0.2210 0.2151 0.2273 0.2218 0.2146 0.2257 0.2239 0.2136 | excess nll 0.021 0.028 0.023 0.028 0.023 0.021 0.023 0.019 0.023 0.023
+[aux 0.1] u=110 543s greedy regret 0.2117 0.1878 0.2152 0.2119 0.2108 0.2139 0.2134 0.2186 0.2195 0.2122 | excess nll 0.015 0.022 0.017 0.020 0.019 0.017 0.017 0.013 0.016 0.019
+[aux 0.1] u=137 640s greedy regret 0.1364 0.0925 0.2002 0.2075 0.2056 0.2110 0.0841 0.2055 0.2030 0.1602 | excess nll 0.025 0.019 0.017 0.015 0.015 0.014 0.019 0.013 0.014 0.017
+[aux 0.1] u=170 755s greedy regret 0.0735 0.0772 0.1075 0.0753 0.2015 0.0846 0.0646 0.0807 0.0807 0.0745 | excess nll 0.014 0.016 0.017 0.016 0.011 0.017 0.013 0.018 0.019 0.016
+[aux 0.1] u=211 895s greedy regret 0.0699 0.0721 0.0722 0.0715 0.0777 0.0768 0.0513 0.0723 0.0743 0.0714 | excess nll 0.009 0.011 0.011 0.011 0.011 0.011 0.011 0.010 0.012 0.010
+[aux 0.1] u=263 1069s greedy regret 0.0695 0.0573 0.0739 0.0689 0.0760 0.0750 0.0464 0.1292 0.0716 0.0644 | excess nll 0.008 0.010 0.008 0.008 0.007 0.009 0.007 0.008 0.008 0.008
+Traceback (most recent call last):
+  File "/workspace/goal_belief/rounds/r23_obs_prediction/train.py", line 103, in <module>
+    main()
+  File "/workspace/goal_belief/rounds/r23_obs_prediction/train.py", line 92, in main
+    evaluate(u)
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/goal_belief/rounds/r23_obs_prediction/train.py", line 72, in evaluate
+    b = P.rollout(stk, t, n_eval * M, egen, greedy=greedy, prefix=pre, goal=goal)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/goal_belief/goalgeo/mazeppo.py", line 122, in rollout
+    lg, v = net(env.tok[:, :top], None)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/goal_belief/goalgeo/mazeppo.py", line 25, in __call__
+    lg, v = torch.func.vmap(f)(self.params, tok.view(self.M, -1, *tok.shape[1:]))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_functorch/apis.py", line 202, in wrapped
+    return vmap_impl(
+           ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_functorch/vmap.py", line 334, in vmap_impl
+    return _flat_vmap(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_functorch/vmap.py", line 484, in _flat_vmap
+    batched_outputs = func(*batched_inputs, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/goal_belief/goalgeo/mazeppo.py", line 24, in <lambda>
+    f = lambda p, t: torch.func.functional_call(self.base, p, (t,))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_functorch/functional_call.py", line 148, in functional_call
+    return nn.utils.stateless._functional_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/utils/stateless.py", line 282, in _functional_call
+    return module(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/goal_belief/goalgeo/mazeaux.py", line 27, in forward
+    return super().forward(tok, q, record, patch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/goal_belief/goalgeo/mazemodel.py", line 73, in forward
+    m = b.mlp(b.ln2(mid))
+        ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 244, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.75 GiB. GPU 0 has a total capacity of 94.97 GiB of which 2.52 GiB is free. Process 6774 has 77.10 GiB memory in use. Including non-PyTorch memory, this process has 15.34 GiB memory in use. Of the allocated memory 9.77 GiB is allocated by PyTorch, and 4.90 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
