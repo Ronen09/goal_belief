@@ -67,6 +67,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r24 | Does the prediction head agree on identical-posterior histories? | [report](rounds/r24_head_consistency/REPORT.md) | 1 min GPU |
 | r25 | Does balanced candidate-action supervision make predictions, and then the policy, more belief-consistent? | [report](rounds/r25_balanced_prediction/REPORT.md) | 1.5 h GPU |
 | r26 | Does learning to predict the maze give a representation from which different goals are solved efficiently? | [report](rounds/r26_predictive_transfer/REPORT.md) | 30 min GPU |
+| r27 | Can the transferable representation support a selective causal belief edit? | [report](rounds/r27_belief_encoding_edit/REPORT.md) | 5 min GPU |
 
 ## Library
 
@@ -82,7 +83,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | `wtfm`, `kvprior` | r14–r16 | windowed transformer with a recurrent carry and K/V dropout; K/V-source splicing for position t+1 |
 | `navcommit`, `navmodel`, `navppo`, `navbank`, `navprobe`, `navcausal` | r17 | navigate / investigate / commit: exact solver, token format and transformer, vectorised environment and PPO, fixed evaluation histories, decoders, matched-pair patches |
 | `mazeedit` | r20–r22 | edits of prefix-token states in decoder-defined and covariance-defined subspaces |
-| `mazepred` | r26 | prediction-only backbone (k-step heads, random-walk targets), exact k-step predictions, small goal-conditioned heads trained side by side on frozen features |
+| `mazepred` | r26–r27 | prediction-only backbone (k-step heads, random-walk targets), exact k-step predictions, small goal-conditioned heads trained side by side on frozen features |
 | `mazeaux` | r23–r25 | next-symbol prediction head, its loss against the exact predictive distribution, PPO update with the auxiliary term |
 | `mazeocc` | r19 | exact occupancy under the solver's policy; a model's own occupancy by rollouts |
 | `mazebelief`, `mazegraph`, `mazemodel`, `mazeppo`, `mazemeasure` | r18–r19 | aliased maze with a hidden location: exact filter and solver, belief graph, tokens and transformer, vectorised environment and PPO, decoders and cross-goal patches |

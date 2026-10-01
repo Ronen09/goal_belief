@@ -431,3 +431,20 @@ examples for every backbone, N = 30 to 100 000.
   determine; two-step prediction lowers it to 0.0014. Post hoc, reward is ahead from 10 000 examples (0.0012).
 - 6 of 8 expectations held; the two that failed were no difference from reward and random being worse than raw
   tokens.
+
+## Round 27: belief-encoding edits read by the frozen head
+
+**Round 27 — can the transferable representation support a selective causal belief edit?
+(`rounds/r27_belief_encoding_edit/REPORT.md`, rule in `rounds/r27_belief_encoding_edit/PLAN.md`).** Round 26's
+backbones and heads, frozen (heads rebuilt, regret reproduced exactly). An encoding h ≈ c + E b fitted on separate
+histories; held-out recipients edited to h_A + E (b_B − b_A) and read by the head under each goal.
+
+- Prediction-trained state: the donor-belief action in 0.77 of cells where it must change (whole replacement 0.90);
+  the same vectors rotated into generic directions 0.15, a random rank-13 patch 0.10 (p < 0.001).
+- Works where one-step predictions are identical and actions differ (0.72; a one-step edit is exactly zero there),
+  on two histories sharing a belief (0.71, agreement unchanged), and with a third belief (its action in 0.73).
+- Not selective by the rule: it changes 9 % of decisions that should stay (margin 0.05); whole replacement changes
+  none. Round 20's decoder direction fails again (0.15).
+- Every backbone shows the same pattern, the random one included (0.68 / 0.79): the edit shows causal use by the
+  head, not that the information was learned. Learning enlarges it (moved 0.70 against 0.48).
+- 8 of 11 expectations held.

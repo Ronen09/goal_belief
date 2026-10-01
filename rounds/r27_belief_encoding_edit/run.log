@@ -1,0 +1,76 @@
+{
+ "main": {
+  "pairs": 30000,
+  "change_cells": 47861,
+  "preserve_cells": 42042,
+  "overlap_cells": 97,
+  "by_goal_change": [
+   19649,
+   20318,
+   7894
+  ],
+  "by_goal_preserve": [
+   10305,
+   9682,
+   22055
+  ],
+  "selectivity_pairs": 17914,
+  "wrong_cells": 30984
+ },
+ "onestep": {
+  "pairs": 20000,
+  "change_cells": 34799,
+  "preserve_cells": 25201,
+  "by_goal_change": [
+   17656,
+   10096,
+   7047
+  ],
+  "classes": 52
+ },
+ "shared": {
+  "triples": 6959,
+  "change_cells": 10986,
+  "preserve_cells": 9861
+ }
+}
+predict1 seed0 enc R² 0.732 | change donor-optimal: none 0.05 whole 0.90 encoding 0.75 rotated 0.17 onestep 0.59 enc_patch 0.79 decoder_patch 0.13 pca_patch 0.78 random_patch 0.09 | preserve: none 0.96 enc 0.87 | 2s
+predict1 seed1 enc R² 0.757 | change donor-optimal: none 0.05 whole 0.91 encoding 0.76 rotated 0.09 onestep 0.60 enc_patch 0.78 decoder_patch 0.12 pca_patch 0.78 random_patch 0.11 | preserve: none 0.97 enc 0.89 | 2s
+predict1 seed2 enc R² 0.751 | change donor-optimal: none 0.05 whole 0.90 encoding 0.78 rotated 0.10 onestep 0.60 enc_patch 0.81 decoder_patch 0.14 pca_patch 0.79 random_patch 0.07 | preserve: none 0.96 enc 0.87 | 3s
+predict1 seed3 enc R² 0.740 | change donor-optimal: none 0.06 whole 0.89 encoding 0.76 rotated 0.11 onestep 0.60 enc_patch 0.78 decoder_patch 0.17 pca_patch 0.75 random_patch 0.10 | preserve: none 0.96 enc 0.88 | 3s
+predict1 seed4 enc R² 0.737 | change donor-optimal: none 0.06 whole 0.89 encoding 0.76 rotated 0.12 onestep 0.60 enc_patch 0.77 decoder_patch 0.15 pca_patch 0.77 random_patch 0.11 | preserve: none 0.96 enc 0.87 | 4s
+predict1 seed5 enc R² 0.754 | change donor-optimal: none 0.05 whole 0.90 encoding 0.77 rotated 0.18 onestep 0.60 enc_patch 0.79 decoder_patch 0.16 pca_patch 0.81 random_patch 0.10 | preserve: none 0.97 enc 0.89 | 4s
+predict1 seed6 enc R² 0.736 | change donor-optimal: none 0.06 whole 0.89 encoding 0.77 rotated 0.19 onestep 0.60 enc_patch 0.77 decoder_patch 0.15 pca_patch 0.79 random_patch 0.09 | preserve: none 0.96 enc 0.88 | 5s
+predict1 seed7 enc R² 0.716 | change donor-optimal: none 0.05 whole 0.91 encoding 0.73 rotated 0.16 onestep 0.59 enc_patch 0.79 decoder_patch 0.14 pca_patch 0.81 random_patch 0.08 | preserve: none 0.97 enc 0.85 | 5s
+predict1 seed8 enc R² 0.737 | change donor-optimal: none 0.06 whole 0.89 encoding 0.76 rotated 0.15 onestep 0.60 enc_patch 0.77 decoder_patch 0.17 pca_patch 0.78 random_patch 0.10 | preserve: none 0.96 enc 0.87 | 6s
+predict1 seed9 enc R² 0.729 | change donor-optimal: none 0.05 whole 0.90 encoding 0.77 rotated 0.14 onestep 0.59 enc_patch 0.78 decoder_patch 0.17 pca_patch 0.81 random_patch 0.10 | preserve: none 0.96 enc 0.87 | 6s
+predict2 seed0 enc R² 0.773 | change donor-optimal: none 0.04 whole 0.93 encoding 0.79 rotated 0.17 onestep 0.57 enc_patch 0.84 decoder_patch 0.13 pca_patch 0.83 random_patch 0.09 | preserve: none 0.97 enc 0.89 | 7s
+predict2 seed1 enc R² 0.769 | change donor-optimal: none 0.05 whole 0.91 encoding 0.76 rotated 0.15 onestep 0.57 enc_patch 0.82 decoder_patch 0.16 pca_patch 0.82 random_patch 0.11 | preserve: none 0.97 enc 0.88 | 7s
+predict2 seed2 enc R² 0.770 | change donor-optimal: none 0.04 whole 0.92 encoding 0.80 rotated 0.15 onestep 0.58 enc_patch 0.83 decoder_patch 0.15 pca_patch 0.85 random_patch 0.11 | preserve: none 0.97 enc 0.90 | 8s
+predict2 seed3 enc R² 0.769 | change donor-optimal: none 0.04 whole 0.92 encoding 0.79 rotated 0.14 onestep 0.58 enc_patch 0.83 decoder_patch 0.18 pca_patch 0.85 random_patch 0.09 | preserve: none 0.96 enc 0.90 | 8s
+predict2 seed4 enc R² 0.780 | change donor-optimal: none 0.05 whole 0.91 encoding 0.76 rotated 0.16 onestep 0.57 enc_patch 0.81 decoder_patch 0.17 pca_patch 0.80 random_patch 0.12 | preserve: none 0.97 enc 0.88 | 9s
+predict2 seed5 enc R² 0.763 | change donor-optimal: none 0.05 whole 0.90 encoding 0.77 rotated 0.11 onestep 0.58 enc_patch 0.82 decoder_patch 0.19 pca_patch 0.84 random_patch 0.09 | preserve: none 0.96 enc 0.89 | 9s
+predict2 seed6 enc R² 0.768 | change donor-optimal: none 0.05 whole 0.91 encoding 0.77 rotated 0.15 onestep 0.56 enc_patch 0.83 decoder_patch 0.12 pca_patch 0.83 random_patch 0.07 | preserve: none 0.96 enc 0.88 | 10s
+predict2 seed7 enc R² 0.764 | change donor-optimal: none 0.04 whole 0.92 encoding 0.79 rotated 0.12 onestep 0.58 enc_patch 0.82 decoder_patch 0.16 pca_patch 0.85 random_patch 0.13 | preserve: none 0.97 enc 0.90 | 10s
+predict2 seed8 enc R² 0.773 | change donor-optimal: none 0.03 whole 0.93 encoding 0.79 rotated 0.16 onestep 0.58 enc_patch 0.83 decoder_patch 0.19 pca_patch 0.84 random_patch 0.08 | preserve: none 0.97 enc 0.89 | 11s
+predict2 seed9 enc R² 0.772 | change donor-optimal: none 0.04 whole 0.92 encoding 0.79 rotated 0.13 onestep 0.58 enc_patch 0.83 decoder_patch 0.17 pca_patch 0.84 random_patch 0.07 | preserve: none 0.97 enc 0.89 | 12s
+reward seed0 enc R² 0.657 | change donor-optimal: none 0.05 whole 0.90 encoding 0.74 rotated 0.10 onestep 0.57 enc_patch 0.74 decoder_patch 0.17 pca_patch 0.77 random_patch 0.08 | preserve: none 0.96 enc 0.88 | 12s
+reward seed1 enc R² 0.630 | change donor-optimal: none 0.05 whole 0.91 encoding 0.72 rotated 0.24 onestep 0.52 enc_patch 0.77 decoder_patch 0.16 pca_patch 0.76 random_patch 0.12 | preserve: none 0.96 enc 0.89 | 13s
+reward seed2 enc R² 0.626 | change donor-optimal: none 0.05 whole 0.91 encoding 0.77 rotated 0.17 onestep 0.58 enc_patch 0.82 decoder_patch 0.13 pca_patch 0.79 random_patch 0.09 | preserve: none 0.97 enc 0.89 | 13s
+reward seed3 enc R² 0.678 | change donor-optimal: none 0.05 whole 0.90 encoding 0.76 rotated 0.11 onestep 0.56 enc_patch 0.79 decoder_patch 0.13 pca_patch 0.76 random_patch 0.09 | preserve: none 0.96 enc 0.89 | 14s
+reward seed4 enc R² 0.647 | change donor-optimal: none 0.04 whole 0.92 encoding 0.77 rotated 0.12 onestep 0.55 enc_patch 0.80 decoder_patch 0.12 pca_patch 0.81 random_patch 0.10 | preserve: none 0.96 enc 0.90 | 14s
+reward seed5 enc R² 0.539 | change donor-optimal: none 0.05 whole 0.91 encoding 0.72 rotated 0.18 onestep 0.55 enc_patch 0.78 decoder_patch 0.16 pca_patch 0.78 random_patch 0.11 | preserve: none 0.96 enc 0.88 | 15s
+reward seed6 enc R² 0.648 | change donor-optimal: none 0.04 whole 0.91 encoding 0.74 rotated 0.10 onestep 0.55 enc_patch 0.76 decoder_patch 0.10 pca_patch 0.80 random_patch 0.10 | preserve: none 0.96 enc 0.89 | 15s
+reward seed7 enc R² 0.706 | change donor-optimal: none 0.05 whole 0.90 encoding 0.76 rotated 0.09 onestep 0.56 enc_patch 0.78 decoder_patch 0.12 pca_patch 0.80 random_patch 0.11 | preserve: none 0.95 enc 0.91 | 16s
+reward seed8 enc R² 0.655 | change donor-optimal: none 0.04 whole 0.91 encoding 0.77 rotated 0.13 onestep 0.57 enc_patch 0.77 decoder_patch 0.12 pca_patch 0.79 random_patch 0.10 | preserve: none 0.96 enc 0.89 | 16s
+reward seed9 enc R² 0.670 | change donor-optimal: none 0.05 whole 0.90 encoding 0.79 rotated 0.13 onestep 0.57 enc_patch 0.77 decoder_patch 0.11 pca_patch 0.77 random_patch 0.10 | preserve: none 0.96 enc 0.88 | 17s
+random seed0 enc R² 0.411 | change donor-optimal: none 0.12 whole 0.77 encoding 0.68 rotated 0.17 onestep 0.57 enc_patch 0.68 decoder_patch 0.21 pca_patch 0.70 random_patch 0.15 | preserve: none 0.91 enc 0.84 | 17s
+random seed1 enc R² 0.403 | change donor-optimal: none 0.12 whole 0.79 encoding 0.66 rotated 0.13 onestep 0.56 enc_patch 0.69 decoder_patch 0.17 pca_patch 0.68 random_patch 0.16 | preserve: none 0.93 enc 0.84 | 18s
+random seed2 enc R² 0.382 | change donor-optimal: none 0.12 whole 0.80 encoding 0.67 rotated 0.18 onestep 0.55 enc_patch 0.72 decoder_patch 0.16 pca_patch 0.67 random_patch 0.15 | preserve: none 0.93 enc 0.83 | 18s
+random seed3 enc R² 0.419 | change donor-optimal: none 0.11 whole 0.79 encoding 0.65 rotated 0.12 onestep 0.56 enc_patch 0.73 decoder_patch 0.16 pca_patch 0.74 random_patch 0.15 | preserve: none 0.92 enc 0.78 | 19s
+random seed4 enc R² 0.397 | change donor-optimal: none 0.10 whole 0.81 encoding 0.68 rotated 0.12 onestep 0.54 enc_patch 0.72 decoder_patch 0.15 pca_patch 0.73 random_patch 0.14 | preserve: none 0.94 enc 0.84 | 19s
+random seed5 enc R² 0.428 | change donor-optimal: none 0.14 whole 0.75 encoding 0.67 rotated 0.15 onestep 0.57 enc_patch 0.70 decoder_patch 0.19 pca_patch 0.70 random_patch 0.17 | preserve: none 0.92 enc 0.82 | 20s
+random seed6 enc R² 0.427 | change donor-optimal: none 0.13 whole 0.77 encoding 0.67 rotated 0.14 onestep 0.55 enc_patch 0.70 decoder_patch 0.18 pca_patch 0.71 random_patch 0.15 | preserve: none 0.92 enc 0.83 | 20s
+random seed7 enc R² 0.367 | change donor-optimal: none 0.12 whole 0.79 encoding 0.68 rotated 0.18 onestep 0.56 enc_patch 0.70 decoder_patch 0.17 pca_patch 0.70 random_patch 0.14 | preserve: none 0.93 enc 0.85 | 21s
+random seed8 enc R² 0.396 | change donor-optimal: none 0.12 whole 0.79 encoding 0.68 rotated 0.18 onestep 0.56 enc_patch 0.70 decoder_patch 0.17 pca_patch 0.72 random_patch 0.15 | preserve: none 0.93 enc 0.84 | 21s
+random seed9 enc R² 0.397 | change donor-optimal: none 0.10 whole 0.81 encoding 0.70 rotated 0.16 onestep 0.56 enc_patch 0.71 decoder_patch 0.15 pca_patch 0.73 random_patch 0.15 | preserve: none 0.93 enc 0.84 | 22s

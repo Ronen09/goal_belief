@@ -119,6 +119,8 @@ ROUNDS = [
            Step("train_pred.py", ("--k", "1", "--seeds", *map(str, range(10)), "--out", "rounds/r26_predictive_transfer/runs/predict1"), quick=True),
            Step("train_pred.py", ("--k", "2", "--seeds", *map(str, range(10)), "--out", "rounds/r26_predictive_transfer/runs/predict2")),
            Step("measure.py"), Step("tables.py", tables=True)], needs=("r22", "r23")),
+    Round("r27", "r27_belief_encoding_edit", "Belief-encoding edits of the frozen state, read by round 26's frozen goal-conditioned heads", "5 min GPU",
+          [Step("heads.py"), Step("run.py", ("--counts",)), Step("run.py"), Step("tables.py", tables=True)], needs=("r26",)),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
