@@ -1,0 +1,18 @@
+{
+ "site4_n1000": {
+  "max_abs_regret_difference": 0.0,
+  "mean_regret": 0.0039017157803755255
+ },
+ "site4_n100000": {
+  "max_abs_regret_difference": 0.0,
+  "mean_regret": 0.002353490072709974
+ },
+ "site1_n1000": {
+  "max_abs_regret_difference": 0.0,
+  "mean_regret": 0.004926812412062039
+ },
+ "site1_n100000": {
+  "max_abs_regret_difference": 0.0,
+  "mean_regret": 0.002532703852436195
+ }
+}

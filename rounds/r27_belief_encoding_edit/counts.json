@@ -1,0 +1,36 @@
+{
+ "main": {
+  "pairs": 30000,
+  "change_cells": 47861,
+  "preserve_cells": 42042,
+  "overlap_cells": 97,
+  "by_goal_change": [
+   19649,
+   20318,
+   7894
+  ],
+  "by_goal_preserve": [
+   10305,
+   9682,
+   22055
+  ],
+  "selectivity_pairs": 17914,
+  "wrong_cells": 30984
+ },
+ "onestep": {
+  "pairs": 20000,
+  "change_cells": 34799,
+  "preserve_cells": 25201,
+  "by_goal_change": [
+   17656,
+   10096,
+   7047
+  ],
+  "classes": 52
+ },
+ "shared": {
+  "triples": 6959,
+  "change_cells": 10986,
+  "preserve_cells": 9861
+ }
+}

@@ -195,6 +195,11 @@ def evaluate(lg, ctx):
 
 
 def run_heads(X, xmap, ctx, hidden, n):
+    return evaluate(PR.apply_heads(fit_heads(X, xmap, ctx, hidden, n), X, xmap, ctx.test_hist), ctx)
+
+
+def fit_heads(X, xmap, ctx, hidden, n):
+    """The heads of run_heads (round 27 keeps them)."""
     K = len(xmap)
     nb = K // len(HEAD_SEEDS)
     hs = torch.tensor(HEAD_SEEDS, device=X.device).repeat_interleave(nb)                         # head j: backbone xmap[j], head seed hs[j]
@@ -204,8 +209,7 @@ def run_heads(X, xmap, ctx, hidden, n):
     off = (torch.arange(len(HEAD_SEEDS), device=X.device) * E)
     idx = (off[hs][:, None] + torch.arange(n, device=X.device)[None])                              # the first n examples of each head seed
     flat_h, flat_g = ex_hist.flatten(), ex_goal.flatten()
-    hd = PR.train_heads(X, xmap, flat_h, flat_g, ctx.opt[flat_h, flat_g], idx, hidden, [100 * int(s) + hidden for s in hs.tolist()], STEPS, BATCH, LR)
-    return evaluate(PR.apply_heads(hd, X, xmap, ctx.test_hist), ctx)
+    return PR.train_heads(X, xmap, flat_h, flat_g, ctx.opt[flat_h, flat_g], idx, hidden, [100 * int(s) + hidden for s in hs.tolist()], STEPS, BATCH, LR)
 
 
 def main():
