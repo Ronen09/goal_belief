@@ -69,6 +69,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r26 | Does learning to predict the maze give a representation from which different goals are solved efficiently? | [report](rounds/r26_predictive_transfer/REPORT.md) | 30 min GPU |
 | r27 | Can the transferable representation support a selective causal belief edit? | [report](rounds/r27_belief_encoding_edit/REPORT.md) | 5 min GPU |
 | r28 | Does the same belief-associated change control the new head and the original policy? | [report](rounds/r28_policy_belief_edit/REPORT.md) | 3 min GPU |
+| r29 | Does the goal change which evidence route the policy relies on? | [report](rounds/r29_goal_route_selection/REPORT.md) | 2 min GPU |
 
 ## Library
 

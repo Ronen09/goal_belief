@@ -1,0 +1,10 @@
+seed0 probes direct_G1 0.91 interface_G1 0.91 direct_G2 0.86 interface_G2 0.82 direct_G3 0.90 interface_G3 0.95 | both-check 1.4e-03 | a_interface by goal G1 0.23 G2 0.19 G3 0.22 | β direct-adequate -0.012 | 10s
+seed1 probes direct_G1 0.87 interface_G1 0.86 direct_G2 0.86 interface_G2 0.86 direct_G3 0.96 interface_G3 0.96 | both-check 1.3e-03 | a_interface by goal G1 0.20 G2 0.17 G3 0.28 | β direct-adequate -0.022 | 14s
+seed2 probes direct_G1 0.90 interface_G1 0.91 direct_G2 0.87 interface_G2 0.87 direct_G3 0.95 interface_G3 0.96 | both-check 1.3e-03 | a_interface by goal G1 0.36 G2 0.31 G3 0.14 | β direct-adequate -0.013 | 17s
+seed3 probes direct_G1 0.91 interface_G1 0.91 direct_G2 0.87 interface_G2 0.87 direct_G3 0.95 interface_G3 0.96 | both-check 1.0e-03 | a_interface by goal G1 0.27 G2 0.27 G3 0.33 | β direct-adequate 0.047 | 21s
+seed4 probes direct_G1 0.91 interface_G1 0.92 direct_G2 0.85 interface_G2 0.81 direct_G3 0.95 interface_G3 0.91 | both-check 1.4e-03 | a_interface by goal G1 0.28 G2 0.26 G3 0.08 | β direct-adequate -0.019 | 25s
+seed5 probes direct_G1 0.89 interface_G1 0.87 direct_G2 0.86 interface_G2 0.86 direct_G3 0.95 interface_G3 0.96 | both-check 1.1e-03 | a_interface by goal G1 0.28 G2 0.36 G3 0.29 | β direct-adequate -0.038 | 29s
+seed6 probes direct_G1 0.85 interface_G1 0.90 direct_G2 0.86 interface_G2 0.85 direct_G3 0.95 interface_G3 0.96 | both-check 6.8e-04 | a_interface by goal G1 0.33 G2 0.49 G3 0.34 | β direct-adequate 0.004 | 33s
+seed7 probes direct_G1 0.90 interface_G1 0.92 direct_G2 0.91 interface_G2 0.91 direct_G3 0.95 interface_G3 0.91 | both-check 1.0e-03 | a_interface by goal G1 0.41 G2 0.35 G3 0.34 | β direct-adequate -0.029 | 37s
+seed8 probes direct_G1 0.91 interface_G1 0.91 direct_G2 0.87 interface_G2 0.87 direct_G3 0.91 interface_G3 0.95 | both-check 6.0e-04 | a_interface by goal G1 0.34 G2 0.27 G3 0.12 | β direct-adequate -0.014 | 41s
+seed9 probes direct_G1 0.85 interface_G1 0.92 direct_G2 0.86 interface_G2 0.90 direct_G3 0.95 interface_G3 0.91 | both-check 9.6e-04 | a_interface by goal G1 0.37 G2 0.32 G3 0.34 | β direct-adequate -0.014 | 44s

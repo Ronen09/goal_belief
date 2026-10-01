@@ -466,3 +466,19 @@ forward pass by the policy at the goal token and by round 26's head at the last 
 - On one-step-agreeing pairs the policy leans more on the interface (whole 0.48) and the edit transfers 0.40.
 - Preservation: the policy's correct decisions are untouched (−0.005); the head loses 0.085.
 - 7 of 7 expectations held.
+
+## Round 29: does the goal choose the evidence route?
+
+**Round 29 — does the policy become more sensitive to the pre-goal interface when the goal requires distinctions the
+direct route handles poorly? (`rounds/r29_goal_route_selection/REPORT.md`, rule in
+`rounds/r29_goal_route_selection/PLAN.md`).** Round 23's reward models, frozen; fixed history pairs under all three
+goals. The decision is exactly split between the interface (prefix states entering block 1) and the direct route
+(the goal token's own state entering block 1); each is replaced by the donor's.
+
+- The routes add up (interaction within ±0.01); the direct route carries 0.69–0.72 of the behavioural difference.
+- At a fixed pair, with behavioural difference and oracle gap controlled, interface reliance is the same across
+  goals in direction (Q1 p ≥ 0.11), and only 0.014 higher where the direct route is inadequate (registered −0.05;
+  p 0.053).
+- Post hoc: 82 % of interface reliance varies between pairs; pairs the direct route cannot resolve rely on the
+  interface 0.46 against 0.25. The evidence chooses the route; the goal acts on a shared evidence estimate.
+- 4 of 7 expectations held; the two central ones failed.

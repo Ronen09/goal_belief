@@ -123,6 +123,8 @@ ROUNDS = [
           [Step("heads.py"), Step("run.py", ("--counts",)), Step("run.py"), Step("tables.py", tables=True)], needs=("r26",)),
     Round("r28", "r28_policy_belief_edit", "One belief-encoding edit at the pre-goal interface, read by the original policy and by the new head", "3 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27")),
+    Round("r29", "r29_goal_route_selection", "Does the goal change which evidence route (pre-goal interface or direct route) the policy relies on?", "2 min GPU",
+          [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r27", "r28")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
