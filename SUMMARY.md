@@ -497,3 +497,18 @@ goal token patched from the donor goal's run; components found on fit-side histo
 - Direct logit attribution grows along the MLP stack (0.15, 0.29, 0.39); the goal embedding writes nothing directly.
 - With round 29: attention reads a goal-independent evidence estimate, and the MLPs make the goal-specific
   decision from it. 7 of 7 expectations held (necessity was not separately measurable: cell symmetry).
+
+## Round 31: what the goal token's MLPs carry
+
+**Round 31 — a goal instruction, an evidence–goal combination, or an action preference?
+(`rounds/r31_cross_history_mlp/REPORT.md`, rule in `rounds/r31_cross_history_mlp/PLAN.md`).** Round 23's reward
+models, frozen. MLP outputs at the goal token from history A under goal g′ (correct action a_A′) patched into history
+B under g (correct a_B; would choose a_B′ under g′); three different actions.
+
+- All three MLPs of blocks 1–3: the donor's action in 0.97 of cells, B's own action under the donor goal in 0.01,
+  retained 0.01. Same-goal control: the donor's action 0.97. An action preference, not a goal instruction.
+- A single MLP from another history is outvoted by the other two (retained 0.75–0.93). Block 0's MLP alone mixes:
+  donor 0.40, instruction-like 0.20, retained 0.35.
+- Representation: block 0's MLP output is goal × posterior (R² 0.78 against 0.59 for goal × action); blocks 2–3 are
+  goal × action (0.92–0.96 of what both explain). The goal is folded into a decision early, and carried.
+- 5 of 6 expectations held, one in part.

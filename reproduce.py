@@ -127,6 +127,8 @@ ROUNDS = [
           [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r27", "r28")),
     Round("r30", "r30_goal_swap_components", "Goal swap with the history fixed: which heads or MLPs after the interface carry the switch?", "4 min GPU",
           [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r26",)),
+    Round("r31", "r31_cross_history_mlp", "Cross-history patches of the goal token's MLP outputs: goal instruction, evidence-goal combination, or action preference?", "1 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r30")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
