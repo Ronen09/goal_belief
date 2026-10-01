@@ -125,6 +125,8 @@ ROUNDS = [
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27")),
     Round("r29", "r29_goal_route_selection", "Does the goal change which evidence route (pre-goal interface or direct route) the policy relies on?", "2 min GPU",
           [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r27", "r28")),
+    Round("r30", "r30_goal_swap_components", "Goal swap with the history fixed: which heads or MLPs after the interface carry the switch?", "4 min GPU",
+          [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r26",)),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

@@ -482,3 +482,18 @@ goals. The decision is exactly split between the interface (prefix states enteri
 - Post hoc: 82 % of interface reliance varies between pairs; pairs the direct route cannot resolve rely on the
   interface 0.46 against 0.25. The evidence chooses the route; the goal acts on a shared evidence estimate.
 - 4 of 7 expectations held; the two central ones failed.
+
+## Round 30: goal swap with the history fixed
+
+**Round 30 — which components after the two-route interface carry the switch from one goal's action to another's?
+(`rounds/r30_goal_swap_components/REPORT.md`, rule in `rounds/r30_goal_swap_components/PLAN.md`).** Round 23's
+reward models, frozen. One history under two goals with disjoint optimal actions; single head and MLP outputs at the
+goal token patched from the donor goal's run; components found on fit-side histories, tested on held-out ones.
+
+- Selected (patch ≥ 0.3) in every model: block-1 and block-2 MLPs (8 and 7 of 10), never a head. On held-out
+  histories they transfer 0.71 (discovery 0.73), under every goal pair.
+- Not localised: the other MLPs also carry 0.62 (registered D3 failed). All three MLPs of blocks 1–3: 0.92; all
+  twelve heads: none (post hoc ratio-of-means: 0.98 against 0.12).
+- Direct logit attribution grows along the MLP stack (0.15, 0.29, 0.39); the goal embedding writes nothing directly.
+- With round 29: attention reads a goal-independent evidence estimate, and the MLPs make the goal-specific
+  decision from it. 7 of 7 expectations held (necessity was not separately measurable: cell symmetry).
