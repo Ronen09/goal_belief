@@ -448,3 +448,21 @@ histories; held-out recipients edited to h_A + E (b_B − b_A) and read by the h
 - Every backbone shows the same pattern, the random one included (0.68 / 0.79): the edit shows causal use by the
   head, not that the information was learned. Learning enlarges it (moved 0.70 against 0.48).
 - 8 of 11 expectations held.
+
+## Round 28: the same edit, read by the original policy and the new head
+
+**Round 28 — does the same belief-associated change control the newly trained head and the original policy?
+(`rounds/r28_policy_belief_edit/REPORT.md`, rule in `rounds/r28_policy_belief_edit/PLAN.md`).** Round 23's reward
+models, frozen. A belief-encoding edit of every prefix state entering block 1 (the pre-goal interface), read in one
+forward pass by the policy at the goal token and by round 26's head at the last prefix token; all three goals.
+
+- Natural access: the edit moves the head 0.81 of the way to the donor's behaviour and the policy 0.19 (ratio 0.22;
+  registered dissociation, at the median).
+- Replacing the whole interface moves the policy only 0.21: it recomputes the evidence from raw tokens at the goal
+  token. Of what it takes from the interface, the encoding edit carries 0.89 (head 0.81); generic directions carry
+  0.02–0.11. The dissociation is in access, not form.
+- Direct route removed: the edit moves the policy 0.89 of the way, but the ablated policy is much less competent
+  (0.48 donor-optimal on the donor's own evidence, against 0.81).
+- On one-step-agreeing pairs the policy leans more on the interface (whole 0.48) and the edit transfers 0.40.
+- Preservation: the policy's correct decisions are untouched (−0.005); the head loses 0.085.
+- 7 of 7 expectations held.

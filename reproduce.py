@@ -121,6 +121,8 @@ ROUNDS = [
            Step("measure.py"), Step("tables.py", tables=True)], needs=("r22", "r23")),
     Round("r27", "r27_belief_encoding_edit", "Belief-encoding edits of the frozen state, read by round 26's frozen goal-conditioned heads", "5 min GPU",
           [Step("heads.py"), Step("run.py", ("--counts",)), Step("run.py"), Step("tables.py", tables=True)], needs=("r26",)),
+    Round("r28", "r28_policy_belief_edit", "One belief-encoding edit at the pre-goal interface, read by the original policy and by the new head", "3 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
