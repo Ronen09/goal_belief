@@ -1,4 +1,4 @@
-# goalgeo — summary of results, rounds 1–16
+# goalgeo — summary of results
 
 Condensed from the per-round reports; numbers are seed means as reported there. See
 `README.md` for the round-to-file map.
@@ -411,3 +411,23 @@ and not only for the move taken. Ten seeds per arm.
 3. Raw geometry and local (Jacobian, Fisher) metrics are implementation-dependent; decodability,
    readout contrast and finite-propagation effects on a complete causal cut are invariant
    across functionally equivalent models, in both GRU and transformer.
+
+## Round 26: prediction-trained, reward-trained and random backbones under a frozen head
+
+**Round 26 — does learning to predict the maze produce a representation from which different goals can be solved
+efficiently? (`rounds/r26_predictive_transfer/REPORT.md`, rule in `rounds/r26_predictive_transfer/PLAN.md`).**
+Backbones trained only to predict the next symbol after each supplied move on goal-free random walks (and, secondary,
+the next two after each move pair), round 23's reward-only models, and the same initialisations untrained; ten
+seeds each. A 16-unit head reads the last prefix token plus the goal and is trained on optimal actions, the same
+examples for every backbone, N = 30 to 100 000.
+
+- One-step prediction leaves the optimal action undetermined in 43–85 % of decisions (5 of 13 belief dimensions);
+  checked before training.
+- The predictor learns its objective (error 0.008) and more: the posterior decodes at 0.93 (its objective needs
+  0.45), and identical posteriors give states 1.5 % as far apart as different ones (reward 12 %, random 29 %).
+- Area under the learning curve: prediction 0.0047, reward 0.0061, random 0.0079 (each pair p < 0.001); half the gap
+  from goal-only closed with 65, 121 and 162 examples (exact posterior 57, raw tokens 451).
+- The predictor plateaus at 0.0020 (exact posterior 0.0002), mostly on decisions one-step prediction does not
+  determine; two-step prediction lowers it to 0.0014. Post hoc, reward is ahead from 10 000 examples (0.0012).
+- 6 of 8 expectations held; the two that failed were no difference from reward and random being worse than raw
+  tokens.

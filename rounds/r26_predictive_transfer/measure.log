@@ -1,0 +1,60 @@
+predict1 seed0 posterior R² by site 0.398 0.885 0.929 0.936 0.933 | consistency 0.469 0.247 0.180 0.076 0.015 | 8s
+predict1 seed1 posterior R² by site 0.398 0.869 0.919 0.934 0.931 | consistency 0.524 0.299 0.175 0.090 0.015 | 10s
+predict1 seed2 posterior R² by site 0.398 0.891 0.924 0.932 0.929 | consistency 0.469 0.248 0.181 0.067 0.016 | 11s
+predict1 seed3 posterior R² by site 0.398 0.873 0.915 0.920 0.917 | consistency 0.519 0.296 0.178 0.057 0.014 | 13s
+predict1 seed4 posterior R² by site 0.398 0.882 0.928 0.934 0.934 | consistency 0.486 0.262 0.191 0.076 0.015 | 15s
+predict1 seed5 posterior R² by site 0.398 0.870 0.913 0.926 0.926 | consistency 0.495 0.305 0.194 0.077 0.016 | 16s
+predict1 seed6 posterior R² by site 0.398 0.872 0.919 0.924 0.928 | consistency 0.518 0.307 0.235 0.119 0.020 | 18s
+predict1 seed7 posterior R² by site 0.398 0.854 0.912 0.919 0.920 | consistency 0.476 0.342 0.191 0.077 0.016 | 19s
+predict1 seed8 posterior R² by site 0.398 0.882 0.923 0.930 0.929 | consistency 0.480 0.293 0.194 0.066 0.014 | 21s
+predict1 seed9 posterior R² by site 0.398 0.888 0.926 0.932 0.930 | consistency 0.501 0.248 0.176 0.062 0.013 | 22s
+predict2 seed0 posterior R² by site 0.398 0.887 0.933 0.948 0.952 | consistency 0.476 0.280 0.159 0.065 0.016 | 24s
+predict2 seed1 posterior R² by site 0.398 0.880 0.928 0.947 0.953 | consistency 0.524 0.252 0.173 0.082 0.016 | 26s
+predict2 seed2 posterior R² by site 0.398 0.886 0.936 0.952 0.959 | consistency 0.477 0.264 0.142 0.062 0.015 | 27s
+predict2 seed3 posterior R² by site 0.398 0.882 0.933 0.952 0.958 | consistency 0.518 0.282 0.157 0.079 0.016 | 29s
+predict2 seed4 posterior R² by site 0.398 0.877 0.929 0.949 0.956 | consistency 0.477 0.255 0.157 0.065 0.016 | 30s
+predict2 seed5 posterior R² by site 0.398 0.876 0.928 0.948 0.955 | consistency 0.495 0.279 0.154 0.066 0.017 | 32s
+predict2 seed6 posterior R² by site 0.398 0.888 0.934 0.952 0.958 | consistency 0.507 0.252 0.145 0.077 0.017 | 33s
+predict2 seed7 posterior R² by site 0.398 0.888 0.938 0.952 0.958 | consistency 0.460 0.279 0.135 0.058 0.017 | 35s
+predict2 seed8 posterior R² by site 0.398 0.880 0.928 0.947 0.950 | consistency 0.470 0.313 0.168 0.078 0.018 | 37s
+predict2 seed9 posterior R² by site 0.398 0.882 0.933 0.951 0.957 | consistency 0.493 0.288 0.169 0.076 0.016 | 38s
+reward seed0 posterior R² by site 0.398 0.840 0.865 0.862 0.852 | consistency 0.423 0.363 0.264 0.183 0.149 | 40s
+reward seed1 posterior R² by site 0.398 0.837 0.865 0.862 0.857 | consistency 0.455 0.293 0.200 0.151 0.119 | 41s
+reward seed2 posterior R² by site 0.398 0.829 0.869 0.873 0.864 | consistency 0.417 0.330 0.275 0.205 0.139 | 43s
+reward seed3 posterior R² by site 0.398 0.843 0.866 0.871 0.868 | consistency 0.479 0.298 0.310 0.187 0.131 | 44s
+reward seed4 posterior R² by site 0.398 0.841 0.870 0.871 0.869 | consistency 0.425 0.295 0.229 0.168 0.121 | 46s
+reward seed5 posterior R² by site 0.398 0.849 0.872 0.875 0.867 | consistency 0.442 0.316 0.325 0.273 0.236 | 47s
+reward seed6 posterior R² by site 0.398 0.848 0.867 0.869 0.864 | consistency 0.453 0.343 0.293 0.209 0.123 | 49s
+reward seed7 posterior R² by site 0.398 0.845 0.870 0.873 0.866 | consistency 0.406 0.307 0.241 0.183 0.122 | 50s
+reward seed8 posterior R² by site 0.398 0.844 0.865 0.863 0.856 | consistency 0.416 0.258 0.192 0.135 0.093 | 52s
+reward seed9 posterior R² by site 0.398 0.838 0.870 0.867 0.861 | consistency 0.432 0.316 0.252 0.158 0.110 | 53s
+random seed0 posterior R² by site 0.398 0.744 0.743 0.736 0.731 | consistency 0.519 0.197 0.236 0.285 0.299 | 55s
+random seed1 posterior R² by site 0.398 0.742 0.725 0.710 0.708 | consistency 0.569 0.181 0.257 0.317 0.358 | 56s
+random seed2 posterior R² by site 0.398 0.739 0.732 0.725 0.716 | consistency 0.530 0.240 0.298 0.346 0.363 | 57s
+random seed3 posterior R² by site 0.398 0.722 0.718 0.716 0.715 | consistency 0.581 0.205 0.255 0.269 0.313 | 58s
+random seed4 posterior R² by site 0.398 0.729 0.728 0.721 0.716 | consistency 0.539 0.189 0.231 0.258 0.289 | 60s
+random seed5 posterior R² by site 0.398 0.689 0.691 0.695 0.700 | consistency 0.555 0.141 0.186 0.235 0.279 | 61s
+random seed6 posterior R² by site 0.398 0.706 0.708 0.704 0.703 | consistency 0.548 0.146 0.199 0.220 0.250 | 62s
+random seed7 posterior R² by site 0.398 0.733 0.728 0.722 0.714 | consistency 0.446 0.201 0.224 0.253 0.285 | 64s
+random seed8 posterior R² by site 0.398 0.738 0.729 0.726 0.723 | consistency 0.520 0.178 0.209 0.223 0.246 | 65s
+random seed9 posterior R² by site 0.398 0.729 0.735 0.734 0.730 | consistency 0.539 0.212 0.223 0.259 0.281 | 66s
+reference goal_only hidden 16: regret by N 0.0224 0.0220 0.0192 0.0192 0.0192 0.0192 0.0192 0.0192
+reference posterior hidden 16: regret by N 0.0130 0.0068 0.0028 0.0008 0.0004 0.0003 0.0002 0.0002
+reference predict1_exact hidden 16: regret by N 0.0133 0.0082 0.0073 0.0068 0.0065 0.0066 0.0066 0.0065
+reference predict2_exact hidden 16: regret by N 0.0093 0.0037 0.0033 0.0019 0.0014 0.0012 0.0013 0.0016
+reference raw_history hidden 16: regret by N 0.0299 0.0169 0.0109 0.0074 0.0048 0.0036 0.0033 0.0034
+hidden 16 site 0: median AUC predict1 0.0165 predict2 0.0165 reward 0.0164 random 0.0161 | 193s
+hidden 16 site 1: median AUC predict1 0.0078 predict2 0.0078 reward 0.0080 random 0.0079 | 214s
+hidden 16 site 2: median AUC predict1 0.0065 predict2 0.0060 reward 0.0070 random 0.0080 | 235s
+hidden 16 site 3: median AUC predict1 0.0055 predict2 0.0052 reward 0.0065 random 0.0083 | 256s
+hidden 16 site 4: median AUC predict1 0.0047 predict2 0.0042 reward 0.0061 random 0.0083 | 279s
+reference goal_only hidden 0: regret by N 0.0224 0.0192 0.0192 0.0192 0.0192 0.0192 0.0192 0.0192
+reference posterior hidden 0: regret by N 0.0139 0.0063 0.0062 0.0042 0.0037 0.0038 0.0038 0.0039
+reference predict1_exact hidden 0: regret by N 0.0108 0.0103 0.0086 0.0084 0.0084 0.0086 0.0086 0.0087
+reference predict2_exact hidden 0: regret by N 0.0095 0.0059 0.0053 0.0044 0.0042 0.0042 0.0040 0.0041
+reference raw_history hidden 0: regret by N 0.0303 0.0161 0.0112 0.0086 0.0079 0.0079 0.0078 0.0077
+hidden 0 site 0: median AUC predict1 0.0166 predict2 0.0166 reward 0.0166 random 0.0165 | 382s
+hidden 0 site 1: median AUC predict1 0.0092 predict2 0.0093 reward 0.0090 random 0.0088 | 400s
+hidden 0 site 2: median AUC predict1 0.0083 predict2 0.0080 reward 0.0079 random 0.0088 | 419s
+hidden 0 site 3: median AUC predict1 0.0070 predict2 0.0068 reward 0.0074 random 0.0089 | 437s
+hidden 0 site 4: median AUC predict1 0.0059 predict2 0.0054 reward 0.0069 random 0.0089 | 455s

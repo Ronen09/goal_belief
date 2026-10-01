@@ -114,6 +114,11 @@ ROUNDS = [
           [Step("train.py", ("--aux", "1.0", "--sup", "all", "--seeds", *map(str, range(10)), "--out", "rounds/r25_balanced_prediction/runs/all"), quick=True),
            Step("train.py", ("--aux", "1.0", "--sup", "one", "--seeds", *map(str, range(10)), "--out", "rounds/r25_balanced_prediction/runs/one")),
            Step("measure.py"), Step("matched.py"), Step("tables.py", tables=True)], needs=("r23", "r24")),
+    Round("r26", "r26_predictive_transfer", "Prediction-only, reward-only and random backbones, frozen, under a small goal-conditioned head trained on optimal actions", "30 min GPU",
+          [Step("checks.py"),
+           Step("train_pred.py", ("--k", "1", "--seeds", *map(str, range(10)), "--out", "rounds/r26_predictive_transfer/runs/predict1"), quick=True),
+           Step("train_pred.py", ("--k", "2", "--seeds", *map(str, range(10)), "--out", "rounds/r26_predictive_transfer/runs/predict2")),
+           Step("measure.py"), Step("tables.py", tables=True)], needs=("r22", "r23")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
