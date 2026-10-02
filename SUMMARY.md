@@ -683,3 +683,15 @@ edits (the same 4-number difference mapped into the goal token's state under eve
   0.59 of whole), mean_g Q* (0.62). H's top action is optimal for some goal in 94 % of histories.
 - The learned algorithm: posterior → goal-averaged usefulness → plus a fixed goal preference → choose. Fully observed
   reachability (no information value) predicts H as well as Bayes values. 3 of 7 expectations held, one in part.
+
+## Round 44: H as a two-part code
+
+**Round 44 — a mixture of usefulness and reachability, and its goal weights (`rounds/r44_H_mixture/REPORT.md`, rule in
+`rounds/r44_H_mixture/PLAN.md`).**
+
+- P(optimal | random goal) + mean reachability explain 0.82 of H (each alone 0.66–0.67; affine-in-posterior ceiling
+  0.82). Editing by this code moves decisions 0.68 of the way to the donor's, as far as H's own per-posterior table.
+  A four-number composite per posterior suffices (1.01 ×).
+- Goal weights are close to uniform (the training frequency): free weights add 0.029 R², their deviations reverse
+  between quantities (G2 under-weighted in optimal counts, over-weighted in reachability), and equal weights edit as well.
+  5 of 5 expectations held.

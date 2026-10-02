@@ -84,6 +84,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r41 | With every goal × history interaction removed from the goal token, what is left of the decision? | [report](rounds/r41_interaction_removal/REPORT.md) | 1 min GPU |
 | r42 | Is the decision a history profile plus a fixed goal bias, and where does that fail? | [report](rounds/r42_additive_code/REPORT.md) | 20 s GPU |
 | r43 | What is the history profile H: the best value across goals, or the average usefulness? | [report](rounds/r43_what_is_H/REPORT.md) | 3 min GPU |
+| r44 | Is H a mixture of usefulness and reachability, and how does it weight the goals? | [report](rounds/r44_H_mixture/REPORT.md) | 1 min GPU |
 
 ## Library
 

@@ -153,6 +153,8 @@ ROUNDS = [
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26",)),
     Round("r43", "r43_what_is_H", "What is the history profile H: max_g Q*, goal-averaged values, P(optimal), reachability? Prediction and causal edits", "3 min GPU",
           [Step("run.py"), Step("run.py", ("--untrained",)), Step("tables.py", tables=True)], needs=("r26", "r27", "r42")),
+    Round("r44", "r44_H_mixture", "H as a mixture of P(optimal) and reachability; goal weights inside H against uniform training frequency", "1 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r42", "r43")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
