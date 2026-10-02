@@ -50,18 +50,20 @@ def load(name, path):
 R27 = load("r27run", ROUNDS / "r27_belief_encoding_edit" / "run.py")
 R30 = load("r30run", ROUNDS / "r30_goal_swap_components" / "run.py")
 M26 = R27.M26
-L_IF, RANK, DRAWS, CHUNK, N_EQ, EQ_SEED = 1, 13, 5, 8192, 4, 32
+RANK, DRAWS, CHUNK, N_EQ, EQ_SEED = 13, 5, 8192, 4, 32
+SITE = ("resid", 1)                                                                    # patch key; round 33 sets ("resid_mid", 0)
+REC = dict(resid="resid", resid_mid="mid")
 KINDS = ("none", "whole", "encoding", "enc_brief", "enc_goal", "rotated", "pca", "random")
 
 
 @torch.no_grad()
 def goal_state(net, ctx, hist, g):
-    """z(h, g): the goal token's state entering block 1, [n, d]."""
+    """z(h, g): the goal token's state at SITE (entering block 1 here), [n, d]."""
     out = []
     for s in range(0, len(hist), CHUNK):
         h = hist[s:s + CHUNK]
         n = torch.arange(len(h), device=h.device)
-        out.append(net(R30.seq(ctx, h, torch.full_like(h, g)), record=True)[2]["resid"][L_IF][n, 1 + ctx.L[h]])
+        out.append(net(R30.seq(ctx, h, torch.full_like(h, g)), record=True)[2][REC[SITE[0]]][SITE[1]][n, 1 + ctx.L[h]])
     return torch.cat(out)
 
 
@@ -192,7 +194,7 @@ def outputs(net, ctx, enc, a, b):
                     def f(x, z=z):
                         x = x.clone(); x[n, gp] = z.float()
                         return x
-                    lg = net(tA, patch={("resid", L_IF): f})[0][n, gp]
+                    lg = net(tA, patch={SITE: f})[0][n, gp]
                     ps.append(lg.softmax(-1)); nm.append(((centred(lg) - c0).double() * d).sum(-1))
                 P[k][sl, g] = torch.stack(ps).mean(0)
                 if k == "none":
