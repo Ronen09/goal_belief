@@ -671,3 +671,15 @@ length. Additive solvability per posterior from the solver and G (exact differen
 - Where no additive code can be right (14 % of goal-dependent cells), the policy is right in only 0.59 (additive 0.57;
   elsewhere 0.87): its errors concentrate where additivity is impossible, and the interaction does not rescue them.
   3 of 6 expectations held.
+
+## Round 43: what H is
+
+**Round 43 — max_g Q* or something else? (`rounds/r43_what_is_H/REPORT.md`, rule in `rounds/r43_what_is_H/PLAN.md`).**
+Per-posterior candidates as predictors of the history profile H, as its replacement in the decision, and as causal
+edits (the same 4-number difference mapped into the goal token's state under every goal).
+
+- max_g Q* ranks 6th of 7 (R² 0.35; edit 0.21 of whole). Every max-over-goals quantity is among the worst.
+- Goal-averaged quantities lead: mean reachability under the belief (0.67), P(optimal | random goal) (0.66; best edit,
+  0.59 of whole), mean_g Q* (0.62). H's top action is optimal for some goal in 94 % of histories.
+- The learned algorithm: posterior → goal-averaged usefulness → plus a fixed goal preference → choose. Fully observed
+  reachability (no information value) predicts H as well as Bayes values. 3 of 7 expectations held, one in part.

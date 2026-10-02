@@ -151,6 +151,8 @@ ROUNDS = [
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r36", "r39")),
     Round("r42", "r42_additive_code", "The additive code at the goal token: logits ~ H(h) + G(g, L), and where additivity is impossible", "20 s GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26",)),
+    Round("r43", "r43_what_is_H", "What is the history profile H: max_g Q*, goal-averaged values, P(optimal), reachability? Prediction and causal edits", "3 min GPU",
+          [Step("run.py"), Step("run.py", ("--untrained",)), Step("tables.py", tables=True)], needs=("r26", "r27", "r42")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 
