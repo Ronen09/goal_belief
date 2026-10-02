@@ -617,3 +617,17 @@ natural goal change.
 - Shared belief: a linear decoder shifts (registered F fails), but the shared code's subspace moves less than under a
   natural goal change, and belief-only decisions are intact (round 37). Most likely an off-manifold decoder effect.
   3 of 6 expectations held.
+
+## Round 39: how block 0's MLP computes J(b, g)
+
+**Round 39 — a low-rank bilinear interaction? (`rounds/r39_mlp_bilinear/REPORT.md`, rule in
+`rounds/r39_mlp_bilinear/PLAN.md`).** J_y, the goal × belief part of block 0's MLP output (posterior-level, noise ceiling
+1.00), described from the MLP's belief input B and the goal G; untrained reference.
+
+- J_y ≈ W_g B(b): R² 0.95. Low rank: Σ_{k≤4} (u_k·B)(v_k·G) w_k gives 0.82; rank 3 suffices (0.8 × full) in 7 of 10
+  models. The bilinear form is largely architectural (untrained 0.92); training makes it 7 × larger and low-rank.
+- The MLP applied to its rebuilt input (ū + B + G) makes 0.68 of J_y; that interaction is 0.88 second-order: one
+  GELU-curvature × (belief projection) × (goal projection) product per hidden unit, spread over many units (61 for
+  half the energy) along a few directions.
+- Removing J_y from the MLP output costs only 0.007 of correct decisions where the goal matters: later blocks
+  compensate. 4 of 8 expectations held.

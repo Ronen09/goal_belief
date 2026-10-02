@@ -143,6 +143,8 @@ ROUNDS = [
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r36")),
     Round("r38", "r38_self_value_interaction", "Does the self-value swap move the goal x belief part I(b,g) = f(b,g) - f(b) at block 0's MLP input, and after it?", "20 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r36", "r37")),
+    Round("r39", "r39_mlp_bilinear", "How block 0's MLP computes J(b,g): low-rank bilinear description, second-order mechanism, hidden units, ablation", "30 min GPU",
+          [Step("run.py"), Step("run.py", ("--untrained",)), Step("tables.py", tables=True)], needs=("r26", "r27", "r36")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

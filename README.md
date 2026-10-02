@@ -79,6 +79,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r36 | Does the goal-dependent belief part move with block 0's query, and does the decision depend on it? | [report](rounds/r36_query_swap/REPORT.md) | 1 min GPU |
 | r37 | Which part of the goal token's block-0 self-attention carries the goal's identity: value or key, which head? | [report](rounds/r37_self_value/REPORT.md) | 1 min GPU |
 | r38 | Does swapping the goal's self value move the goal × belief interaction at the MLP input, with the shared belief fixed? | [report](rounds/r38_self_value_interaction/REPORT.md) | 20 min GPU |
+| r39 | How does block 0's MLP compute the goal × belief part: is it a low-rank bilinear interaction? | [report](rounds/r39_mlp_bilinear/REPORT.md) | 30 min GPU |
 
 ## Library
 
