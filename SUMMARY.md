@@ -641,6 +641,20 @@ or all four MLP outputs.
 - Every MLP's J is low-rank bilinear in its input's belief code and the goal (rank 4: 0.82–0.86; full 0.88–0.95), lower
   rank with depth. Block 0 makes its J (0.68); blocks 2–3 mostly pass on what arrives (0.30, 0.18).
 - Removing J from any one MLP costs ≤ 0.007; from all four 0.136 where the goal matters (6 × the sum of the singles);
-  a wrong posterior's J costs 0.018. Necessary and redundant across depth.
+  a wrong posterior's J costs 0.018. Read as necessary and redundant across depth; corrected by round 41: the 0.136
+  comes from the partial (posterior-level) removal; a clean per-history removal costs 0.04.
 - Goal-neutral cells also drop (0.099), so the registered specificity margin failed: J carries each goal's own belief →
   action map, against the three-goal average (the contrast was defined over two goals). 3 of 7 expectations held.
+
+## Round 41: the goal × history interaction removed cleanly
+
+**Round 41 — what carries the decisions left after round 40's removal? (`rounds/r41_interaction_removal/REPORT.md`, rule
+in `rounds/r41_interaction_removal/PLAN.md`; seed 0 previewed before the plan, disclosed; seeds 1–9 agree).** Each of
+the goal token's eight component outputs replaced by its goal-free part for that history plus the goal's main effect.
+
+- With no goal × history interaction anywhere at the goal token, the final state is additive (history part + goal
+  part), and the policy still chooses optimally in 0.79 of goal-matters cells (natural 0.83): drop 0.04.
+- Round 40's 0.136 came from subtracting the posterior-level J while leaving each history's deviation (removing only the
+  deviation costs 0.016; both 0.039). Round 40 corrected.
+- Inserting another history's interaction costs 0.135. The interaction is used when present and harmful when wrong, but
+  an additive goal + history code supports most decisions. 4 of 5 expectations held (written after the preview).

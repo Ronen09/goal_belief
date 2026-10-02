@@ -81,6 +81,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r38 | Does swapping the goal's self value move the goal × belief interaction at the MLP input, with the shared belief fixed? | [report](rounds/r38_self_value_interaction/REPORT.md) | 20 min GPU |
 | r39 | How does block 0's MLP compute the goal × belief part: is it a low-rank bilinear interaction? | [report](rounds/r39_mlp_bilinear/REPORT.md) | 30 min GPU |
 | r40 | Is the goal × belief interaction bilinear at every MLP, and is it necessary but redundant across depth? | [report](rounds/r40_mlp_depth/REPORT.md) | 55 min GPU |
+| r41 | With every goal × history interaction removed from the goal token, what is left of the decision? | [report](rounds/r41_interaction_removal/REPORT.md) | 1 min GPU |
 
 ## Library
 

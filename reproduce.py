@@ -147,6 +147,8 @@ ROUNDS = [
           [Step("run.py"), Step("run.py", ("--untrained",)), Step("tables.py", tables=True)], needs=("r26", "r27", "r36")),
     Round("r40", "r40_mlp_depth", "The goal x belief part at every MLP of the goal token: bilinear description, own share, removal from one or all four", "55 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r36", "r39")),
+    Round("r41", "r41_interaction_removal", "Per-history removal of the goal x history interaction from the goal token's MLP and attention outputs", "1 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r36", "r39")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

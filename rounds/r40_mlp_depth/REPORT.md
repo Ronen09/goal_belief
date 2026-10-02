@@ -33,6 +33,12 @@ rebuilt input. Then J_y,l is removed from one, three or all four MLP outputs at 
 
 ## 2. Removal: redundant across depth, and specific to the belief
 
+*Correction (2026-10-02, after round 41): the removal below subtracts the posterior-level J and leaves each history's
+deviation from it in place, a state the network never makes. Round 41 removed the whole per-history interaction
+cleanly: that costs 0.039 at the four MLPs (0.041 at all eight components), against 0.136 here. Removing only the
+deviation costs 0.016. The large all-four drop below is therefore mostly an artefact of the partial removal, and the
+conclusion that the interaction is necessary does not hold. The redundancy across depth (single removals ≈ 0) stands.*
+
 | J removed from the goal token's MLP outputs | goal-matters: optimal | drop | goal-neutral: optimal | drop |
 |---|---|---|---|---|
 | nothing | 0.834 | — | 0.887 | — |
@@ -97,7 +103,8 @@ it is the most redundant, because the residual stream already holds the earlier 
    bilinear, second-order product of the goal and the belief (round 39). Blocks 1–3's MLPs receive it in the residual
    stream, pass most of it on (they make only 0.55 → 0.18 of their own J), and sharpen it to lower rank. By block 3 it
    is as large as the goal's main effect.
-2. **It is necessary, and redundant across depth.** No single MLP's copy matters (≤ 0.7 %). Removing all four costs 14 %
+2. **(Corrected by round 41: the necessity below is an artefact of the partial removal; a clean removal costs 0.04.)
+   It is necessary, and redundant across depth.** No single MLP's copy matters (≤ 0.7 %). Removing all four costs 14 %
    of correct decisions where the goal matters (6 × the sum of the singles), specifically (wrong-posterior control
    1.8 %). Each layer's copy can stand in for the others.
 3. **It carries each goal's own belief → action map.** Removing it also costs 10 % of decisions where two goals agree,
