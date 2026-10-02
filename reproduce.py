@@ -149,6 +149,8 @@ ROUNDS = [
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r36", "r39")),
     Round("r41", "r41_interaction_removal", "Per-history removal of the goal x history interaction from the goal token's MLP and attention outputs", "1 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r36", "r39")),
+    Round("r42", "r42_additive_code", "The additive code at the goal token: logits ~ H(h) + G(g, L), and where additivity is impossible", "20 s GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r26",)),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

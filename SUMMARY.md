@@ -658,3 +658,16 @@ the goal token's eight component outputs replaced by its goal-free part for that
   deviation costs 0.016; both 0.039). Round 40 corrected.
 - Inserting another history's interaction costs 0.135. The interaction is used when present and harmful when wrong, but
   an additive goal + history code supports most decisions. 4 of 5 expectations held (written after the preview).
+
+## Round 42: the additive code
+
+**Round 42 — logits ≈ H(h) + G(g, L)? (`rounds/r42_additive_code/REPORT.md`, rule in
+`rounds/r42_additive_code/PLAN.md`).** H: the history's action profile (mean over goals); G: a fixed goal bias per
+length. Additive solvability per posterior from the solver and G (exact difference-constraint check).
+
+- Goal-dependent cells: the additive code is optimal in 0.79 (natural 0.83; 0.96 ×) and chooses as the policy in 94 %.
+- H ranks the union of the goals' optimal actions on top in 81 % of histories; G is a fixed directional preference per
+  goal. The history lists candidates; the goal picks.
+- Where no additive code can be right (14 % of goal-dependent cells), the policy is right in only 0.59 (additive 0.57;
+  elsewhere 0.87): its errors concentrate where additivity is impossible, and the interaction does not rescue them.
+  3 of 6 expectations held.

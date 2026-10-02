@@ -82,6 +82,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r39 | How does block 0's MLP compute the goal × belief part: is it a low-rank bilinear interaction? | [report](rounds/r39_mlp_bilinear/REPORT.md) | 30 min GPU |
 | r40 | Is the goal × belief interaction bilinear at every MLP, and is it necessary but redundant across depth? | [report](rounds/r40_mlp_depth/REPORT.md) | 55 min GPU |
 | r41 | With every goal × history interaction removed from the goal token, what is left of the decision? | [report](rounds/r41_interaction_removal/REPORT.md) | 1 min GPU |
+| r42 | Is the decision a history profile plus a fixed goal bias, and where does that fail? | [report](rounds/r42_additive_code/REPORT.md) | 20 s GPU |
 
 ## Library
 
