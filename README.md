@@ -72,6 +72,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r29 | Does the goal change which evidence route the policy relies on? | [report](rounds/r29_goal_route_selection/REPORT.md) | 2 min GPU |
 | r30 | With the history fixed, which components after the interface carry a goal swap? | [report](rounds/r30_goal_swap_components/REPORT.md) | 4 min GPU |
 | r31 | Do the goal token's MLPs carry a goal instruction, an evidence–goal combination, or an action preference? | [report](rounds/r31_cross_history_mlp/REPORT.md) | 1 min GPU |
+| r32 | Does a shared belief edit at the goal token's state after block 0 transfer donor behaviour across goals? | [report](rounds/r32_direct_belief_edit/REPORT.md) | 2 min GPU |
 
 ## Library
 

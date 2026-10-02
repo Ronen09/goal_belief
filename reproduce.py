@@ -129,6 +129,8 @@ ROUNDS = [
           [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r26",)),
     Round("r31", "r31_cross_history_mlp", "Cross-history patches of the goal token's MLP outputs: goal instruction, evidence-goal combination, or action preference?", "1 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r30")),
+    Round("r32", "r32_direct_belief_edit", "A shared belief encoding at the goal token's state after block 0, edited with the donor's posterior under all goals", "2 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

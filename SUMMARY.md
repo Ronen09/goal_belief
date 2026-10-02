@@ -512,3 +512,19 @@ B under g (correct a_B; would choose a_B′ under g′); three different actions
 - Representation: block 0's MLP output is goal × posterior (R² 0.78 against 0.59 for goal × action); blocks 2–3 are
   goal × action (0.92–0.96 of what both explain). The goal is folded into a decision early, and carried.
 - 5 of 6 expectations held, one in part.
+
+## Round 32: a belief edit at the goal token's state after block 0
+
+**Round 32 — does a shared belief edit at the direct route transfer donor behaviour across goals?
+(`rounds/r32_direct_belief_edit/REPORT.md`, rule in `rounds/r32_direct_belief_edit/PLAN.md`).** Round 23's reward
+models, frozen. The goal token's state entering block 1, fitted as c_{g,L} + E b without action labels. Each edit
+replaces only that state with z(A,g) + E (b_B − b_A); the prefix states are kept.
+
+- Fit: shared R² 0.81 (0.56 within goal and length); goal-specific maps 0.86 (0.67).
+- Main change cells: donor-optimal 0.11 → 0.42 (shared), 0.56 (goal-specific), 0.60 whole route, 0.81 hybrid.
+  Shared edit: 0.66 of whole; goal-specific: 0.94. Rotated (same norms) 0.00; PCA-13 of the donor's state 0.98.
+- Preservation harm ≤ 0.004; one-step-agreeing pairs 0.85 of whole; across four equivalent recipients the effect
+  follows the belief change (between-change variance 0.80). Agreement among them falls by 0.09.
+- Goal-dependent pairs (different actions under two goals): shared 0.36 of whole, goal-specific 0.85.
+- Registered reading: belief is encoded at the site, but goal-specifically; the goal is mixed in after block 0.
+  8 of 10 expectations held; the shared-map ones (C6, C7) failed.
