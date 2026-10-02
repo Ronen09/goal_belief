@@ -631,3 +631,16 @@ natural goal change.
   half the energy) along a few directions.
 - Removing J_y from the MLP output costs only 0.007 of correct decisions where the goal matters: later blocks
   compensate. 4 of 8 expectations held.
+
+## Round 40: the goal × belief part across depth
+
+**Round 40 — bilinear at every MLP, and necessary but redundant? (`rounds/r40_mlp_depth/REPORT.md`, rule in
+`rounds/r40_mlp_depth/PLAN.md`).** Round 39's analysis for each of the goal token's four MLPs; J removed from one, three
+or all four MLP outputs.
+
+- Every MLP's J is low-rank bilinear in its input's belief code and the goal (rank 4: 0.82–0.86; full 0.88–0.95), lower
+  rank with depth. Block 0 makes its J (0.68); blocks 2–3 mostly pass on what arrives (0.30, 0.18).
+- Removing J from any one MLP costs ≤ 0.007; from all four 0.136 where the goal matters (6 × the sum of the singles);
+  a wrong posterior's J costs 0.018. Necessary and redundant across depth.
+- Goal-neutral cells also drop (0.099), so the registered specificity margin failed: J carries each goal's own belief →
+  action map, against the three-goal average (the contrast was defined over two goals). 3 of 7 expectations held.
