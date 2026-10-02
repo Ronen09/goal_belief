@@ -576,3 +576,17 @@ token: attention output (self and prefix terms, heads) → + embedding → layer
 - The layer norm raises interaction to 0.070, but with σ fixed across goals it is still 0.062. Behaviour is not
   significantly changed (shared 0.64 → 0.64; right − wrong +0.07, p 0.065). 0.78 of the route's goal-dependent effect
   passes through block 0's MLP. 3 of 6 expectations held, one in part.
+
+## Round 36: block 0's query, swapped
+
+**Round 36 — does the goal × belief part move with block 0's query? (`rounds/r36_query_swap/REPORT.md`, rule in
+`rounds/r36_query_swap/PLAN.md`).** Block 0's attention at the goal token recomputed with the goal token's query, or its
+own key and value, from another goal (both: exactly the other goal's output).
+
+- The query carries 0.64 of the goal × history part of the attention output, 0.61 of its posterior part (untrained
+  reference 0.79). The two shares sum to 1 by construction over ordered goal pairs (found after the run).
+- Swapping the query costs only 0.037 of correct decisions where the goal matters (registered 0.05 not met).
+- Not registered: with the goal token's own key and value from g′, the model takes g′'s action in 0.90 of goal-matters
+  cells, with the embedding still g; block 0's attention output from g′ gives 0.99. The goal's identity reaches the
+  decision through the goal token's self-attention in block 0; the belief's goal-dependence through the query.
+- 2 of 6 expectations held with content (one empty by construction).

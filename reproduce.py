@@ -137,6 +137,8 @@ ROUNDS = [
           [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32", "r33")),
     Round("r35", "r35_block0_steps", "The goal x belief part at each step from block 0's attention output (self, prefix, heads) through the layer norm to the MLP input", "2 min GPU",
           [Step("run.py"), Step("identity_check.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32")),
+    Round("r36", "r36_query_swap", "Swap block 0's goal-token query, or its own key and value, to another goal's: representation and decisions", "1 min GPU",
+          [Step("run.py"), Step("run.py", ("--untrained",)), Step("tables.py", tables=True)], needs=("r26", "r27")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

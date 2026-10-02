@@ -76,6 +76,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r33 | Before block 0's MLP, is the belief map shared across goals, and does a shared edit control the policy? | [report](rounds/r33_attention_belief_edit/REPORT.md) | 2 min GPU |
 | r34 | Does a nonlinear encoding of the posterior close the gap on goal-dependent decisions? | [report](rounds/r34_nonlinear_belief_edit/REPORT.md) | 6 min GPU |
 | r35 | Is the goal-conditioned belief already in block 0's attention output, and does anything change it before the MLP? | [report](rounds/r35_block0_steps/REPORT.md) | 2 min GPU |
+| r36 | Does the goal-dependent belief part move with block 0's query, and does the decision depend on it? | [report](rounds/r36_query_swap/REPORT.md) | 1 min GPU |
 
 ## Library
 
