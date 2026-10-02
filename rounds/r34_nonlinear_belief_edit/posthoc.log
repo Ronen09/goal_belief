@@ -1,0 +1,10 @@
+seed0 R² mlp_goal 0.821 | goal-dep: none 0.034 whole 0.451 mlp 0.290 mlp_goal 0.384 mlp_goal_wrong 0.211 table 0.290 table_goal 0.372 table_goal_wrong 0.201 | 16s
+seed1 R² mlp_goal 0.787 | goal-dep: none 0.036 whole 0.381 mlp 0.255 mlp_goal 0.316 mlp_goal_wrong 0.218 table 0.244 table_goal 0.298 table_goal_wrong 0.207 | 34s
+seed2 R² mlp_goal 0.802 | goal-dep: none 0.030 whole 0.243 mlp 0.215 mlp_goal 0.237 mlp_goal_wrong 0.173 table 0.207 table_goal 0.223 table_goal_wrong 0.175 | 46s
+seed3 R² mlp_goal 0.806 | goal-dep: none 0.046 whole 0.134 mlp 0.110 mlp_goal 0.137 mlp_goal_wrong 0.095 table 0.107 table_goal 0.133 table_goal_wrong 0.094 | 59s
+seed4 R² mlp_goal 0.791 | goal-dep: none 0.062 whole 0.339 mlp 0.219 mlp_goal 0.273 mlp_goal_wrong 0.151 table 0.201 table_goal 0.266 table_goal_wrong 0.148 | 70s
+seed5 R² mlp_goal 0.778 | goal-dep: none 0.025 whole 0.252 mlp 0.173 mlp_goal 0.227 mlp_goal_wrong 0.124 table 0.169 table_goal 0.204 table_goal_wrong 0.125 | 82s
+seed6 R² mlp_goal 0.821 | goal-dep: none 0.044 whole 0.089 mlp 0.077 mlp_goal 0.089 mlp_goal_wrong 0.071 table 0.076 table_goal 0.086 table_goal_wrong 0.067 | 93s
+seed7 R² mlp_goal 0.806 | goal-dep: none 0.030 whole 0.291 mlp 0.182 mlp_goal 0.248 mlp_goal_wrong 0.156 table 0.172 table_goal 0.231 table_goal_wrong 0.151 | 107s
+seed8 R² mlp_goal 0.772 | goal-dep: none 0.057 whole 0.407 mlp 0.246 mlp_goal 0.326 mlp_goal_wrong 0.185 table 0.230 table_goal 0.308 table_goal_wrong 0.176 | 122s
+seed9 R² mlp_goal 0.784 | goal-dep: none 0.041 whole 0.260 mlp 0.183 mlp_goal 0.227 mlp_goal_wrong 0.158 table 0.173 table_goal 0.212 table_goal_wrong 0.155 | 141s

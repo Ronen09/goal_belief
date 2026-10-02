@@ -540,7 +540,23 @@ design at the goal token's state after block 0's attention, before its MLP (embe
 - Main change cells: the shared edit reaches donor-optimal 0.54, 0.90 of whole (round 32: 0.66). Within 0.02 of the
   goal-specific edit and 0.05 of PCA-13; rotated 0.02. Harm 0.006; one-step agreeing 1.08 of whole; equivalent
   recipients 0.93 of whole.
-- Goal-dependent pairs: 0.61 of whole (round 32: 0.36; registered 0.75 not met). The goal-specific edit is short there
-  too (0.79).
+- Goal-dependent pairs: 0.61 of whole (round 32: 0.36; registered 0.75 not met). The goal-specific linear edit reaches
+  0.79 (post hoc; first misreported as short of the line, corrected after round 34).
 - Through block 0's MLP the shared edit becomes the goal-specific one (cosine 0.92). The goal is combined with a
   goal-free belief code by block 0's MLP. 8 of 10 expectations held; the misses were both "more shared than expected".
+
+## Round 34: a nonlinear encoding of the posterior
+
+**Round 34 — does a nonlinear encoding close the gap on goal-dependent pairs?
+(`rounds/r34_nonlinear_belief_edit/REPORT.md`, rule in `rounds/r34_nonlinear_belief_edit/PLAN.md`).** Round 33's site.
+A shared MLP f(b) and a per-posterior table μ(b) (the most any function of b can give), fitted without action labels.
+
+- Fit improves a lot (R² within 0.65 linear → 0.77 MLP = table). Edits improve little: on goal-dependent pairs 0.61
+  (linear) → 0.68 (MLP), 0.65 (table) of whole. P and the ceiling T fail.
+- The donor's difference without its posterior part does nothing alone (0.15 of whole; no edit 0.13).
+- Goal-conditioned encodings of the posterior clear the line: f(b, g) 0.86, μ_g(b) 0.81. Post hoc: another goal's map
+  gives 0.56, below the shared map, in all ten models.
+- Main pairs: all posterior encodings 0.91–0.98 of whole; harm ≤ 0.008; equivalent recipients 0.90–0.97.
+- What was missing was not nonlinearity in the posterior, nor information beyond it, but a small goal × belief
+  interaction at block 0's attention output that the policy reads on exactly the decisions where the goal must turn
+  one belief change into different actions. 8 of 10 expectations held.

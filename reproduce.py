@@ -133,6 +133,8 @@ ROUNDS = [
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27")),
     Round("r33", "r33_attention_belief_edit", "Round 32's belief edit one step earlier, before block 0's MLP: is the belief map shared across goals there?", "2 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32")),
+    Round("r34", "r34_nonlinear_belief_edit", "Nonlinear (MLP, per-posterior table) encodings of the posterior before block 0's MLP; goal-dependent pairs", "6 min GPU",
+          [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32", "r33")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

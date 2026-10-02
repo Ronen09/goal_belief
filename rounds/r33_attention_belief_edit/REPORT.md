@@ -59,9 +59,12 @@ Main pairs, change cells; median over ten models:
 
 * **Goal-dependent pairs ("left under G1, right under G2"): much improved, short of the criterion.** The same edit
   gets B's different actions right under both goals in 0.18 of pairs, 0.61 of whole (registered 0.75; round 32 0.36).
-  The goal-specific edit also falls short here (0.79, post hoc). The shared edit reaches 0.79 of the goal-specific
-  one (round 32: 0.44, post hoc). The remaining shortfall is mostly shared by both linear edits on the hardest pairs;
-  a smaller part (0.03 absolute) is the cost of sharing.
+  The goal-specific linear edit reaches 0.79 of whole here, above the 0.75 line (post hoc). Measured against
+  whole, the shared edit falls 0.39 short and the goal-specific one 0.21. So about half of the shared edit's shortfall
+  is the cost of one map for all goals, and half is common to both linear edits.
+  *Corrected 2026-10-02, after round 34: this bullet first said that the goal-specific edit "also falls short" and
+  that sharing cost "a smaller part (0.03 absolute)". 0.79 is above 0.75, and 0.03 absolute is 0.1 of whole's rate
+  on these pairs. Round 34 confirms that the goal × belief interaction is what the policy reads here.*
 * **Preservation**: harm 0.006 (C3 holds).
 * **Beyond one-step prediction**: where one-step predictions are identical, the shared edit does as well as whole
   replacement (S 1.08; C4 holds).
@@ -139,8 +142,8 @@ goal-sensitive block 0 heads had led me to expect goal-specificity in the attent
    attention gathers a goal-free belief code → block 0's MLP combines it with the goal → blocks 1–3's MLPs turn that
    into an action preference.
 4. **What remains open: goal-dependent pairs.** Where one belief change must give different actions under two goals,
-   both linear edits fall short of whole replacement (shared 0.61, goal-specific 0.79). The route there carries more
-   than the posterior's linear image.
+   the shared edit reaches 0.61 of whole replacement and the goal-specific one 0.79 (post hoc). The small goal × history
+   interaction left at this site (4.5 %) matters for exactly these pairs. (Corrected after round 34; see §3.)
 
 Next, if wanted: on goal-dependent pairs, measure what the whole-replacement difference contains beyond E Δb at this
 site, with a nonlinear (e.g. small MLP) encoding of the posterior. Or test whether adding round 28's interface edit
