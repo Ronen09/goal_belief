@@ -602,3 +602,18 @@ heads or one; complement: the goal embedding in the residual stream from g′.
 - Usually one head (best single head 0.59 of the effect; ≥ 0.5 in 6 of 10 models), always the most self-attending one
   (10 of 10); which head differs by model. Single-head effects sum to 0.65: they combine superadditively.
 - 5 of 6 expectations held.
+
+## Round 38: the self value and the goal × belief interaction
+
+**Round 38 — does swapping the goal's self value move I(b,g) = f(b,g) − f(b) at the MLP input?
+(`rounds/r38_self_value_interaction/REPORT.md`, rule in `rounds/r38_self_value_interaction/PLAN.md`).** I split into the
+goal's main effect M and the goal × belief part J; swap-induced changes regressed on their changes, relative to the
+natural goal change.
+
+- At the MLP input: the self-value swap moves M 0.77 of the way, J only 0.37 (J fails). J is small there (6 % of M) and
+  follows the query about as much (0.42).
+- After the MLP: J follows the self value (0.67) and hardly the query (0.19). Block 0's MLP makes the interaction from
+  the goal identity and the shared belief.
+- Shared belief: a linear decoder shifts (registered F fails), but the shared code's subspace moves less than under a
+  natural goal change, and belief-only decisions are intact (round 37). Most likely an off-manifold decoder effect.
+  3 of 6 expectations held.
