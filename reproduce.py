@@ -139,6 +139,8 @@ ROUNDS = [
           [Step("run.py"), Step("identity_check.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32")),
     Round("r36", "r36_query_swap", "Swap block 0's goal-token query, or its own key and value, to another goal's: representation and decisions", "1 min GPU",
           [Step("run.py"), Step("run.py", ("--untrained",)), Step("tables.py", tables=True)], needs=("r26", "r27")),
+    Round("r37", "r37_self_value", "The goal token's own value against its own key in block 0, per head; the residual embedding as the complement", "1 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r36")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

@@ -590,3 +590,15 @@ own key and value, from another goal (both: exactly the other goal's output).
   cells, with the embedding still g; block 0's attention output from g′ gives 0.99. The goal's identity reaches the
   decision through the goal token's self-attention in block 0; the belief's goal-dependence through the query.
 - 2 of 6 expectations held with content (one empty by construction).
+
+## Round 37: the goal's identity is the goal token's own value
+
+**Round 37 — value or key, which head? (`rounds/r37_self_value/REPORT.md`, rule in `rounds/r37_self_value/PLAN.md`).**
+Block 0's attention at the goal token recomputed with the goal token's own value or own key from another goal g′, all
+heads or one; complement: the goal embedding in the residual stream from g′.
+
+- Own value from g′: the policy takes g′'s action in 0.83 of goal-matters cells. Own key: 0.20, as natural (0.19).
+  Residual embedding: 0.19. The goal is read only through the self value.
+- Usually one head (best single head 0.59 of the effect; ≥ 0.5 in 6 of 10 models), always the most self-attending one
+  (10 of 10); which head differs by model. Single-head effects sum to 0.65: they combine superadditively.
+- 5 of 6 expectations held.

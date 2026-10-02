@@ -77,6 +77,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r34 | Does a nonlinear encoding of the posterior close the gap on goal-dependent decisions? | [report](rounds/r34_nonlinear_belief_edit/REPORT.md) | 6 min GPU |
 | r35 | Is the goal-conditioned belief already in block 0's attention output, and does anything change it before the MLP? | [report](rounds/r35_block0_steps/REPORT.md) | 2 min GPU |
 | r36 | Does the goal-dependent belief part move with block 0's query, and does the decision depend on it? | [report](rounds/r36_query_swap/REPORT.md) | 1 min GPU |
+| r37 | Which part of the goal token's block-0 self-attention carries the goal's identity: value or key, which head? | [report](rounds/r37_self_value/REPORT.md) | 1 min GPU |
 
 ## Library
 
