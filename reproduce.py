@@ -135,6 +135,8 @@ ROUNDS = [
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32")),
     Round("r34", "r34_nonlinear_belief_edit", "Nonlinear (MLP, per-posterior table) encodings of the posterior before block 0's MLP; goal-dependent pairs", "6 min GPU",
           [Step("run.py"), Step("posthoc.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32", "r33")),
+    Round("r35", "r35_block0_steps", "The goal x belief part at each step from block 0's attention output (self, prefix, heads) through the layer norm to the MLP input", "2 min GPU",
+          [Step("run.py"), Step("identity_check.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

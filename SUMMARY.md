@@ -560,3 +560,19 @@ A shared MLP f(b) and a per-posterior table μ(b) (the most any function of b ca
 - What was missing was not nonlinearity in the posterior, nor information beyond it, but a small goal × belief
   interaction at block 0's attention output that the policy reads on exactly the decisions where the goal must turn
   one belief change into different actions. 8 of 10 expectations held.
+
+## Round 35: block 0, step by step
+
+**Round 35 — is the goal × belief part already in block 0's attention output, and does anything change it before the
+MLP? (`rounds/r35_block0_steps/REPORT.md`, rule in `rounds/r35_block0_steps/PLAN.md`).** Exact steps at the goal
+token: attention output (self and prefix terms, heads) → + embedding → layer norm → MLP input.
+
+- Attention output → residual MLP input: only the embedding is added (1·10⁻⁷); the same edit vectors give the same
+  outputs (6·10⁻⁶). The registered edit comparison (2·10⁻³) failed through the ridge fits' offsets, not the network.
+- The attention output already holds the goal × belief part: interaction 0.045, goal × posterior gain 0.025;
+  right-goal table edits 0.78 of whole against another goal's 0.50 on goal-dependent pairs (all ten models).
+- Mostly from the prefix term (the history's goal-free values read with a goal-dependent query): 3 × the self term's
+  interaction size, in every model; spread over heads, differently per model.
+- The layer norm raises interaction to 0.070, but with σ fixed across goals it is still 0.062. Behaviour is not
+  significantly changed (shared 0.64 → 0.64; right − wrong +0.07, p 0.065). 0.78 of the route's goal-dependent effect
+  passes through block 0's MLP. 3 of 6 expectations held, one in part.
