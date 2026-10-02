@@ -131,6 +131,8 @@ ROUNDS = [
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r30")),
     Round("r32", "r32_direct_belief_edit", "A shared belief encoding at the goal token's state after block 0, edited with the donor's posterior under all goals", "2 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27")),
+    Round("r33", "r33_attention_belief_edit", "Round 32's belief edit one step earlier, before block 0's MLP: is the belief map shared across goals there?", "2 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r32")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

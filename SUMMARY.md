@@ -528,3 +528,19 @@ replaces only that state with z(A,g) + E (b_B − b_A); the prefix states are ke
 - Goal-dependent pairs (different actions under two goals): shared 0.36 of whole, goal-specific 0.85.
 - Registered reading: belief is encoded at the site, but goal-specifically; the goal is mixed in after block 0.
   8 of 10 expectations held; the shared-map ones (C6, C7) failed.
+
+## Round 33: the belief edit before block 0's MLP
+
+**Round 33 — is the belief map shared across goals one step earlier?
+(`rounds/r33_attention_belief_edit/REPORT.md`, rule in `rounds/r33_attention_belief_edit/PLAN.md`).** Round 32's
+design at the goal token's state after block 0's attention, before its MLP (embedding + attention output).
+
+- Shared map fits as well as goal-specific ones (R² within 0.65 against 0.67; round 32's site 0.56 against 0.67).
+  Goal × history interaction 0.045 (round 32's site 0.17), smaller in every model.
+- Main change cells: the shared edit reaches donor-optimal 0.54, 0.90 of whole (round 32: 0.66). Within 0.02 of the
+  goal-specific edit and 0.05 of PCA-13; rotated 0.02. Harm 0.006; one-step agreeing 1.08 of whole; equivalent
+  recipients 0.93 of whole.
+- Goal-dependent pairs: 0.61 of whole (round 32: 0.36; registered 0.75 not met). The goal-specific edit is short there
+  too (0.79).
+- Through block 0's MLP the shared edit becomes the goal-specific one (cosine 0.92). The goal is combined with a
+  goal-free belief code by block 0's MLP. 8 of 10 expectations held; the misses were both "more shared than expected".
