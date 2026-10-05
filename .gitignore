@@ -2,6 +2,6 @@
 __pycache__/
 *.pyc
 .pytest_cache/
-rounds/*/_smoke/
-rounds/*/cache/
-rounds/r21_pattern_specificity/subspaces/
+studies/*/*/_smoke/
+studies/*/*/cache/
+studies/3_reward_trained_agents/pattern_specificity/subspaces/

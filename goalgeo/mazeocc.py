@@ -1,4 +1,4 @@
-"""Round 19: goal-conditioned occupancy in the round-18 maze, under the solver's policy and under a model's own.
+"""The maze-occupancy experiment: goal-conditioned occupancy in the maze-belief maze, under the solver's policy and under a model's own.
 
     d_g^pi(s | b) = E[ sum_{k=1..H} gamma^(k-1) 1{S_{t+k} = s} ]
 

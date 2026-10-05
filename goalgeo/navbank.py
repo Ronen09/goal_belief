@@ -1,4 +1,4 @@
-"""Round 17: fixed evaluation histories, replayed unchanged at every checkpoint.
+"""The navigate-commit experiment: fixed evaluation histories, replayed unchanged at every checkpoint.
 
 A bank is a set of complete legal histories produced by exploratory behaviour (never by the models
 under study) with, for every decision, the exact public state, belief and action values. Two parts:

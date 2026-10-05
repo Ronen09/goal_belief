@@ -83,7 +83,7 @@ class CausalTransformer(nn.Module):
         return (res, attn) if need_weights else res
 
     def _closed_mask(self, T, dev):
-        """Self and the previous position only (round 16's rule for a hidden history)."""
+        """Self and the previous position only (the K/V-dropout experiment's rule for a hidden history)."""
         keep = torch.eye(T, dtype=torch.bool, device=dev) | torch.diag(torch.ones(T - 1, dtype=torch.bool, device=dev), -1)
         return torch.where(keep, 0.0, float("-inf"))
 

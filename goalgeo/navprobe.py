@@ -1,4 +1,4 @@
-"""Round 17: activations at decision tokens, held-out decoders of the exact belief, and the policy on fixed histories.
+"""The navigate-commit experiment: activations at decision tokens, held-out decoders of the exact belief, and the policy on fixed histories.
 
 Sites, in the order the computation visits them (9 for 4 layers):
     L0.pre  L0.mid  L1.pre  L1.mid  ...  L3.mid  L3.post

@@ -121,7 +121,7 @@ def train_objective(net, m: Hm.HMM, objective: str, k: int = 2, steps: int = 300
 
 
 # --- TASK4 (geometric prominence): weighted sequential training with checkpoints ---
-from . import hmm4 as H4  # noqa: E402  (placed here to keep the round 4 section untouched)
+from . import hmm4 as H4  # noqa: E402  (placed here to keep the HMM-objectives section untouched)
 
 CHECKPOINTS = (0, 50, 100, 200, 400, 700, 1000, 1500, 2000, 2500, 3000)
 

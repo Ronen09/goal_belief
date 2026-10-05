@@ -1,4 +1,4 @@
-"""Round 18: token format and transformer for the maze task.
+"""The maze-belief experiment: token format and transformer for the maze task.
 
 Sequence.  [OBS o_0] [EVT a_0 o_1] ... [EVT a_{L-1} o_L] [GOAL g] [EVT a o] [EVT a o] ...
   OBS    the first symbol.
@@ -6,7 +6,7 @@ Sequence.  [OBS o_0] [EVT a_0 o_1] ... [EVT a_{L-1} o_L] [GOAL g] [EVT a o] [EVT
          model's own. The format is the same; events after the reveal also carry the number of moves left.
   GOAL   the goal's name. It appears once.
 The next move is predicted at the goal token and at every event token after it. The true cell, the posterior and
-the map are never inputs. The transformer is round 17's (pre-LN, learned positions, full causal attention).
+the map are never inputs. The transformer is the navigate-commit experiment's (pre-LN, learned positions, full causal attention).
 """
 
 from __future__ import annotations

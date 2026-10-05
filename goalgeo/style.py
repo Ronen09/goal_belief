@@ -1,5 +1,5 @@
-"""Figure style for rounds 12-16: one categorical order (goal, act_soft, act_hard, next_obs; untrained
-networks neutral grey), muted axes, light grid. Rounds 1-11 use `goalgeo.plotting`."""
+"""Figure style for the hidden-goal to K/V-dropout experiments: one categorical order (goal, act_soft, act_hard, next_obs; untrained
+networks neutral grey), muted axes, light grid. The representation geometry study use `goalgeo.plotting`."""
 
 from __future__ import annotations
 

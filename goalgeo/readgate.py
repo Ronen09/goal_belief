@@ -1,4 +1,4 @@
-"""TASK16 (round 17): a learned, priced read of the history (rounds/r17_read_cost/THEORY.md).
+"""TASK16 (read cost): a learned, priced read of the history (studies/2_belief_state/read_cost/THEORY.md).
 
 One binary gate per (block, query position) decides whether the historical keys are visible to
 that query. The block computes its attention output as g * open + (1 - g) * closed, so the forward

@@ -1,4 +1,4 @@
-"""Round 20: edits of prefix-token states in a probe-defined subspace, and their effect on decisions.
+"""The belief-edit experiment: edits of prefix-token states in a probe-defined subspace, and their effect on decisions.
 
 The interface is the residual stream entering block l at the prefix tokens (positions before the goal token).
 An edit replaces, inside a chosen subspace, the recipient's state by the donor's at the same position, and keeps the

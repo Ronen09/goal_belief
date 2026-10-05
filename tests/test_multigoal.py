@@ -1,4 +1,4 @@
-"""Multi-goal collection solver (round 45): exact against brute-force recursion, and identical to round 18's graph
+"""Multi-goal collection solver (hard cases): exact against brute-force recursion, and identical to the maze-belief experiment's graph
 when there is a single goal worth 1."""
 
 import functools

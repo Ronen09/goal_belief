@@ -1,4 +1,4 @@
-"""Round 17: the exact solver against two independent brute-force computations, and the belief identities."""
+"""The navigate-commit experiment: the exact solver against two independent brute-force computations, and the belief identities."""
 
 import itertools
 

@@ -1,4 +1,4 @@
-"""Round 18: the belief graph of the maze task, as arrays.
+"""The maze-belief experiment: the belief graph of the maze task, as arrays.
 
 Every posterior the task can produce is a node. Prefix nodes (no goal yet) are indexed by prefix length and
 posterior; decision nodes by goal, remaining moves and posterior. Transitions are node x action x symbol -> node,

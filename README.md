@@ -1,9 +1,47 @@
 # goalgeo
 
-A sequence of pre-registered experiments on what small networks represent about a goal or a belief,
-and when that representation is the state the network actually computes with. It starts from goal-conditioned
-occupancy geometry (round 1) and continues through when a sufficient statistic becomes the causal computational
-state of a transformer (round 16) to how a reward-trained transformer comes to use a belief (round 17) and whether a prediction-trained one can be reused for control (round 26). `SUMMARY.md` gives every round's results on one page.
+Experiments on what small networks represent about a goal or a belief, and when that representation is the state the
+network actually computes with. Each experiment states its predictions before training (`THEORY.md` / `PLAN.md`),
+then reports which held (`REPORT.md`). [FINDINGS.md](FINDINGS.md) has every result on one page.
+
+## The story
+
+1. **[Representation geometry](studies/1_representation_geometry/).** A network's hidden geometry mirrors the
+   distinctions its training target contains, and the size of a distinction is set by the output gap it must produce.
+   Raw geometry and local metrics change between functionally equivalent models; decodability, readout contrast and
+   interventions on a complete causal cut do not. Everything after this relies only on the invariant measures.
+2. **[Belief state](studies/2_belief_state/).** With a goal that must be inferred, the exact posterior is decodable
+   from every model, but only a recurrent network uses it as its state. A transformer recomputes the belief from the
+   tokens, unless a carried state plus unreliable or priced access to the history make keeping it worthwhile.
+3. **[Reward-trained agents](studies/3_reward_trained_agents/).** Trained by reward in a grid and an aliased maze, agents
+   learn to use evidence, but the belief is decodable before training too. Editing the decoded belief does not steer
+   the policy, and an observation-prediction objective improves regret without making the policy more belief-consistent.
+4. **[Predictive pretraining](studies/4_predictive_pretraining/).** A backbone trained only to predict the maze is the
+   best starting point for new goals, and its belief encoding controls a new head; the original policy recomputes the
+   evidence from the raw tokens instead.
+5. **[Goal × belief mechanism](studies/5_goal_belief_mechanism/).** Followed component by component, the maze policy reads a
+   goal-free evidence estimate, receives the goal through one self-attention value, and decides, to a first
+   approximation, additively: a goal-averaged usefulness profile of the history plus a fixed bias per goal.
+6. **[Hard cases and harder tasks](studies/6_hard_cases_and_tasks/).** That additive code fails where two goals' biases
+   point the wrong way at near-ties. Optimal-move supervision teaches the missing interaction and cuts regret 4×; a
+   model-free screen and an exact multi-goal solver look for tasks that would force it under reward alone.
+   Exploratory.
+
+## Layout
+
+```
+studies/<study>/                one research thread; README.md lists its experiments in order
+    <experiment>/               everything for one experiment:
+        BRIEF.md                  the question as posed (none where it was given in conversation)
+        THEORY.md / PLAN.md       design and predictions, committed before training
+        REPORT.md                 results, with the scorecard of predictions
+        tables.md, *.png, *.json  generated numbers, figures and per-model data; models/ checkpoints
+        run.py, tables.py, …      training, measurement and the tables
+goalgeo/                        shared library (environments, exact filters, models, probes, interventions)
+reproduce.py                    the only entry point: a registry of every experiment's steps
+tests/                          148 tests (exact identities, filter vs brute force, invariances)
+FINDINGS.md                     every result, by study
+```
 
 ## Reproduce
 
@@ -11,100 +49,59 @@ state of a transformer (round 16) to how a reward-trained transformer comes to u
 uv venv --system-site-packages --python /usr/bin/python3 .venv    # reuses system torch / numpy / scipy / matplotlib
 uv pip install --python .venv/bin/python pytest
 
-.venv/bin/python reproduce.py list            # rounds, cost, dependencies
-.venv/bin/python reproduce.py r13             # rerun one round end to end
-.venv/bin/python reproduce.py r13 --tables    # rebuild its tables and figures from the committed data (seconds)
-.venv/bin/python reproduce.py all --quick     # smoke-run every round (minutes)
-.venv/bin/python reproduce.py check           # tests + rebuild every table from saved data (must match the
-                                              # committed ones) + smoke runs
+.venv/bin/python reproduce.py list                     # experiments by study: cost, dependencies, question
+.venv/bin/python reproduce.py filter_state             # rerun one experiment end to end
+.venv/bin/python reproduce.py filter_state --tables    # rebuild its tables and figures from the committed data (seconds)
+.venv/bin/python reproduce.py all --quick              # smoke-run every experiment (minutes)
+.venv/bin/python reproduce.py check                    # tests + rebuild every table from saved data (must match the
+                                                       # committed ones) + smoke runs
 ```
 
-Trained models are committed, so rounds that reuse another round's models (r09, r13, r14) and every
-`--tables` rebuild run without retraining.
+Trained models are committed, so experiments that reuse another's models and every `--tables` rebuild run without
+retraining.
 
-## Layout
+## Earlier names
 
-```
-reproduce.py          the only entry point: a registry of every round's steps
-goalgeo/              shared library (environments, exact filters, models, probes, interventions)
-rounds/rNN_<name>/    everything for one round:
-    BRIEF.md            the question as posed (rounds whose brief was given in conversation have none)
-    DESIGN.md / THEORY.md   design and pre-registered predictions, committed before training
-    REPORT.md           results, with the scorecard of predictions
-    tables.md           generated numbers;  *.png figures;  *.json per-model data;  models/ checkpoints
-    run.py              training + measurement;  followup.py / tables.py / … further steps
-    plots.py            the round's figures
-tests/                132 tests (exact identities, filter vs brute force, invariances)
-```
+Until October 2026 the experiments were numbered rounds in `rounds/rNN_<name>/`; commit messages before then use those
+numbers. Two lines of work both used 17: the read gate (now `read_cost`) and the navigate-and-commit agent
+(`navigate_commit`).
 
-## Rounds
-
-| round | question | report | cost |
-|---|---|---|---|
-| r01 | Does a goal-conditioned policy learn goal-occupancy geometry? | [report](rounds/r01_occupancy/REPORT.md) | 6 min CPU |
-| r02 | Policy quotient vs occupancy geometry; soft targets | [report](rounds/r02_policy_quotient/REPORT.md) | 15 min CPU |
-| r03 | The supervision bottleneck: what the target keeps | [report](rounds/r03_supervision/REPORT.md) | 18 min CPU |
-| r04 | One-step vs k-step vs sequential objectives on an HMM | [report](rounds/r04_hmm_objectives/REPORT.md) | 5 min |
-| r05 | What makes information geometrically prominent? | [report](rounds/r05_prominence/REPORT.md) | 20 min, 8 workers |
-| r06 | Readout gain vs hidden separation | [report](rounds/r06_readout_scale/REPORT.md) | 8 min |
-| r07 | What sets the gain / separation split | [report](rounds/r07_allocation/REPORT.md) | 6 min |
-| r08 | Which representation measures are invariant | [report](rounds/r08_invariants/REPORT.md) | 13 min |
-| r09 | Intervention equivalence and local metrics | [report](rounds/r09_interventions/REPORT.md) | 5 min |
-| r10 | Transformer reproduction of rounds 5–9 | [report](rounds/r10_transformer/REPORT.md) | 10 min GPU |
-| r11 | Cut identifiability and factorisation freedom | [report](rounds/r11_implementation_freedom/REPORT.md) | 1.5 h GPU |
-| r12 | A hidden goal: is the posterior recoverable, and is it the causal state? | [report](rounds/r12_hidden_goal/REPORT.md), [causal](rounds/r12_hidden_goal/causal/REPORT.md) | 45 min |
-| r13 | Is the recurrent state the environment's minimal predictive state? | [report](rounds/r13_filter_state/REPORT.md) | 7 min |
-| r14 | Does a narrow attention window force a steerable belief state? | [report](rounds/r14_window_carry/REPORT.md) | 31 min |
-| r15 | Does a next-token transformer use its previous belief as a prior? | [report](rounds/r15_prior_vs_recompute/REPORT.md) | 11 min GPU |
-| r16 | Can K/V dropout induce recurrence continuously? | [report](rounds/r16_kv_dropout/REPORT.md) | 1 h |
-| r17b | Does a price on reading the history induce a selective, recurrent belief state? | [report](rounds/r17_read_cost/REPORT.md) | 3 h |
-| r17 | How does a reward-trained transformer come to build and use a belief? | [report](rounds/r17_navigate_commit/REPORT.md) | 4 h GPU |
-| r18 | Does an inferred location belief support goal-dependent decisions? | [report](rounds/r18_maze_belief/REPORT.md) | 1.5 h GPU |
-| r19 | Is goal-conditioned occupancy represented beyond the posterior and the action values? | [report](rounds/r19_occupancy/REPORT.md) | 25 min GPU |
-| r20 | Does the policy use the decoded belief? | [report](rounds/r20_belief_edit/REPORT.md) | 20 min GPU |
-| r21 | Is the posterior-associated edit more specific than replacing the dominant history representation? | [report](rounds/r21_pattern_specificity/REPORT.md) | 2 min GPU |
-| r22 | Does history matter beyond the belief, and is evidence kept beyond one goal's action? | [report](rounds/r22_pair_types/REPORT.md) | 2 min GPU |
-| r23 | Does an observation-prediction objective reduce history dependence, incorrect action changes and regret? | [report](rounds/r23_obs_prediction/REPORT.md) | 2.5 h GPU |
-| r24 | Does the prediction head agree on identical-posterior histories? | [report](rounds/r24_head_consistency/REPORT.md) | 1 min GPU |
-| r25 | Does balanced candidate-action supervision make predictions, and then the policy, more belief-consistent? | [report](rounds/r25_balanced_prediction/REPORT.md) | 1.5 h GPU |
-| r26 | Does learning to predict the maze give a representation from which different goals are solved efficiently? | [report](rounds/r26_predictive_transfer/REPORT.md) | 30 min GPU |
-| r27 | Can the transferable representation support a selective causal belief edit? | [report](rounds/r27_belief_encoding_edit/REPORT.md) | 5 min GPU |
-| r28 | Does the same belief-associated change control the new head and the original policy? | [report](rounds/r28_policy_belief_edit/REPORT.md) | 3 min GPU |
-| r29 | Does the goal change which evidence route the policy relies on? | [report](rounds/r29_goal_route_selection/REPORT.md) | 2 min GPU |
-| r30 | With the history fixed, which components after the interface carry a goal swap? | [report](rounds/r30_goal_swap_components/REPORT.md) | 4 min GPU |
-| r31 | Do the goal token's MLPs carry a goal instruction, an evidence–goal combination, or an action preference? | [report](rounds/r31_cross_history_mlp/REPORT.md) | 1 min GPU |
-| r32 | Does a shared belief edit at the goal token's state after block 0 transfer donor behaviour across goals? | [report](rounds/r32_direct_belief_edit/REPORT.md) | 2 min GPU |
-| r33 | Before block 0's MLP, is the belief map shared across goals, and does a shared edit control the policy? | [report](rounds/r33_attention_belief_edit/REPORT.md) | 2 min GPU |
-| r34 | Does a nonlinear encoding of the posterior close the gap on goal-dependent decisions? | [report](rounds/r34_nonlinear_belief_edit/REPORT.md) | 6 min GPU |
-| r35 | Is the goal-conditioned belief already in block 0's attention output, and does anything change it before the MLP? | [report](rounds/r35_block0_steps/REPORT.md) | 2 min GPU |
-| r36 | Does the goal-dependent belief part move with block 0's query, and does the decision depend on it? | [report](rounds/r36_query_swap/REPORT.md) | 1 min GPU |
-| r37 | Which part of the goal token's block-0 self-attention carries the goal's identity: value or key, which head? | [report](rounds/r37_self_value/REPORT.md) | 1 min GPU |
-| r38 | Does swapping the goal's self value move the goal × belief interaction at the MLP input, with the shared belief fixed? | [report](rounds/r38_self_value_interaction/REPORT.md) | 20 min GPU |
-| r39 | How does block 0's MLP compute the goal × belief part: is it a low-rank bilinear interaction? | [report](rounds/r39_mlp_bilinear/REPORT.md) | 30 min GPU |
-| r40 | Is the goal × belief interaction bilinear at every MLP, and is it necessary but redundant across depth? | [report](rounds/r40_mlp_depth/REPORT.md) | 55 min GPU |
-| r41 | With every goal × history interaction removed from the goal token, what is left of the decision? | [report](rounds/r41_interaction_removal/REPORT.md) | 1 min GPU |
-| r42 | Is the decision a history profile plus a fixed goal bias, and where does that fail? | [report](rounds/r42_additive_code/REPORT.md) | 20 s GPU |
-| r43 | What is the history profile H: the best value across goals, or the average usefulness? | [report](rounds/r43_what_is_H/REPORT.md) | 3 min GPU |
-| r44 | Is H a mixture of usefulness and reachability, and how does it weight the goals? | [report](rounds/r44_H_mixture/REPORT.md) | 1 min GPU |
-| r45 | Exploratory: what the additively impossible cases are, training on them, and harder tasks (multi-goal collection) | [report](rounds/r45_hard_cases/REPORT.md), [simulation](rounds/r45_hard_cases/aliased_corridor.html) | 3.5 h GPU |
+| round | experiment | round | experiment | round | experiment |
+|---|---|---|---|---|---|
+| 1 | [occupancy](studies/1_representation_geometry/occupancy/) | 2 | [policy_quotient](studies/1_representation_geometry/policy_quotient/) | 3 | [supervision](studies/1_representation_geometry/supervision/) |
+| 4 | [hmm_objectives](studies/1_representation_geometry/hmm_objectives/) | 5 | [prominence](studies/1_representation_geometry/prominence/) | 6 | [readout_scale](studies/1_representation_geometry/readout_scale/) |
+| 7 | [allocation](studies/1_representation_geometry/allocation/) | 8 | [invariants](studies/1_representation_geometry/invariants/) | 9 | [interventions](studies/1_representation_geometry/interventions/) |
+| 10 | [transformer](studies/1_representation_geometry/transformer/) | 11 | [implementation_freedom](studies/1_representation_geometry/implementation_freedom/) | 12 | [hidden_goal](studies/2_belief_state/hidden_goal/) |
+| 13 | [filter_state](studies/2_belief_state/filter_state/) | 14 | [window_carry](studies/2_belief_state/window_carry/) | 15 | [prior_vs_recompute](studies/2_belief_state/prior_vs_recompute/) |
+| 16 | [kv_dropout](studies/2_belief_state/kv_dropout/) | 17 (read gate) | [read_cost](studies/2_belief_state/read_cost/) | 17 (agent) | [navigate_commit](studies/3_reward_trained_agents/navigate_commit/) |
+| 18 | [maze_belief](studies/3_reward_trained_agents/maze_belief/) | 19 | [maze_occupancy](studies/3_reward_trained_agents/maze_occupancy/) | 20 | [belief_edit](studies/3_reward_trained_agents/belief_edit/) |
+| 21 | [pattern_specificity](studies/3_reward_trained_agents/pattern_specificity/) | 22 | [pair_types](studies/3_reward_trained_agents/pair_types/) | 23 | [obs_prediction](studies/3_reward_trained_agents/obs_prediction/) |
+| 24 | [head_consistency](studies/3_reward_trained_agents/head_consistency/) | 25 | [balanced_prediction](studies/3_reward_trained_agents/balanced_prediction/) | 26 | [predictive_transfer](studies/4_predictive_pretraining/predictive_transfer/) |
+| 27 | [belief_encoding_edit](studies/4_predictive_pretraining/belief_encoding_edit/) | 28 | [policy_belief_edit](studies/4_predictive_pretraining/policy_belief_edit/) | 29 | [goal_route_selection](studies/5_goal_belief_mechanism/goal_route_selection/) |
+| 30 | [goal_swap_components](studies/5_goal_belief_mechanism/goal_swap_components/) | 31 | [cross_history_mlp](studies/5_goal_belief_mechanism/cross_history_mlp/) | 32 | [direct_belief_edit](studies/5_goal_belief_mechanism/direct_belief_edit/) |
+| 33 | [attention_belief_edit](studies/5_goal_belief_mechanism/attention_belief_edit/) | 34 | [nonlinear_belief_edit](studies/5_goal_belief_mechanism/nonlinear_belief_edit/) | 35 | [block0_steps](studies/5_goal_belief_mechanism/block0_steps/) |
+| 36 | [query_swap](studies/5_goal_belief_mechanism/query_swap/) | 37 | [self_value](studies/5_goal_belief_mechanism/self_value/) | 38 | [self_value_interaction](studies/5_goal_belief_mechanism/self_value_interaction/) |
+| 39 | [mlp_bilinear](studies/5_goal_belief_mechanism/mlp_bilinear/) | 40 | [mlp_depth](studies/5_goal_belief_mechanism/mlp_depth/) | 41 | [interaction_removal](studies/5_goal_belief_mechanism/interaction_removal/) |
+| 42 | [additive_code](studies/5_goal_belief_mechanism/additive_code/) | 43 | [what_is_H](studies/5_goal_belief_mechanism/what_is_H/) | 44 | [H_mixture](studies/5_goal_belief_mechanism/H_mixture/) |
+| 45 | [hard_cases](studies/6_hard_cases_and_tasks/hard_cases/) |  |  |  |  |
 
 ## Library
 
 | modules | used by | contents |
 |---|---|---|
-| `gridworld`, `envs`, `planning`, `occupancy` | r01–r03 | gridworlds, value iteration, exact occupancy / successor measures |
-| `model`, `train`, `models2`, `targets` | r01–r03 | goal-conditioned MLPs and variants, behavioural cloning, supervision targets |
-| `geometry`, `analysis`, `quotient`, `supervision` | r01–r03 | RDMs / RSA / CKA / decoding, and each round's analyses |
-| `hmm`, `hmm4`, `seqmodels`, `prominence` | r04–r09 | HMMs with exact inference, GRUs and objectives, prominence measures |
-| `invariants`, `steering` | r08–r09 | invariant measures under exact coordinate changes, propagation-based steering |
-| `tfm`, `tfm_batched`, `tfm_measure`, `cuts`, `factorize` | r10–r17b | causal transformer, stacked GPU trainer, complete-cut patching, readout factorisation |
-| `latentgoal`, `belief_train`, `beliefprobe`, `beliefcausal`, `filterstate` | r12–r14 | hidden-goal environments with the exact joint filter; training; probes; transplant / equivalence tests; full-state coordinates |
-| `wtfm`, `kvprior`, `readgate` | r14–r17b | windowed transformer with a recurrent carry, K/V dropout and a priced read gate; K/V-source splicing for position t+1 |
-| `navcommit`, `navmodel`, `navppo`, `navbank`, `navprobe`, `navcausal` | r17 | navigate / investigate / commit: exact solver, token format and transformer, vectorised environment and PPO, fixed evaluation histories, decoders, matched-pair patches |
-| `mazeedit` | r20–r22 | edits of prefix-token states in decoder-defined and covariance-defined subspaces |
-| `mazepred` | r26–r27 | prediction-only backbone (k-step heads, random-walk targets), exact k-step predictions, small goal-conditioned heads trained side by side on frozen features |
-| `mazeaux` | r23–r25 | next-symbol prediction head, its loss against the exact predictive distribution, PPO update with the auxiliary term |
-| `mazeocc` | r19 | exact occupancy under the solver's policy; a model's own occupancy by rollouts |
-| `multigoal` | r45 | multi-goal collection with random values: exact belief graph over (moves left, collected set, belief), Q* for every value setting |
-| `mazebelief`, `mazegraph`, `mazemodel`, `mazeppo`, `mazemeasure` | r18–r19 | aliased maze with a hidden location: exact filter and solver, belief graph, tokens and transformer, vectorised environment and PPO, decoders and cross-goal patches |
-| `plotting`, `style` | all | shared figure style (rounds 1–11, rounds 12–16) |
+| `gridworld`, `envs`, `planning`, `occupancy` | occupancy-geometry to supervision-bottleneck | gridworlds, value iteration, exact occupancy / successor measures |
+| `model`, `train`, `models2`, `targets` | occupancy-geometry to supervision-bottleneck | goal-conditioned MLPs and variants, behavioural cloning, supervision targets |
+| `geometry`, `analysis`, `quotient`, `supervision` | occupancy-geometry to supervision-bottleneck | RDMs / RSA / CKA / decoding, and each experiment's analyses |
+| `hmm`, `hmm4`, `seqmodels`, `prominence` | HMM-objectives to intervention-equivalence | HMMs with exact inference, GRUs and objectives, prominence measures |
+| `invariants`, `steering` | invariants to intervention-equivalence | invariant measures under exact coordinate changes, propagation-based steering |
+| `tfm`, `tfm_batched`, `tfm_measure`, `cuts`, `factorize` | transformer-reproduction to read-cost | causal transformer, stacked GPU trainer, complete-cut patching, readout factorisation |
+| `latentgoal`, `belief_train`, `beliefprobe`, `beliefcausal`, `filterstate` | hidden-goal to window-carry | hidden-goal environments with the exact joint filter; training; probes; transplant / equivalence tests; full-state coordinates |
+| `wtfm`, `kvprior`, `readgate` | window-carry to read-cost | windowed transformer with a recurrent carry, K/V dropout and a priced read gate; K/V-source splicing for position t+1 |
+| `navcommit`, `navmodel`, `navppo`, `navbank`, `navprobe`, `navcausal` | navigate-commit | navigate / investigate / commit: exact solver, token format and transformer, vectorised environment and PPO, fixed evaluation histories, decoders, matched-pair patches |
+| `mazeedit` | belief-edit to pair-types | edits of prefix-token states in decoder-defined and covariance-defined subspaces |
+| `mazepred` | predictive-transfer to belief-encoding-edit | prediction-only backbone (k-step heads, random-walk targets), exact k-step predictions, small goal-conditioned heads trained side by side on frozen features |
+| `mazeaux` | observation-prediction to balanced-prediction | next-symbol prediction head, its loss against the exact predictive distribution, PPO update with the auxiliary term |
+| `mazeocc` | maze-occupancy | exact occupancy under the solver's policy; a model's own occupancy by rollouts |
+| `multigoal` | hard-cases | multi-goal collection with random values: exact belief graph over (moves left, collected set, belief), Q* for every value setting |
+| `mazebelief`, `mazegraph`, `mazemodel`, `mazeppo`, `mazemeasure` | maze-belief to maze-occupancy | aliased maze with a hidden location: exact filter and solver, belief graph, tokens and transformer, vectorised environment and PPO, decoders and cross-goal patches |
+| `plotting`, `style` | all | shared figure style (the representation geometry study, the hidden-goal to K/V-dropout experiments) |

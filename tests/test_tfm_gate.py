@@ -1,4 +1,4 @@
-"""The gated plain transformer: open equals ungated, closed equals the round-16 mask (self and the
+"""The gated plain transformer: open equals ungated, closed equals the K/V-dropout mask (self and the
 previous position visible), forward_query's own gate agrees with the full forward."""
 import numpy as np
 import torch

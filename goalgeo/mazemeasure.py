@@ -1,4 +1,4 @@
-"""Round 18: fixed histories, decoders of the exact location posterior, and interventions.
+"""The maze-belief experiment: fixed histories, decoders of the exact location posterior, and interventions.
 
 Bank. Histories from an epsilon-greedy solver (never from a model under study), replayed unchanged at every
 checkpoint. Decoders are fitted on histories whose prefix evidence (the tokens before the goal) hashes to the fit

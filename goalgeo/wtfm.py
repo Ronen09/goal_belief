@@ -1,4 +1,4 @@
-"""TASK13 (round 14): a windowed transformer with an optional recurrent carry.
+"""TASK13 (window carry): a windowed transformer with an optional recurrent carry.
 
 Each position attends only to the last `window` positions (itself included) in every layer, with a
 learned per-head relative-position bias and no absolute positions, so nothing in the network

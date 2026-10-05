@@ -1,4 +1,4 @@
-"""Round 18: the maze task vectorised on the GPU, with exact bookkeeping from the belief graph, and PPO.
+"""The maze-belief experiment: the maze task vectorised on the GPU, with exact bookkeeping from the belief graph, and PPO.
 
 Every environment carries its true cell and the node of the belief graph its history has reached, so the exact
 posterior, action values and optimal actions of every decision are lookups. Regret is exact given the trajectory:

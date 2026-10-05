@@ -1,4 +1,4 @@
-"""Round 17: navigate, investigate, commit. The environment and its exact belief-state solver.
+"""The navigate-commit experiment: navigate, investigate, commit. The environment and its exact belief-state solver.
 
 An n x n grid (n = 5). One of the four corners holds a hidden reward, G uniform. G = 2 * tb + lr
 with lr in {0 = left, 1 = right} and tb in {0 = top, 1 = bottom}; cells are row * n + col with row 0

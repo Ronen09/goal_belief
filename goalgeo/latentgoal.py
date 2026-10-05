@@ -1,4 +1,4 @@
-"""TASK11 (round 12): a latent goal G, noisy evidence about it, and the exact Bayesian filter.
+"""TASK11 (hidden goal): a latent goal G, noisy evidence about it, and the exact Bayesian filter.
 
 An episode samples G ~ prior over K goals and emits T observation tokens. Two evidence
 processes:

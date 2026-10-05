@@ -1,4 +1,4 @@
-"""Round 23: next-symbol prediction as an auxiliary objective for the maze transformer.
+"""The observation-prediction experiment: next-symbol prediction as an auxiliary objective for the maze transformer.
 
 The head reads the final residual stream and gives, at every token, a distribution over the next symbol for each of
 the four moves. The target at a token is the symbol held by the next token, for the move that token holds, wherever
@@ -17,7 +17,7 @@ class NetAux(MM.Net):
     """mazemodel.Net with the prediction head. Without aux=True it behaves exactly as mazemodel.Net."""
 
     def __init__(self, n_sym=3, n_goals=3, H=12, max_prefix=4, **kw):
-        super().__init__(n_sym, n_goals, H, max_prefix, **kw)             # the shared parameters are initialised first, as in round 18
+        super().__init__(n_sym, n_goals, H, max_prefix, **kw)             # the shared parameters are initialised first, as in the maze-belief experiment
         self.n_sym = n_sym
         self.obs = nn.Linear(self.d, 4 * n_sym)
         nn.init.normal_(self.obs.weight, std=0.01); nn.init.zeros_(self.obs.bias)

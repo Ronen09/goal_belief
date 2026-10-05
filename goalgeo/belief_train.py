@@ -1,6 +1,6 @@
 """TASK11: training for the hidden-goal round.
 
-Transformers: the round-11 stacked trainer's model (`tfm_batched.BatchedTransformer`), with a
+Transformers: the implementation-freedom stacked trainer's model (`tfm_batched.BatchedTransformer`), with a
 per-model output mask so that models with different objectives (output sizes K, K+1, K+2) share
 one stack; the unused logits are removed from the softmax, not trained down.
 GRUs: `seqmodels.SeqNet`, one CPU process per model."""

@@ -1,5 +1,5 @@
-"""TASK14 (round 15): prior or recomputation? Belief transplants through the K/V cache of a
-next-token transformer (rounds/r15_prior_vs_recompute/THEORY.md).
+"""TASK14 (prior vs recompute): prior or recomputation? Belief transplants through the K/V cache of a
+next-token transformer (studies/2_belief_state/prior_vs_recompute/THEORY.md).
 
 Position t+1 of a pre-LN causal transformer reads positions s <= t only through keys and values
 computed from their residual streams res_i(s), one per block i. `forward_query` computes position
@@ -163,7 +163,7 @@ def forward_query_g(net, src, tok, pos, visible=None, gate="open"):
 
 @torch.no_grad()
 def forward_query(net, src, tok, pos, visible=None, gate="open"):
-    """As forward_query_g without the gate decisions (rounds 15-16 and test_beliefprobe unpack four values)."""
+    """As forward_query_g without the gate decisions (the prior-vs-recompute to K/V-dropout experiments and test_beliefprobe unpack four values)."""
     return forward_query_g(net, src, tok, pos, visible, gate)[:4]
 
 

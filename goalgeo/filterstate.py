@@ -1,5 +1,5 @@
-"""TASK12 (round 13): the full filter state of the channel environment
-(rounds/r13_filter_state/THEORY.md).
+"""TASK12 (filter state): the full filter state of the channel environment
+(studies/2_belief_state/filter_state/THEORY.md).
 
 Coordinates of the joint filter α(g, c) = P(G = g, c_t = c | history), K goals x {off, on}:
     y_g = log b(g) / b(K)             goal block (K-1)
@@ -43,7 +43,7 @@ def joint_from(y, l):
 
 # ---- recoverability -----------------------------------------------------------------------
 class FullEval:
-    """The round-12 channel evaluation set with the full-state coordinates of every state."""
+    """The hidden-goal channel evaluation set with the full-state coordinates of every state."""
 
     def __init__(self, K: int = 4, n: int = 8000, seed: int = 12345):
         self.E = E = BP.EvalSet("channel", K, n=n, seed=seed)

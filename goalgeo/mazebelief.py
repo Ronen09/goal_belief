@@ -1,4 +1,4 @@
-"""Round 18: a small aliased maze with a hidden location, its exact Bayesian filter and its exact solver.
+"""The maze-belief experiment: a small aliased maze with a hidden location, its exact Bayesian filter and its exact solver.
 
 World. n traversable cells inside a rows x cols box; moves N, S, E, W are deterministic and a move into a wall
 leaves the agent in place. Each cell emits a symbol. Ordinary symbols come in sibling pairs (0, 1), (2, 3), ...:
@@ -233,7 +233,7 @@ def open_loop_policy(maze, goal):
 
 
 def cross_maze(eps=0.4, gamma=0.9, H=12, starts=4):
-    """The round-18 maze. Left arm: symbol a; right arm: symbol b; a landmark above the left arm; goals G1 (centre),
+    """The maze-belief maze. Left arm: symbol a; right arm: symbol b; a landmark above the left arm; goals G1 (centre),
     G2 (below the right arm's first cell) and G3 (right end)."""
     lay = ["..L...b....",
            ".aaaa1bbbb3",

@@ -1,4 +1,4 @@
-"""TASK11 part 2: causal tests of the decoded posterior (rounds/r12_hidden_goal/causal/THEORY.md).
+"""TASK11 part 2: causal tests of the decoded posterior (studies/2_belief_state/hidden_goal/causal/THEORY.md).
 
 A. posterior transplant: move A's state at t to B's decoded belief (or swap in B's state) and
    compare the whole future with genuine-B runs and with Bayes targets.

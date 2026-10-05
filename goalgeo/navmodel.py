@@ -1,4 +1,4 @@
-"""Round 17: token format and the causal transformer for navigate / investigate / commit.
+"""The navigate-commit experiment: token format and the causal transformer for navigate / investigate / commit.
 
 Sequence.  [CFG_H] [CFG_V] [DEC_0] [EVT_0] [DEC_1] [EVT_1] ...
   CFG_H, CFG_V   one public record per station: its cell and its reliability (a number).

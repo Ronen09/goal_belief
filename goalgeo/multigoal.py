@@ -1,4 +1,4 @@
-"""Multi-goal collection in the round-18 maze: fixed goal cells, a value per goal drawn every episode and shown at the
+"""Multi-goal collection in the maze-belief maze: fixed goal cells, a value per goal drawn every episode and shown at the
 reveal; the agent collects as much discounted value as it can in H moves. Exact solver.
 
 Picking up a goal is observed (whatever its value), so the belief over location depends on which goals have been
@@ -6,7 +6,7 @@ collected but not on their values: one belief graph serves every value setting. 
 collects it (reward = its value) and reveals the location exactly; entering any other cell rules out the uncollected
 goal cells. Q* for every value setting comes from one backward induction over the shared graph.
 
-Nodes: prefix nodes (goal-free filter, as round 18) and decision nodes keyed by (moves left k, collected mask C, belief).
+Nodes: prefix nodes (goal-free filter, as the maze-belief experiment) and decision nodes keyed by (moves left k, collected mask C, belief).
 """
 
 from __future__ import annotations

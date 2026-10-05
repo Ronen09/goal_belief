@@ -1,4 +1,4 @@
-"""Round 17: the vectorised environment on the GPU, exact regret bookkeeping, and PPO.
+"""The navigate-commit experiment: the vectorised environment on the GPU, exact regret bookkeeping, and PPO.
 
 Every environment runs one episode of at most H actions, so a rollout is a batch of complete
 episodes and the policy is evaluated on whole token sequences. Regret is exact given the sampled

@@ -1,9 +1,9 @@
-"""Round 26: prediction-only backbones for the maze task, and small goal-conditioned heads on frozen representations.
+"""The predictive-transfer experiment: prediction-only backbones for the maze task, and small goal-conditioned heads on frozen representations.
 
 Predictor. mazemodel.Net with a prediction head, trained only on goal-free random walks (no goal token, no reward).
 At every token the head gives, for each supplied move sequence of length k (k = 1: the four moves; k = 2: the
 sixteen move pairs), a distribution over the symbols that follow (k = 2: the joint pair, nine values). Targets are
-sampled by the simulator from the true cell for every supplied sequence (round 25's balanced targets), so every
+sampled by the simulator from the true cell for every supplied sequence (the balanced-prediction experiment's balanced targets), so every
 candidate is covered at every token. The posterior, the cell and the exact predictive distribution are never given.
 
 Heads. Many small MLPs trained side by side (one per backbone, input site and head seed) on precomputed features: the
@@ -42,7 +42,7 @@ def predictive(t: P.Tables, belief, k):
 
 class NetPred(MM.Net):
     """mazemodel.Net with a k-step prediction head. The shared parameters are initialised first, so a seed gives
-    the same backbone as mazemodel.Net and mazeaux.NetAux (round 23's models)."""
+    the same backbone as mazemodel.Net and mazeaux.NetAux (the observation-prediction experiment's models)."""
 
     def __init__(self, n_sym=3, n_goals=3, H=12, max_prefix=4, k=1, **kw):
         super().__init__(n_sym, n_goals, H, max_prefix, **kw)

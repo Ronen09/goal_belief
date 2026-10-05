@@ -1,4 +1,4 @@
-"""Round 18: the maze filter and solver against computations that use no belief state."""
+"""The maze-belief experiment: the maze filter and solver against computations that use no belief state."""
 
 import itertools
 

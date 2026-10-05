@@ -1,4 +1,4 @@
-"""Round 17: matched pairs from the dense bank and interventions on components at the decision token.
+"""The navigate-commit experiment: matched pairs from the dense bank and interventions on components at the decision token.
 
 A pair is a recipient decision and a donor decision at the same token position (same remaining horizon).
 Donor kinds:
