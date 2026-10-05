@@ -60,30 +60,6 @@ uv pip install --python .venv/bin/python pytest
 Trained models are committed, so experiments that reuse another's models and every `--tables` rebuild run without
 retraining.
 
-## Earlier names
-
-Until October 2026 the experiments were numbered rounds in `rounds/rNN_<name>/`; commit messages before then use those
-numbers. Two lines of work both used 17: the read gate (now `read_cost`) and the navigate-and-commit agent
-(`navigate_commit`).
-
-| round | experiment | round | experiment | round | experiment |
-|---|---|---|---|---|---|
-| 1 | [occupancy](studies/1_representation_geometry/occupancy/) | 2 | [policy_quotient](studies/1_representation_geometry/policy_quotient/) | 3 | [supervision](studies/1_representation_geometry/supervision/) |
-| 4 | [hmm_objectives](studies/1_representation_geometry/hmm_objectives/) | 5 | [prominence](studies/1_representation_geometry/prominence/) | 6 | [readout_scale](studies/1_representation_geometry/readout_scale/) |
-| 7 | [allocation](studies/1_representation_geometry/allocation/) | 8 | [invariants](studies/1_representation_geometry/invariants/) | 9 | [interventions](studies/1_representation_geometry/interventions/) |
-| 10 | [transformer](studies/1_representation_geometry/transformer/) | 11 | [implementation_freedom](studies/1_representation_geometry/implementation_freedom/) | 12 | [hidden_goal](studies/2_belief_state/hidden_goal/) |
-| 13 | [filter_state](studies/2_belief_state/filter_state/) | 14 | [window_carry](studies/2_belief_state/window_carry/) | 15 | [prior_vs_recompute](studies/2_belief_state/prior_vs_recompute/) |
-| 16 | [kv_dropout](studies/2_belief_state/kv_dropout/) | 17 (read gate) | [read_cost](studies/2_belief_state/read_cost/) | 17 (agent) | [navigate_commit](studies/3_reward_trained_agents/navigate_commit/) |
-| 18 | [maze_belief](studies/3_reward_trained_agents/maze_belief/) | 19 | [maze_occupancy](studies/3_reward_trained_agents/maze_occupancy/) | 20 | [belief_edit](studies/3_reward_trained_agents/belief_edit/) |
-| 21 | [pattern_specificity](studies/3_reward_trained_agents/pattern_specificity/) | 22 | [pair_types](studies/3_reward_trained_agents/pair_types/) | 23 | [obs_prediction](studies/3_reward_trained_agents/obs_prediction/) |
-| 24 | [head_consistency](studies/3_reward_trained_agents/head_consistency/) | 25 | [balanced_prediction](studies/3_reward_trained_agents/balanced_prediction/) | 26 | [predictive_transfer](studies/4_predictive_pretraining/predictive_transfer/) |
-| 27 | [belief_encoding_edit](studies/4_predictive_pretraining/belief_encoding_edit/) | 28 | [policy_belief_edit](studies/4_predictive_pretraining/policy_belief_edit/) | 29 | [goal_route_selection](studies/5_goal_belief_mechanism/goal_route_selection/) |
-| 30 | [goal_swap_components](studies/5_goal_belief_mechanism/goal_swap_components/) | 31 | [cross_history_mlp](studies/5_goal_belief_mechanism/cross_history_mlp/) | 32 | [direct_belief_edit](studies/5_goal_belief_mechanism/direct_belief_edit/) |
-| 33 | [attention_belief_edit](studies/5_goal_belief_mechanism/attention_belief_edit/) | 34 | [nonlinear_belief_edit](studies/5_goal_belief_mechanism/nonlinear_belief_edit/) | 35 | [block0_steps](studies/5_goal_belief_mechanism/block0_steps/) |
-| 36 | [query_swap](studies/5_goal_belief_mechanism/query_swap/) | 37 | [self_value](studies/5_goal_belief_mechanism/self_value/) | 38 | [self_value_interaction](studies/5_goal_belief_mechanism/self_value_interaction/) |
-| 39 | [mlp_bilinear](studies/5_goal_belief_mechanism/mlp_bilinear/) | 40 | [mlp_depth](studies/5_goal_belief_mechanism/mlp_depth/) | 41 | [interaction_removal](studies/5_goal_belief_mechanism/interaction_removal/) |
-| 42 | [additive_code](studies/5_goal_belief_mechanism/additive_code/) | 43 | [what_is_H](studies/5_goal_belief_mechanism/what_is_H/) | 44 | [H_mixture](studies/5_goal_belief_mechanism/H_mixture/) |
-| 45 | [hard_cases](studies/6_hard_cases_and_tasks/hard_cases/) |  |  |  |  |
 
 ## Library
 
