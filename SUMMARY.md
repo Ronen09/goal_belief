@@ -695,3 +695,25 @@ edits (the same 4-number difference mapped into the goal token's state under eve
 - Goal weights are close to uniform (the training frequency): free weights add 0.029 R², their deviations reverse
   between quantities (G2 under-weighted in optimal counts, over-weighted in reachability), and equal weights edit as well.
   5 of 5 expectations held.
+
+## Round 45: the additively impossible cases, training on them, and harder tasks
+
+**Round 45 — exploratory, not pre-registered (`rounds/r45_hard_cases/REPORT.md`).** Round 23's reward models and round
+42's additive code.
+
+- Unsolvable posteriors are a two-goal bias inversion (binding cycle of length 2 in > 99 %): one goal must move where
+  another goal's fixed bias points harder. At the first decision they are uncertain, multimodal beliefs where the right
+  move localises, near-ties (Q* margin 0.006 against 0.037), failed mostly under G2, where the policy follows its goal
+  bias.
+- Replaying post-reveal decisions under all three goals gives 9 204 distinct unsolvable posterior triples (≈ 20 % of
+  goal-dependent cells); the bias inversion, the near-ties and failing like the additive code carry over, the
+  uncertainty does not.
+- Supervision towards the optimal moves teaches the interaction (unsolvable cells 0.49 → 0.86–0.91 on new posteriors;
+  additive share 0.47 → 0.32). Fine-tuning breaks the endgame (regret 0.006 → 0.034); retraining from scratch with PPO
+  plus the supervision does not (regret 0.0015 in every seed). Drawing half the supervision from the hard cases changes
+  nothing measurable beyond seed noise, apart from +4–6 points on those cells.
+- A model-free screen (the additive code fitted to the solver's own Q*) finds no 3-goal placement or layout that makes
+  the additive shortcut more than ≈ 1.5× as costly. A multi-goal collection task with random goal values (exact solver
+  in `goalgeo/multigoal.py`) makes the value dependence 90 % non-additive, but the additive decision still mostly works,
+  and the belief matters only until the first pickup.
+- A matched-episode simulation (`aliased_corridor.html`) shows the policies against the Bayes-optimal solver.

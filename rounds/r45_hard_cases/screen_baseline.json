@@ -1,0 +1,38 @@
+{
+ "cross (r18), 3 goals": {
+  "goals": 3,
+  "nodes": 4127571,
+  "dep_share": 0.6367747559817551,
+  "additive_share": 0.16075666371236652,
+  "add_fail_dep": 0.2562880204704454,
+  "add_loss_per_decision": 0.014458152394638045,
+  "add_loss_where_fails": 0.08050288225027354,
+  "unsolvable_dep": 0.17965830980291492,
+  "v_star": 0.650448203086853,
+  "solver_success": 0.89065
+ },
+ "cross, goal = any non-start cell": {
+  "goals": 10,
+  "nodes": 14144142,
+  "dep_share": 0.9198566445349144,
+  "additive_share": 0.17153917854876466,
+  "add_fail_dep": 0.30162330750761157,
+  "add_loss_per_decision": 0.023971810662716204,
+  "add_loss_where_fails": 0.08619555192178066,
+  "unsolvable_dep": 0.5984801604000098,
+  "v_star": 0.6605333089828491,
+  "solver_success": 0.8866
+ },
+ "cross (r18), 3 goals, 8 moves": {
+  "goals": 3,
+  "nodes": 538519,
+  "dep_share": 0.5654797334360374,
+  "additive_share": 0.10854861653986525,
+  "add_fail_dep": 0.3069790720713283,
+  "add_loss_per_decision": 0.019677804447671164,
+  "add_loss_where_fails": 0.09704602164125814,
+  "unsolvable_dep": 0.20002270288120202,
+  "v_star": 0.5814527273178101,
+  "solver_success": 0.6445500000000001
+ }
+}

@@ -34,7 +34,7 @@ rounds/rNN_<name>/    everything for one round:
     tables.md           generated numbers;  *.png figures;  *.json per-model data;  models/ checkpoints
     run.py              training + measurement;  followup.py / tables.py / … further steps
     plots.py            the round's figures
-tests/                114 tests (exact identities, filter vs brute force, invariances)
+tests/                132 tests (exact identities, filter vs brute force, invariances)
 ```
 
 ## Rounds
@@ -85,6 +85,7 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | r42 | Is the decision a history profile plus a fixed goal bias, and where does that fail? | [report](rounds/r42_additive_code/REPORT.md) | 20 s GPU |
 | r43 | What is the history profile H: the best value across goals, or the average usefulness? | [report](rounds/r43_what_is_H/REPORT.md) | 3 min GPU |
 | r44 | Is H a mixture of usefulness and reachability, and how does it weight the goals? | [report](rounds/r44_H_mixture/REPORT.md) | 1 min GPU |
+| r45 | Exploratory: what the additively impossible cases are, training on them, and harder tasks (multi-goal collection) | [report](rounds/r45_hard_cases/REPORT.md), [simulation](rounds/r45_hard_cases/aliased_corridor.html) | 3.5 h GPU |
 
 ## Library
 
@@ -103,5 +104,6 @@ tests/                114 tests (exact identities, filter vs brute force, invari
 | `mazepred` | r26–r27 | prediction-only backbone (k-step heads, random-walk targets), exact k-step predictions, small goal-conditioned heads trained side by side on frozen features |
 | `mazeaux` | r23–r25 | next-symbol prediction head, its loss against the exact predictive distribution, PPO update with the auxiliary term |
 | `mazeocc` | r19 | exact occupancy under the solver's policy; a model's own occupancy by rollouts |
+| `multigoal` | r45 | multi-goal collection with random values: exact belief graph over (moves left, collected set, belief), Q* for every value setting |
 | `mazebelief`, `mazegraph`, `mazemodel`, `mazeppo`, `mazemeasure` | r18–r19 | aliased maze with a hidden location: exact filter and solver, belief graph, tokens and transformer, vectorised environment and PPO, decoders and cross-goal patches |
 | `plotting`, `style` | all | shared figure style (rounds 1–11, rounds 12–16) |

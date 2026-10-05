@@ -155,6 +155,11 @@ ROUNDS = [
           [Step("run.py"), Step("run.py", ("--untrained",)), Step("tables.py", tables=True)], needs=("r26", "r27", "r42")),
     Round("r44", "r44_H_mixture", "H as a mixture of P(optimal) and reachability; goal weights inside H against uniform training frequency", "1 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("r26", "r27", "r42", "r43")),
+    Round("r45", "r45_hard_cases", "Exploratory: hallmarks of the additively unsolvable cases, more of them after the reveal, fine-tuning and retraining on them, a matched-episode simulation, and a model-free screen of harder tasks (multi-goal collection)", "3.5 h GPU",
+          [Step("hallmarks.py"), Step("hallmark_beliefs.py"), Step("later_cases.py"), Step("finetune.py"), Step("finetune_diag.py"),
+           Step("train_cases.py", ("--arm", "targeted")), Step("train_cases.py", ("--arm", "control")), Step("eval_scratch.py"), Step("policy_diff.py"),
+           Step("sim_data.py", ("r23", "0")), Step("sim_data.py", ("targeted", "0")), Step("sim_data.py", ("control", "0")), Step("build_sim.py", tables=True),
+           Step("hardness.py"), Step("screen.py", ("baseline",)), Step("screen.py", ("search",)), Step("screen_multi.py")], needs=("r23", "r42")),
 ]
 BY_KEY = {r.key: r for r in ROUNDS}
 

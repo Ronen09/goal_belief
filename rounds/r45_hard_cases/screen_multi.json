@@ -1,0 +1,7142 @@
+[
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ]
+  ],
+  "nodes": 314926,
+  "solver_return": 3.015251636505127,
+  "decisions": 96000,
+  "share_uncertain": 0.2978020833333333,
+  "qmdp_loss": 0.011025893436434368,
+  "qmdp_loss_uncertain": 0.03702423204371259,
+  "map_loss": 0.016764893047433966,
+  "map_loss_uncertain": 0.05629541895671975,
+  "value_dependent": 0.3530729166666667,
+  "additive_share": 0.10024590890189689,
+  "add_fail": 0.1086497802734375,
+  "add_loss": 0.027798911552600277,
+  "add_loss_uncertain": 0.03461900444285428,
+  "add_fail_uncertain": 0.18459323297422087
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ]
+  ],
+  "nodes": 70814,
+  "solver_return": 3.0496914386749268,
+  "decisions": 96000,
+  "share_uncertain": 0.2803645833333333,
+  "qmdp_loss": 0.007817910901270807,
+  "qmdp_loss_uncertain": 0.027884802025710476,
+  "map_loss": 0.02031744175000737,
+  "map_loss_uncertain": 0.07246793267697223,
+  "value_dependent": 0.35734375,
+  "additive_share": 0.09337950111335447,
+  "add_fail": 0.10162479654947916,
+  "add_loss": 0.027586631510660292,
+  "add_loss_uncertain": 0.022290486921456354,
+  "add_fail_uncertain": 0.14888813742336987
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 41394,
+  "solver_return": 3.1999893188476562,
+  "decisions": 96000,
+  "share_uncertain": 0.23070833333333332,
+  "qmdp_loss": 0.004561230005075534,
+  "qmdp_loss_uncertain": 0.01977054724974044,
+  "map_loss": 0.019775884022004902,
+  "map_loss_uncertain": 0.08571811748746933,
+  "value_dependent": 0.27846875,
+  "additive_share": 0.09307035318499324,
+  "add_fail": 0.07694917805989583,
+  "add_loss": 0.02143389722831902,
+  "add_loss_uncertain": 0.014483586770908318,
+  "add_fail_uncertain": 0.11168333483836013
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 175863,
+  "solver_return": 3.1905224323272705,
+  "decisions": 96000,
+  "share_uncertain": 0.17701041666666667,
+  "qmdp_loss": 0.003920268243489166,
+  "qmdp_loss_uncertain": 0.022147104771079854,
+  "map_loss": 0.01414758929113547,
+  "map_loss_uncertain": 0.07992517930612635,
+  "value_dependent": 0.31054166666666666,
+  "additive_share": 0.10339768914339531,
+  "add_fail": 0.0981435546875,
+  "add_loss": 0.030837695257767563,
+  "add_loss_uncertain": 0.01886037335559016,
+  "add_fail_uncertain": 0.13904323655328665
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 232056,
+  "solver_return": 2.8221659660339355,
+  "decisions": 96000,
+  "share_uncertain": 0.17396875,
+  "qmdp_loss": 0.0036995093564813333,
+  "qmdp_loss_uncertain": 0.021265367236824623,
+  "map_loss": 0.0096101797108228,
+  "map_loss_uncertain": 0.055240839005986996,
+  "value_dependent": 0.37815624999999997,
+  "additive_share": 0.1218738794882731,
+  "add_fail": 0.12631123860677082,
+  "add_loss": 0.037381119061921785,
+  "add_loss_uncertain": 0.03849839940669775,
+  "add_fail_uncertain": 0.2042121355008682
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 162480,
+  "solver_return": 2.7769429683685303,
+  "decisions": 96000,
+  "share_uncertain": 0.3114375,
+  "qmdp_loss": 0.010226017074349026,
+  "qmdp_loss_uncertain": 0.03283489327505206,
+  "map_loss": 0.01616098771430552,
+  "map_loss_uncertain": 0.051891592098913975,
+  "value_dependent": 0.3932395833333333,
+  "additive_share": 0.10803148886184388,
+  "add_fail": 0.11293412272135417,
+  "add_loss": 0.029760601104860597,
+  "add_loss_uncertain": 0.03102413078095101,
+  "add_fail_uncertain": 0.15623628148203894
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 190894,
+  "solver_return": 2.672227144241333,
+  "decisions": 96000,
+  "share_uncertain": 0.2998645833333333,
+  "qmdp_loss": 0.011823863554435472,
+  "qmdp_loss_uncertain": 0.039430677084302125,
+  "map_loss": 0.017152408284678435,
+  "map_loss_uncertain": 0.05720051395870114,
+  "value_dependent": 0.39003125,
+  "additive_share": 0.10631998773473827,
+  "add_fail": 0.1085740966796875,
+  "add_loss": 0.02836834989705619,
+  "add_loss_uncertain": 0.02569924876497657,
+  "add_fail_uncertain": 0.15415337760968492
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ]
+  ],
+  "nodes": 95049,
+  "solver_return": 3.005607843399048,
+  "decisions": 96000,
+  "share_uncertain": 0.29396875,
+  "qmdp_loss": 0.007588616735301912,
+  "qmdp_loss_uncertain": 0.02581436542252165,
+  "map_loss": 0.029177679474155106,
+  "map_loss_uncertain": 0.09925435773072853,
+  "value_dependent": 0.36404166666666665,
+  "additive_share": 0.0779662364803827,
+  "add_fail": 0.09432303873697917,
+  "add_loss": 0.02389909561203933,
+  "add_loss_uncertain": 0.024066003852137148,
+  "add_fail_uncertain": 0.14731854160022675
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 39722,
+  "solver_return": 3.1590328216552734,
+  "decisions": 96000,
+  "share_uncertain": 0.24038541666666666,
+  "qmdp_loss": 0.005107510783709585,
+  "qmdp_loss_uncertain": 0.02124717403631842,
+  "map_loss": 0.028341502097745736,
+  "map_loss_uncertain": 0.11790025572576983,
+  "value_dependent": 0.2859895833333333,
+  "additive_share": 0.08403041088431051,
+  "add_fail": 0.08127766927083332,
+  "add_loss": 0.02271449686862229,
+  "add_loss_uncertain": 0.017879895218561915,
+  "add_fail_uncertain": 0.12512339802617323
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 136596,
+  "solver_return": 3.149761438369751,
+  "decisions": 96000,
+  "share_uncertain": 0.18685416666666665,
+  "qmdp_loss": 0.004351534172892571,
+  "qmdp_loss_uncertain": 0.02328839784801465,
+  "map_loss": 0.02007889480299006,
+  "map_loss_uncertain": 0.10745757058128251,
+  "value_dependent": 0.3196458333333333,
+  "additive_share": 0.09942728506453868,
+  "add_fail": 0.09963602701822917,
+  "add_loss": 0.03195785009023355,
+  "add_loss_uncertain": 0.025033740890943394,
+  "add_fail_uncertain": 0.15286594798751255
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 221124,
+  "solver_return": 2.7914681434631348,
+  "decisions": 96000,
+  "share_uncertain": 0.19720833333333332,
+  "qmdp_loss": 0.004322934727184475,
+  "qmdp_loss_uncertain": 0.02192064936666541,
+  "map_loss": 0.011463821288353453,
+  "map_loss_uncertain": 0.05813051149809484,
+  "value_dependent": 0.3893020833333333,
+  "additive_share": 0.10945399068433104,
+  "add_fail": 0.12770340983072917,
+  "add_loss": 0.03904384782682954,
+  "add_loss_uncertain": 0.04748831269001316,
+  "add_fail_uncertain": 0.22823831673885486
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 150326,
+  "solver_return": 2.713425397872925,
+  "decisions": 96000,
+  "share_uncertain": 0.31347916666666664,
+  "qmdp_loss": 0.009097217842626074,
+  "qmdp_loss_uncertain": 0.029020167239054404,
+  "map_loss": 0.021523617838509382,
+  "map_loss_uncertain": 0.06866044103465477,
+  "value_dependent": 0.40994791666666663,
+  "additive_share": 0.09740056066463865,
+  "add_fail": 0.11950431315104167,
+  "add_loss": 0.03405175853363344,
+  "add_loss_uncertain": 0.03191586817306591,
+  "add_fail_uncertain": 0.16168440449092844
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 176542,
+  "solver_return": 2.616452932357788,
+  "decisions": 96000,
+  "share_uncertain": 0.31790625,
+  "qmdp_loss": 0.011373755948307614,
+  "qmdp_loss_uncertain": 0.03577707562625023,
+  "map_loss": 0.024391179297119377,
+  "map_loss_uncertain": 0.07672444092281727,
+  "value_dependent": 0.39315625,
+  "additive_share": 0.08702471131269829,
+  "add_fail": 0.10551778157552083,
+  "add_loss": 0.028912810049591675,
+  "add_loss_uncertain": 0.02720183536276436,
+  "add_fail_uncertain": 0.157876164233756
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 54000,
+  "solver_return": 3.1621334552764893,
+  "decisions": 96000,
+  "share_uncertain": 0.2515833333333333,
+  "qmdp_loss": 0.005449142208943764,
+  "qmdp_loss_uncertain": 0.021659392682121623,
+  "map_loss": 0.03445423785690218,
+  "map_loss_uncertain": 0.13694960393601396,
+  "value_dependent": 0.2807708333333333,
+  "additive_share": 0.08199264037908383,
+  "add_fail": 0.07632694498697916,
+  "add_loss": 0.019676366547289794,
+  "add_loss_uncertain": 0.016874803605141552,
+  "add_fail_uncertain": 0.10863602781343161
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 56988,
+  "solver_return": 3.1516127586364746,
+  "decisions": 96000,
+  "share_uncertain": 0.19378125,
+  "qmdp_loss": 0.0041649436317384245,
+  "qmdp_loss_uncertain": 0.021493016644997514,
+  "map_loss": 0.023438951883775493,
+  "map_loss_uncertain": 0.12095572654101207,
+  "value_dependent": 0.31919791666666664,
+  "additive_share": 0.09800689089938164,
+  "add_fail": 0.09296219889322917,
+  "add_loss": 0.027667500325609808,
+  "add_loss_uncertain": 0.023639639987029372,
+  "add_fail_uncertain": 0.14315084428586788
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 87563,
+  "solver_return": 2.8014137744903564,
+  "decisions": 96000,
+  "share_uncertain": 0.20614583333333333,
+  "qmdp_loss": 0.0035922402770568926,
+  "qmdp_loss_uncertain": 0.01742572342584445,
+  "map_loss": 0.013518458108107248,
+  "map_loss_uncertain": 0.065577159089353,
+  "value_dependent": 0.39397916666666666,
+  "additive_share": 0.09911680384570087,
+  "add_fail": 0.12183536783854167,
+  "add_loss": 0.0353544468560176,
+  "add_loss_uncertain": 0.04929294753777938,
+  "add_fail_uncertain": 0.24199761558868116
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 47019,
+  "solver_return": 2.738072156906128,
+  "decisions": 96000,
+  "share_uncertain": 0.29634375,
+  "qmdp_loss": 0.006746609626027445,
+  "qmdp_loss_uncertain": 0.022766161344814746,
+  "map_loss": 0.026370185257013266,
+  "map_loss_uncertain": 0.0889851237186992,
+  "value_dependent": 0.41472916666666665,
+  "additive_share": 0.09863299205475995,
+  "add_fail": 0.11232645670572916,
+  "add_loss": 0.03101120139577218,
+  "add_loss_uncertain": 0.01879211792269747,
+  "add_fail_uncertain": 0.12806936315863474
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 67386,
+  "solver_return": 2.671344518661499,
+  "decisions": 96000,
+  "share_uncertain": 0.3160208333333333,
+  "qmdp_loss": 0.009436837369576095,
+  "qmdp_loss_uncertain": 0.029861440684267427,
+  "map_loss": 0.03453537206817418,
+  "map_loss_uncertain": 0.10928194734473998,
+  "value_dependent": 0.3998333333333333,
+  "additive_share": 0.08102188215285311,
+  "add_fail": 0.09650447591145833,
+  "add_loss": 0.023927879746595066,
+  "add_loss_uncertain": 0.02278194658726007,
+  "add_fail_uncertain": 0.14885029706968156
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 96140,
+  "solver_return": 3.244077205657959,
+  "decisions": 96000,
+  "share_uncertain": 0.19126041666666665,
+  "qmdp_loss": 0.004151347769113878,
+  "qmdp_loss_uncertain": 0.02170521136293951,
+  "map_loss": 0.027740616457847256,
+  "map_loss_uncertain": 0.14504107510230035,
+  "value_dependent": 0.29166666666666663,
+  "additive_share": 0.09995156068833633,
+  "add_fail": 0.08822188313802083,
+  "add_loss": 0.025503485923604026,
+  "add_loss_uncertain": 0.020288947354724488,
+  "add_fail_uncertain": 0.11938475232830456
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 90442,
+  "solver_return": 2.904155969619751,
+  "decisions": 96000,
+  "share_uncertain": 0.200125,
+  "qmdp_loss": 0.002867970113332073,
+  "qmdp_loss_uncertain": 0.014330893758061576,
+  "map_loss": 0.01357374548225198,
+  "map_loss_uncertain": 0.06782633595129034,
+  "value_dependent": 0.37946874999999997,
+  "additive_share": 0.10313683230269488,
+  "add_fail": 0.10815344238281249,
+  "add_loss": 0.030891056985042343,
+  "add_loss_uncertain": 0.04372314133007499,
+  "add_fail_uncertain": 0.22017204416510514
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 53258,
+  "solver_return": 2.9080376625061035,
+  "decisions": 96000,
+  "share_uncertain": 0.2331875,
+  "qmdp_loss": 0.0034550515046964086,
+  "qmdp_loss_uncertain": 0.014816623981544503,
+  "map_loss": 0.028445540379810456,
+  "map_loss_uncertain": 0.12198569983301188,
+  "value_dependent": 0.33299999999999996,
+  "additive_share": 0.10869981931126538,
+  "add_fail": 0.0924154052734375,
+  "add_loss": 0.028293318572394695,
+  "add_loss_uncertain": 0.011693167703921937,
+  "add_fail_uncertain": 0.0936936380438667
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 57362,
+  "solver_return": 2.8938913345336914,
+  "decisions": 96000,
+  "share_uncertain": 0.2627083333333333,
+  "qmdp_loss": 0.006438421265532573,
+  "qmdp_loss_uncertain": 0.024507868417570463,
+  "map_loss": 0.03646427954294874,
+  "map_loss_uncertain": 0.13880138128957492,
+  "value_dependent": 0.33166666666666667,
+  "additive_share": 0.09536625642028718,
+  "add_fail": 0.08209037272135417,
+  "add_loss": 0.021349968692610067,
+  "add_loss_uncertain": 0.01781835815980679,
+  "add_fail_uncertain": 0.10797528623116574
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 417814,
+  "solver_return": 2.856494903564453,
+  "decisions": 96000,
+  "share_uncertain": 0.18411458333333333,
+  "qmdp_loss": 0.0025500144210333624,
+  "qmdp_loss_uncertain": 0.013850149047762534,
+  "map_loss": 0.01001663813771059,
+  "map_loss_uncertain": 0.0544043712147223,
+  "value_dependent": 0.39978125,
+  "additive_share": 0.11156522235851962,
+  "add_fail": 0.12442810058593749,
+  "add_loss": 0.03703471186176284,
+  "add_loss_uncertain": 0.04545038548058763,
+  "add_fail_uncertain": 0.23279747171145684
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 299059,
+  "solver_return": 2.893894672393799,
+  "decisions": 96000,
+  "share_uncertain": 0.17573958333333334,
+  "qmdp_loss": 0.0029634489994496108,
+  "qmdp_loss_uncertain": 0.01686272917711829,
+  "map_loss": 0.0205549856654834,
+  "map_loss_uncertain": 0.11696275406830695,
+  "value_dependent": 0.36004166666666665,
+  "additive_share": 0.12238230415898166,
+  "add_fail": 0.1181866455078125,
+  "add_loss": 0.039953771396479695,
+  "add_loss_uncertain": 0.014599875640133656,
+  "add_fail_uncertain": 0.11417011810206863
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 122431,
+  "solver_return": 2.828709602355957,
+  "decisions": 96000,
+  "share_uncertain": 0.20413541666666665,
+  "qmdp_loss": 0.005212549888528884,
+  "qmdp_loss_uncertain": 0.02553476497927095,
+  "map_loss": 0.026439903032345075,
+  "map_loss_uncertain": 0.12952139057534967,
+  "value_dependent": 0.3594791666666666,
+  "additive_share": 0.11581119335678525,
+  "add_fail": 0.10062939453125,
+  "add_loss": 0.02756515634630432,
+  "add_loss_uncertain": 0.02529265387956771,
+  "add_fail_uncertain": 0.14610614826248916
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 427054,
+  "solver_return": 2.5057926177978516,
+  "decisions": 96000,
+  "share_uncertain": 0.2061875,
+  "qmdp_loss": 0.005652159995399415,
+  "qmdp_loss_uncertain": 0.027412718983446695,
+  "map_loss": 0.012980440282262862,
+  "map_loss_uncertain": 0.06295454517011391,
+  "value_dependent": 0.40611458333333333,
+  "additive_share": 0.10371275709273786,
+  "add_fail": 0.13399157714843749,
+  "add_loss": 0.04194859344657088,
+  "add_loss_uncertain": 0.037756785124617595,
+  "add_fail_uncertain": 0.1910421481888451
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 285281,
+  "solver_return": 2.506300449371338,
+  "decisions": 96000,
+  "share_uncertain": 0.22548958333333333,
+  "qmdp_loss": 0.006581284748079876,
+  "qmdp_loss_uncertain": 0.029186646455197862,
+  "map_loss": 0.013659779385353128,
+  "map_loss_uncertain": 0.06057831667177439,
+  "value_dependent": 0.39425,
+  "additive_share": 0.10251666646378244,
+  "add_fail": 0.10200895182291667,
+  "add_loss": 0.030998991299940902,
+  "add_loss_uncertain": 0.04252695207997775,
+  "add_fail_uncertain": 0.20625801208019587
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 181372,
+  "solver_return": 2.4094862937927246,
+  "decisions": 96000,
+  "share_uncertain": 0.32868749999999997,
+  "qmdp_loss": 0.009539033220460017,
+  "qmdp_loss_uncertain": 0.029021588044753806,
+  "map_loss": 0.021174440974059204,
+  "map_loss_uncertain": 0.06442119330385002,
+  "value_dependent": 0.42676041666666664,
+  "additive_share": 0.10288843258108737,
+  "add_fail": 0.11197188313802083,
+  "add_loss": 0.035870656062796644,
+  "add_loss_uncertain": 0.019576641023340755,
+  "add_fail_uncertain": 0.11365758897445648
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ]
+  ],
+  "nodes": 92820,
+  "solver_return": 3.4546570777893066,
+  "decisions": 96000,
+  "share_uncertain": 0.2791875,
+  "qmdp_loss": 0.006301408172895511,
+  "qmdp_loss_uncertain": 0.022570524013057574,
+  "map_loss": 0.018272473810783896,
+  "map_loss_uncertain": 0.06544875329584562,
+  "value_dependent": 0.2003125,
+  "additive_share": 0.09650952631149101,
+  "add_fail": 0.0518575439453125,
+  "add_loss": 0.010428692745605038,
+  "add_loss_uncertain": 0.010270522525214909,
+  "add_fail_uncertain": 0.09855287152078203
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 33340,
+  "solver_return": 3.510316848754883,
+  "decisions": 96000,
+  "share_uncertain": 0.22346875,
+  "qmdp_loss": 0.004042104535425702,
+  "qmdp_loss_uncertain": 0.018088007989599003,
+  "map_loss": 0.015424415012821555,
+  "map_loss_uncertain": 0.0690226933869794,
+  "value_dependent": 0.20035416666666667,
+  "additive_share": 0.09501553793904849,
+  "add_fail": 0.05589473470052083,
+  "add_loss": 0.011889054759865264,
+  "add_loss_uncertain": 0.012438721240458521,
+  "add_fail_uncertain": 0.11022678937677714
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 162195,
+  "solver_return": 3.5441973209381104,
+  "decisions": 96000,
+  "share_uncertain": 0.1759375,
+  "qmdp_loss": 0.0036280332105234265,
+  "qmdp_loss_uncertain": 0.020621147910612727,
+  "map_loss": 0.011365259105029205,
+  "map_loss_uncertain": 0.06459827555256387,
+  "value_dependent": 0.20829166666666665,
+  "additive_share": 0.10318318365759593,
+  "add_fail": 0.057125284830729164,
+  "add_loss": 0.0124306399719203,
+  "add_loss_uncertain": 0.018577056669141185,
+  "add_fail_uncertain": 0.14092311463883955
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 211891,
+  "solver_return": 3.1961898803710938,
+  "decisions": 96000,
+  "share_uncertain": 0.17947916666666666,
+  "qmdp_loss": 0.0026181203086550037,
+  "qmdp_loss_uncertain": 0.014587321510788181,
+  "map_loss": 0.008800838082097471,
+  "map_loss_uncertain": 0.049035429824803085,
+  "value_dependent": 0.2933645833333333,
+  "additive_share": 0.15301248386093913,
+  "add_fail": 0.08194527180989583,
+  "add_loss": 0.020111726833469862,
+  "add_loss_uncertain": 0.03171120723992585,
+  "add_fail_uncertain": 0.1691437989698201
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 130361,
+  "solver_return": 3.2189762592315674,
+  "decisions": 96000,
+  "share_uncertain": 0.3193020833333333,
+  "qmdp_loss": 0.007625865810240308,
+  "qmdp_loss_uncertain": 0.023882919054678813,
+  "map_loss": 0.017464690907974728,
+  "map_loss_uncertain": 0.05469645147834058,
+  "value_dependent": 0.22964583333333333,
+  "additive_share": 0.10709225649963072,
+  "add_fail": 0.05924759928385417,
+  "add_loss": 0.013159529850471224,
+  "add_loss_uncertain": 0.0058171974096927525,
+  "add_fail_uncertain": 0.0649547709441164
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 292502,
+  "solver_return": 3.0080361366271973,
+  "decisions": 96000,
+  "share_uncertain": 0.2991979166666667,
+  "qmdp_loss": 0.01218324889211605,
+  "qmdp_loss_uncertain": 0.04071969826984376,
+  "map_loss": 0.01706929221190512,
+  "map_loss_uncertain": 0.057050170668261437,
+  "value_dependent": 0.35359375,
+  "additive_share": 0.09772461141597633,
+  "add_fail": 0.106572021484375,
+  "add_loss": 0.02744042639762646,
+  "add_loss_uncertain": 0.03600974917550217,
+  "add_fail_uncertain": 0.18245912465619887
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 29740,
+  "solver_return": 3.5024056434631348,
+  "decisions": 96000,
+  "share_uncertain": 0.22591666666666665,
+  "qmdp_loss": 0.004143851129338145,
+  "qmdp_loss_uncertain": 0.018342387883459148,
+  "map_loss": 0.016433635053535303,
+  "map_loss_uncertain": 0.07274202163128869,
+  "value_dependent": 0.19092708333333333,
+  "additive_share": 0.09037228087057936,
+  "add_fail": 0.05109309895833333,
+  "add_loss": 0.01116250978178501,
+  "add_loss_uncertain": 0.014214602051662605,
+  "add_fail_uncertain": 0.11752863046385098
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 34867,
+  "solver_return": 3.543459177017212,
+  "decisions": 96000,
+  "share_uncertain": 0.17683333333333331,
+  "qmdp_loss": 0.003443534900434315,
+  "qmdp_loss_uncertain": 0.019473335911975392,
+  "map_loss": 0.012019051908515392,
+  "map_loss_uncertain": 0.06796824830451684,
+  "value_dependent": 0.2065833333333333,
+  "additive_share": 0.10168072726534105,
+  "add_fail": 0.05636092122395833,
+  "add_loss": 0.013355580052692478,
+  "add_loss_uncertain": 0.01937145792065078,
+  "add_fail_uncertain": 0.14465182463477852
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 54583,
+  "solver_return": 3.177715539932251,
+  "decisions": 96000,
+  "share_uncertain": 0.17331249999999998,
+  "qmdp_loss": 0.001956466410929958,
+  "qmdp_loss_uncertain": 0.011288663027363624,
+  "map_loss": 0.008155760502132276,
+  "map_loss_uncertain": 0.047058120459472205,
+  "value_dependent": 0.31005208333333334,
+  "additive_share": 0.14880267754283982,
+  "add_fail": 0.08572932942708333,
+  "add_loss": 0.02150580525108565,
+  "add_loss_uncertain": 0.03542064865327261,
+  "add_fail_uncertain": 0.18665057023079698
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 27712,
+  "solver_return": 3.2138686180114746,
+  "decisions": 96000,
+  "share_uncertain": 0.2734583333333333,
+  "qmdp_loss": 0.005018351853825152,
+  "qmdp_loss_uncertain": 0.018351431432546646,
+  "map_loss": 0.016830611548037267,
+  "map_loss_uncertain": 0.061547261489089504,
+  "value_dependent": 0.26308333333333334,
+  "additive_share": 0.1027947652270409,
+  "add_fail": 0.06039017740885416,
+  "add_loss": 0.013332366034760885,
+  "add_loss_uncertain": 0.0066255646571825935,
+  "add_fail_uncertain": 0.06758874919053785
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 58963,
+  "solver_return": 3.03753662109375,
+  "decisions": 96000,
+  "share_uncertain": 0.28241666666666665,
+  "qmdp_loss": 0.00841256533873578,
+  "qmdp_loss_uncertain": 0.029787779305054395,
+  "map_loss": 0.019840093397845825,
+  "map_loss_uncertain": 0.07025114215820298,
+  "value_dependent": 0.35794791666666664,
+  "additive_share": 0.0914863808481221,
+  "add_fail": 0.10252099609375,
+  "add_loss": 0.027228201090331517,
+  "add_loss_uncertain": 0.024152301648246548,
+  "add_fail_uncertain": 0.1567962007137061
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 40576,
+  "solver_return": 3.568237543106079,
+  "decisions": 96000,
+  "share_uncertain": 0.16707291666666665,
+  "qmdp_loss": 0.003097694953593115,
+  "qmdp_loss_uncertain": 0.018540976092333628,
+  "map_loss": 0.01376946694869548,
+  "map_loss_uncertain": 0.08241591290446824,
+  "value_dependent": 0.19576041666666666,
+  "additive_share": 0.09518312160324571,
+  "add_fail": 0.04919441731770833,
+  "add_loss": 0.012060966591105398,
+  "add_loss_uncertain": 0.01676469034270288,
+  "add_fail_uncertain": 0.13168999197269157
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 41603,
+  "solver_return": 3.2017881870269775,
+  "decisions": 96000,
+  "share_uncertain": 0.15851041666666665,
+  "qmdp_loss": 0.0014594699380298456,
+  "qmdp_loss_uncertain": 0.00920740711381121,
+  "map_loss": 0.0072478467856223385,
+  "map_loss_uncertain": 0.04572473492933853,
+  "value_dependent": 0.31375,
+  "additive_share": 0.14598059933917495,
+  "add_fail": 0.0890777587890625,
+  "add_loss": 0.022253001670288083,
+  "add_loss_uncertain": 0.03741959217677689,
+  "add_fail_uncertain": 0.20252354480186632
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 28479,
+  "solver_return": 3.26750111579895,
+  "decisions": 96000,
+  "share_uncertain": 0.21110416666666665,
+  "qmdp_loss": 0.0030542569328099486,
+  "qmdp_loss_uncertain": 0.014468008760966896,
+  "map_loss": 0.015075993201384941,
+  "map_loss_uncertain": 0.07141494855092048,
+  "value_dependent": 0.25851041666666663,
+  "additive_share": 0.10504620744694604,
+  "add_fail": 0.062474934895833334,
+  "add_loss": 0.013607478275037352,
+  "add_loss_uncertain": 0.0069238239532870794,
+  "add_fail_uncertain": 0.0785735267813086
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 33390,
+  "solver_return": 3.2040371894836426,
+  "decisions": 96000,
+  "share_uncertain": 0.22985416666666666,
+  "qmdp_loss": 0.004637584710493684,
+  "qmdp_loss_uncertain": 0.020176204668149806,
+  "map_loss": 0.019873461968265473,
+  "map_loss_uncertain": 0.08646117778271936,
+  "value_dependent": 0.27891666666666665,
+  "additive_share": 0.09209792856911558,
+  "add_fail": 0.0758050537109375,
+  "add_loss": 0.02049971783531339,
+  "add_loss_uncertain": 0.014325586052360605,
+  "add_fail_uncertain": 0.11140902576361823
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 159221,
+  "solver_return": 3.210991144180298,
+  "decisions": 96000,
+  "share_uncertain": 0.14595833333333333,
+  "qmdp_loss": 0.001585938627521197,
+  "qmdp_loss_uncertain": 0.010865694279334493,
+  "map_loss": 0.005750860265766581,
+  "map_loss_uncertain": 0.039400698366656564,
+  "value_dependent": 0.313,
+  "additive_share": 0.15119204557530053,
+  "add_fail": 0.090869140625,
+  "add_loss": 0.021954649026385973,
+  "add_loss_uncertain": 0.03137828940726804,
+  "add_fail_uncertain": 0.19414441639309166
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 118550,
+  "solver_return": 3.294999599456787,
+  "decisions": 96000,
+  "share_uncertain": 0.16175,
+  "qmdp_loss": 0.0032310699994365375,
+  "qmdp_loss_uncertain": 0.019975703242266076,
+  "map_loss": 0.011248753299936652,
+  "map_loss_uncertain": 0.0695440698605048,
+  "value_dependent": 0.2607291666666667,
+  "additive_share": 0.1153007131303736,
+  "add_fail": 0.0644366455078125,
+  "add_loss": 0.013679110536580082,
+  "add_loss_uncertain": 0.00921770790960882,
+  "add_fail_uncertain": 0.09502692716383308
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 134232,
+  "solver_return": 3.1925530433654785,
+  "decisions": 96000,
+  "share_uncertain": 0.17655208333333333,
+  "qmdp_loss": 0.004003649896321198,
+  "qmdp_loss_uncertain": 0.022676877104657205,
+  "map_loss": 0.014402754658522705,
+  "map_loss_uncertain": 0.08157793658730189,
+  "value_dependent": 0.31085416666666665,
+  "additive_share": 0.1016874166239169,
+  "add_fail": 0.09452986653645833,
+  "add_loss": 0.028457072140406655,
+  "add_loss_uncertain": 0.017887437682210752,
+  "add_fail_uncertain": 0.13401694052746474
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 90940,
+  "solver_return": 2.929976224899292,
+  "decisions": 96000,
+  "share_uncertain": 0.17885416666666665,
+  "qmdp_loss": 0.0027623474396144348,
+  "qmdp_loss_uncertain": 0.015444691566859974,
+  "map_loss": 0.00908529228612315,
+  "map_loss_uncertain": 0.050797207889797455,
+  "value_dependent": 0.3275520833333333,
+  "additive_share": 0.14286712053983608,
+  "add_fail": 0.08561824544270832,
+  "add_loss": 0.021227830191924264,
+  "add_loss_uncertain": 0.02947826568643943,
+  "add_fail_uncertain": 0.1504356708648806
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 195253,
+  "solver_return": 2.819704294204712,
+  "decisions": 96000,
+  "share_uncertain": 0.175375,
+  "qmdp_loss": 0.004395547323860228,
+  "qmdp_loss_uncertain": 0.025063705339188756,
+  "map_loss": 0.009817031773117681,
+  "map_loss_uncertain": 0.055977372904448645,
+  "value_dependent": 0.38310416666666663,
+  "additive_share": 0.12432612890834971,
+  "add_fail": 0.12691979980468748,
+  "add_loss": 0.037366934826610035,
+  "add_loss_uncertain": 0.039122074700718115,
+  "add_fail_uncertain": 0.20327465141660728
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 162490,
+  "solver_return": 2.777256727218628,
+  "decisions": 96000,
+  "share_uncertain": 0.31028125,
+  "qmdp_loss": 0.010091428781549136,
+  "qmdp_loss_uncertain": 0.032523488871948066,
+  "map_loss": 0.01646606407066186,
+  "map_loss_uncertain": 0.05306818916921942,
+  "value_dependent": 0.39428124999999997,
+  "additive_share": 0.1087313273671141,
+  "add_fail": 0.1153419189453125,
+  "add_loss": 0.030548255373771645,
+  "add_loss_uncertain": 0.030825988470966362,
+  "add_fail_uncertain": 0.15661260050525397
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 39715,
+  "solver_return": 3.4531939029693604,
+  "decisions": 96000,
+  "share_uncertain": 0.23573958333333334,
+  "qmdp_loss": 0.0045710957863678535,
+  "qmdp_loss_uncertain": 0.01939044653313216,
+  "map_loss": 0.025334761571759977,
+  "map_loss_uncertain": 0.10746927271834908,
+  "value_dependent": 0.19528125,
+  "additive_share": 0.08016497458981309,
+  "add_fail": 0.049514078776041665,
+  "add_loss": 0.011112935284354232,
+  "add_loss_uncertain": 0.016692964437269874,
+  "add_fail_uncertain": 0.12613678416773452
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 46377,
+  "solver_return": 3.5092575550079346,
+  "decisions": 96000,
+  "share_uncertain": 0.18457291666666667,
+  "qmdp_loss": 0.0040751879240075745,
+  "qmdp_loss_uncertain": 0.022079013528118245,
+  "map_loss": 0.01882745546878626,
+  "map_loss_uncertain": 0.10200551526629499,
+  "value_dependent": 0.21065625,
+  "additive_share": 0.09905125684593907,
+  "add_fail": 0.05568745930989583,
+  "add_loss": 0.014123156954447078,
+  "add_loss_uncertain": 0.022862260280028666,
+  "add_fail_uncertain": 0.14950582707827756
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 80386,
+  "solver_return": 3.161424398422241,
+  "decisions": 96000,
+  "share_uncertain": 0.19489583333333332,
+  "qmdp_loss": 0.002758976032336553,
+  "qmdp_loss_uncertain": 0.014156157087349497,
+  "map_loss": 0.011128878456229965,
+  "map_loss_uncertain": 0.05710167460171441,
+  "value_dependent": 0.32095833333333335,
+  "additive_share": 0.14294107936492462,
+  "add_fail": 0.08009838867187499,
+  "add_loss": 0.019045247684450258,
+  "add_loss_uncertain": 0.03893777953211711,
+  "add_fail_uncertain": 0.2027189253741315
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 39842,
+  "solver_return": 3.1542768478393555,
+  "decisions": 96000,
+  "share_uncertain": 0.28070833333333334,
+  "qmdp_loss": 0.0049138446881746255,
+  "qmdp_loss_uncertain": 0.017505161424401217,
+  "map_loss": 0.024245408151880837,
+  "map_loss_uncertain": 0.08637224219164912,
+  "value_dependent": 0.27068749999999997,
+  "additive_share": 0.09628970962678263,
+  "add_fail": 0.0572904052734375,
+  "add_loss": 0.014028110344842104,
+  "add_loss_uncertain": 0.009111391247610979,
+  "add_fail_uncertain": 0.0760662027330414
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 79259,
+  "solver_return": 2.9941647052764893,
+  "decisions": 96000,
+  "share_uncertain": 0.2958020833333333,
+  "qmdp_loss": 0.008107923973041276,
+  "qmdp_loss_uncertain": 0.02740996236968562,
+  "map_loss": 0.028236864361329935,
+  "map_loss_uncertain": 0.0954586392466695,
+  "value_dependent": 0.3631979166666667,
+  "additive_share": 0.07457026315719217,
+  "add_fail": 0.09400655110677084,
+  "add_loss": 0.023275375065688136,
+  "add_loss_uncertain": 0.025524660119699543,
+  "add_fail_uncertain": 0.15360571209106597
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 35647,
+  "solver_return": 3.536287546157837,
+  "decisions": 96000,
+  "share_uncertain": 0.17547916666666666,
+  "qmdp_loss": 0.003814077385390798,
+  "qmdp_loss_uncertain": 0.021735214828298505,
+  "map_loss": 0.020231443836353717,
+  "map_loss_uncertain": 0.11529256846075965,
+  "value_dependent": 0.20114583333333333,
+  "additive_share": 0.09622425467046436,
+  "add_fail": 0.050324544270833334,
+  "add_loss": 0.013667370719925808,
+  "add_loss_uncertain": 0.021245245132188062,
+  "add_fail_uncertain": 0.1375734595749733
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 37287,
+  "solver_return": 3.1812028884887695,
+  "decisions": 96000,
+  "share_uncertain": 0.17653125,
+  "qmdp_loss": 0.0023690847139805553,
+  "qmdp_loss_uncertain": 0.013420200185409414,
+  "map_loss": 0.00950272487596764,
+  "map_loss_uncertain": 0.05383027014178872,
+  "value_dependent": 0.3257291666666667,
+  "additive_share": 0.1414464981421969,
+  "add_fail": 0.08948783365885417,
+  "add_loss": 0.02182305874498233,
+  "add_loss_uncertain": 0.04337590875453868,
+  "add_fail_uncertain": 0.2307921387266183
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 27387,
+  "solver_return": 3.2064809799194336,
+  "decisions": 96000,
+  "share_uncertain": 0.21945833333333334,
+  "qmdp_loss": 0.0029991052219023305,
+  "qmdp_loss_uncertain": 0.013665943672993341,
+  "map_loss": 0.021951199415838344,
+  "map_loss_uncertain": 0.1000244514866376,
+  "value_dependent": 0.2664375,
+  "additive_share": 0.10390862744458118,
+  "add_fail": 0.07015376790364583,
+  "add_loss": 0.018141529899998014,
+  "add_loss_uncertain": 0.010593077704581174,
+  "add_fail_uncertain": 0.09901550188674767
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 35734,
+  "solver_return": 3.1640899181365967,
+  "decisions": 96000,
+  "share_uncertain": 0.24094791666666665,
+  "qmdp_loss": 0.005141667237194876,
+  "qmdp_loss_uncertain": 0.02133933054216022,
+  "map_loss": 0.028544240732638476,
+  "map_loss_uncertain": 0.1184664351015215,
+  "value_dependent": 0.2881770833333333,
+  "additive_share": 0.08267641358374256,
+  "add_fail": 0.07951082356770833,
+  "add_loss": 0.02182446621233051,
+  "add_loss_uncertain": 0.017652220958510323,
+  "add_fail_uncertain": 0.12335735187626994
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 145237,
+  "solver_return": 3.1893723011016846,
+  "decisions": 96000,
+  "share_uncertain": 0.16120833333333331,
+  "qmdp_loss": 0.002370699532330036,
+  "qmdp_loss_uncertain": 0.014705812555161764,
+  "map_loss": 0.0076784950805207095,
+  "map_loss_uncertain": 0.04763088186417602,
+  "value_dependent": 0.327,
+  "additive_share": 0.14770888165807528,
+  "add_fail": 0.09377164713541666,
+  "add_loss": 0.022960827223869273,
+  "add_loss_uncertain": 0.03944002702809294,
+  "add_fail_uncertain": 0.22684923429826828
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 94018,
+  "solver_return": 3.241611957550049,
+  "decisions": 96000,
+  "share_uncertain": 0.16921875,
+  "qmdp_loss": 0.003158317068281273,
+  "qmdp_loss_uncertain": 0.018664108252077698,
+  "map_loss": 0.01694645289153171,
+  "map_loss_uncertain": 0.10014524331099071,
+  "value_dependent": 0.273375,
+  "additive_share": 0.11695622358703017,
+  "add_fail": 0.07197347005208334,
+  "add_loss": 0.018345649283670808,
+  "add_loss_uncertain": 0.013422966885869577,
+  "add_fail_uncertain": 0.11299221875961835
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 124707,
+  "solver_return": 3.1534595489501953,
+  "decisions": 96000,
+  "share_uncertain": 0.18608333333333332,
+  "qmdp_loss": 0.00447498548279206,
+  "qmdp_loss_uncertain": 0.02404828741312347,
+  "map_loss": 0.019975200214423238,
+  "map_loss_uncertain": 0.10734545569775139,
+  "value_dependent": 0.3210208333333333,
+  "additive_share": 0.09695763997685158,
+  "add_fail": 0.09719222005208333,
+  "add_loss": 0.029972344748712656,
+  "add_loss_uncertain": 0.023567937545570874,
+  "add_fail_uncertain": 0.14853261972402598
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 113320,
+  "solver_return": 2.860689401626587,
+  "decisions": 96000,
+  "share_uncertain": 0.1961875,
+  "qmdp_loss": 0.0029225678561876217,
+  "qmdp_loss_uncertain": 0.014896809716152261,
+  "map_loss": 0.010591907613076424,
+  "map_loss_uncertain": 0.05398869761364218,
+  "value_dependent": 0.35965625,
+  "additive_share": 0.13918620451230823,
+  "add_fail": 0.09351171875,
+  "add_loss": 0.022888271349849047,
+  "add_loss_uncertain": 0.033284119775662604,
+  "add_fail_uncertain": 0.1716609589041096
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 201533,
+  "solver_return": 2.7949717044830322,
+  "decisions": 96000,
+  "share_uncertain": 0.19799999999999998,
+  "qmdp_loss": 0.00481080681240807,
+  "qmdp_loss_uncertain": 0.02429700410307106,
+  "map_loss": 0.011483471898982921,
+  "map_loss_uncertain": 0.05799733282314607,
+  "value_dependent": 0.39376041666666667,
+  "additive_share": 0.11005074529335535,
+  "add_fail": 0.12776139322916666,
+  "add_loss": 0.03898548983649031,
+  "add_loss_uncertain": 0.04795460499236708,
+  "add_fail_uncertain": 0.22614059705124157
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 156296,
+  "solver_return": 2.718557357788086,
+  "decisions": 96000,
+  "share_uncertain": 0.31027083333333333,
+  "qmdp_loss": 0.008961141223708788,
+  "qmdp_loss_uncertain": 0.028881674527497604,
+  "map_loss": 0.021499861993079926,
+  "map_loss_uncertain": 0.06929385454024284,
+  "value_dependent": 0.40753125,
+  "additive_share": 0.09721465147485187,
+  "add_fail": 0.12128715006510417,
+  "add_loss": 0.03463822889265467,
+  "add_loss_uncertain": 0.03199761012694698,
+  "add_fail_uncertain": 0.16284810817162426
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 51588,
+  "solver_return": 3.5260157585144043,
+  "decisions": 96000,
+  "share_uncertain": 0.18453124999999998,
+  "qmdp_loss": 0.004108544465154409,
+  "qmdp_loss_uncertain": 0.02226476255460476,
+  "map_loss": 0.025178938693987827,
+  "map_loss_uncertain": 0.1364481013052685,
+  "value_dependent": 0.19833333333333333,
+  "additive_share": 0.09170122277238257,
+  "add_fail": 0.04572884114583333,
+  "add_loss": 0.012161511989452492,
+  "add_loss_uncertain": 0.019827699636382732,
+  "add_fail_uncertain": 0.12125229325430426
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 51353,
+  "solver_return": 3.1759040355682373,
+  "decisions": 96000,
+  "share_uncertain": 0.18659375,
+  "qmdp_loss": 0.0026342116175219416,
+  "qmdp_loss_uncertain": 0.014117362545754837,
+  "map_loss": 0.011447632409903841,
+  "map_loss_uncertain": 0.061350567261249864,
+  "value_dependent": 0.32758333333333334,
+  "additive_share": 0.1353174546407211,
+  "add_fail": 0.08138313802083333,
+  "add_loss": 0.019421052533238822,
+  "add_loss_uncertain": 0.044638929803499136,
+  "add_fail_uncertain": 0.23014252044604477
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 36737,
+  "solver_return": 3.1971700191497803,
+  "decisions": 96000,
+  "share_uncertain": 0.22632291666666665,
+  "qmdp_loss": 0.0029344436625639595,
+  "qmdp_loss_uncertain": 0.01296573809573987,
+  "map_loss": 0.024960984679947916,
+  "map_loss_uncertain": 0.1102892497480094,
+  "value_dependent": 0.26071875,
+  "additive_share": 0.1046269384798394,
+  "add_fail": 0.060006551106770833,
+  "add_loss": 0.015527743723102465,
+  "add_loss_uncertain": 0.00919190266618851,
+  "add_fail_uncertain": 0.08609733137340636
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 48203,
+  "solver_return": 3.1578402519226074,
+  "decisions": 96000,
+  "share_uncertain": 0.2520104166666667,
+  "qmdp_loss": 0.00537800709841152,
+  "qmdp_loss_uncertain": 0.021340415882590252,
+  "map_loss": 0.03469564281369094,
+  "map_loss_uncertain": 0.13767543132783575,
+  "value_dependent": 0.2811770833333333,
+  "additive_share": 0.07909999121888234,
+  "add_fail": 0.0749962158203125,
+  "add_loss": 0.019320618387037067,
+  "add_loss_uncertain": 0.016977427347387684,
+  "add_fail_uncertain": 0.10848211517794402
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 55935,
+  "solver_return": 3.1818158626556396,
+  "decisions": 96000,
+  "share_uncertain": 0.17121875,
+  "qmdp_loss": 0.0024926743752633532,
+  "qmdp_loss_uncertain": 0.014558419421140226,
+  "map_loss": 0.008945401686243713,
+  "map_loss_uncertain": 0.052245456097791354,
+  "value_dependent": 0.333375,
+  "additive_share": 0.14353545672555612,
+  "add_fail": 0.09259525553385416,
+  "add_loss": 0.022442233154237327,
+  "add_loss_uncertain": 0.043967778614911496,
+  "add_fail_uncertain": 0.23799702082192614
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 38531,
+  "solver_return": 3.235663890838623,
+  "decisions": 96000,
+  "share_uncertain": 0.17283333333333334,
+  "qmdp_loss": 0.0027657306973511973,
+  "qmdp_loss_uncertain": 0.0160022991167861,
+  "map_loss": 0.018454707545305912,
+  "map_loss_uncertain": 0.10677747856493296,
+  "value_dependent": 0.272375,
+  "additive_share": 0.11887515183389985,
+  "add_fail": 0.06878055826822917,
+  "add_loss": 0.017424612765991165,
+  "add_loss_uncertain": 0.013780966652622805,
+  "add_fail_uncertain": 0.11103736928941658
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 54462,
+  "solver_return": 3.150972843170166,
+  "decisions": 96000,
+  "share_uncertain": 0.19380208333333332,
+  "qmdp_loss": 0.004361746860047182,
+  "qmdp_loss_uncertain": 0.02250619180674708,
+  "map_loss": 0.023589521555540463,
+  "map_loss_uncertain": 0.12171964898317036,
+  "value_dependent": 0.31956249999999997,
+  "additive_share": 0.09516068159911473,
+  "add_fail": 0.09228877766927084,
+  "add_loss": 0.026587568163959605,
+  "add_loss_uncertain": 0.023278566875923997,
+  "add_fail_uncertain": 0.14214844799785004
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 49758,
+  "solver_return": 2.8348727226257324,
+  "decisions": 96000,
+  "share_uncertain": 0.19073958333333332,
+  "qmdp_loss": 0.002440740559250116,
+  "qmdp_loss_uncertain": 0.012796193200153525,
+  "map_loss": 0.01088820957916323,
+  "map_loss_uncertain": 0.057084163595634875,
+  "value_dependent": 0.3798229166666667,
+  "additive_share": 0.13436632101878,
+  "add_fail": 0.09776847330729166,
+  "add_loss": 0.025441901662630623,
+  "add_loss_uncertain": 0.035757397344784066,
+  "add_fail_uncertain": 0.18453132679809953
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 74557,
+  "solver_return": 2.8014767169952393,
+  "decisions": 96000,
+  "share_uncertain": 0.20738541666666666,
+  "qmdp_loss": 0.004061127985517184,
+  "qmdp_loss_uncertain": 0.01958251477269826,
+  "map_loss": 0.0132469703949367,
+  "map_loss_uncertain": 0.06387609412396018,
+  "value_dependent": 0.39729166666666665,
+  "additive_share": 0.09961163001434303,
+  "add_fail": 0.12255057779947916,
+  "add_loss": 0.035197124429121644,
+  "add_loss_uncertain": 0.04850090957811313,
+  "add_fail_uncertain": 0.2387643072856497
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 48392,
+  "solver_return": 2.743589401245117,
+  "decisions": 96000,
+  "share_uncertain": 0.29562499999999997,
+  "qmdp_loss": 0.0067638692337398726,
+  "qmdp_loss_uncertain": 0.022879895928084135,
+  "map_loss": 0.025954630050992515,
+  "map_loss_uncertain": 0.08779578875600005,
+  "value_dependent": 0.41511458333333334,
+  "additive_share": 0.09765404747417183,
+  "add_fail": 0.11427852376302083,
+  "add_loss": 0.03166366834425789,
+  "add_loss_uncertain": 0.018993593398912306,
+  "add_fail_uncertain": 0.13002843661909796
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 103179,
+  "solver_return": 3.212433099746704,
+  "decisions": 96000,
+  "share_uncertain": 0.17026041666666666,
+  "qmdp_loss": 0.0026430072812363503,
+  "qmdp_loss_uncertain": 0.01552332204830103,
+  "map_loss": 0.010345138350191215,
+  "map_loss_uncertain": 0.06076067797486372,
+  "value_dependent": 0.326625,
+  "additive_share": 0.13680003803718588,
+  "add_fail": 0.08096248372395833,
+  "add_loss": 0.019633289714018322,
+  "add_loss_uncertain": 0.043231273957437595,
+  "add_fail_uncertain": 0.22859461035484857
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 74700,
+  "solver_return": 3.261556386947632,
+  "decisions": 96000,
+  "share_uncertain": 0.16523958333333333,
+  "qmdp_loss": 0.002075803239829838,
+  "qmdp_loss_uncertain": 0.012562384859337103,
+  "map_loss": 0.020174634746974333,
+  "map_loss_uncertain": 0.12209323177895329,
+  "value_dependent": 0.2645208333333333,
+  "additive_share": 0.12083180460431253,
+  "add_fail": 0.060689127604166664,
+  "add_loss": 0.016089804606980958,
+  "add_loss_uncertain": 0.01064564601318659,
+  "add_fail_uncertain": 0.09396866923028431
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 76411,
+  "solver_return": 3.2404918670654297,
+  "decisions": 96000,
+  "share_uncertain": 0.19135416666666666,
+  "qmdp_loss": 0.0042996157302210725,
+  "qmdp_loss_uncertain": 0.022469412634797115,
+  "map_loss": 0.027777892431865136,
+  "map_loss_uncertain": 0.14516481619265395,
+  "value_dependent": 0.293375,
+  "additive_share": 0.10043301860732534,
+  "add_fail": 0.08014359537760417,
+  "add_loss": 0.022584170478992745,
+  "add_loss_uncertain": 0.020220239922428624,
+  "add_fail_uncertain": 0.11836256464344039
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 69438,
+  "solver_return": 2.844228506088257,
+  "decisions": 96000,
+  "share_uncertain": 0.17266666666666666,
+  "qmdp_loss": 0.0022946502200017374,
+  "qmdp_loss_uncertain": 0.0132894800386201,
+  "map_loss": 0.010415480649797245,
+  "map_loss_uncertain": 0.06032131650461726,
+  "value_dependent": 0.38848958333333333,
+  "additive_share": 0.13510131459383212,
+  "add_fail": 0.1004359130859375,
+  "add_loss": 0.02663366210664363,
+  "add_loss_uncertain": 0.035207757738418013,
+  "add_fail_uncertain": 0.1903488571579392
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 70580,
+  "solver_return": 2.904592275619507,
+  "decisions": 96000,
+  "share_uncertain": 0.20041666666666666,
+  "qmdp_loss": 0.00286978151773413,
+  "qmdp_loss_uncertain": 0.014319076179962397,
+  "map_loss": 0.013378555048412332,
+  "map_loss_uncertain": 0.06675370502326321,
+  "value_dependent": 0.38085416666666666,
+  "additive_share": 0.10400222950478322,
+  "add_fail": 0.10688846842447916,
+  "add_loss": 0.0300276850094023,
+  "add_loss_uncertain": 0.04375428019676158,
+  "add_fail_uncertain": 0.21971255359927236
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 54469,
+  "solver_return": 2.9077329635620117,
+  "decisions": 96000,
+  "share_uncertain": 0.23351041666666666,
+  "qmdp_loss": 0.0034999445574358102,
+  "qmdp_loss_uncertain": 0.014988387273668993,
+  "map_loss": 0.02815777490908901,
+  "map_loss_uncertain": 0.12058466303575612,
+  "value_dependent": 0.33177083333333335,
+  "additive_share": 0.10846300398782927,
+  "add_fail": 0.09548811848958333,
+  "add_loss": 0.029414637537495802,
+  "add_loss_uncertain": 0.012187479816191732,
+  "add_fail_uncertain": 0.09679142782263461
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 331690,
+  "solver_return": 2.8534839153289795,
+  "decisions": 96000,
+  "share_uncertain": 0.1579375,
+  "qmdp_loss": 0.002521918061499794,
+  "qmdp_loss_uncertain": 0.015967823104074675,
+  "map_loss": 0.008379707938137774,
+  "map_loss_uncertain": 0.053057113973171505,
+  "value_dependent": 0.38736458333333335,
+  "additive_share": 0.14436564069199576,
+  "add_fail": 0.10250284830729166,
+  "add_loss": 0.026439995826613008,
+  "add_loss_uncertain": 0.03086618017622437,
+  "add_fail_uncertain": 0.18144198901859912
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 358943,
+  "solver_return": 2.836236000061035,
+  "decisions": 96000,
+  "share_uncertain": 0.18497916666666667,
+  "qmdp_loss": 0.00256533028713117,
+  "qmdp_loss_uncertain": 0.01386821193628744,
+  "map_loss": 0.009922596492804586,
+  "map_loss_uncertain": 0.0536416974495574,
+  "value_dependent": 0.40240624999999997,
+  "additive_share": 0.11185839278857057,
+  "add_fail": 0.12389725748697916,
+  "add_loss": 0.03657122707070547,
+  "add_loss_uncertain": 0.04448449443928084,
+  "add_fail_uncertain": 0.22993070024777565
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 341273,
+  "solver_return": 2.8851022720336914,
+  "decisions": 96000,
+  "share_uncertain": 0.17557291666666666,
+  "qmdp_loss": 0.0030864963848143815,
+  "qmdp_loss_uncertain": 0.017579570035133826,
+  "map_loss": 0.020443686567557354,
+  "map_loss_uncertain": 0.11643986416407631,
+  "value_dependent": 0.35976041666666664,
+  "additive_share": 0.12276729790176966,
+  "add_fail": 0.12002388509114582,
+  "add_loss": 0.040554412830847694,
+  "add_loss_uncertain": 0.015671612135340306,
+  "add_fail_uncertain": 0.11836111317116584
+ },
+ {
+  "goals": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 549117,
+  "solver_return": 2.508584499359131,
+  "decisions": 96000,
+  "share_uncertain": 0.203375,
+  "qmdp_loss": 0.005504547513710956,
+  "qmdp_loss_uncertain": 0.027065998838160816,
+  "map_loss": 0.012729733692637335,
+  "map_loss_uncertain": 0.06259242135285721,
+  "value_dependent": 0.4064583333333333,
+  "additive_share": 0.1043028957350145,
+  "add_fail": 0.13675394694010415,
+  "add_loss": 0.04280429647654125,
+  "add_loss_uncertain": 0.03741832852114848,
+  "add_fail_uncertain": 0.19214852553267772
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ]
+  ],
+  "nodes": 67974,
+  "solver_return": 3.4128267765045166,
+  "decisions": 96000,
+  "share_uncertain": 0.24510416666666665,
+  "qmdp_loss": 0.007689993302027384,
+  "qmdp_loss_uncertain": 0.03137438801872036,
+  "map_loss": 0.025890439564071128,
+  "map_loss_uncertain": 0.1056303523687501,
+  "value_dependent": 0.19225,
+  "additive_share": 0.07869274718147579,
+  "add_fail": 0.049288452148437495,
+  "add_loss": 0.012502150956687727,
+  "add_loss_uncertain": 0.010268630487861911,
+  "add_fail_uncertain": 0.08728435109434764
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 28838,
+  "solver_return": 3.5475361347198486,
+  "decisions": 96000,
+  "share_uncertain": 0.20565624999999998,
+  "qmdp_loss": 0.004459676885977387,
+  "qmdp_loss_uncertain": 0.02168510256099561,
+  "map_loss": 0.021720332738012074,
+  "map_loss_uncertain": 0.10561474657635954,
+  "value_dependent": 0.13084375,
+  "additive_share": 0.0701945412371422,
+  "add_fail": 0.03484834798177083,
+  "add_loss": 0.010389272190460397,
+  "add_loss_uncertain": 0.002341727313202147,
+  "add_fail_uncertain": 0.03537270329990377
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 96050,
+  "solver_return": 3.5460641384124756,
+  "decisions": 96000,
+  "share_uncertain": 0.16305208333333332,
+  "qmdp_loss": 0.0038731431247045595,
+  "qmdp_loss_uncertain": 0.023754024093603315,
+  "map_loss": 0.015510636093715826,
+  "map_loss_uncertain": 0.09512688073610517,
+  "value_dependent": 0.18846875,
+  "additive_share": 0.07349267986324981,
+  "add_fail": 0.05137027994791667,
+  "add_loss": 0.013720226011008132,
+  "add_loss_uncertain": 0.005672498695374755,
+  "add_fail_uncertain": 0.0689087654922379
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 139308,
+  "solver_return": 3.206163167953491,
+  "decisions": 96000,
+  "share_uncertain": 0.16516666666666666,
+  "qmdp_loss": 0.003722210615252455,
+  "qmdp_loss_uncertain": 0.022536088472869396,
+  "map_loss": 0.009053428994491696,
+  "map_loss_uncertain": 0.05481389904343998,
+  "value_dependent": 0.24011458333333333,
+  "additive_share": 0.11900425087661659,
+  "add_fail": 0.08901936848958333,
+  "add_loss": 0.02763220357767731,
+  "add_loss_uncertain": 0.026187739579837912,
+  "add_fail_uncertain": 0.13898302495900605
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 90944,
+  "solver_return": 3.078181743621826,
+  "decisions": 96000,
+  "share_uncertain": 0.27080208333333333,
+  "qmdp_loss": 0.009639732168987393,
+  "qmdp_loss_uncertain": 0.03559696457223415,
+  "map_loss": 0.015046569080092012,
+  "map_loss_uncertain": 0.05556297386046139,
+  "value_dependent": 0.33299999999999996,
+  "additive_share": 0.09667627630586262,
+  "add_fail": 0.09906941731770832,
+  "add_loss": 0.026035608770402025,
+  "add_loss_uncertain": 0.03422758612450889,
+  "add_fail_uncertain": 0.17098832918221335
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 142349,
+  "solver_return": 3.007094383239746,
+  "decisions": 96000,
+  "share_uncertain": 0.24993749999999998,
+  "qmdp_loss": 0.014413512705514829,
+  "qmdp_loss_uncertain": 0.05766846791420259,
+  "map_loss": 0.0208197609190247,
+  "map_loss_uncertain": 0.08329986861841814,
+  "value_dependent": 0.25216666666666665,
+  "additive_share": 0.09687731425548751,
+  "add_fail": 0.06333081054687499,
+  "add_loss": 0.017014814378795713,
+  "add_loss_uncertain": 0.013479065659321951,
+  "add_fail_uncertain": 0.10132464756814202
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 27061,
+  "solver_return": 3.5470709800720215,
+  "decisions": 96000,
+  "share_uncertain": 0.20963541666666666,
+  "qmdp_loss": 0.004720751033475002,
+  "qmdp_loss_uncertain": 0.022518862072725476,
+  "map_loss": 0.02338104441699882,
+  "map_loss_uncertain": 0.11153193858543538,
+  "value_dependent": 0.13159375,
+  "additive_share": 0.06474134561676248,
+  "add_fail": 0.030893839518229167,
+  "add_loss": 0.006961830086053131,
+  "add_loss_uncertain": 0.003003593925017356,
+  "add_fail_uncertain": 0.04019565217391304
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 25633,
+  "solver_return": 3.548104763031006,
+  "decisions": 96000,
+  "share_uncertain": 0.16677083333333334,
+  "qmdp_loss": 0.0037739746763060487,
+  "qmdp_loss_uncertain": 0.022629704492528463,
+  "map_loss": 0.016154896118988592,
+  "map_loss_uncertain": 0.09686883369287351,
+  "value_dependent": 0.19230208333333332,
+  "additive_share": 0.07048445804492931,
+  "add_fail": 0.0486224365234375,
+  "add_loss": 0.010721311865199519,
+  "add_loss_uncertain": 0.0076102000816929815,
+  "add_fail_uncertain": 0.08603997501561524
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 40616,
+  "solver_return": 3.2085790634155273,
+  "decisions": 96000,
+  "share_uncertain": 0.16452083333333334,
+  "qmdp_loss": 0.002800571783756216,
+  "qmdp_loss_uncertain": 0.01702259663420266,
+  "map_loss": 0.010325705904513597,
+  "map_loss_uncertain": 0.06276230004009785,
+  "value_dependent": 0.26026041666666666,
+  "additive_share": 0.11437805193673356,
+  "add_fail": 0.09406693522135416,
+  "add_loss": 0.028132231963050418,
+  "add_loss_uncertain": 0.027768554446724072,
+  "add_fail_uncertain": 0.15248150998797014
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 19908,
+  "solver_return": 3.1016430854797363,
+  "decisions": 96000,
+  "share_uncertain": 0.2568020833333333,
+  "qmdp_loss": 0.006392462310070793,
+  "qmdp_loss_uncertain": 0.024892564059822177,
+  "map_loss": 0.01853000073507428,
+  "map_loss_uncertain": 0.07215673835099709,
+  "value_dependent": 0.33866666666666667,
+  "additive_share": 0.09151846140727615,
+  "add_fail": 0.09437418619791667,
+  "add_loss": 0.02591466193706689,
+  "add_loss_uncertain": 0.02055449027689818,
+  "add_fail_uncertain": 0.13920481913965846
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 41154,
+  "solver_return": 3.0601916313171387,
+  "decisions": 96000,
+  "share_uncertain": 0.25025,
+  "qmdp_loss": 0.009645738771495719,
+  "qmdp_loss_uncertain": 0.03854441067530757,
+  "map_loss": 0.029219242238459023,
+  "map_loss_uncertain": 0.116760208745091,
+  "value_dependent": 0.25935416666666666,
+  "additive_share": 0.08643599276561431,
+  "add_fail": 0.0663697509765625,
+  "add_loss": 0.015408800196140722,
+  "add_loss_uncertain": 0.009956549059027636,
+  "add_fail_uncertain": 0.09583873158091909
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 33043,
+  "solver_return": 3.6332292556762695,
+  "decisions": 96000,
+  "share_uncertain": 0.1585,
+  "qmdp_loss": 0.0032913571366419395,
+  "qmdp_loss_uncertain": 0.020765660168087945,
+  "map_loss": 0.018646151482438048,
+  "map_loss_uncertain": 0.11764133427405708,
+  "value_dependent": 0.15823958333333332,
+  "additive_share": 0.0657291315355788,
+  "add_fail": 0.041640380859375,
+  "add_loss": 0.008898387017434667,
+  "add_loss_uncertain": 0.004597747602073842,
+  "add_fail_uncertain": 0.07527438222923238
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 34035,
+  "solver_return": 3.302044630050659,
+  "decisions": 96000,
+  "share_uncertain": 0.15435416666666665,
+  "qmdp_loss": 0.0020202133848021427,
+  "qmdp_loss_uncertain": 0.013088168777230782,
+  "map_loss": 0.009505667610093952,
+  "map_loss_uncertain": 0.06158348566399105,
+  "value_dependent": 0.2554166666666667,
+  "additive_share": 0.11624422138743218,
+  "add_fail": 0.08749080403645833,
+  "add_loss": 0.025245792405814996,
+  "add_loss_uncertain": 0.02690245310101381,
+  "add_fail_uncertain": 0.15127109976042652
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 19794,
+  "solver_return": 3.267051935195923,
+  "decisions": 96000,
+  "share_uncertain": 0.20569791666666665,
+  "qmdp_loss": 0.003186879369119803,
+  "qmdp_loss_uncertain": 0.015493007516863376,
+  "map_loss": 0.019042689961070815,
+  "map_loss_uncertain": 0.09257599819024653,
+  "value_dependent": 0.25458333333333333,
+  "additive_share": 0.09136204621796795,
+  "add_fail": 0.06703641764322917,
+  "add_loss": 0.01879351923571346,
+  "add_loss_uncertain": 0.011040788477031712,
+  "add_fail_uncertain": 0.09341905574264445
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 24769,
+  "solver_return": 3.2768163681030273,
+  "decisions": 96000,
+  "share_uncertain": 0.21314583333333334,
+  "qmdp_loss": 0.005508121253922581,
+  "qmdp_loss_uncertain": 0.025842031100408946,
+  "map_loss": 0.02549273338820785,
+  "map_loss_uncertain": 0.11960230697233672,
+  "value_dependent": 0.19894791666666667,
+  "additive_share": 0.08588394808106059,
+  "add_fail": 0.04731107584635417,
+  "add_loss": 0.01073302945473919,
+  "add_loss_uncertain": 0.0033030879050559197,
+  "add_fail_uncertain": 0.04423462546427524
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 103028,
+  "solver_return": 3.2539448738098145,
+  "decisions": 96000,
+  "share_uncertain": 0.14069791666666667,
+  "qmdp_loss": 0.0015337468286355336,
+  "qmdp_loss_uncertain": 0.01090099174864968,
+  "map_loss": 0.006760096704276899,
+  "map_loss_uncertain": 0.048046885586035565,
+  "value_dependent": 0.2907708333333333,
+  "additive_share": 0.11674984945901834,
+  "add_fail": 0.09696813964843749,
+  "add_loss": 0.02946497499145433,
+  "add_loss_uncertain": 0.02136638340665525,
+  "add_fail_uncertain": 0.14292010624120827
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 77134,
+  "solver_return": 3.237311363220215,
+  "decisions": 96000,
+  "share_uncertain": 0.15498958333333332,
+  "qmdp_loss": 0.002867689491249621,
+  "qmdp_loss_uncertain": 0.018502465969484752,
+  "map_loss": 0.013568712475709616,
+  "map_loss_uncertain": 0.08754596395376861,
+  "value_dependent": 0.2891458333333333,
+  "additive_share": 0.10022070760597035,
+  "add_fail": 0.08734879557291667,
+  "add_loss": 0.026926593720259157,
+  "add_loss_uncertain": 0.01342343519953165,
+  "add_fail_uncertain": 0.1109347171348881
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 38823,
+  "solver_return": 3.2098097801208496,
+  "decisions": 96000,
+  "share_uncertain": 0.16810416666666667,
+  "qmdp_loss": 0.004407262869179249,
+  "qmdp_loss_uncertain": 0.026217451694212905,
+  "map_loss": 0.01842468099327137,
+  "map_loss_uncertain": 0.10960276213620347,
+  "value_dependent": 0.24363541666666666,
+  "additive_share": 0.10066939899354443,
+  "add_fail": 0.06627461751302083,
+  "add_loss": 0.015173667816015722,
+  "add_loss_uncertain": 0.006162034890918729,
+  "add_fail_uncertain": 0.08149195609740983
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 66702,
+  "solver_return": 2.8472177982330322,
+  "decisions": 96000,
+  "share_uncertain": 0.158125,
+  "qmdp_loss": 0.0035252330023795367,
+  "qmdp_loss_uncertain": 0.022293963651412087,
+  "map_loss": 0.008655874176261326,
+  "map_loss_uncertain": 0.05474070625303605,
+  "value_dependent": 0.3674375,
+  "additive_share": 0.12379879702688956,
+  "add_fail": 0.12107360839843749,
+  "add_loss": 0.03684395661955405,
+  "add_loss_uncertain": 0.037615181975740736,
+  "add_fail_uncertain": 0.1889075881093544
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 78854,
+  "solver_return": 2.8746182918548584,
+  "decisions": 96000,
+  "share_uncertain": 0.16445833333333332,
+  "qmdp_loss": 0.004533011294280489,
+  "qmdp_loss_uncertain": 0.02756328124214131,
+  "map_loss": 0.00961474583297968,
+  "map_loss_uncertain": 0.0584631112215638,
+  "value_dependent": 0.29120833333333335,
+  "additive_share": 0.11229655193508215,
+  "add_fail": 0.09277058919270834,
+  "add_loss": 0.030627319871814468,
+  "add_loss_uncertain": 0.024574666856133753,
+  "add_fail_uncertain": 0.1409691597257411
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 50364,
+  "solver_return": 2.7302002906799316,
+  "decisions": 96000,
+  "share_uncertain": 0.27207291666666666,
+  "qmdp_loss": 0.010221138265915215,
+  "qmdp_loss_uncertain": 0.037567643230133646,
+  "map_loss": 0.014542576681977759,
+  "map_loss_uncertain": 0.05345102651211244,
+  "value_dependent": 0.36922916666666666,
+  "additive_share": 0.10884620441204096,
+  "add_fail": 0.10408589680989583,
+  "add_loss": 0.027637073580218535,
+  "add_loss_uncertain": 0.02296372416787901,
+  "add_fail_uncertain": 0.1445343906734561
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 35349,
+  "solver_return": 3.5140905380249023,
+  "decisions": 96000,
+  "share_uncertain": 0.22870833333333332,
+  "qmdp_loss": 0.00550565746302406,
+  "qmdp_loss_uncertain": 0.02407283277693158,
+  "map_loss": 0.039459833870641885,
+  "map_loss_uncertain": 0.17253343284667613,
+  "value_dependent": 0.11221874999999999,
+  "additive_share": 0.051259942638327116,
+  "add_fail": 0.0307548828125,
+  "add_loss": 0.008008179693112879,
+  "add_loss_uncertain": 0.0016614373495635153,
+  "add_fail_uncertain": 0.03133628763208235
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 34273,
+  "solver_return": 3.52081298828125,
+  "decisions": 96000,
+  "share_uncertain": 0.17988541666666666,
+  "qmdp_loss": 0.004792275433118144,
+  "qmdp_loss_uncertain": 0.02664071119227181,
+  "map_loss": 0.02711507689176748,
+  "map_loss_uncertain": 0.15073527023045216,
+  "value_dependent": 0.16892708333333334,
+  "additive_share": 0.0682094986912648,
+  "add_fail": 0.0460396728515625,
+  "add_loss": 0.01081114093982228,
+  "add_loss_uncertain": 0.005129241399523487,
+  "add_fail_uncertain": 0.066052020600498
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 56733,
+  "solver_return": 3.241946220397949,
+  "decisions": 96000,
+  "share_uncertain": 0.18848958333333332,
+  "qmdp_loss": 0.0035446681417524812,
+  "qmdp_loss_uncertain": 0.018805644742096613,
+  "map_loss": 0.014898736715316772,
+  "map_loss_uncertain": 0.07904275903124676,
+  "value_dependent": 0.2391875,
+  "additive_share": 0.10205962969879934,
+  "add_fail": 0.08113680013020833,
+  "add_loss": 0.022622633094664706,
+  "add_loss_uncertain": 0.022132696706931482,
+  "add_fail_uncertain": 0.1323798873998342
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 29751,
+  "solver_return": 3.069498300552368,
+  "decisions": 96000,
+  "share_uncertain": 0.26471875,
+  "qmdp_loss": 0.006021947026873628,
+  "qmdp_loss_uncertain": 0.022748471828586483,
+  "map_loss": 0.026466990270419044,
+  "map_loss_uncertain": 0.0999815474741364,
+  "value_dependent": 0.35260416666666666,
+  "additive_share": 0.07857870520618393,
+  "add_fail": 0.08950630696614582,
+  "add_loss": 0.022947603188210375,
+  "add_loss_uncertain": 0.02175882174775172,
+  "add_fail_uncertain": 0.13920578911383938
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 53040,
+  "solver_return": 3.033310890197754,
+  "decisions": 96000,
+  "share_uncertain": 0.273875,
+  "qmdp_loss": 0.00907787206210196,
+  "qmdp_loss_uncertain": 0.03314604130388667,
+  "map_loss": 0.04714316690169895,
+  "map_loss_uncertain": 0.1721338818866233,
+  "value_dependent": 0.22411458333333334,
+  "additive_share": 0.07579743009271467,
+  "add_fail": 0.05024751790364583,
+  "add_loss": 0.01391023780508552,
+  "add_loss_uncertain": 0.007199055910673515,
+  "add_fail_uncertain": 0.06246924563555454
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 30588,
+  "solver_return": 3.6026227474212646,
+  "decisions": 96000,
+  "share_uncertain": 0.17140624999999998,
+  "qmdp_loss": 0.004366371691226959,
+  "qmdp_loss_uncertain": 0.025473818435599396,
+  "map_loss": 0.02948956406644235,
+  "map_loss_uncertain": 0.17204485872856065,
+  "value_dependent": 0.14211458333333332,
+  "additive_share": 0.066861760034014,
+  "add_fail": 0.037883585611979166,
+  "add_loss": 0.008775689346168973,
+  "add_loss_uncertain": 0.002816157344429463,
+  "add_fail_uncertain": 0.04748556669705257
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 31274,
+  "solver_return": 3.32308030128479,
+  "decisions": 96000,
+  "share_uncertain": 0.17519791666666665,
+  "qmdp_loss": 0.0024984427324185768,
+  "qmdp_loss_uncertain": 0.014260687455388749,
+  "map_loss": 0.013187430445686914,
+  "map_loss_uncertain": 0.07527161678969878,
+  "value_dependent": 0.23757291666666666,
+  "additive_share": 0.10594840286765561,
+  "add_fail": 0.0778126220703125,
+  "add_loss": 0.021571058286504692,
+  "add_loss_uncertain": 0.02155494404495323,
+  "add_fail_uncertain": 0.13219308334324276
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 20980,
+  "solver_return": 3.220667839050293,
+  "decisions": 96000,
+  "share_uncertain": 0.21221874999999998,
+  "qmdp_loss": 0.003315790292496482,
+  "qmdp_loss_uncertain": 0.015624398374302377,
+  "map_loss": 0.027022152703255413,
+  "map_loss_uncertain": 0.1273315986606057,
+  "value_dependent": 0.26917708333333334,
+  "additive_share": 0.08359746249999023,
+  "add_fail": 0.07353479003906249,
+  "add_loss": 0.02114371258216609,
+  "add_loss_uncertain": 0.013266205081658307,
+  "add_fail_uncertain": 0.10826216070289107
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 29153,
+  "solver_return": 3.240083694458008,
+  "decisions": 96000,
+  "share_uncertain": 0.23149999999999998,
+  "qmdp_loss": 0.006513748708801965,
+  "qmdp_loss_uncertain": 0.028137143450548442,
+  "map_loss": 0.04169724625283076,
+  "map_loss_uncertain": 0.18011769439667716,
+  "value_dependent": 0.18121874999999998,
+  "additive_share": 0.08034889600763684,
+  "add_fail": 0.045741902669270834,
+  "add_loss": 0.010191370988957714,
+  "add_loss_uncertain": 0.0025833748617838546,
+  "add_fail_uncertain": 0.0511157349599532
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 80721,
+  "solver_return": 3.273361921310425,
+  "decisions": 96000,
+  "share_uncertain": 0.15738541666666667,
+  "qmdp_loss": 0.001807847554485003,
+  "qmdp_loss_uncertain": 0.011486753936763537,
+  "map_loss": 0.008711180750591059,
+  "map_loss_uncertain": 0.05534935151609912,
+  "value_dependent": 0.2729375,
+  "additive_share": 0.11038217285212615,
+  "add_fail": 0.08791524251302082,
+  "add_loss": 0.026156309171104567,
+  "add_loss_uncertain": 0.018676909380580732,
+  "add_fail_uncertain": 0.1308227918790125
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 55565,
+  "solver_return": 3.2034542560577393,
+  "decisions": 96000,
+  "share_uncertain": 0.16138541666666667,
+  "qmdp_loss": 0.003038518317354222,
+  "qmdp_loss_uncertain": 0.018827713061770175,
+  "map_loss": 0.018911634323808053,
+  "map_loss_uncertain": 0.11718304363813162,
+  "value_dependent": 0.3010833333333333,
+  "additive_share": 0.09595634094302286,
+  "add_fail": 0.09099519856770832,
+  "add_loss": 0.028905426583765118,
+  "add_loss_uncertain": 0.01831304750542096,
+  "add_fail_uncertain": 0.12817986348673593
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 31301,
+  "solver_return": 3.194822311401367,
+  "decisions": 96000,
+  "share_uncertain": 0.18042708333333332,
+  "qmdp_loss": 0.005788330630088846,
+  "qmdp_loss_uncertain": 0.03208127362672647,
+  "map_loss": 0.02863809813124438,
+  "map_loss_uncertain": 0.15872394322495587,
+  "value_dependent": 0.22457291666666665,
+  "additive_share": 0.0983884127778889,
+  "add_fail": 0.05720353190104167,
+  "add_loss": 0.012988567661743408,
+  "add_loss_uncertain": 0.0056554758287447405,
+  "add_fail_uncertain": 0.06337727686045841
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 75742,
+  "solver_return": 2.822204351425171,
+  "decisions": 96000,
+  "share_uncertain": 0.18103125,
+  "qmdp_loss": 0.0038518603667616843,
+  "qmdp_loss_uncertain": 0.021277322930497826,
+  "map_loss": 0.01072850009954224,
+  "map_loss_uncertain": 0.05926324929835175,
+  "value_dependent": 0.37953125,
+  "additive_share": 0.11057983351311762,
+  "add_fail": 0.12229972330729166,
+  "add_loss": 0.038578692606258035,
+  "add_loss_uncertain": 0.04701162113719655,
+  "add_fail_uncertain": 0.21191501776569424
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 71827,
+  "solver_return": 2.8873825073242188,
+  "decisions": 96000,
+  "share_uncertain": 0.18805208333333331,
+  "qmdp_loss": 0.005091445063861708,
+  "qmdp_loss_uncertain": 0.027074653859786406,
+  "map_loss": 0.012137295939028262,
+  "map_loss_uncertain": 0.06454220407393305,
+  "value_dependent": 0.271,
+  "additive_share": 0.11129140089886846,
+  "add_fail": 0.08587528483072916,
+  "add_loss": 0.027787262856311827,
+  "add_loss_uncertain": 0.021961406752821787,
+  "add_fail_uncertain": 0.12937795137927216
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 38809,
+  "solver_return": 2.6832706928253174,
+  "decisions": 96000,
+  "share_uncertain": 0.28515625,
+  "qmdp_loss": 0.00974356350644181,
+  "qmdp_loss_uncertain": 0.03416920900889183,
+  "map_loss": 0.02109689525460514,
+  "map_loss_uncertain": 0.07398363267368378,
+  "value_dependent": 0.3780208333333333,
+  "additive_share": 0.0889935583460626,
+  "add_fail": 0.10122672526041666,
+  "add_loss": 0.02855354977643939,
+  "add_loss_uncertain": 0.02363409916510073,
+  "add_fail_uncertain": 0.14745790525114155
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 44027,
+  "solver_return": 3.600775957107544,
+  "decisions": 96000,
+  "share_uncertain": 0.18964583333333332,
+  "qmdp_loss": 0.004915159008776148,
+  "qmdp_loss_uncertain": 0.02591756919930299,
+  "map_loss": 0.0389610535070921,
+  "map_loss_uncertain": 0.20544112582010554,
+  "value_dependent": 0.10718749999999999,
+  "additive_share": 0.06921747218851204,
+  "add_fail": 0.0227725830078125,
+  "add_loss": 0.004582468770105682,
+  "add_loss_uncertain": 0.0029697697080639427,
+  "add_fail_uncertain": 0.037030846630231797
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 42594,
+  "solver_return": 3.345893144607544,
+  "decisions": 96000,
+  "share_uncertain": 0.19623958333333333,
+  "qmdp_loss": 0.0029372331149255236,
+  "qmdp_loss_uncertain": 0.014967587400225609,
+  "map_loss": 0.016248800389740307,
+  "map_loss_uncertain": 0.08280083005547371,
+  "value_dependent": 0.22180208333333332,
+  "additive_share": 0.10109079542756139,
+  "add_fail": 0.062418619791666664,
+  "add_loss": 0.015695050699281787,
+  "add_loss_uncertain": 0.014773156266124065,
+  "add_fail_uncertain": 0.10029995123148787
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 27349,
+  "solver_return": 3.2187271118164062,
+  "decisions": 96000,
+  "share_uncertain": 0.22223958333333332,
+  "qmdp_loss": 0.003382467315532267,
+  "qmdp_loss_uncertain": 0.015219913864124569,
+  "map_loss": 0.03267702836884807,
+  "map_loss_uncertain": 0.14703514053946165,
+  "value_dependent": 0.26225,
+  "additive_share": 0.07987990291957758,
+  "add_fail": 0.07002189127604166,
+  "add_loss": 0.018608245965108912,
+  "add_loss_uncertain": 0.012632572154728676,
+  "add_fail_uncertain": 0.09601135897586127
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 38822,
+  "solver_return": 3.239657402038574,
+  "decisions": 96000,
+  "share_uncertain": 0.2534270833333333,
+  "qmdp_loss": 0.008765090361547967,
+  "qmdp_loss_uncertain": 0.03458624171600167,
+  "map_loss": 0.05620607805682812,
+  "map_loss_uncertain": 0.22178402291321053,
+  "value_dependent": 0.15182291666666667,
+  "additive_share": 0.0847546999513511,
+  "add_fail": 0.028289469401041666,
+  "add_loss": 0.004750458883470325,
+  "add_loss_uncertain": 0.0017511914304551394,
+  "add_fail_uncertain": 0.03440386858276131
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 42537,
+  "solver_return": 3.2901835441589355,
+  "decisions": 96000,
+  "share_uncertain": 0.17705208333333333,
+  "qmdp_loss": 0.002026437715627253,
+  "qmdp_loss_uncertain": 0.011445432764618244,
+  "map_loss": 0.010675005428493022,
+  "map_loss_uncertain": 0.06029302354152675,
+  "value_dependent": 0.26095833333333335,
+  "additive_share": 0.10809165047146407,
+  "add_fail": 0.07852457682291666,
+  "add_loss": 0.021058639244365924,
+  "add_loss_uncertain": 0.015602661376547198,
+  "add_fail_uncertain": 0.11873097090663058
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 28038,
+  "solver_return": 3.2078590393066406,
+  "decisions": 96000,
+  "share_uncertain": 0.16649999999999998,
+  "qmdp_loss": 0.0028881011124079425,
+  "qmdp_loss_uncertain": 0.01734595262707473,
+  "map_loss": 0.02180069209324817,
+  "map_loss_uncertain": 0.13093508764713616,
+  "value_dependent": 0.3001770833333333,
+  "additive_share": 0.09379909697044753,
+  "add_fail": 0.08613134765625,
+  "add_loss": 0.02545786406449292,
+  "add_loss_uncertain": 0.018029565061163332,
+  "add_fail_uncertain": 0.12456988238238238
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 32468,
+  "solver_return": 3.2033047676086426,
+  "decisions": 96000,
+  "share_uncertain": 0.19761458333333332,
+  "qmdp_loss": 0.0066714749485254285,
+  "qmdp_loss_uncertain": 0.033760033475222245,
+  "map_loss": 0.03794872485877325,
+  "map_loss_uncertain": 0.1920340301745945,
+  "value_dependent": 0.18486458333333333,
+  "additive_share": 0.1011653748737602,
+  "add_fail": 0.04312007649739583,
+  "add_loss": 0.008133816707897305,
+  "add_loss_uncertain": 0.005427231956990818,
+  "add_fail_uncertain": 0.05431130903747826
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 37182,
+  "solver_return": 2.8389172554016113,
+  "decisions": 96000,
+  "share_uncertain": 0.18448958333333332,
+  "qmdp_loss": 0.0028976811009148755,
+  "qmdp_loss_uncertain": 0.015706475393135796,
+  "map_loss": 0.012480277161734799,
+  "map_loss_uncertain": 0.06764759796321726,
+  "value_dependent": 0.38175,
+  "additive_share": 0.10017476800446679,
+  "add_fail": 0.11543428548177083,
+  "add_loss": 0.034649129210560244,
+  "add_loss_uncertain": 0.045345438297318484,
+  "add_fail_uncertain": 0.22044871478177405
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 37674,
+  "solver_return": 2.930569887161255,
+  "decisions": 96000,
+  "share_uncertain": 0.21086458333333333,
+  "qmdp_loss": 0.004211324888281524,
+  "qmdp_loss_uncertain": 0.01997170326903257,
+  "map_loss": 0.017285130051275095,
+  "map_loss_uncertain": 0.08197265647000983,
+  "value_dependent": 0.2770208333333333,
+  "additive_share": 0.10864892832549666,
+  "add_fail": 0.07759069824218749,
+  "add_loss": 0.020829722207986682,
+  "add_loss_uncertain": 0.02105038757323145,
+  "add_fail_uncertain": 0.1299158582596453
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 25018,
+  "solver_return": 2.729653835296631,
+  "decisions": 96000,
+  "share_uncertain": 0.28329166666666666,
+  "qmdp_loss": 0.00761599406413734,
+  "qmdp_loss_uncertain": 0.02688393256939199,
+  "map_loss": 0.030635514444982012,
+  "map_loss_uncertain": 0.10814124822467544,
+  "value_dependent": 0.38297916666666665,
+  "additive_share": 0.08271317375606158,
+  "add_fail": 0.09210587565104167,
+  "add_loss": 0.023557684254660517,
+  "add_loss_uncertain": 0.019285022081480547,
+  "add_fail_uncertain": 0.14028703095124284
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 79082,
+  "solver_return": 3.3884410858154297,
+  "decisions": 96000,
+  "share_uncertain": 0.18685416666666665,
+  "qmdp_loss": 0.0018609147050107518,
+  "qmdp_loss_uncertain": 0.009959182276788504,
+  "map_loss": 0.01317433964771529,
+  "map_loss_uncertain": 0.07050599878362515,
+  "value_dependent": 0.21896875,
+  "additive_share": 0.11109518332435675,
+  "add_fail": 0.06100089518229167,
+  "add_loss": 0.016480323197052105,
+  "add_loss_uncertain": 0.011076111456713705,
+  "add_fail_uncertain": 0.08760927395752036
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 48064,
+  "solver_return": 3.3002474308013916,
+  "decisions": 96000,
+  "share_uncertain": 0.16093749999999998,
+  "qmdp_loss": 0.0024500122799848514,
+  "qmdp_loss_uncertain": 0.01522337727369228,
+  "map_loss": 0.025453299191469946,
+  "map_loss_uncertain": 0.15815642216058995,
+  "value_dependent": 0.2739375,
+  "additive_share": 0.09747299969062706,
+  "add_fail": 0.0747081298828125,
+  "add_loss": 0.021377657378478184,
+  "add_loss_uncertain": 0.013030135733917285,
+  "add_fail_uncertain": 0.09765018203883495
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 49809,
+  "solver_return": 3.3306517601013184,
+  "decisions": 96000,
+  "share_uncertain": 0.20692708333333332,
+  "qmdp_loss": 0.006071216571144759,
+  "qmdp_loss_uncertain": 0.029339883756853608,
+  "map_loss": 0.046592125932065145,
+  "map_loss_uncertain": 0.2251620482999373,
+  "value_dependent": 0.13965624999999998,
+  "additive_share": 0.11386188132203989,
+  "add_fail": 0.028446004231770832,
+  "add_loss": 0.004700138567544627,
+  "add_loss_uncertain": 0.002927239084634075,
+  "add_fail_uncertain": 0.03770076925497105
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 43397,
+  "solver_return": 2.9343385696411133,
+  "decisions": 96000,
+  "share_uncertain": 0.17451041666666667,
+  "qmdp_loss": 0.0017677448435376088,
+  "qmdp_loss_uncertain": 0.010129738254617706,
+  "map_loss": 0.012618246279346445,
+  "map_loss_uncertain": 0.07230655063673723,
+  "value_dependent": 0.36628125,
+  "additive_share": 0.10483595611843854,
+  "add_fail": 0.10014013671875,
+  "add_loss": 0.02961235194338887,
+  "add_loss_uncertain": 0.03959625344898485,
+  "add_fail_uncertain": 0.19854606264549635
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 44560,
+  "solver_return": 3.0846779346466064,
+  "decisions": 96000,
+  "share_uncertain": 0.21835416666666665,
+  "qmdp_loss": 0.003010030301908652,
+  "qmdp_loss_uncertain": 0.013785082958841264,
+  "map_loss": 0.016405455000853785,
+  "map_loss_uncertain": 0.0751323194390785,
+  "value_dependent": 0.25363541666666667,
+  "additive_share": 0.10838478153783004,
+  "add_fail": 0.0598531494140625,
+  "add_loss": 0.016022974605597557,
+  "add_loss_uncertain": 0.012829371108797928,
+  "add_fail_uncertain": 0.08908195484686575
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 25709,
+  "solver_return": 2.959271192550659,
+  "decisions": 96000,
+  "share_uncertain": 0.23020833333333332,
+  "qmdp_loss": 0.004299657513697942,
+  "qmdp_loss_uncertain": 0.01867724530837115,
+  "map_loss": 0.033506782783505815,
+  "map_loss_uncertain": 0.14554982566590763,
+  "value_dependent": 0.31297916666666664,
+  "additive_share": 0.09879628746834168,
+  "add_fail": 0.07843318684895834,
+  "add_loss": 0.02086702885363699,
+  "add_loss_uncertain": 0.013157843112293288,
+  "add_fail_uncertain": 0.09460371889140272
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 189155,
+  "solver_return": 2.8790879249572754,
+  "decisions": 96000,
+  "share_uncertain": 0.15875,
+  "qmdp_loss": 0.0017517924495041369,
+  "qmdp_loss_uncertain": 0.011034913067742595,
+  "map_loss": 0.009135238117538393,
+  "map_loss_uncertain": 0.05754480703961192,
+  "value_dependent": 0.38798958333333333,
+  "additive_share": 0.11102414437582842,
+  "add_fail": 0.11817252604166666,
+  "add_loss": 0.03640511326074064,
+  "add_loss_uncertain": 0.03995289618464529,
+  "add_fail_uncertain": 0.21163801058070866
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 83098,
+  "solver_return": 2.9637441635131836,
+  "decisions": 96000,
+  "share_uncertain": 0.20951041666666667,
+  "qmdp_loss": 0.0015988137954846024,
+  "qmdp_loss_uncertain": 0.007631189994855159,
+  "map_loss": 0.011236744051488737,
+  "map_loss_uncertain": 0.05363334305886336,
+  "value_dependent": 0.31372916666666667,
+  "additive_share": 0.11456055652498331,
+  "add_fail": 0.07997981770833333,
+  "add_loss": 0.02177697202987368,
+  "add_loss_uncertain": 0.016406474349671553,
+  "add_fail_uncertain": 0.11963616504250982
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 51506,
+  "solver_return": 2.8776743412017822,
+  "decisions": 96000,
+  "share_uncertain": 0.17353125,
+  "qmdp_loss": 0.0037508452953770757,
+  "qmdp_loss_uncertain": 0.021614811714760745,
+  "map_loss": 0.02435138599295169,
+  "map_loss_uncertain": 0.14032853444524657,
+  "value_dependent": 0.34281249999999996,
+  "additive_share": 0.11824562589999932,
+  "add_fail": 0.09731974283854167,
+  "add_loss": 0.027484195234109846,
+  "add_loss_uncertain": 0.019128280206107108,
+  "add_fail_uncertain": 0.12622470398883487
+ },
+ {
+  "goals": [
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 82945,
+  "solver_return": 2.5460166931152344,
+  "decisions": 96000,
+  "share_uncertain": 0.19747916666666665,
+  "qmdp_loss": 0.005465071668227513,
+  "qmdp_loss_uncertain": 0.027674168169102294,
+  "map_loss": 0.012694367258499066,
+  "map_loss_uncertain": 0.06428205806603599,
+  "value_dependent": 0.37705208333333334,
+  "additive_share": 0.10280865196853062,
+  "add_fail": 0.09719059244791667,
+  "add_loss": 0.030871617466500082,
+  "add_loss_uncertain": 0.039271604225137716,
+  "add_fail_uncertain": 0.19348197330942082
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "nodes": 26858,
+  "solver_return": 3.822699785232544,
+  "decisions": 96000,
+  "share_uncertain": 0.20321875,
+  "qmdp_loss": 0.004342232470711072,
+  "qmdp_loss_uncertain": 0.021367282648432157,
+  "map_loss": 0.021954807472104827,
+  "map_loss_uncertain": 0.10803534355026212,
+  "value_dependent": 0.043708333333333335,
+  "additive_share": 0.07162964414437656,
+  "add_fail": 0.0097335205078125,
+  "add_loss": 0.001277443648945905,
+  "add_loss_uncertain": 0.00206377404759098,
+  "add_fail_uncertain": 0.03471594840842688
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 31623,
+  "solver_return": 3.871088981628418,
+  "decisions": 96000,
+  "share_uncertain": 0.1641875,
+  "qmdp_loss": 0.003674827886124452,
+  "qmdp_loss_uncertain": 0.022381898004865602,
+  "map_loss": 0.014920301212618748,
+  "map_loss_uncertain": 0.0908735513066961,
+  "value_dependent": 0.06442708333333333,
+  "additive_share": 0.08560235314558573,
+  "add_fail": 0.014768880208333333,
+  "add_loss": 0.0019969774184375334,
+  "add_loss_uncertain": 0.005779782033821851,
+  "add_fail_uncertain": 0.0698138719705621
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 52349,
+  "solver_return": 3.5919368267059326,
+  "decisions": 96000,
+  "share_uncertain": 0.16552083333333334,
+  "qmdp_loss": 0.002677800216401617,
+  "qmdp_loss_uncertain": 0.016178025221809642,
+  "map_loss": 0.011631225870301326,
+  "map_loss_uncertain": 0.07027046466638938,
+  "value_dependent": 0.13979166666666668,
+  "additive_share": 0.1393749380166791,
+  "add_fail": 0.03788590494791667,
+  "add_loss": 0.008229155336996844,
+  "add_loss_uncertain": 0.021203539439181473,
+  "add_fail_uncertain": 0.11900885973882945
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 25275,
+  "solver_return": 3.5167012214660645,
+  "decisions": 96000,
+  "share_uncertain": 0.25464583333333335,
+  "qmdp_loss": 0.005154476071397463,
+  "qmdp_loss_uncertain": 0.02024174518752174,
+  "map_loss": 0.016795077896900087,
+  "map_loss_uncertain": 0.06595465426255454,
+  "value_dependent": 0.17831249999999998,
+  "additive_share": 0.092953595137381,
+  "add_fail": 0.044590494791666664,
+  "add_loss": 0.009544789859123815,
+  "add_loss_uncertain": 0.007499684943559088,
+  "add_fail_uncertain": 0.07975055351591262
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 56122,
+  "solver_return": 3.3958091735839844,
+  "decisions": 96000,
+  "share_uncertain": 0.2459375,
+  "qmdp_loss": 0.008167136058832208,
+  "qmdp_loss_uncertain": 0.03320817680037764,
+  "map_loss": 0.02401002487447113,
+  "map_loss_uncertain": 0.0976265303074228,
+  "value_dependent": 0.19213541666666667,
+  "additive_share": 0.07707514141792038,
+  "add_fail": 0.05120438639322916,
+  "add_loss": 0.012804085637114857,
+  "add_loss_uncertain": 0.01084470169584799,
+  "add_fail_uncertain": 0.09234798549343498
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 23881,
+  "solver_return": 3.8981900215148926,
+  "decisions": 96000,
+  "share_uncertain": 0.15429166666666666,
+  "qmdp_loss": 0.003273475042854746,
+  "qmdp_loss_uncertain": 0.021216149338026354,
+  "map_loss": 0.01668130559846759,
+  "map_loss_uncertain": 0.10811540219644067,
+  "value_dependent": 0.05903125,
+  "additive_share": 0.07711733495113182,
+  "add_fail": 0.014534871419270833,
+  "add_loss": 0.0023759837536639072,
+  "add_loss_uncertain": 0.004193613973262418,
+  "add_fail_uncertain": 0.06255432672832838
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 27814,
+  "solver_return": 3.613274097442627,
+  "decisions": 96000,
+  "share_uncertain": 0.15297916666666667,
+  "qmdp_loss": 0.001512543166677157,
+  "qmdp_loss_uncertain": 0.009887249353193999,
+  "map_loss": 0.009882933878029385,
+  "map_loss_uncertain": 0.06460313579537116,
+  "value_dependent": 0.15584375,
+  "additive_share": 0.1372196357914568,
+  "add_fail": 0.04146875,
+  "add_loss": 0.008984463980946695,
+  "add_loss_uncertain": 0.025299600829958087,
+  "add_fail_uncertain": 0.1473150449407599
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 17179,
+  "solver_return": 3.569908857345581,
+  "decisions": 96000,
+  "share_uncertain": 0.19965624999999998,
+  "qmdp_loss": 0.0031457366744677227,
+  "qmdp_loss_uncertain": 0.015755763591010663,
+  "map_loss": 0.014297800329824289,
+  "map_loss_uncertain": 0.07161208492007783,
+  "value_dependent": 0.17777083333333332,
+  "additive_share": 0.0949612641403661,
+  "add_fail": 0.04911580403645833,
+  "add_loss": 0.010598720067172166,
+  "add_loss_uncertain": 0.009116738302919024,
+  "add_fail_uncertain": 0.0909177802342568
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 24346,
+  "solver_return": 3.541980743408203,
+  "decisions": 96000,
+  "share_uncertain": 0.20556249999999998,
+  "qmdp_loss": 0.004459337053199609,
+  "qmdp_loss_uncertain": 0.02169333921325017,
+  "map_loss": 0.02186092155830314,
+  "map_loss_uncertain": 0.10634683634966137,
+  "value_dependent": 0.13242708333333333,
+  "additive_share": 0.0715787775397918,
+  "add_fail": 0.0367841796875,
+  "add_loss": 0.01061920733832945,
+  "add_loss_uncertain": 0.0023721799855872614,
+  "add_fail_uncertain": 0.03561429512516469
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 87810,
+  "solver_return": 3.6246423721313477,
+  "decisions": 96000,
+  "share_uncertain": 0.14153125,
+  "qmdp_loss": 0.001453052619472146,
+  "qmdp_loss_uncertain": 0.010266655734844043,
+  "map_loss": 0.006823353090013066,
+  "map_loss_uncertain": 0.048210929317822504,
+  "value_dependent": 0.17753125,
+  "additive_share": 0.1488796885370749,
+  "add_fail": 0.04142989095052083,
+  "add_loss": 0.009496532779772223,
+  "add_loss_uncertain": 0.017475836238536293,
+  "add_fail_uncertain": 0.1211437748399205
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 59508,
+  "solver_return": 3.5937306880950928,
+  "decisions": 96000,
+  "share_uncertain": 0.15433333333333332,
+  "qmdp_loss": 0.002783094573455552,
+  "qmdp_loss_uncertain": 0.018033010195176367,
+  "map_loss": 0.01063950056117028,
+  "map_loss_uncertain": 0.06893844856049858,
+  "value_dependent": 0.18698958333333332,
+  "additive_share": 0.10288416350585361,
+  "add_fail": 0.049045694986979166,
+  "add_loss": 0.010877325434487072,
+  "add_loss_uncertain": 0.01490115185803678,
+  "add_fail_uncertain": 0.11696972445329375
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 73660,
+  "solver_return": 3.5373473167419434,
+  "decisions": 96000,
+  "share_uncertain": 0.16377083333333334,
+  "qmdp_loss": 0.003833279523377617,
+  "qmdp_loss_uncertain": 0.02340636261621666,
+  "map_loss": 0.015327335075785715,
+  "map_loss_uncertain": 0.09359013904613508,
+  "value_dependent": 0.18834375,
+  "additive_share": 0.07513012856651535,
+  "add_fail": 0.0526414794921875,
+  "add_loss": 0.01414808299103538,
+  "add_loss_uncertain": 0.005538072560300977,
+  "add_fail_uncertain": 0.0672795783774329
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 50485,
+  "solver_return": 3.2227306365966797,
+  "decisions": 96000,
+  "share_uncertain": 0.16403125,
+  "qmdp_loss": 0.002187674050529798,
+  "qmdp_loss_uncertain": 0.01333693458124472,
+  "map_loss": 0.0077115674371889325,
+  "map_loss_uncertain": 0.04701279443513924,
+  "value_dependent": 0.28138541666666667,
+  "additive_share": 0.15324801883756023,
+  "add_fail": 0.07774173990885416,
+  "add_loss": 0.0198107451725611,
+  "add_loss_uncertain": 0.031184559966591415,
+  "add_fail_uncertain": 0.15681707229948563
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 127870,
+  "solver_return": 3.202207326889038,
+  "decisions": 96000,
+  "share_uncertain": 0.16466666666666666,
+  "qmdp_loss": 0.004150170786927144,
+  "qmdp_loss_uncertain": 0.025203466287207026,
+  "map_loss": 0.009284248324111104,
+  "map_loss_uncertain": 0.05638207481261569,
+  "value_dependent": 0.23840625,
+  "additive_share": 0.12151658475222304,
+  "add_fail": 0.09086210123697916,
+  "add_loss": 0.027953722658788857,
+  "add_loss_uncertain": 0.026059052721664856,
+  "add_fail_uncertain": 0.14141969256072875
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 90954,
+  "solver_return": 3.069110870361328,
+  "decisions": 96000,
+  "share_uncertain": 0.2689583333333333,
+  "qmdp_loss": 0.009618725431151687,
+  "qmdp_loss_uncertain": 0.03576288309026189,
+  "map_loss": 0.01434299410879612,
+  "map_loss_uncertain": 0.0533279409157408,
+  "value_dependent": 0.32879166666666665,
+  "additive_share": 0.09929972267277498,
+  "add_fail": 0.10196516927083334,
+  "add_loss": 0.026485221110929578,
+  "add_loss_uncertain": 0.03336176642526624,
+  "add_fail_uncertain": 0.17723104061773817
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 20268,
+  "solver_return": 3.8899903297424316,
+  "decisions": 96000,
+  "share_uncertain": 0.1583125,
+  "qmdp_loss": 0.003300920911754171,
+  "qmdp_loss_uncertain": 0.020850665056481147,
+  "map_loss": 0.017721966126933695,
+  "map_loss_uncertain": 0.11194293645121955,
+  "value_dependent": 0.05932291666666666,
+  "additive_share": 0.07415063658143839,
+  "add_fail": 0.0148135986328125,
+  "add_loss": 0.0017260825699018671,
+  "add_loss_uncertain": 0.005115762555130113,
+  "add_fail_uncertain": 0.07419484677260167
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 24788,
+  "solver_return": 3.6055729389190674,
+  "decisions": 96000,
+  "share_uncertain": 0.15179166666666666,
+  "qmdp_loss": 0.001617623054732879,
+  "qmdp_loss_uncertain": 0.010656863385558357,
+  "map_loss": 0.010753433945278326,
+  "map_loss_uncertain": 0.07084337487968154,
+  "value_dependent": 0.161125,
+  "additive_share": 0.13837152399921582,
+  "add_fail": 0.04379398600260417,
+  "add_loss": 0.009651615857954652,
+  "add_loss_uncertain": 0.025274347438612288,
+  "add_fail_uncertain": 0.14781880489980784
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 13963,
+  "solver_return": 3.5593297481536865,
+  "decisions": 96000,
+  "share_uncertain": 0.202375,
+  "qmdp_loss": 0.0030260390862822534,
+  "qmdp_loss_uncertain": 0.014952632915539237,
+  "map_loss": 0.01541228799832364,
+  "map_loss_uncertain": 0.07615707472920884,
+  "value_dependent": 0.16988541666666665,
+  "additive_share": 0.09008063244316034,
+  "add_fail": 0.04390743001302083,
+  "add_loss": 0.009703757825429989,
+  "add_loss_uncertain": 0.010885809437182587,
+  "add_fail_uncertain": 0.09866216768324068
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 23004,
+  "solver_return": 3.539180278778076,
+  "decisions": 96000,
+  "share_uncertain": 0.20988541666666666,
+  "qmdp_loss": 0.004658792762085796,
+  "qmdp_loss_uncertain": 0.02219683880888562,
+  "map_loss": 0.023501949192024765,
+  "map_loss_uncertain": 0.11197514131889313,
+  "value_dependent": 0.132375,
+  "additive_share": 0.06659756750373191,
+  "add_fail": 0.0343577880859375,
+  "add_loss": 0.007848498290338549,
+  "add_loss_uncertain": 0.0030713425645623677,
+  "add_fail_uncertain": 0.04033156111965855
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 21777,
+  "solver_return": 3.6111061573028564,
+  "decisions": 96000,
+  "share_uncertain": 0.14013541666666665,
+  "qmdp_loss": 0.0013082099674890438,
+  "qmdp_loss_uncertain": 0.009335327204262858,
+  "map_loss": 0.00696214724270006,
+  "map_loss_uncertain": 0.0496815680739765,
+  "value_dependent": 0.18461458333333333,
+  "additive_share": 0.14997795994998775,
+  "add_fail": 0.0476309814453125,
+  "add_loss": 0.010966751983149304,
+  "add_loss_uncertain": 0.02050751050617794,
+  "add_fail_uncertain": 0.13942870549319855
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 12746,
+  "solver_return": 3.5876924991607666,
+  "decisions": 96000,
+  "share_uncertain": 0.15559375,
+  "qmdp_loss": 0.0025642064024383824,
+  "qmdp_loss_uncertain": 0.01648013755332963,
+  "map_loss": 0.011476534087521334,
+  "map_loss_uncertain": 0.07375960851590334,
+  "value_dependent": 0.18560416666666665,
+  "additive_share": 0.10027667469415047,
+  "add_fail": 0.04832076009114583,
+  "add_loss": 0.011825613144667764,
+  "add_loss_uncertain": 0.01609972101071517,
+  "add_fail_uncertain": 0.12281948768159605
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 23301,
+  "solver_return": 3.52775502204895,
+  "decisions": 96000,
+  "share_uncertain": 0.16820833333333332,
+  "qmdp_loss": 0.003878597376868129,
+  "qmdp_loss_uncertain": 0.02305829503216128,
+  "map_loss": 0.016179871124525864,
+  "map_loss_uncertain": 0.09618947411162267,
+  "value_dependent": 0.191125,
+  "additive_share": 0.07278631959544302,
+  "add_fail": 0.05155721028645833,
+  "add_loss": 0.011628639075067136,
+  "add_loss_uncertain": 0.007621528897437644,
+  "add_fail_uncertain": 0.08497037171785979
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 18182,
+  "solver_return": 3.20774507522583,
+  "decisions": 96000,
+  "share_uncertain": 0.15661458333333333,
+  "qmdp_loss": 0.0015849518937369187,
+  "qmdp_loss_uncertain": 0.010120078603175538,
+  "map_loss": 0.007374538977853565,
+  "map_loss_uncertain": 0.04708717937305902,
+  "value_dependent": 0.293,
+  "additive_share": 0.14909958647790766,
+  "add_fail": 0.08109611002604167,
+  "add_loss": 0.02102180266594386,
+  "add_loss_uncertain": 0.03435290276836177,
+  "add_fail_uncertain": 0.17612809694047224
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 32312,
+  "solver_return": 3.2002294063568115,
+  "decisions": 96000,
+  "share_uncertain": 0.16284374999999998,
+  "qmdp_loss": 0.003185201040158669,
+  "qmdp_loss_uncertain": 0.01955986054213729,
+  "map_loss": 0.010041997235578795,
+  "map_loss_uncertain": 0.061666457789008144,
+  "value_dependent": 0.25775,
+  "additive_share": 0.11663007435482664,
+  "add_fail": 0.09515620930989584,
+  "add_loss": 0.028212019355927622,
+  "add_loss_uncertain": 0.027130207132690414,
+  "add_fail_uncertain": 0.15337547175845967
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 19914,
+  "solver_return": 3.095919609069824,
+  "decisions": 96000,
+  "share_uncertain": 0.253875,
+  "qmdp_loss": 0.006527790709088246,
+  "qmdp_loss_uncertain": 0.025712617268688315,
+  "map_loss": 0.01798747773716847,
+  "map_loss_uncertain": 0.07085170945216532,
+  "value_dependent": 0.33448958333333334,
+  "additive_share": 0.094542286229791,
+  "add_fail": 0.09541569010416666,
+  "add_loss": 0.026636749742617306,
+  "add_loss_uncertain": 0.019747224130072086,
+  "add_fail_uncertain": 0.1375850425180535
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 32008,
+  "solver_return": 3.6310880184173584,
+  "decisions": 96000,
+  "share_uncertain": 0.13263541666666667,
+  "qmdp_loss": 0.0011171649675816298,
+  "qmdp_loss_uncertain": 0.008422825465280599,
+  "map_loss": 0.008047115368147692,
+  "map_loss_uncertain": 0.06067093969243381,
+  "value_dependent": 0.18015625,
+  "additive_share": 0.1450338544700307,
+  "add_fail": 0.045813761393229166,
+  "add_loss": 0.010731809317445594,
+  "add_loss_uncertain": 0.019902731566514436,
+  "add_fail_uncertain": 0.13422430888243148
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 24177,
+  "solver_return": 3.613055944442749,
+  "decisions": 96000,
+  "share_uncertain": 0.14570833333333333,
+  "qmdp_loss": 0.001982704575173557,
+  "qmdp_loss_uncertain": 0.013607351960012974,
+  "map_loss": 0.013140301060241957,
+  "map_loss_uncertain": 0.09018222060217529,
+  "value_dependent": 0.17439583333333333,
+  "additive_share": 0.09440922050635359,
+  "add_fail": 0.04147786458333333,
+  "add_loss": 0.010498805507098799,
+  "add_loss_uncertain": 0.01285795974254538,
+  "add_fail_uncertain": 0.10732581051615671
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 27081,
+  "solver_return": 3.6163647174835205,
+  "decisions": 96000,
+  "share_uncertain": 0.16040625,
+  "qmdp_loss": 0.0034041399744649727,
+  "qmdp_loss_uncertain": 0.021221990879189388,
+  "map_loss": 0.018736743990331886,
+  "map_loss_uncertain": 0.11680806695706612,
+  "value_dependent": 0.15942708333333333,
+  "additive_share": 0.07127379214275953,
+  "add_fail": 0.046317911783854165,
+  "add_loss": 0.010026034415452008,
+  "add_loss_uncertain": 0.004652363310673957,
+  "add_fail_uncertain": 0.07558551894603546
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 23763,
+  "solver_return": 3.2208385467529297,
+  "decisions": 96000,
+  "share_uncertain": 0.14257291666666666,
+  "qmdp_loss": 0.001099645339573423,
+  "qmdp_loss_uncertain": 0.007712862760213971,
+  "map_loss": 0.0066701229382306335,
+  "map_loss_uncertain": 0.046783941117128726,
+  "value_dependent": 0.2984791666666667,
+  "additive_share": 0.14632467642517055,
+  "add_fail": 0.08402449544270833,
+  "add_loss": 0.021545618510906556,
+  "add_loss_uncertain": 0.03564916376038236,
+  "add_fail_uncertain": 0.18903458802148024
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 26503,
+  "solver_return": 3.2940382957458496,
+  "decisions": 96000,
+  "share_uncertain": 0.15471875,
+  "qmdp_loss": 0.0019995860916872817,
+  "qmdp_loss_uncertain": 0.01292400624802929,
+  "map_loss": 0.0090731183886528,
+  "map_loss_uncertain": 0.05864265571336894,
+  "value_dependent": 0.2547291666666667,
+  "additive_share": 0.11832296878590676,
+  "add_fail": 0.0884482421875,
+  "add_loss": 0.025147942331506214,
+  "add_loss_uncertain": 0.0272349971075253,
+  "add_fail_uncertain": 0.1524649902376624
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 19811,
+  "solver_return": 3.264321804046631,
+  "decisions": 96000,
+  "share_uncertain": 0.20477083333333332,
+  "qmdp_loss": 0.003148458156734705,
+  "qmdp_loss_uncertain": 0.015375520553796504,
+  "map_loss": 0.01896983928295473,
+  "map_loss_uncertain": 0.09263936164226545,
+  "value_dependent": 0.25276041666666665,
+  "additive_share": 0.09402443928568649,
+  "add_fail": 0.07083064778645833,
+  "add_loss": 0.019952442190645455,
+  "add_loss_uncertain": 0.011508958809026856,
+  "add_fail_uncertain": 0.09572776509563537
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 69793,
+  "solver_return": 3.226851224899292,
+  "decisions": 96000,
+  "share_uncertain": 0.13088541666666667,
+  "qmdp_loss": 0.0012111711725592612,
+  "qmdp_loss_uncertain": 0.009253675492693124,
+  "map_loss": 0.005478969675178329,
+  "map_loss_uncertain": 0.04186081088874808,
+  "value_dependent": 0.29972916666666666,
+  "additive_share": 0.1509110610247293,
+  "add_fail": 0.0854471435546875,
+  "add_loss": 0.021186642441258376,
+  "add_loss_uncertain": 0.027810362854771453,
+  "add_fail_uncertain": 0.17621741941902108
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 68940,
+  "solver_return": 3.234334945678711,
+  "decisions": 96000,
+  "share_uncertain": 0.14092708333333334,
+  "qmdp_loss": 0.0015861438866704703,
+  "qmdp_loss_uncertain": 0.011255067863135865,
+  "map_loss": 0.0065475446910907825,
+  "map_loss_uncertain": 0.04646051373676658,
+  "value_dependent": 0.29303124999999997,
+  "additive_share": 0.11857193229784724,
+  "add_fail": 0.09852909342447916,
+  "add_loss": 0.029873893114839345,
+  "add_loss_uncertain": 0.021262872135558514,
+  "add_fail_uncertain": 0.14325390134156257
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 77156,
+  "solver_return": 3.229288339614868,
+  "decisions": 96000,
+  "share_uncertain": 0.15517708333333333,
+  "qmdp_loss": 0.0030285324615736803,
+  "qmdp_loss_uncertain": 0.019516621891056813,
+  "map_loss": 0.013544315913071234,
+  "map_loss_uncertain": 0.08728296486909033,
+  "value_dependent": 0.28852083333333334,
+  "additive_share": 0.10357133405033092,
+  "add_fail": 0.09115413411458333,
+  "add_loss": 0.029373811456442658,
+  "add_loss_uncertain": 0.01427283082750928,
+  "add_fail_uncertain": 0.1155890237967376
+ },
+ {
+  "goals": [
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 66712,
+  "solver_return": 2.846398115158081,
+  "decisions": 96000,
+  "share_uncertain": 0.15595833333333334,
+  "qmdp_loss": 0.0033650099613393345,
+  "qmdp_loss_uncertain": 0.02157633958646648,
+  "map_loss": 0.008566401425283402,
+  "map_loss_uncertain": 0.05492750045599831,
+  "value_dependent": 0.3641979166666667,
+  "additive_share": 0.12460494191931226,
+  "add_fail": 0.12238911946614583,
+  "add_loss": 0.03726649907752854,
+  "add_loss_uncertain": 0.03691540448168008,
+  "add_fail_uncertain": 0.18898115023043016
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "nodes": 29033,
+  "solver_return": 3.860206365585327,
+  "decisions": 96000,
+  "share_uncertain": 0.16995833333333332,
+  "qmdp_loss": 0.004405981866642833,
+  "qmdp_loss_uncertain": 0.025923894287675404,
+  "map_loss": 0.02909305577383687,
+  "map_loss_uncertain": 0.17117757748764031,
+  "value_dependent": 0.04355208333333333,
+  "additive_share": 0.06804623761738349,
+  "add_fail": 0.0119378662109375,
+  "add_loss": 0.0016568831324502372,
+  "add_loss_uncertain": 0.0026242650033475113,
+  "add_fail_uncertain": 0.0476439920936504
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 32391,
+  "solver_return": 3.6201276779174805,
+  "decisions": 96000,
+  "share_uncertain": 0.1729375,
+  "qmdp_loss": 0.002207703716432055,
+  "qmdp_loss_uncertain": 0.012765905118508449,
+  "map_loss": 0.014818034791038371,
+  "map_loss_uncertain": 0.08568433561858112,
+  "value_dependent": 0.13758333333333334,
+  "additive_share": 0.129200971839193,
+  "add_fail": 0.032112833658854166,
+  "add_loss": 0.006090447757092458,
+  "add_loss_uncertain": 0.017140039676336212,
+  "add_fail_uncertain": 0.11574236161305866
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 21978,
+  "solver_return": 3.5210766792297363,
+  "decisions": 96000,
+  "share_uncertain": 0.20684375,
+  "qmdp_loss": 0.003010942064846555,
+  "qmdp_loss_uncertain": 0.014556601612794949,
+  "map_loss": 0.02344158189681669,
+  "map_loss_uncertain": 0.11332990190332891,
+  "value_dependent": 0.17617708333333332,
+  "additive_share": 0.08178553709134007,
+  "add_fail": 0.04393058268229166,
+  "add_loss": 0.01018243287498088,
+  "add_loss_uncertain": 0.012374297587820628,
+  "add_fail_uncertain": 0.10975486446844941
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 31796,
+  "solver_return": 3.5065674781799316,
+  "decisions": 96000,
+  "share_uncertain": 0.22974999999999998,
+  "qmdp_loss": 0.005505341871641576,
+  "qmdp_loss_uncertain": 0.023962315001704357,
+  "map_loss": 0.039602358731402394,
+  "map_loss_uncertain": 0.17237152875474382,
+  "value_dependent": 0.11267708333333333,
+  "additive_share": 0.0532214740778677,
+  "add_fail": 0.031419718424479166,
+  "add_loss": 0.008039924332663834,
+  "add_loss_uncertain": 0.0017035144271582339,
+  "add_fail_uncertain": 0.03149405207199855
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 29253,
+  "solver_return": 3.624650001525879,
+  "decisions": 96000,
+  "share_uncertain": 0.15747916666666667,
+  "qmdp_loss": 0.0014762277205785115,
+  "qmdp_loss_uncertain": 0.009374114378590892,
+  "map_loss": 0.009139904789626598,
+  "map_loss_uncertain": 0.05803881861384796,
+  "value_dependent": 0.16107291666666665,
+  "additive_share": 0.14534723362065338,
+  "add_fail": 0.03882198079427083,
+  "add_loss": 0.00763847636882997,
+  "add_loss_uncertain": 0.01737322922485377,
+  "add_fail_uncertain": 0.12986950572165631
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 20635,
+  "solver_return": 3.5605826377868652,
+  "decisions": 96000,
+  "share_uncertain": 0.15925,
+  "qmdp_loss": 0.0028258299774800736,
+  "qmdp_loss_uncertain": 0.017744615243202977,
+  "map_loss": 0.017611069246816137,
+  "map_loss_uncertain": 0.1105875619894263,
+  "value_dependent": 0.18986458333333334,
+  "additive_share": 0.09838614701595727,
+  "add_fail": 0.048998453776041666,
+  "add_loss": 0.013324338974391746,
+  "add_loss_uncertain": 0.018227244566560927,
+  "add_fail_uncertain": 0.12677043473639457
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 32523,
+  "solver_return": 3.509359359741211,
+  "decisions": 96000,
+  "share_uncertain": 0.18046874999999998,
+  "qmdp_loss": 0.004869641442472736,
+  "qmdp_loss_uncertain": 0.0269832945730091,
+  "map_loss": 0.026791471823739508,
+  "map_loss_uncertain": 0.14845490880686826,
+  "value_dependent": 0.16796875,
+  "additive_share": 0.06987182184602203,
+  "add_fail": 0.0479781494140625,
+  "add_loss": 0.011227018606272508,
+  "add_loss_uncertain": 0.005335339655227444,
+  "add_fail_uncertain": 0.06764227092352092
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 28937,
+  "solver_return": 3.194270133972168,
+  "decisions": 96000,
+  "share_uncertain": 0.17813541666666666,
+  "qmdp_loss": 0.0021020331289619207,
+  "qmdp_loss_uncertain": 0.011800197671501339,
+  "map_loss": 0.010223448959179222,
+  "map_loss_uncertain": 0.057391444949488654,
+  "value_dependent": 0.3040833333333333,
+  "additive_share": 0.14345844258419638,
+  "add_fail": 0.07491682942708333,
+  "add_loss": 0.018543176684402814,
+  "add_loss_uncertain": 0.03766087852494042,
+  "add_fail_uncertain": 0.1914775177621192
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 45096,
+  "solver_return": 3.2333600521087646,
+  "decisions": 96000,
+  "share_uncertain": 0.18772916666666667,
+  "qmdp_loss": 0.003959840327811738,
+  "qmdp_loss_uncertain": 0.021093367632334194,
+  "map_loss": 0.0141710653124998,
+  "map_loss_uncertain": 0.07548675341249478,
+  "value_dependent": 0.23775,
+  "additive_share": 0.10415557808283316,
+  "add_fail": 0.08224959309895834,
+  "add_loss": 0.02280391170230458,
+  "add_loss_uncertain": 0.0216152570120338,
+  "add_fail_uncertain": 0.1316362033209411
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 29923,
+  "solver_return": 3.0672590732574463,
+  "decisions": 96000,
+  "share_uncertain": 0.26259375,
+  "qmdp_loss": 0.005906432817379633,
+  "qmdp_loss_uncertain": 0.02249266335310583,
+  "map_loss": 0.02610276214129408,
+  "map_loss_uncertain": 0.09940359258852915,
+  "value_dependent": 0.34922916666666665,
+  "additive_share": 0.08144861119704716,
+  "add_fail": 0.08968745930989583,
+  "add_loss": 0.02349863821973251,
+  "add_loss_uncertain": 0.020608773840789213,
+  "add_fail_uncertain": 0.1356359273969614
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 26130,
+  "solver_return": 3.643493890762329,
+  "decisions": 96000,
+  "share_uncertain": 0.14803125,
+  "qmdp_loss": 0.0013340142133335272,
+  "qmdp_loss_uncertain": 0.009011706739850722,
+  "map_loss": 0.010147957531114419,
+  "map_loss_uncertain": 0.06855280578333574,
+  "value_dependent": 0.15989583333333332,
+  "additive_share": 0.14466796190248044,
+  "add_fail": 0.04028694661458333,
+  "add_loss": 0.00816929122479966,
+  "add_loss_uncertain": 0.015239660913568863,
+  "add_fail_uncertain": 0.12008963127155022
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 22104,
+  "solver_return": 3.5834596157073975,
+  "decisions": 96000,
+  "share_uncertain": 0.15022916666666666,
+  "qmdp_loss": 0.0022953490270301697,
+  "qmdp_loss_uncertain": 0.015278983954714763,
+  "map_loss": 0.019059414187135797,
+  "map_loss_uncertain": 0.12686893370995952,
+  "value_dependent": 0.18117708333333332,
+  "additive_share": 0.09605348324706864,
+  "add_fail": 0.04408671061197916,
+  "add_loss": 0.012879619362635973,
+  "add_loss_uncertain": 0.015857963183913408,
+  "add_fail_uncertain": 0.11456861695673277
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 28165,
+  "solver_return": 3.595472812652588,
+  "decisions": 96000,
+  "share_uncertain": 0.17176041666666667,
+  "qmdp_loss": 0.004432706818605463,
+  "qmdp_loss_uncertain": 0.025807499216818755,
+  "map_loss": 0.029509323602231838,
+  "map_loss_uncertain": 0.1718051468138915,
+  "value_dependent": 0.14381249999999998,
+  "additive_share": 0.07204997449051587,
+  "add_fail": 0.04166158040364583,
+  "add_loss": 0.009688091376419418,
+  "add_loss_uncertain": 0.0029317169563465658,
+  "add_fail_uncertain": 0.04823551875492753
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 23302,
+  "solver_return": 3.199561595916748,
+  "decisions": 96000,
+  "share_uncertain": 0.16003124999999999,
+  "qmdp_loss": 0.001628096006810665,
+  "qmdp_loss_uncertain": 0.01017361300877588,
+  "map_loss": 0.009096235969414314,
+  "map_loss_uncertain": 0.05684037317345402,
+  "value_dependent": 0.31235416666666665,
+  "additive_share": 0.14288904261942503,
+  "add_fail": 0.08401468912760417,
+  "add_loss": 0.021178163078441798,
+  "add_loss_uncertain": 0.04115465795492717,
+  "add_fail_uncertain": 0.215360413412094
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 27896,
+  "solver_return": 3.3164398670196533,
+  "decisions": 96000,
+  "share_uncertain": 0.17521875,
+  "qmdp_loss": 0.0025815929512803754,
+  "qmdp_loss_uncertain": 0.014733542793110756,
+  "map_loss": 0.012910132786414275,
+  "map_loss_uncertain": 0.07368008724188636,
+  "value_dependent": 0.23688541666666665,
+  "additive_share": 0.10824055252897424,
+  "add_fail": 0.07965380859375,
+  "add_loss": 0.021648217951677148,
+  "add_loss_uncertain": 0.021603647271074715,
+  "add_fail_uncertain": 0.1329104987812853
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 21687,
+  "solver_return": 3.2200865745544434,
+  "decisions": 96000,
+  "share_uncertain": 0.21196874999999998,
+  "qmdp_loss": 0.0033174650399014354,
+  "qmdp_loss_uncertain": 0.01565072700528467,
+  "map_loss": 0.026782232753311593,
+  "map_loss_uncertain": 0.12634991126433304,
+  "value_dependent": 0.26677083333333335,
+  "additive_share": 0.08702032754566502,
+  "add_fail": 0.07733654785156249,
+  "add_loss": 0.02222591734193687,
+  "add_loss_uncertain": 0.013493685102863178,
+  "add_fail_uncertain": 0.11007297655904466
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 59608,
+  "solver_return": 3.208042621612549,
+  "decisions": 96000,
+  "share_uncertain": 0.14476041666666667,
+  "qmdp_loss": 0.0017475167885422705,
+  "qmdp_loss_uncertain": 0.012071786119310498,
+  "map_loss": 0.007423337550833821,
+  "map_loss_uncertain": 0.051280161537025755,
+  "value_dependent": 0.314625,
+  "additive_share": 0.14782206752741311,
+  "add_fail": 0.08773624674479166,
+  "add_loss": 0.022197376855556058,
+  "add_loss_uncertain": 0.03569551790343644,
+  "add_fail_uncertain": 0.20708325088148521
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 67304,
+  "solver_return": 3.2507569789886475,
+  "decisions": 96000,
+  "share_uncertain": 0.15684375,
+  "qmdp_loss": 0.0018293225125720102,
+  "qmdp_loss_uncertain": 0.011663343375633458,
+  "map_loss": 0.008535848749180635,
+  "map_loss_uncertain": 0.054422626015895655,
+  "value_dependent": 0.2757604166666667,
+  "additive_share": 0.11180652070641317,
+  "add_fail": 0.08985469563802083,
+  "add_loss": 0.02665961085886056,
+  "add_loss_uncertain": 0.01872467744672922,
+  "add_fail_uncertain": 0.1319703875273959
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 60165,
+  "solver_return": 3.1986570358276367,
+  "decisions": 96000,
+  "share_uncertain": 0.16091666666666665,
+  "qmdp_loss": 0.0031978850501279037,
+  "qmdp_loss_uncertain": 0.019872926256620838,
+  "map_loss": 0.018767545282840727,
+  "map_loss_uncertain": 0.11662897120356744,
+  "value_dependent": 0.29846875,
+  "additive_share": 0.10096591871185401,
+  "add_fail": 0.09485262044270833,
+  "add_loss": 0.03129703087324795,
+  "add_loss_uncertain": 0.018928593428647073,
+  "add_fail_uncertain": 0.1321462021782755
+ },
+ {
+  "goals": [
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 81712,
+  "solver_return": 2.818119525909424,
+  "decisions": 96000,
+  "share_uncertain": 0.17740625,
+  "qmdp_loss": 0.0037418605828036865,
+  "qmdp_loss_uncertain": 0.02109204485638858,
+  "map_loss": 0.01054430223442614,
+  "map_loss_uncertain": 0.05943591183752625,
+  "value_dependent": 0.3751145833333333,
+  "additive_share": 0.11145778022526476,
+  "add_fail": 0.1239888916015625,
+  "add_loss": 0.039117011820266494,
+  "add_loss_uncertain": 0.045853638352373396,
+  "add_fail_uncertain": 0.21386093740825554
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ]
+  ],
+  "nodes": 40329,
+  "solver_return": 3.6660590171813965,
+  "decisions": 96000,
+  "share_uncertain": 0.16689583333333333,
+  "qmdp_loss": 0.0017161315837875008,
+  "qmdp_loss_uncertain": 0.010282650857795535,
+  "map_loss": 0.012343819933322567,
+  "map_loss_uncertain": 0.07396122291842258,
+  "value_dependent": 0.14221875,
+  "additive_share": 0.14361442664740065,
+  "add_fail": 0.03255452473958333,
+  "add_loss": 0.006199864344726544,
+  "add_loss_uncertain": 0.011577200822789189,
+  "add_fail_uncertain": 0.09707672458182498
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 30482,
+  "solver_return": 3.5851447582244873,
+  "decisions": 96000,
+  "share_uncertain": 0.15658333333333332,
+  "qmdp_loss": 0.002308449873390297,
+  "qmdp_loss_uncertain": 0.014742628249432444,
+  "map_loss": 0.02319912972673774,
+  "map_loss_uncertain": 0.14815835908507335,
+  "value_dependent": 0.1791875,
+  "additive_share": 0.09215041574818206,
+  "add_fail": 0.0403037109375,
+  "add_loss": 0.011338695149669927,
+  "add_loss_uncertain": 0.013686840813053575,
+  "add_fail_uncertain": 0.10194813564395955
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 39783,
+  "solver_return": 3.5913023948669434,
+  "decisions": 96000,
+  "share_uncertain": 0.19070833333333334,
+  "qmdp_loss": 0.005104242905974388,
+  "qmdp_loss_uncertain": 0.0267646558320702,
+  "map_loss": 0.039233857436416046,
+  "map_loss_uncertain": 0.20572702173344662,
+  "value_dependent": 0.10916666666666666,
+  "additive_share": 0.0742311902383267,
+  "add_fail": 0.02677197265625,
+  "add_loss": 0.005506561224864678,
+  "add_loss_uncertain": 0.00311519592643774,
+  "add_fail_uncertain": 0.03856024347279877
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 31060,
+  "solver_return": 3.2090611457824707,
+  "decisions": 96000,
+  "share_uncertain": 0.16419791666666667,
+  "qmdp_loss": 0.0017237682497749725,
+  "qmdp_loss_uncertain": 0.010498112794417138,
+  "map_loss": 0.010535342139812807,
+  "map_loss_uncertain": 0.06416245926676581,
+  "value_dependent": 0.31367708333333333,
+  "additive_share": 0.137775334706549,
+  "add_fail": 0.07455029296875,
+  "add_loss": 0.018711180435504692,
+  "add_loss_uncertain": 0.04185920040599812,
+  "add_fail_uncertain": 0.21043865579204465
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 37618,
+  "solver_return": 3.3372466564178467,
+  "decisions": 96000,
+  "share_uncertain": 0.19619791666666667,
+  "qmdp_loss": 0.002808244852349162,
+  "qmdp_loss_uncertain": 0.01431332656360603,
+  "map_loss": 0.016185352217561254,
+  "map_loss_uncertain": 0.08249502590315266,
+  "value_dependent": 0.22178124999999999,
+  "additive_share": 0.10337868735936373,
+  "add_fail": 0.065579833984375,
+  "add_loss": 0.016228674368022892,
+  "add_loss_uncertain": 0.014786656176135542,
+  "add_fail_uncertain": 0.10022170327847094
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 28979,
+  "solver_return": 3.2222025394439697,
+  "decisions": 96000,
+  "share_uncertain": 0.22052083333333333,
+  "qmdp_loss": 0.0033663963951791327,
+  "qmdp_loss_uncertain": 0.015265661499159033,
+  "map_loss": 0.03237923201546073,
+  "map_loss_uncertain": 0.1468307167446495,
+  "value_dependent": 0.26157291666666665,
+  "additive_share": 0.08441984290637938,
+  "add_fail": 0.0738426513671875,
+  "add_loss": 0.01945258117302285,
+  "add_loss_uncertain": 0.012709150143595605,
+  "add_fail_uncertain": 0.09757635362541332
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 31021,
+  "solver_return": 3.2111916542053223,
+  "decisions": 96000,
+  "share_uncertain": 0.14983333333333332,
+  "qmdp_loss": 0.0017910968884825706,
+  "qmdp_loss_uncertain": 0.01195392806551215,
+  "map_loss": 0.008211136861083409,
+  "map_loss_uncertain": 0.05480180329977803,
+  "value_dependent": 0.32096874999999997,
+  "additive_share": 0.14401706591429841,
+  "add_fail": 0.08535416666666666,
+  "add_loss": 0.0216161327386413,
+  "add_loss_uncertain": 0.03952694453608818,
+  "add_fail_uncertain": 0.21532659986790878
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 37162,
+  "solver_return": 3.2736592292785645,
+  "decisions": 96000,
+  "share_uncertain": 0.17661458333333332,
+  "qmdp_loss": 0.0020152158001437784,
+  "qmdp_loss_uncertain": 0.011410245757228116,
+  "map_loss": 0.010511363039103647,
+  "map_loss_uncertain": 0.059515827293066946,
+  "value_dependent": 0.2632291666666667,
+  "additive_share": 0.10890526134619805,
+  "add_fail": 0.0797972412109375,
+  "add_loss": 0.021416073828797757,
+  "add_loss_uncertain": 0.01548102094672024,
+  "add_fail_uncertain": 0.11896564435269831
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 29756,
+  "solver_return": 3.2006115913391113,
+  "decisions": 96000,
+  "share_uncertain": 0.16639583333333333,
+  "qmdp_loss": 0.002983787537241975,
+  "qmdp_loss_uncertain": 0.017931864503269668,
+  "map_loss": 0.021700613276412088,
+  "map_loss_uncertain": 0.13041560501662455,
+  "value_dependent": 0.29973958333333334,
+  "additive_share": 0.09895066142066167,
+  "add_fail": 0.08703177897135417,
+  "add_loss": 0.026055768027690683,
+  "add_loss_uncertain": 0.01789030490560438,
+  "add_fail_uncertain": 0.12592728809315137
+ },
+ {
+  "goals": [
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 38646,
+  "solver_return": 2.8328754901885986,
+  "decisions": 96000,
+  "share_uncertain": 0.18338541666666666,
+  "qmdp_loss": 0.002859417547782262,
+  "qmdp_loss_uncertain": 0.015592393330707026,
+  "map_loss": 0.012137794157208797,
+  "map_loss_uncertain": 0.06618734672491022,
+  "value_dependent": 0.3783333333333333,
+  "additive_share": 0.10100690594309714,
+  "add_fail": 0.11651350911458333,
+  "add_loss": 0.03507527720782616,
+  "add_loss_uncertain": 0.04631315598279104,
+  "add_fail_uncertain": 0.22272902761999433
+ },
+ {
+  "goals": [
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ]
+  ],
+  "nodes": 61252,
+  "solver_return": 3.2403995990753174,
+  "decisions": 96000,
+  "share_uncertain": 0.14506249999999998,
+  "qmdp_loss": 0.0017471119600037733,
+  "qmdp_loss_uncertain": 0.012043856665370075,
+  "map_loss": 0.009378678903294106,
+  "map_loss_uncertain": 0.06465267661049948,
+  "value_dependent": 0.31205208333333334,
+  "additive_share": 0.13643044664455573,
+  "add_fail": 0.07413252766927084,
+  "add_loss": 0.01877581938909217,
+  "add_loss_uncertain": 0.038703634107739804,
+  "add_fail_uncertain": 0.2097386408516444
+ },
+ {
+  "goals": [
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 60172,
+  "solver_return": 3.374669075012207,
+  "decisions": 96000,
+  "share_uncertain": 0.18647916666666667,
+  "qmdp_loss": 0.00180267270685484,
+  "qmdp_loss_uncertain": 0.009666885256287826,
+  "map_loss": 0.012937814922071992,
+  "map_loss_uncertain": 0.0693794119382701,
+  "value_dependent": 0.22192708333333333,
+  "additive_share": 0.11280820885128073,
+  "add_fail": 0.06282511393229166,
+  "add_loss": 0.016546230290743095,
+  "add_loss_uncertain": 0.011112790979367784,
+  "add_fail_uncertain": 0.08894912230477041
+ },
+ {
+  "goals": [
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 49102,
+  "solver_return": 3.2994489669799805,
+  "decisions": 96000,
+  "share_uncertain": 0.16086458333333334,
+  "qmdp_loss": 0.00252854128057758,
+  "qmdp_loss_uncertain": 0.015718446087900517,
+  "map_loss": 0.025424036953908703,
+  "map_loss_uncertain": 0.15804620524349125,
+  "value_dependent": 0.27422916666666663,
+  "additive_share": 0.10266656194686352,
+  "add_fail": 0.08234879557291666,
+  "add_loss": 0.024094673183482577,
+  "add_loss_uncertain": 0.013018114167831772,
+  "add_fail_uncertain": 0.09840218869390663
+ },
+ {
+  "goals": [
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 45288,
+  "solver_return": 2.937941551208496,
+  "decisions": 96000,
+  "share_uncertain": 0.173875,
+  "qmdp_loss": 0.0017263210586582621,
+  "qmdp_loss_uncertain": 0.009928517950586697,
+  "map_loss": 0.012170936197973787,
+  "map_loss_uncertain": 0.06999819524355881,
+  "value_dependent": 0.36692708333333335,
+  "additive_share": 0.10610778860320491,
+  "add_fail": 0.10250325520833332,
+  "add_loss": 0.03027087958744759,
+  "add_loss_uncertain": 0.03974161796599164,
+  "add_fail_uncertain": 0.20126150438832974
+ },
+ {
+  "goals": [
+   [
+    1,
+    7
+   ],
+   [
+    1,
+    10
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    6
+   ]
+  ],
+  "nodes": 203572,
+  "solver_return": 2.8799948692321777,
+  "decisions": 96000,
+  "share_uncertain": 0.15786458333333334,
+  "qmdp_loss": 0.0017235523431251446,
+  "qmdp_loss_uncertain": 0.010917916525240112,
+  "map_loss": 0.00913889634422958,
+  "map_loss_uncertain": 0.057890732368593836,
+  "value_dependent": 0.38716666666666666,
+  "additive_share": 0.11353608443239949,
+  "add_fail": 0.11926220703125,
+  "add_loss": 0.03680495894858526,
+  "add_loss_uncertain": 0.040541599389815774,
+  "add_fail_uncertain": 0.2128157476905312
+ }
+]
