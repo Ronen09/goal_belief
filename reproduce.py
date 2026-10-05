@@ -77,6 +77,8 @@ ROUNDS = [
           [Step("run.py", quick=True),
            Step("run.py", ("--out", "rounds/r16_kv_dropout/fine", "--ps", "0.05", "0.1", "0.2", "0.3", "--plain-ps", "0.1", "0.25")),
            Step("tables.py", tables=True)], needs=("r15",)),
+    Round("r17b", "r17_read_cost", "Does a price on reading the history induce a selective, recurrent belief state?", "3 h (32 min GPU + carry family on CPU workers)",
+          [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("r16",)),
     Round("r17", "r17_navigate_commit", "How does a full-attention transformer come to build and use a belief while its policy improves?",
           "4 h GPU",
           [Step("tune.py", quick=True),

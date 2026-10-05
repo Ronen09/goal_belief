@@ -82,3 +82,40 @@ def test_attention_penalty_reduces_the_penalised_route():
         eye = torch.eye(KW["T"], dtype=torch.bool)
         off.append(float(attn[0].masked_fill(eye, 0.0).sum(-1).mean()))
     assert off[1] < off[0]
+
+
+def test_batched_gated_forward_matches_each_model():
+    """Stacked gated forward == per-model gated forward, under forced-open and own gates."""
+    from goalgeo import kvprior as KP
+    specs = [Tb.Spec(seed=0, norm="learn", gated=True), Tb.Spec(seed=1, norm="learn", gated=True)]
+    bt = Tb.BatchedTransformer(specs, device=DEV, n_layers=3, **{k: v for k, v in KW.items() if k != "n_layers"})
+    with torch.no_grad():                                                   # gates that vary with the input
+        for i in range(3):
+            bt.P[f"gw{i}"].normal_(std=2.0); bt.P[f"gb{i}"].zero_()
+    X = torch.randint(0, H4.V, (2, 8, KW["T"]), device=DEV)
+    with torch.no_grad():
+        for mode in ("open", "own"):
+            zb, pb = bt.logits_g(X, gate=mode)
+            for j, net in enumerate(bt.to_nets()):
+                net = net.to(DEV).eval()
+                res, p = net.residuals_g(X[j], gate=mode)
+                z = net.out(net.ln_f(res[-1]))
+                assert torch.allclose(z, zb[j], atol=2e-5), (mode, j, (z - zb[j]).abs().max().item())
+                assert torch.allclose(p, pb[j], atol=1e-6)
+            if mode == "own":
+                assert 0.1 < pb[:, :, 2:].gt(0.5).float().mean() < 0.9        # both decisions occur
+
+
+def test_lm_stack_cost_closes_reads():
+    """A price of 1 nat per read closes the reads within a short run; a zero price leaves them open
+    (reading the history helps on channel-environment tokens). Adam moves the gate bias about lr per
+    step, so 300 steps at 2e-2 carry it from +3 past 0."""
+    from goalgeo import kvprior as KP, latentgoal as LG
+    specs = [KP.LMSpec(2, 10, 0), KP.LMSpec(2, 10, 0)]
+    nets, _ = KP.train_lm_stack(specs, steps=300, n_pool=512, batch=64, lr=2e-2, device=DEV, cost=[0.0, 1.0])
+    X, _ = KP.lm_data(LG.make_env("channel", 4), 256, 10, seed=5)
+    rates = []
+    with torch.no_grad():
+        for net in nets:
+            rates.append(net.eval().residuals_g(torch.as_tensor(X), gate="own")[1][:, 2:].gt(0.5).float().mean().item())
+    assert rates[0] > 0.5 and rates[1] < 0.1, rates

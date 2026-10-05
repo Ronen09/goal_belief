@@ -57,6 +57,7 @@ tests/                132 tests (exact identities, filter vs brute force, invari
 | r14 | Does a narrow attention window force a steerable belief state? | [report](rounds/r14_window_carry/REPORT.md) | 31 min |
 | r15 | Does a next-token transformer use its previous belief as a prior? | [report](rounds/r15_prior_vs_recompute/REPORT.md) | 11 min GPU |
 | r16 | Can K/V dropout induce recurrence continuously? | [report](rounds/r16_kv_dropout/REPORT.md) | 1 h |
+| r17b | Does a price on reading the history induce a selective, recurrent belief state? | [report](rounds/r17_read_cost/REPORT.md) | 3 h |
 | r17 | How does a reward-trained transformer come to build and use a belief? | [report](rounds/r17_navigate_commit/REPORT.md) | 4 h GPU |
 | r18 | Does an inferred location belief support goal-dependent decisions? | [report](rounds/r18_maze_belief/REPORT.md) | 1.5 h GPU |
 | r19 | Is goal-conditioned occupancy represented beyond the posterior and the action values? | [report](rounds/r19_occupancy/REPORT.md) | 25 min GPU |
@@ -96,9 +97,9 @@ tests/                132 tests (exact identities, filter vs brute force, invari
 | `geometry`, `analysis`, `quotient`, `supervision` | r01–r03 | RDMs / RSA / CKA / decoding, and each round's analyses |
 | `hmm`, `hmm4`, `seqmodels`, `prominence` | r04–r09 | HMMs with exact inference, GRUs and objectives, prominence measures |
 | `invariants`, `steering` | r08–r09 | invariant measures under exact coordinate changes, propagation-based steering |
-| `tfm`, `tfm_batched`, `tfm_measure`, `cuts`, `factorize` | r10–r16 | causal transformer, stacked GPU trainer, complete-cut patching, readout factorisation |
+| `tfm`, `tfm_batched`, `tfm_measure`, `cuts`, `factorize` | r10–r17b | causal transformer, stacked GPU trainer, complete-cut patching, readout factorisation |
 | `latentgoal`, `belief_train`, `beliefprobe`, `beliefcausal`, `filterstate` | r12–r14 | hidden-goal environments with the exact joint filter; training; probes; transplant / equivalence tests; full-state coordinates |
-| `wtfm`, `kvprior` | r14–r16 | windowed transformer with a recurrent carry and K/V dropout; K/V-source splicing for position t+1 |
+| `wtfm`, `kvprior`, `readgate` | r14–r17b | windowed transformer with a recurrent carry, K/V dropout and a priced read gate; K/V-source splicing for position t+1 |
 | `navcommit`, `navmodel`, `navppo`, `navbank`, `navprobe`, `navcausal` | r17 | navigate / investigate / commit: exact solver, token format and transformer, vectorised environment and PPO, fixed evaluation histories, decoders, matched-pair patches |
 | `mazeedit` | r20–r22 | edits of prefix-token states in decoder-defined and covariance-defined subspaces |
 | `mazepred` | r26–r27 | prediction-only backbone (k-step heads, random-walk targets), exact k-step predictions, small goal-conditioned heads trained side by side on frozen features |

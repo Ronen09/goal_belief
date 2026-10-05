@@ -17,6 +17,7 @@ import torch.nn.functional as F
 from . import beliefcausal as BC
 from . import filterstate as FS
 from . import latentgoal as LG
+from . import readgate as RG
 from . import tfm as Tf
 from . import tfm_batched as Tb
 
@@ -53,13 +54,15 @@ def drop_visible(p, n, T, gen=None, keep_prev=True, device="cpu"):
 
 
 def train_lm_stack(specs: list[LMSpec], steps: int, n_pool: int = 100000, batch: int = 128, lr: float = 1e-3,
-                   device="cuda", log=None, drop: list[float] | None = None):
+                   device="cuda", log=None, drop: list[float] | None = None, cost: list[float] | None = None):
     """drop: per-model probability of dropping each historical K/V entry older than the previous
-    position, resampled every step (TASK15); None trains with full attention."""
+    position, resampled every step (TASK15); None trains with full attention.
+    cost: per-model price c on the expected read rate (TASK16); the models are then built with a
+    read gate."""
     L, T = specs[0].L, specs[0].T; assert all(s.L == L and s.T == T for s in specs)
     env = LG.make_env("channel", 4); V = env.V
-    model = Tb.BatchedTransformer([Tb.Spec(seed=s.seed, norm="learn") for s in specs], n_vocab=V, T=T + 1,
-                                  n_layers=L, d=64, n_heads=4, mlp=128, device=device)
+    model = Tb.BatchedTransformer([Tb.Spec(seed=s.seed, norm="learn", gated=cost is not None) for s in specs],
+                                  n_vocab=V, T=T + 1, n_layers=L, d=64, n_heads=4, mlp=128, device=device)
     data = [lm_data(env, n_pool, T, s.seed + 1000) for s in specs]
     Xp = torch.stack([torch.as_tensor(x) for x, _ in data]).to(device)
     Yp = torch.stack([torch.as_tensor(y) for _, y in data]).to(device)
@@ -75,9 +78,13 @@ def train_lm_stack(specs: list[LMSpec], steps: int, n_pool: int = 100000, batch:
         if drop is not None:
             vis = torch.stack([drop_visible(p, batch, T + 1, device=device) for p in drop])       # [M, B, T, T]
             am = torch.zeros(vis.shape, device=device).masked_fill(~vis, float("-inf"))
-        z = model.logits(X, mask=am) + mask
+        if cost is None:
+            z = model.logits(X, mask=am) + mask; pen = 0.0
+        else:
+            z, p = model.logits_g(X, gate="train", mask=am); z = z + mask
+            pen = torch.as_tensor(cost, device=device) * p[:, :, 2:].mean((1, 2, 3))              # c_m * mean_{b, u >= 2, l}
         per = F.cross_entropy(z.reshape(-1, V), Y.reshape(-1), reduction="none").view(len(specs), -1).mean(1)
-        opt.zero_grad(set_to_none=True); per.sum().backward(); opt.step()
+        opt.zero_grad(set_to_none=True); (per + pen).sum().backward(); opt.step()
         if step % 500 == 0 or step == steps - 1:
             hist.append(per.detach().cpu().numpy())
             if log and step % 5000 == 0:
@@ -86,36 +93,42 @@ def train_lm_stack(specs: list[LMSpec], steps: int, n_pool: int = 100000, batch:
     return model.to_nets(), np.stack(hist)
 
 
-def make_net(spec: LMSpec):
+def make_net(spec: LMSpec, gated=False):
     env = LG.make_env("channel", 4)
     return Tf.CausalTransformer(n_vocab=env.V, d=64, n_heads=4, n_layers=spec.L, mlp=128, T=spec.T + 1, seed=spec.seed,
-                                final_norm="learn")
+                                final_norm="learn", gated=gated)
 
 
 # ---- the model's predictive and the exact one ----------------------------------------------------
 @torch.no_grad()
-def predictive(net, X, batch=2000):
+def predictive(net, X, batch=2000, gate="open"):
     """P(o_{t+1} | o_<=t) over the M observation tokens, at every position: [n, T+1, M]."""
     out = []
     for i in range(0, len(X), batch):
-        z = net.forward_all(torch.as_tensor(X[i:i + batch], device=net.pos.device))
+        z = net.forward_all(torch.as_tensor(X[i:i + batch], device=net.pos.device), gate=gate)
         out.append(torch.softmax(z[..., 1:], -1).double().cpu().numpy())
     return np.concatenate(out)
 
 
 # ---- computing position t+1 from exported residuals ---------------------------------------------
 @torch.no_grad()
-def residuals(net, X):
-    """[res_0, ..., res_L] for full sequences X, each [n, T, d] (float64 on CPU)."""
-    return [r.double().cpu().numpy() for r in net.residuals(torch.as_tensor(X, device=net.pos.device))]
+def residuals(net, X, gate="open"):
+    """[res_0, ..., res_L] for full sequences X, each [n, T, d] (float64 on CPU), computed under
+    the given gate mode (the default reproduces the ungated computation exactly)."""
+    return [r.double().cpu().numpy() for r in net.residuals_g(torch.as_tensor(X, device=net.pos.device), gate)[0]]
 
 
 @torch.no_grad()
-def forward_query(net, src, tok, pos, visible=None):
+def forward_query_g(net, src, tok, pos, visible=None, gate="open"):
     """Position `pos` (= t+1) with token `tok` [n], reading exported residuals src[i] [n, S, d]
     (block i's input at positions 0..S-1 = 0..t). visible: bool [S] of source positions the query
-    may attend to (default all). Returns (residuals [res_1..res_L] of the query, u, predictive
-    over the M observation tokens, head-averaged attention on the sources per block)."""
+    may attend to (default all). gate: 'open' | 'own' | 'train' (TASK16); with a gated block and
+    gate != 'open', each block evaluates its own read gate deterministically on the query's `a`
+    (no sampling), and a closed gate shrinks the allowed sources to position S - 1 (= t) and self,
+    on top of any `visible` restriction. Returns (residuals [res_1..res_L] of the query, u,
+    predictive over the M observation tokens, head-averaged attention on the sources per block,
+    gates [n, L] of the deterministic gate decisions, ones under 'open' or where the block has no
+    gate)."""
     dev = net.pos.device
     to = lambda a: torch.as_tensor(a, dtype=torch.float32, device=dev)        # noqa: E731
     tok = torch.as_tensor(tok, device=dev); n = len(tok)
@@ -124,22 +137,34 @@ def forward_query(net, src, tok, pos, visible=None):
     allow = torch.ones(n, S + 1, dtype=torch.bool, device=dev)
     if visible is not None:                                                        # [S] or per sample [n, S]
         allow[:, :S] = torch.as_tensor(visible, device=dev)
-    res, attn = [], []
+    res, attn, gates = [], [], []
     for i, blk in enumerate(net.blocks):
         a = blk.ln1(x); kv = torch.cat([blk.ln1(to(src[i])), a[:, None]], 1)       # [n, S+1, d]
         W, b = blk.attn.in_proj_weight, blk.attn.in_proj_bias; d = x.shape[-1]; H = blk.attn.num_heads; dh = d // H
         q = a @ W[:d].T + b[:d]; k = kv @ W[d:2 * d].T + b[d:2 * d]; v = kv @ W[2 * d:].T + b[2 * d:]
         q = q.view(n, H, dh); k = k.view(n, S + 1, H, dh).transpose(1, 2); v = v.view(n, S + 1, H, dh).transpose(1, 2)
         s = (k @ q[..., None]).squeeze(-1) / dh ** 0.5                              # [n, H, S+1]
-        s = s.masked_fill(~allow[:, None, :], float("-inf"))
+        ok = allow
+        g = torch.ones(n, device=dev)
+        if blk.gate is not None and gate != "open":
+            g, _ = RG.gate(blk.gate(a).squeeze(-1), False)                          # deterministic [n]
+            closed = torch.zeros(n, S + 1, dtype=torch.bool, device=dev); closed[:, S - 1:] = True
+            ok = torch.where(g[:, None] > 0, allow, allow & closed)
+        s = s.masked_fill(~ok[:, None, :], float("-inf"))
         w = torch.softmax(s, -1)
         o = (w[..., None] * v).sum(2).reshape(n, d)
         x = x + blk.attn.out_proj(o)
         x = x + blk.mlp(blk.ln2(x))
-        res.append(x.double().cpu().numpy()); attn.append(w.mean(1).double().cpu().numpy())
+        res.append(x.double().cpu().numpy()); attn.append(w.mean(1).double().cpu().numpy()); gates.append(g.double().cpu().numpy())
     u = net.ln_f(x)
     p = torch.softmax(net.out(u)[:, 1:], -1).double().cpu().numpy()
-    return res, u.double().cpu().numpy(), p, attn
+    return res, u.double().cpu().numpy(), p, attn, np.stack(gates, -1)
+
+
+@torch.no_grad()
+def forward_query(net, src, tok, pos, visible=None, gate="open"):
+    """As forward_query_g without the gate decisions (rounds 15-16 and test_beliefprobe unpack four values)."""
+    return forward_query_g(net, src, tok, pos, visible, gate)[:4]
 
 
 @torch.no_grad()
