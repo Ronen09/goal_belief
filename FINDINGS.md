@@ -716,6 +716,15 @@ control of the same size.
 - Registered: r's effect lies outside the belief code. It is history information that is not a belief estimate.
   1 of 4 expectations held, two in part.
 
+**Residual features — which superseded features the residual carries (`studies/5_goal_belief_mechanism/residual_features/REPORT.md`, rule in
+`studies/5_goal_belief_mechanism/residual_features/PLAN.md`).** History features centred within the posterior (the part it makes redundant),
+regressed out of r and swapped alone against rotated controls.
+
+- A linear code of the prefix tokens carries 0.91 of r's effect. By feature: counts of each symbol and move 0.61, the
+  last move 0.56; the last symbol 0.12. Post hoc, counts split into moves 0.37 and symbols 0.25.
+- The posterior is sufficient for the optimal decision, but the network keeps a redundant record of the prefix moves
+  and acts on it. Registered: one superseded feature (the counts, a composite). 2 of 4 expectations held, one in part.
+
 ## 6. Hard cases and harder tasks ([experiments](studies/6_hard_cases_and_tasks/))
 
 Where that additive code must fail (two goals whose biases point the wrong way, at near-ties), what training on those cases does, an exact solver for a multi-goal collection task, and a model-free screen for tasks that would force a goal × belief computation. Exploratory, not pre-registered.

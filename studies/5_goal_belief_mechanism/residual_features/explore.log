@@ -1,0 +1,10 @@
+seed0 u001500.pt pairs 23762 r: swap 0.137 rot 0.052 excess 0.086 | groups:  | best singles: counts 0.65, act-0 0.56, act_counts 0.40, sym_counts 0.25 | 5s
+seed1 u001500.pt pairs 24235 r: swap 0.102 rot 0.049 excess 0.053 | groups:  | best singles: counts 0.99, act-0 0.70, act_counts 0.58, sym_counts 0.39 | 7s
+seed2 u001500.pt pairs 26473 r: swap 0.136 rot 0.055 excess 0.081 | groups:  | best singles: act-0 0.60, counts 0.51, act_counts 0.31, sym_counts 0.22 | 10s
+seed3 u001500.pt pairs 23766 r: swap 0.118 rot 0.034 excess 0.085 | groups:  | best singles: act-0 0.70, counts 0.63, act_counts 0.55, sym_counts 0.16 | 13s
+seed4 u001500.pt pairs 21873 r: swap 0.105 rot 0.045 excess 0.060 | groups:  | best singles: counts 0.46, act-0 0.40, act_counts 0.26, sym_counts 0.24 | 15s
+seed5 u001500.pt pairs 29581 r: swap 0.169 rot 0.069 excess 0.100 | groups:  | best singles: counts 0.56, act-0 0.47, act_counts 0.37, sym_counts 0.25 | 18s
+seed6 u001500.pt pairs 21329 r: swap 0.109 rot 0.031 excess 0.078 | groups:  | best singles: counts 0.49, act_counts 0.37, act-0 0.34, sym_counts 0.14 | 21s
+seed7 u001500.pt pairs 28305 r: swap 0.122 rot 0.046 excess 0.076 | groups:  | best singles: counts 0.63, act-0 0.55, act_counts 0.43, sym_counts 0.19 | 23s
+seed8 u001500.pt pairs 22632 r: swap 0.111 rot 0.046 excess 0.064 | groups:  | best singles: counts 0.64, act-0 0.38, sym_counts 0.32, act_counts 0.31 | 26s
+seed9 u001500.pt pairs 28784 r: swap 0.107 rot 0.053 excess 0.054 | groups:  | best singles: act-0 0.74, counts 0.63, act_counts 0.35, sym_counts 0.29 | 28s
