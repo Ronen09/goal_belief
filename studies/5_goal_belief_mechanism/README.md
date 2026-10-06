@@ -20,5 +20,6 @@ How the maze policy combines the goal with the evidence, followed component by c
 | [Additive code](additive_code/) | The additive code at the goal token: logits ~ H(h) + G(g, L), and where additivity is impossible | [report](additive_code/REPORT.md) | 20 s GPU |
 | [What is H](what_is_H/) | What is the history profile H: max_g Q*, goal-averaged values, P(optimal), reachability? Prediction and causal edits | [report](what_is_H/REPORT.md) | 3 min GPU |
 | [H mixture](H_mixture/) | H as a mixture of P(optimal) and reachability; goal weights inside H against uniform training frequency | [report](H_mixture/REPORT.md) | 1 min GPU |
+| [Additive ablation](additive_ablation/) | Remove or swap the additive code's history and goal parts live: does the policy collapse to the history-blind ceiling? | [report](additive_ablation/REPORT.md) | 1 min GPU |
 
 Rerun one: `python reproduce.py <experiment>` (e.g. `python reproduce.py goal_route_selection`); results of the whole project: [FINDINGS.md](../../FINDINGS.md).

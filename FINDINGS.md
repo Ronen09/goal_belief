@@ -666,6 +666,20 @@ edits (the same 4-number difference mapped into the goal token's state under eve
   between quantities (G2 under-weighted in optimal counts, over-weighted in reachability), and equal weights edit as well.
   5 of 5 expectations held.
 
+**Additive ablation — does the policy collapse without the additive code's history part? (`studies/5_goal_belief_mechanism/additive_ablation/REPORT.md`,
+rule in `studies/5_goal_belief_mechanism/additive_ablation/PLAN.md`).** The observation-prediction experiment's models, no training. The goal token's
+history part (mean over goals), goal part and interaction, removed or swapped live.
+
+- Registered: removals with vectors measured in natural runs overshoot. Removing the history part at all eight
+  components gives 0.36 optimal, below the history-blind ceiling (0.625), with history dependence unchanged (0.29
+  against 0.32): later components lose a part they no longer make. Only the swap criterion held: a donor's history
+  part takes the donor's action in 0.93 of pairs.
+- Post hoc, with each part re-measured on the edited network at every component: without the history part the
+  policy is at the history-blind ceiling (0.620; history dependence 0.04) although the interaction is still in place;
+  without the goal part goal dependence falls from 0.81 to 0.12; without the interaction it keeps 0.79 of 0.85.
+- So the additive code's two parts are the routes history and goal take to the decision; the interaction carries
+  almost nothing alone. The necessity result is post hoc. 3 of 7 expectations held.
+
 ## 6. Hard cases and harder tasks ([experiments](studies/6_hard_cases_and_tasks/))
 
 Where that additive code must fail (two goals whose biases point the wrong way, at near-ties), what training on those cases does, an exact solver for a multi-goal collection task, and a model-free screen for tasks that would force a goal × belief computation. Exploratory, not pre-registered.

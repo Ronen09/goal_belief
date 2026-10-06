@@ -157,6 +157,8 @@ EXPERIMENTS = [
           [Step("run.py"), Step("run.py", ("--untrained",)), Step("tables.py", tables=True)], needs=("predictive_transfer", "belief_encoding_edit", "additive_code")),
     Experiment("H_mixture", "5_goal_belief_mechanism/H_mixture", "H as a mixture of P(optimal) and reachability; goal weights inside H against uniform training frequency", "1 min GPU",
           [Step("run.py"), Step("tables.py", tables=True)], needs=("predictive_transfer", "belief_encoding_edit", "additive_code", "what_is_H")),
+    Experiment("additive_ablation", "5_goal_belief_mechanism/additive_ablation", "Live ablation of the additive code's history and goal parts at the goal token: collapse to the history-blind ceiling, swaps; recomputed removals (post hoc)", "1 min GPU",
+          [Step("run.py"), Step("explore.py"), Step("tables.py", tables=True)], needs=("predictive_transfer", "query_swap", "interaction_removal")),
     Experiment("hard_cases", "6_hard_cases_and_tasks/hard_cases", "Exploratory: hallmarks of the additively unsolvable cases, more of them after the reveal, fine-tuning and retraining on them, a matched-episode simulation, and a model-free screen of harder tasks (multi-goal collection)", "3.5 h GPU",
           [Step("hallmarks.py"), Step("hallmark_beliefs.py"), Step("later_cases.py"), Step("finetune.py"), Step("finetune_diag.py"),
            Step("train_cases.py", ("--arm", "targeted")), Step("train_cases.py", ("--arm", "control")), Step("eval_scratch.py"), Step("policy_diff.py"),
