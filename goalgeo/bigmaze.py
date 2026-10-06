@@ -60,9 +60,21 @@ def distances(nxt, target):
     return d
 
 
-def make(seed=0, size=10, loops=6, pairs=2, n_land=2, n_goals=4, eps=0.2, gamma=0.97, H=40):
+def junction_goals(maze, D, k):
+    """k goal cells at junctions (three or more neighbours, no landmark): the most central one, then farthest-point
+    sampling on path distance among the junctions. None is in a corner or a dead end."""
+    deg = [len({int(x) for x in maze.nxt[s] if x != s}) for s in range(maze.n)]
+    J = [s for s in range(maze.n) if deg[s] >= 3 and s not in maze.landmarks]
+    sel = [min(J, key=lambda s: D[s].mean())]
+    while len(sel) < k:
+        sel.append(max((s for s in J if s not in sel), key=lambda s: D[sel, s].min()))
+    return sel
+
+
+def make(seed=0, size=10, loops=6, pairs=2, n_land=2, n_goals=4, eps=0.2, gamma=0.97, H=40, junctions=0):
     """The maze: random symbols from `pairs` sibling pairs, `n_land` landmarks, `n_goals` goals spread out by
-    farthest-point sampling on path distance. Start: every cell that is not a goal."""
+    farthest-point sampling on path distance. Start: every cell that is not a goal. junctions > 0: the same maze,
+    symbols and landmarks, with the goals replaced by that many junction cells (junction_goals)."""
     cells, rng = layout(seed, size, loops)
     n = len(cells)
     sym = rng.integers(0, 2 * pairs, n)
@@ -81,6 +93,10 @@ def make(seed=0, size=10, loops=6, pairs=2, n_land=2, n_goals=4, eps=0.2, gamma=
         if sym[s] < 2 * pairs:
             m.E[s] = 0; m.E[s, sym[s]] = 1 - eps; m.E[s, sym[s] ^ 1] = eps
     m.landmarks = tuple(land)
+    if junctions:
+        m2 = MB.Maze(cells, sym, tuple(junction_goals(m, D, junctions)), eps, gamma, H)
+        m2.E, m2.landmarks = m.E, m.landmarks
+        return m2
     return m
 
 
