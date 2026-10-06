@@ -748,3 +748,15 @@ Where that additive code must fail (two goals whose biases point the wrong way, 
   in `goalgeo/multigoal.py`) makes the value dependence 90 % non-additive, but the additive decision still mostly works,
   and the belief matters only until the first pickup.
 - A matched-episode simulation (`aliased_corridor.html`) shows the policies against the Bayes-optimal solver.
+
+**Random spawns — is the additive policy a consequence of where the agent starts? (`studies/6_hard_cases_and_tasks/random_spawns/REPORT.md`, rule in
+`studies/6_hard_cases_and_tasks/random_spawns/PLAN.md`).** Reward models retrained with spawns on the four corridor cells (control) and on all 11
+non-goal cells, ten seeds each; 8 moves and a prefix of 0–2, because the exact graph for 11 spawns did not fit otherwise.
+
+- With random spawns the additive code keeps 0.95 of the policy's accuracy on goal-dependent cells and picks the same
+  action in 0.92 (control: 0.915 and 0.90). The additive code is not produced by the four spawns.
+- The all-spawn models are less competent (regret / V* 0.026 against 0.010). At the reveal the task itself is less
+  additive (best additive fit to Q* 0.71 against 0.83) and the network's accuracy falls with it (0.72 against 0.89): it
+  stays additive and loses competence instead of learning the interaction.
+- Registered: REP and AD-all held, DROP did not (opposite direction), LEARN failed. 1 of 6 expectations held.
+

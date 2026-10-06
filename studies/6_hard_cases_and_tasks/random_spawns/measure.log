@@ -1,0 +1,22 @@
+[four] 233038 decisions | solver Q*: additive move optimal 0.703 on goal-dependent cells, additive share 0.121, unsolvable 0.199 | 1s
+[four] seed0 u001500.pt regret 0.0025 | goal-dependent: natural 0.833 additive 0.787 agree 0.915 share 0.460 | unsolvable 0.173: natural 0.5758993612013896 additive 0.5166984198139639 | 2s
+[four] seed1 u001500.pt regret 0.0284 | goal-dependent: natural 0.691 additive 0.624 agree 0.898 share 0.461 | unsolvable 0.299: natural 0.5605412412899043 additive 0.4409496029816885 | 2s
+[four] seed2 u001500.pt regret 0.0049 | goal-dependent: natural 0.798 additive 0.739 agree 0.892 share 0.461 | unsolvable 0.229: natural 0.6262026092656418 additive 0.5394667286913496 | 3s
+[four] seed3 u001500.pt regret 0.0061 | goal-dependent: natural 0.732 additive 0.668 agree 0.889 share 0.439 | unsolvable 0.264: natural 0.58644503627514 additive 0.5178253283129763 | 4s
+[four] seed4 u001500.pt regret 0.0038 | goal-dependent: natural 0.791 additive 0.743 agree 0.903 share 0.476 | unsolvable 0.240: natural 0.6119213313161876 additive 0.535350479072113 | 5s
+[four] seed5 u001500.pt regret 0.0341 | goal-dependent: natural 0.648 additive 0.583 agree 0.897 share 0.484 | unsolvable 0.436: natural 0.5860878254593904 additive 0.4766446455337811 | 5s
+[four] seed6 u001500.pt regret 0.0023 | goal-dependent: natural 0.830 additive 0.744 agree 0.855 share 0.451 | unsolvable 0.209: natural 0.6131954930886282 additive 0.49322801719131143 | 6s
+[four] seed7 u001500.pt regret 0.0282 | goal-dependent: natural 0.680 additive 0.611 agree 0.894 share 0.466 | unsolvable 0.401: natural 0.5802729872919709 additive 0.454725383473528 | 7s
+[four] seed8 u001500.pt regret 0.0106 | goal-dependent: natural 0.719 additive 0.673 agree 0.895 share 0.450 | unsolvable 0.237: natural 0.5575687090653119 additive 0.4645079675991104 | 8s
+[four] seed9 u001500.pt regret 0.0020 | goal-dependent: natural 0.849 additive 0.779 agree 0.888 share 0.427 | unsolvable 0.202: natural 0.6251081003170943 additive 0.5216440857115403 | 8s
+[all] 237937 decisions | solver Q*: additive move optimal 0.671 on goal-dependent cells, additive share 0.156, unsolvable 0.229 | 27s
+[all] seed0 u001500.pt regret 0.0132 | goal-dependent: natural 0.721 additive 0.692 agree 0.920 share 0.535 | unsolvable 0.242: natural 0.5087631530675205 additive 0.449580602664799 | 27s
+[all] seed1 u001500.pt regret 0.0110 | goal-dependent: natural 0.729 additive 0.692 agree 0.919 share 0.489 | unsolvable 0.247: natural 0.529258841418551 additive 0.43862919180523535 | 28s
+[all] seed2 u001500.pt regret 0.0121 | goal-dependent: natural 0.719 additive 0.678 agree 0.907 share 0.514 | unsolvable 0.264: natural 0.5431477499733138 additive 0.4709273068301386 | 29s
+[all] seed3 u001500.pt regret 0.0145 | goal-dependent: natural 0.694 additive 0.646 agree 0.891 share 0.512 | unsolvable 0.299: natural 0.49819387535044213 additive 0.41960049601035154 | 30s
+[all] seed4 u001500.pt regret 0.0133 | goal-dependent: natural 0.714 additive 0.684 agree 0.915 share 0.507 | unsolvable 0.249: natural 0.5306600724075511 additive 0.4783100594776312 | 30s
+[all] seed5 u001500.pt regret 0.0115 | goal-dependent: natural 0.736 additive 0.693 agree 0.898 share 0.466 | unsolvable 0.245: natural 0.5099265973693285 additive 0.43818250488529814 | 31s
+[all] seed6 u001500.pt regret 0.0132 | goal-dependent: natural 0.725 additive 0.684 agree 0.917 share 0.515 | unsolvable 0.285: natural 0.5321399281694522 additive 0.45254659087695487 | 32s
+[all] seed7 u001500.pt regret 0.0130 | goal-dependent: natural 0.707 additive 0.674 agree 0.915 share 0.510 | unsolvable 0.289: natural 0.5273221757322176 additive 0.47548117154811714 | 32s
+[all] seed8 u001500.pt regret 0.0117 | goal-dependent: natural 0.722 additive 0.686 agree 0.919 share 0.486 | unsolvable 0.271: natural 0.5292168227076831 additive 0.47999702779016196 | 33s
+[all] seed9 u001500.pt regret 0.0144 | goal-dependent: natural 0.717 additive 0.699 agree 0.930 share 0.537 | unsolvable 0.263: natural 0.49906685023711184 additive 0.4716842588343277 | 34s

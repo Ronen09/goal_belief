@@ -36,11 +36,13 @@ def main():
     ap.add_argument("--ent-final", type=float, default=0.003)
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--quick", action="store_true")
+    ap.add_argument("--out", default=None, help="default: runs/ (with --quick: _smoke/train/)")
     ap.add_argument("--device", default="cuda")
     a = ap.parse_args()
     if a.quick:
         a.updates, a.n_env, a.seeds = 20, 512, a.seeds[:2]
-    out, dev, M = HERE / ("_smoke" if a.quick else "runs") / a.spawn, a.device, len(a.seeds)
+    out = (Path(a.out) if a.out else HERE / ("_smoke/train" if a.quick else "runs")) / a.spawn
+    dev, M = a.device, len(a.seeds)
     t = TK.tables(a.spawn, dev, a.quick)
     nets = []
     for s in a.seeds:
@@ -68,7 +70,7 @@ def main():
             rows[name] = P.summarize(P.rollout(stk, t, n_eval * M, egen, greedy=greedy, prefix=pre, goal=goal), t, M)
         for m, seed in enumerate(a.seeds):
             logs[m].append(dict(update=u, interactions=int(inter[m]), seconds=time.time() - t0, **{f"{k}_{f}": v for k in rows for f, v in rows[k][m].items()}))
-            (out / f"seed{seed}" / "log.json").write_text(json.dumps(dict(args=vars(a), seed=seed, log=logs[m]), indent=1))
+            (out / f"seed{seed}" / "log.json").write_text(json.dumps(dict(args={k: v for k, v in vars(a).items() if k != 'out'}, seed=seed, log=logs[m]), indent=1))
         torch.cuda.empty_cache()
         print(f"[{a.spawn}] u={u} {time.time() - t0:.0f}s greedy regret " + " ".join(f"{x['regret']:.4f}" for x in rows["greedy"]) +
               f" | v* {rows['greedy'][0]['v_star']:.3f}", flush=True)

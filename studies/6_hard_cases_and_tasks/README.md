@@ -5,5 +5,6 @@ Where that additive code must fail (two goals whose biases point the wrong way, 
 | experiment | question | report | cost |
 |---|---|---|---|
 | [Hard cases](hard_cases/) | Exploratory: hallmarks of the additively unsolvable cases, more of them after the reveal, fine-tuning and retraining on them, a matched-episode simulation, and a model-free screen of harder tasks (multi-goal collection) | [report](hard_cases/REPORT.md) | 3.5 h GPU |
+| [Random spawns](random_spawns/) | Is the additive policy a consequence of the four spawn cells? Reward models with spawns on four cells and on all non-goal cells | [report](random_spawns/REPORT.md) | 1.5 h GPU |
 
 Rerun one: `python reproduce.py <experiment>` (e.g. `python reproduce.py hard_cases`); results of the whole project: [FINDINGS.md](../../FINDINGS.md).

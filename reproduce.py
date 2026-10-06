@@ -172,6 +172,9 @@ EXPERIMENTS = [
            Step("train_cases.py", ("--arm", "targeted")), Step("train_cases.py", ("--arm", "control")), Step("eval_scratch.py"), Step("policy_diff.py"),
            Step("sim_data.py", ("r23", "0")), Step("sim_data.py", ("targeted", "0")), Step("sim_data.py", ("control", "0")), Step("build_sim.py", tables=True),
            Step("hardness.py"), Step("screen.py", ("baseline",)), Step("screen.py", ("search",)), Step("screen_multi.py")], needs=("obs_prediction", "additive_code")),
+    Experiment("random_spawns", "6_hard_cases_and_tasks/random_spawns", "Is the additive code a consequence of the four spawn cells? Reward models with spawns on four cells / all non-goal cells (8 moves, prefix 0-2); the additive code on decisions replayed under all goals", "1.5 h GPU",
+          [Step("task.py"), Step("train.py", ("--spawn", "four", "--seeds", *map(str, range(10))), quick=True), Step("train.py", ("--spawn", "all", "--seeds", *map(str, range(10))), quick=True),
+           Step("measure.py", quick=True), Step("tables.py", tables=True)], needs=("additive_code",)),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 
