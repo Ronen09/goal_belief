@@ -1,0 +1,7 @@
+references: oracle 1.628 (nearer first 1.00) qmdp2 1.370 (nearer first 0.82) qmdp 1.346 (nearer first 0.82) mls 1.244 (nearer first 0.89) random 0.266 (nearer first 0.91)
+seed0 u001000.pt return 1.325 (both 1.00, nearer first 0.67) | deviations 0.398 IG adv 0.1391 | additive 1.167 goal-blind 0.872 history-blind 0.543 recovery 0.65 | same action before 0.912979245185852 after 0.8562793135643005 | 23s
+seed1 u001000.pt return 1.321 (both 0.99, nearer first 0.68) | deviations 0.412 IG adv 0.0920 | additive 1.123 goal-blind 0.848 history-blind 0.483 recovery 0.58 | same action before 0.908015251159668 after 0.8238565325737 | 43s
+seed2 u001000.pt return 1.323 (both 1.00, nearer first 0.72) | deviations 0.415 IG adv 0.0616 | additive 1.175 goal-blind 0.862 history-blind 0.501 recovery 0.68 | same action before 0.9080176949501038 after 0.8839920163154602 | 64s
+seed3 u001000.pt return 1.329 (both 1.00, nearer first 0.69) | deviations 0.415 IG adv 0.0589 | additive 1.133 goal-blind 0.854 history-blind 0.548 recovery 0.59 | same action before 0.8970078825950623 after 0.8462498188018799 | 85s
+seed4 u001000.pt return 1.336 (both 1.00, nearer first 0.72) | deviations 0.399 IG adv 0.1110 | additive 1.210 goal-blind 0.880 history-blind 0.637 recovery 0.72 | same action before 0.8640726208686829 after 0.8733213543891907 | 106s
+seed5 u001000.pt return 1.338 (both 1.00, nearer first 0.73) | deviations 0.392 IG adv 0.1142 | additive 1.206 goal-blind 0.846 history-blind 0.583 recovery 0.73 | same action before 0.8854560852050781 after 0.8731681704521179 | 127s

@@ -180,6 +180,10 @@ EXPERIMENTS = [
     Experiment("maze10", "7_information_seeking/maze10", "A 55-cell aliased maze without a solver: competence against QMDP, information seeking from behaviour, the additive code run as a policy and under online removals, occupancy decoding", "1.5 h GPU",
           [Step("design.py"), Step("train.py", ("--seeds", "0", "1", "2", "3", "4", "5", "--updates", "1000", "--out", "studies/7_information_seeking/maze10/runs/ppo"), quick=True),
            Step("measure.py"), Step("tables.py", tables=True)]),
+    Experiment("interior_goals", "7_information_seeking/interior_goals", "The maze10 maze with six junction goals: one goal per episode (goal placement) and two goals to collect; the additive policy run in the environment, first-goal choice", "2.5 h GPU",
+          [Step("train.py", ("--arm", "single", "--seeds", "0", "1", "2", "3", "4", "5"), quick=True), Step("train.py", ("--arm", "collect", "--seeds", "0", "1", "2", "3", "4", "5"), quick=True),
+           Step("../maze10/measure.py", ("--runs", "studies/7_information_seeking/interior_goals/runs/single", "--out", "studies/7_information_seeking/interior_goals/results_single.json")),
+           Step("measure_collect.py"), Step("order.py"), Step("tables.py", tables=True)], needs=("maze10",)),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 

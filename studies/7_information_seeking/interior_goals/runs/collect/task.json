@@ -1,0 +1,92 @@
+{
+ "arm": "collect",
+ "task": {
+  "seed": 0,
+  "size": 10,
+  "loops": 6,
+  "pairs": 1,
+  "n_land": 2,
+  "n_goals": 4,
+  "eps": 0.4,
+  "gamma": 0.97,
+  "H": 40,
+  "junctions": 6
+ },
+ "cells": 55,
+ "goals": [
+  [
+   4,
+   6
+  ],
+  [
+   8,
+   2
+  ],
+  [
+   4,
+   0
+  ],
+  [
+   6,
+   4
+  ],
+  [
+   6,
+   8
+  ],
+  [
+   8,
+   6
+  ]
+ ],
+ "references": {
+  "oracle": {
+   "ret": 1.6274750232696533,
+   "collected": 2.0,
+   "success": 1.0,
+   "first": 1.0,
+   "length": 11.0809326171875
+  },
+  "qmdp2": {
+   "ret": 1.3670547008514404,
+   "collected": 1.998779296875,
+   "success": 0.9990234375,
+   "first": 0.999755859375,
+   "length": 17.3092041015625
+  },
+  "qmdp": {
+   "ret": 1.3445993661880493,
+   "collected": 1.9942626953125,
+   "success": 0.994873046875,
+   "first": 0.9993896484375,
+   "length": 17.939697265625
+  },
+  "mls": {
+   "ret": 1.2446238994598389,
+   "collected": 1.950439453125,
+   "success": 0.962158203125,
+   "first": 0.98828125,
+   "length": 20.416748046875
+  }
+ },
+ "args": {
+  "arm": "collect",
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "updates": 1000,
+  "n_env": 4096,
+  "lr": 0.0001,
+  "ent": 0.03,
+  "ent_final": 0.003,
+  "epochs": 3,
+  "quick": false,
+  "device": "cuda",
+  "mem_fraction": 0.45
+ }
+}

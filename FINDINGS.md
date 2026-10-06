@@ -785,3 +785,17 @@ without it. It does not.
   (0.25 against 0.28).
 - Registered: LEARN and SEEK-B held; SEEK-R, AD-B, AD-S and OCC did not. 2 of 7 expectations held, two in part.
 
+**Interior goals — goal placement, and two goals to collect (`studies/7_information_seeking/interior_goals/REPORT.md`, rule in
+`studies/7_information_seeking/interior_goals/PLAN.md`).** The maze10 maze with six junction goals, none in a corner or dead end. Six
+reward-trained models per arm: one goal per episode; two goals per episode, collected in any order, pickups announced.
+
+- Both arms reach about QMDP's return (single 0.665 against 0.661; collect 1.327 against 1.346) with success 0.99–1.00,
+  and localise faster than QMDP.
+- The additive policy run in the environment keeps 0.75 of the goal-directed return with one junction goal (maze10:
+  0.81) and 0.66 with two to collect; it is the model's move in 0.90 of goal-dependent decisions. Goal placement is
+  not why the additive policy worked. Neither step reaches the registered 0.15.
+- In collection the logits' goal dependence is 0.69 additive before the first pickup and 0.45 after it.
+- The models take the goal nearer to the spawn first in 0.70 of episodes (QMDP 0.82). Post hoc: each pair has a usual
+  first goal, taken in 41 % of the episodes where the other is clearly nearer (QMDP 20 %).
+- Registered: LEARN held in both arms; AD, PLACE and COLLECT did not. 4 of 6 expectations held, one in part.
+

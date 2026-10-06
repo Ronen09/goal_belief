@@ -1,0 +1,66 @@
+{
+ "references": {
+  "oracle": {
+   "order_fixedness": 0.6494140625,
+   "takes_modal_when_modal_is_clearly_nearer": 1.0,
+   "takes_modal_when_other_is_clearly_nearer": 0.0,
+   "nearer_first_when_clear": 1.0
+  },
+  "qmdp2": {
+   "order_fixedness": 0.6495726704597473,
+   "takes_modal_when_modal_is_clearly_nearer": 0.9506382942199707,
+   "takes_modal_when_other_is_clearly_nearer": 0.22761507332324982,
+   "nearer_first_when_clear": 0.8607594966888428
+  },
+  "qmdp": {
+   "order_fixedness": 0.6340093016624451,
+   "takes_modal_when_modal_is_clearly_nearer": 0.9378194212913513,
+   "takes_modal_when_other_is_clearly_nearer": 0.19597989320755005,
+   "nearer_first_when_clear": 0.8703547716140747
+  },
+  "mls": {
+   "order_fixedness": 0.6338202357292175,
+   "takes_modal_when_modal_is_clearly_nearer": 0.9385218620300293,
+   "takes_modal_when_other_is_clearly_nearer": 0.11042945086956024,
+   "nearer_first_when_clear": 0.9215016961097717
+  }
+ },
+ "runs": {
+  "seed0": {
+   "order_fixedness": 0.712646484375,
+   "takes_modal_when_modal_is_clearly_nearer": 0.9488465189933777,
+   "takes_modal_when_other_is_clearly_nearer": 0.4268026351928711,
+   "nearer_first_when_clear": 0.7312236428260803
+  },
+  "seed1": {
+   "order_fixedness": 0.6963107585906982,
+   "takes_modal_when_modal_is_clearly_nearer": 0.9100092053413391,
+   "takes_modal_when_other_is_clearly_nearer": 0.3951486647129059,
+   "nearer_first_when_clear": 0.7452471852302551
+  },
+  "seed2": {
+   "order_fixedness": 0.7174603343009949,
+   "takes_modal_when_modal_is_clearly_nearer": 0.9657293558120728,
+   "takes_modal_when_other_is_clearly_nearer": 0.41267263889312744,
+   "nearer_first_when_clear": 0.7691009044647217
+  },
+  "seed3": {
+   "order_fixedness": 0.723876953125,
+   "takes_modal_when_modal_is_clearly_nearer": 0.9385426044464111,
+   "takes_modal_when_other_is_clearly_nearer": 0.40536150336265564,
+   "nearer_first_when_clear": 0.7599155902862549
+  },
+  "seed4": {
+   "order_fixedness": 0.7281387448310852,
+   "takes_modal_when_modal_is_clearly_nearer": 0.972420871257782,
+   "takes_modal_when_other_is_clearly_nearer": 0.39020878076553345,
+   "nearer_first_when_clear": 0.7597128748893738
+  },
+  "seed5": {
+   "order_fixedness": 0.73828125,
+   "takes_modal_when_modal_is_clearly_nearer": 0.9621962308883667,
+   "takes_modal_when_other_is_clearly_nearer": 0.428117573261261,
+   "nearer_first_when_clear": 0.7548523545265198
+  }
+ }
+}

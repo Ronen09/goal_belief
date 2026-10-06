@@ -1,0 +1,26 @@
+references: oracle 1.627 (1.00) qmdp2 1.367 (1.00) qmdp 1.345 (0.99) mls 1.245 (0.96)
+[collect] u=0 26s greedy return 0.130 0.080 0.106 0.187 0.145 0.115 | success 0.00 0.00 0.00 0.01 0.00 0.00
+[collect] u=10 144s greedy return 0.153 0.153 0.153 0.153 0.305 0.153 | success 0.00 0.00 0.00 0.00 0.03 0.00
+[collect] u=12 193s greedy return 0.153 0.153 0.153 0.153 0.186 0.153 | success 0.00 0.00 0.00 0.00 0.01 0.00
+[collect] u=15 243s greedy return 0.153 0.155 0.153 0.153 0.214 0.153 | success 0.00 0.00 0.00 0.00 0.01 0.00
+[collect] u=18 293s greedy return 0.153 0.318 0.183 0.153 0.209 0.155 | success 0.00 0.04 0.01 0.00 0.01 0.00
+[collect] u=22 351s greedy return 0.153 0.338 0.153 0.195 0.177 0.179 | success 0.00 0.04 0.00 0.01 0.00 0.01
+[collect] u=27 419s greedy return 0.153 0.328 0.386 0.261 0.241 0.153 | success 0.00 0.03 0.05 0.03 0.01 0.00
+[collect] u=33 494s greedy return 0.153 0.348 0.384 0.155 0.331 0.306 | success 0.00 0.03 0.06 0.00 0.04 0.04
+[collect] u=41 587s greedy return 0.236 0.343 0.369 0.381 0.313 0.226 | success 0.02 0.03 0.05 0.08 0.02 0.02
+[collect] u=50 687s greedy return 0.474 0.443 0.424 0.497 0.416 0.472 | success 0.12 0.08 0.11 0.14 0.08 0.13
+[collect] u=61 805s greedy return 0.471 0.534 0.471 0.520 0.444 0.444 | success 0.11 0.15 0.10 0.19 0.11 0.10
+[collect] u=74 940s greedy return 0.635 0.618 0.635 0.564 0.595 0.535 | success 0.18 0.22 0.21 0.19 0.15 0.13
+[collect] u=90 1100s greedy return 0.828 0.784 0.899 0.795 0.799 0.769 | success 0.38 0.38 0.52 0.40 0.33 0.32
+[collect] u=111 1302s greedy return 0.922 0.968 0.954 0.969 0.911 0.940 | success 0.50 0.63 0.57 0.62 0.50 0.57
+[collect] u=135 1529s greedy return 1.090 1.075 1.127 1.036 1.112 1.070 | success 0.76 0.80 0.85 0.75 0.85 0.79
+[collect] u=165 1807s greedy return 1.160 1.154 1.192 1.139 1.168 1.189 | success 0.88 0.88 0.90 0.89 0.93 0.91
+[collect] u=202 2143s greedy return 1.232 1.220 1.246 1.222 1.240 1.245 | success 0.98 0.97 0.97 0.96 0.99 0.95
+[collect] u=246 2539s greedy return 1.260 1.263 1.285 1.265 1.276 1.275 | success 0.99 0.99 0.99 0.97 0.99 0.97
+[collect] u=301 3028s greedy return 1.287 1.285 1.296 1.281 1.307 1.301 | success 0.99 0.99 0.99 0.99 0.99 0.99
+[collect] u=367 3609s greedy return 1.304 1.296 1.306 1.297 1.314 1.314 | success 1.00 0.99 0.99 0.99 0.99 0.99
+[collect] u=449 4325s greedy return 1.311 1.305 1.311 1.303 1.327 1.320 | success 0.99 1.00 1.00 0.99 1.00 1.00
+[collect] u=548 5184s greedy return 1.316 1.311 1.316 1.308 1.329 1.327 | success 0.99 0.99 1.00 0.99 1.00 1.00
+[collect] u=670 6238s greedy return 1.319 1.321 1.317 1.316 1.331 1.331 | success 1.00 1.00 1.00 0.99 0.99 1.00
+[collect] u=819 7519s greedy return 1.323 1.321 1.318 1.322 1.332 1.335 | success 1.00 0.99 0.99 1.00 1.00 1.00
+[collect] u=1000 9051s greedy return 1.324 1.321 1.323 1.326 1.332 1.336 | success 1.00 0.99 1.00 1.00 1.00 1.00

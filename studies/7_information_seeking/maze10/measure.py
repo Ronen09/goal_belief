@@ -188,6 +188,7 @@ def main():
     ap.add_argument("--seeds", type=int, nargs="+", default=list(range(6)))
     ap.add_argument("--untrained", action="store_true", help="smoke test on the initial checkpoints")
     ap.add_argument("--runs", default=str(HERE / "runs" / "ppo"))
+    ap.add_argument("--out", default=None, help="results file (default: results.json here)")
     ap.add_argument("--device", default="cuda")
     a = ap.parse_args()
     torch.set_grad_enabled(False)
@@ -209,12 +210,12 @@ def main():
         s_, r = episodes(t, behaviour(fn), goal, cell, 79, full=True)
         res["references"][name] = dict(**s_, **seeking(t, r))
     print("references: " + " ".join(f"{k} {v['ret']:.3f}" for k, v in res["references"].items()), flush=True)
-    out = HERE / ("smoke.json" if a.untrained else "results.json")
+    out = Path(a.out) if a.out else HERE / ("smoke.json" if a.untrained else "results.json")
     for s in a.seeds:
         d = runs / f"seed{s}" / "ckpt"
         ck = d / "u000000.pt" if a.untrained else sorted(d.glob("u*.pt"))[-1]
         args = json.load(open(runs / "task.json"))["args"]
-        net = TR.build(t.n_sym, K, t.H, args["d"], args["layers"])
+        net = TR.build(t.n_sym, K, t.H, args.get("d", 128), args.get("layers", 4))
         net.load_state_dict(torch.load(ck, map_location=dev))
         net = net.to(dev).eval()
         row = dict(checkpoint=ck.name)
@@ -265,7 +266,7 @@ def main():
         # E: decoders
         row["decoders"] = decoders(t, net, r)
         res["runs"][f"seed{s}"] = row
-        rec = lambda x, blind, nat: (x - blind) / (nat - blind)
+        rec = lambda x, blind, nat: (x - blind) / (nat - blind) if nat != blind else float('nan')
         o, rm, nt = row["online"], row["removal"], row["natural"]
         print(f"seed{s} {ck.name} return {nt['ret']:.3f} (success {nt['success']:.2f}) | deviations {nt['deviation_rate']:.3f} IG adv {nt['ig_advantage']:.4f} "
               f"(random same state {nt['ig_advantage_random_same_state']:.4f}, noisy qmdp {row['noisy_qmdp']['ig_advantage']:.4f}) | additive {o['additive']['ret']:.3f} "
