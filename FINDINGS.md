@@ -760,3 +760,28 @@ non-goal cells, ten seeds each; 8 moves and a prefix of 0–2, because the exact
   stays additive and loses competence instead of learning the interaction.
 - Registered: REP and AD-all held, DROP did not (opposite direction), LEARN failed. 1 of 6 expectations held.
 
+## 7. Information seeking in a larger maze ([experiments](studies/7_information_seeking/))
+
+A 55-cell aliased, noisy maze with four goals, no passive prefix and random spawns. No solver: the exact filter and shortest paths are the only ground truth, and questions are answered by behaviour and interventions.
+
+**Active maze — does removing the passive prefix make information seeking pay in the small maze? (`studies/7_information_seeking/active_maze/README.md`).**
+Solver only. QMDP, which ignores the value of information, loses 1.9 % of the optimal value with the prefix and 2.0 %
+without it. It does not.
+
+**maze10 — behaviour and interventions in a larger maze (`studies/7_information_seeking/maze10/REPORT.md`, rule in
+`studies/7_information_seeking/maze10/PLAN.md`).** Six reward-trained models; references from the exact filter (oracle 0.786, QMDP + lookahead
+0.564, QMDP 0.551, most likely cell 0.489).
+
+- Return 0.546 (0.535–0.577): above the most-likely-cell policy in every model, level with QMDP; two models above
+  QMDP + lookahead. Four models have not learned the goal at the end of the dead-end corridor.
+- The models deviate from QMDP in 45 % of decisions, to the more informative move in 81 % of those (advantage +0.126;
+  random deviations −0.024). Their posterior entropy after 20 moves is 0.73 against QMDP's 1.43 on the same episodes.
+  The oracle's deviations are also "more informative" (+0.100), so the entropy curves are the cleaner evidence.
+- The additive policy argmax H + G, run in the environment, keeps 0.81 of the goal-directed return (0.480 against
+  0.546; goal-blind 0.191). With the interaction removed at the decision token while the agent acts: 0.74. Both below
+  the registered 0.9 and far above the expected 0.5. The interaction carries a fifth to a quarter here, against about a
+  twentieth of decisions in the small maze. Three of the four goals are in corners, which favours a fixed bias per goal.
+- The posterior decodes at R² 0.46. The state predicts the agent's future path no better than belief, goal and step
+  (0.25 against 0.28).
+- Registered: LEARN and SEEK-B held; SEEK-R, AD-B, AD-S and OCC did not. 2 of 7 expectations held, two in part.
+

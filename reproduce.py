@@ -175,6 +175,11 @@ EXPERIMENTS = [
     Experiment("random_spawns", "6_hard_cases_and_tasks/random_spawns", "Is the additive code a consequence of the four spawn cells? Reward models with spawns on four cells / all non-goal cells (8 moves, prefix 0-2); the additive code on decisions replayed under all goals", "1.5 h GPU",
           [Step("task.py"), Step("train.py", ("--spawn", "four", "--seeds", *map(str, range(10))), quick=True), Step("train.py", ("--spawn", "all", "--seeds", *map(str, range(10))), quick=True),
            Step("measure.py", quick=True), Step("tables.py", tables=True)], needs=("additive_code",)),
+    Experiment("active_maze", "7_information_seeking/active_maze", "Solver-only screen: the small maze with and without its passive prefix; how much does ignoring the value of information cost?", "20 s GPU",
+          [Step("screen.py")], needs=("hard_cases",)),
+    Experiment("maze10", "7_information_seeking/maze10", "A 55-cell aliased maze without a solver: competence against QMDP, information seeking from behaviour, the additive code run as a policy and under online removals, occupancy decoding", "1.5 h GPU",
+          [Step("design.py"), Step("train.py", ("--seeds", "0", "1", "2", "3", "4", "5", "--updates", "1000", "--out", "studies/7_information_seeking/maze10/runs/ppo"), quick=True),
+           Step("measure.py"), Step("tables.py", tables=True)]),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 

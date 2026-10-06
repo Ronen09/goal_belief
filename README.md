@@ -25,7 +25,12 @@ then reports which held (`REPORT.md`). [FINDINGS.md](FINDINGS.md) has every resu
 6. **[Hard cases and harder tasks](studies/6_hard_cases_and_tasks/).** That additive code fails where two goals' biases
    point the wrong way at near-ties. Optimal-move supervision teaches the missing interaction and cuts regret 4×; a
    model-free screen and an exact multi-goal solver look for tasks that would force it under reward alone.
-   Exploratory.
+   Exploratory. With spawns anywhere in the
+   small maze the policy stays additive and loses accuracy where the task stops being additive.
+7. **[Information seeking in a larger maze](studies/7_information_seeking/).** In a 55-cell maze with no solver, no
+   passive prefix and random spawns, reward-trained agents reach the level of QMDP and localise faster than it does.
+   The additive policy, run in the environment, keeps four fifths of the goal-directed return; the goal × history
+   interaction carries the rest.
 
 ## Layout
 
@@ -77,6 +82,7 @@ retraining.
 | `mazeedit` | belief-edit to pair-types | edits of prefix-token states in decoder-defined and covariance-defined subspaces |
 | `mazepred` | predictive-transfer to belief-encoding-edit | prediction-only backbone (k-step heads, random-walk targets), exact k-step predictions, small goal-conditioned heads trained side by side on frozen features |
 | `mazeaux` | observation-prediction to balanced-prediction | next-symbol prediction head, its loss against the exact predictive distribution, PPO update with the auxiliary term |
+| `bigmaze` | maze10 | a 55-cell aliased maze without a solver: layout, vectorised environment with the exact filter, reference policies (oracle, QMDP, QMDP with lookahead, most likely cell), expected information gain |
 | `mazeocc` | maze-occupancy | exact occupancy under the solver's policy; a model's own occupancy by rollouts |
 | `multigoal` | hard-cases | multi-goal collection with random values: exact belief graph over (moves left, collected set, belief), Q* for every value setting |
 | `mazebelief`, `mazegraph`, `mazemodel`, `mazeppo`, `mazemeasure` | maze-belief to maze-occupancy | aliased maze with a hidden location: exact filter and solver, belief graph, tokens and transformer, vectorised environment and PPO, decoders and cross-goal patches |
