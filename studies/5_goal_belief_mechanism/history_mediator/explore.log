@@ -1,0 +1,40 @@
+seed0 H: R2 0.674 swap_r opt 0.825 hd 0.300 fol 0.055 chg 0.111 | swap_r_rot opt 0.843 hd 0.302 fol 0.037 chg 0.061 | 29s
+seed0 mix: R2 0.811 swap_r opt 0.832 hd 0.301 fol 0.071 chg 0.139 | swap_r_rot opt 0.854 hd 0.291 fol 0.020 chg 0.037 | 30s
+seed0 b: R2 0.811 swap_r opt 0.832 hd 0.301 fol 0.071 chg 0.139 | swap_r_rot opt 0.854 hd 0.291 fol 0.019 chg 0.035 | 30s
+seed0 u001500.pt cells 57326 (dropped 14670) informative 23510 ceiling 0.625 natural {'optimal': 0.8637616634368896, 'history_dependence': 0.28294312953948975}
+seed1 H: R2 0.738 swap_r opt 0.833 hd 0.299 fol 0.045 chg 0.092 | swap_r_rot opt 0.851 hd 0.290 fol 0.037 chg 0.058 | 56s
+seed1 mix: R2 0.830 swap_r opt 0.845 hd 0.300 fol 0.046 chg 0.102 | swap_r_rot opt 0.857 hd 0.289 fol 0.021 chg 0.038 | 56s
+seed1 b: R2 0.830 swap_r opt 0.845 hd 0.300 fol 0.046 chg 0.102 | swap_r_rot opt 0.857 hd 0.290 fol 0.022 chg 0.037 | 56s
+seed1 u001500.pt cells 57326 (dropped 14670) informative 24189 ceiling 0.625 natural {'optimal': 0.862401008605957, 'history_dependence': 0.2893626093864441}
+seed2 H: R2 0.762 swap_r opt 0.816 hd 0.365 fol 0.055 chg 0.113 | swap_r_rot opt 0.840 hd 0.357 fol 0.028 chg 0.054 | 78s
+seed2 mix: R2 0.828 swap_r opt 0.834 hd 0.352 fol 0.065 chg 0.135 | swap_r_rot opt 0.845 hd 0.354 fol 0.021 chg 0.042 | 79s
+seed2 b: R2 0.828 swap_r opt 0.834 hd 0.352 fol 0.065 chg 0.135 | swap_r_rot opt 0.845 hd 0.353 fol 0.022 chg 0.042 | 79s
+seed2 u001500.pt cells 57326 (dropped 14670) informative 26364 ceiling 0.625 natural {'optimal': 0.8559467196464539, 'history_dependence': 0.3447650074958801}
+seed3 H: R2 0.724 swap_r opt 0.667 hd 0.304 fol 0.067 chg 0.109 | swap_r_rot opt 0.691 hd 0.291 fol 0.026 chg 0.036 | 106s
+seed3 mix: R2 0.813 swap_r opt 0.683 hd 0.292 fol 0.083 chg 0.118 | swap_r_rot opt 0.695 hd 0.290 fol 0.019 chg 0.028 | 106s
+seed3 b: R2 0.813 swap_r opt 0.683 hd 0.292 fol 0.083 chg 0.118 | swap_r_rot opt 0.695 hd 0.289 fol 0.019 chg 0.027 | 106s
+seed3 u001500.pt cells 57326 (dropped 14670) informative 23980 ceiling 0.625 natural {'optimal': 0.7012873888015747, 'history_dependence': 0.28733909130096436}
+seed4 H: R2 0.718 swap_r opt 0.829 hd 0.260 fol 0.046 chg 0.085 | swap_r_rot opt 0.842 hd 0.258 fol 0.031 chg 0.049 | 132s
+seed4 mix: R2 0.825 swap_r opt 0.836 hd 0.255 fol 0.071 chg 0.108 | swap_r_rot opt 0.844 hd 0.256 fol 0.022 chg 0.037 | 132s
+seed4 b: R2 0.825 swap_r opt 0.836 hd 0.255 fol 0.071 chg 0.108 | swap_r_rot opt 0.844 hd 0.257 fol 0.021 chg 0.037 | 132s
+seed4 u001500.pt cells 57326 (dropped 14670) informative 22004 ceiling 0.625 natural {'optimal': 0.850364625453949, 'history_dependence': 0.2584516406059265}
+seed5 H: R2 0.724 swap_r opt 0.790 hd 0.414 fol 0.060 chg 0.135 | swap_r_rot opt 0.817 hd 0.410 fol 0.030 chg 0.074 | 157s
+seed5 mix: R2 0.792 swap_r opt 0.815 hd 0.408 fol 0.086 chg 0.171 | swap_r_rot opt 0.821 hd 0.407 fol 0.023 chg 0.056 | 158s
+seed5 b: R2 0.792 swap_r opt 0.815 hd 0.408 fol 0.086 chg 0.171 | swap_r_rot opt 0.819 hd 0.409 fol 0.024 chg 0.058 | 158s
+seed5 u001500.pt cells 57326 (dropped 14670) informative 29355 ceiling 0.625 natural {'optimal': 0.8399679064750671, 'history_dependence': 0.39469003677368164}
+seed6 H: R2 0.753 swap_r opt 0.675 hd 0.259 fol 0.045 chg 0.072 | swap_r_rot opt 0.691 hd 0.256 fol 0.020 chg 0.033 | 184s
+seed6 mix: R2 0.832 swap_r opt 0.679 hd 0.244 fol 0.079 chg 0.111 | swap_r_rot opt 0.695 hd 0.250 fol 0.015 chg 0.026 | 184s
+seed6 b: R2 0.832 swap_r opt 0.679 hd 0.244 fol 0.079 chg 0.111 | swap_r_rot opt 0.695 hd 0.251 fol 0.014 chg 0.024 | 185s
+seed6 u001500.pt cells 57326 (dropped 14670) informative 21253 ceiling 0.625 natural {'optimal': 0.7006593942642212, 'history_dependence': 0.24491500854492188}
+seed7 H: R2 0.739 swap_r opt 0.817 hd 0.367 fol 0.047 chg 0.089 | swap_r_rot opt 0.834 hd 0.366 fol 0.028 chg 0.047 | 212s
+seed7 mix: R2 0.813 swap_r opt 0.819 hd 0.372 fol 0.070 chg 0.124 | swap_r_rot opt 0.836 hd 0.367 fol 0.022 chg 0.036 | 212s
+seed7 b: R2 0.813 swap_r opt 0.819 hd 0.372 fol 0.070 chg 0.124 | swap_r_rot opt 0.837 hd 0.365 fol 0.022 chg 0.036 | 212s
+seed7 u001500.pt cells 56792 (dropped 15204) informative 28317 ceiling 0.621 natural {'optimal': 0.8388153314590454, 'history_dependence': 0.3682560920715332}
+seed8 H: R2 0.746 swap_r opt 0.843 hd 0.285 fol 0.046 chg 0.085 | swap_r_rot opt 0.851 hd 0.281 fol 0.027 chg 0.050 | 240s
+seed8 mix: R2 0.796 swap_r opt 0.840 hd 0.276 fol 0.057 chg 0.111 | swap_r_rot opt 0.854 hd 0.278 fol 0.022 chg 0.038 | 240s
+seed8 b: R2 0.796 swap_r opt 0.840 hd 0.276 fol 0.057 chg 0.111 | swap_r_rot opt 0.854 hd 0.279 fol 0.020 chg 0.037 | 240s
+seed8 u001500.pt cells 57326 (dropped 14670) informative 22551 ceiling 0.625 natural {'optimal': 0.8650176525115967, 'history_dependence': 0.27282559871673584}
+seed9 H: R2 0.739 swap_r opt 0.835 hd 0.406 fol 0.050 chg 0.110 | swap_r_rot opt 0.856 hd 0.398 fol 0.030 chg 0.057 | 267s
+seed9 mix: R2 0.822 swap_r opt 0.854 hd 0.395 fol 0.054 chg 0.108 | swap_r_rot opt 0.863 hd 0.392 fol 0.022 chg 0.042 | 267s
+seed9 b: R2 0.822 swap_r opt 0.854 hd 0.395 fol 0.054 chg 0.108 | swap_r_rot opt 0.861 hd 0.394 fol 0.023 chg 0.045 | 267s
+seed9 u001500.pt cells 57326 (dropped 14670) informative 28865 ceiling 0.625 natural {'optimal': 0.8787984848022461, 'history_dependence': 0.3918640613555908}

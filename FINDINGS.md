@@ -680,6 +680,18 @@ history part (mean over goals), goal part and interaction, removed or swapped li
 - So the additive code's two parts are the routes history and goal take to the decision; the interaction carries
   almost nothing alone. The necessity result is post hoc. 3 of 7 expectations held.
 
+**History mediator — which history-derived variable carries the history? (`studies/5_goal_belief_mechanism/history_mediator/REPORT.md`, rule in
+`studies/5_goal_belief_mechanism/history_mediator/PLAN.md`).** The observation-prediction experiment's models, no training. The history part of the goal
+token's attention outputs split into the part a candidate Z predicts and a residual r; each swapped between histories.
+
+- Swapping only H's part takes the donor's action 0.96 as often as swapping the whole history part; the posterior's
+  part 0.94 (the H-mixture code identifies the posterior and gives the same). Compressions of H lose transfer: top
+  action 0.72, top two 0.81, two principal components 0.87.
+- Removing r costs nothing (posterior: −0.006), and between histories with the same posterior swapping r changes 3.7 %
+  of decisions. But r moved to another posterior changes 9–12 %, against 3.7–5.2 % for the same vectors rotated (post hoc).
+- Registered: no candidate mediates (S90 holds for H and the posterior, R0 fails). The history acts almost entirely
+  through a posterior-level code, with a small decision-relevant trace beyond it. 5 of 6 expectations held, one in part.
+
 ## 6. Hard cases and harder tasks ([experiments](studies/6_hard_cases_and_tasks/))
 
 Where that additive code must fail (two goals whose biases point the wrong way, at near-ties), what training on those cases does, an exact solver for a multi-goal collection task, and a model-free screen for tasks that would force a goal × belief computation. Exploratory, not pre-registered.
