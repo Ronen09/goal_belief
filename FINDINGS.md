@@ -704,6 +704,18 @@ excess of the same vectors rotated, by stratum.
   add nothing once they are in. r is not the h × g interaction route; it matters where the belief is uncertain.
   Registered: none of BND, IMP, INT, ERR (two missed by 0.01 and 0.04). 3 of 6 expectations held.
 
+**Belief error — is the residual a misplaced belief? (`studies/5_goal_belief_mechanism/belief_error/REPORT.md`, rule in
+`studies/5_goal_belief_mechanism/belief_error/PLAN.md`).** The residual r split into its part inside the subspace in which the state encodes the
+posterior (10–12 dimensions, 95 % of the posterior code's variance) and outside it; each swapped against a rotated
+control of the same size.
+
+- Inside the belief subspace (62 % of r's variance) r is no more effective than a random direction (0.29 of r's
+  specific effect). Outside it (38 %) it carries 0.53 (p 0.002, not registered).
+- The decoded posterior's error (R² of the decoder 0.92) does not predict where r matters and leaves the entropy effect
+  unchanged; it is smaller where the posterior is uncertain.
+- Registered: r's effect lies outside the belief code. It is history information that is not a belief estimate.
+  1 of 4 expectations held, two in part.
+
 ## 6. Hard cases and harder tasks ([experiments](studies/6_hard_cases_and_tasks/))
 
 Where that additive code must fail (two goals whose biases point the wrong way, at near-ties), what training on those cases does, an exact solver for a multi-goal collection task, and a model-free screen for tasks that would force a goal × belief computation. Exploratory, not pre-registered.
