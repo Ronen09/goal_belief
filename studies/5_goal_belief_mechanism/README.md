@@ -22,5 +22,6 @@ How the maze policy combines the goal with the evidence, followed component by c
 | [H mixture](H_mixture/) | H as a mixture of P(optimal) and reachability; goal weights inside H against uniform training frequency | [report](H_mixture/REPORT.md) | 1 min GPU |
 | [Additive ablation](additive_ablation/) | Remove or swap the additive code's history and goal parts live: does the policy collapse to the history-blind ceiling? | [report](additive_ablation/REPORT.md) | 1 min GPU |
 | [History mediator](history_mediator/) | Which history-derived variable carries the history's effect: compressions of H, H, the H-mixture code, the posterior; swaps of the code and of the residual | [report](history_mediator/REPORT.md) | 6 min GPU |
+| [Residual trace](residual_trace/) | Where the residual beyond the posterior changes decisions: near ties, additively impossible cases, goals, uncertain posteriors? | [report](residual_trace/REPORT.md) | 3 min GPU |
 
 Rerun one: `python reproduce.py <experiment>` (e.g. `python reproduce.py goal_route_selection`); results of the whole project: [FINDINGS.md](../../FINDINGS.md).

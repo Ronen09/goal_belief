@@ -692,6 +692,18 @@ token's attention outputs split into the part a candidate Z predicts and a resid
 - Registered: no candidate mediates (S90 holds for H and the posterior, R0 fails). The history acts almost entirely
   through a posterior-level code, with a small decision-relevant trace beyond it. 5 of 6 expectations held, one in part.
 
+**Residual trace — where the residual beyond the posterior matters (`studies/5_goal_belief_mechanism/residual_trace/REPORT.md`, rule in
+`studies/5_goal_belief_mechanism/residual_trace/PLAN.md`).** The history-mediator experiment's residual r, swapped between histories; effect in
+excess of the same vectors rotated, by stratum.
+
+- No stratum holds twice its share of r's effect. Low margins (1.96), the top quartile of H's deviation from its
+  posterior mean (1.96), additively unsolvable posteriors (1.59), high entropy (1.54) and cells where the policy departs
+  from the additive code (1.48) are enriched; no goal is.
+- r shifts the logits nearly as much at high margins as at low (0.84 ×), so it is not only a near-tie correction.
+- Jointly only posterior entropy and H's deviation predict r's effect in every model; unsolvability and interaction use
+  add nothing once they are in. r is not the h × g interaction route; it matters where the belief is uncertain.
+  Registered: none of BND, IMP, INT, ERR (two missed by 0.01 and 0.04). 3 of 6 expectations held.
+
 ## 6. Hard cases and harder tasks ([experiments](studies/6_hard_cases_and_tasks/))
 
 Where that additive code must fail (two goals whose biases point the wrong way, at near-ties), what training on those cases does, an exact solver for a multi-goal collection task, and a model-free screen for tasks that would force a goal × belief computation. Exploratory, not pre-registered.

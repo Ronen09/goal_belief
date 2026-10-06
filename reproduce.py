@@ -161,6 +161,8 @@ EXPERIMENTS = [
           [Step("run.py"), Step("explore.py"), Step("tables.py", tables=True)], needs=("predictive_transfer", "query_swap", "interaction_removal")),
     Experiment("history_mediator", "5_goal_belief_mechanism/history_mediator", "Which history-derived Z (H's top action, top two, H2, H, the H-mixture code, the posterior) mediates the history: swap(Z) against swap(all), swap of the residual", "6 min GPU",
           [Step("run.py"), Step("run.py", ("--explore",)), Step("tables.py", tables=True)], needs=("predictive_transfer", "query_swap", "what_is_H", "additive_ablation")),
+    Experiment("residual_trace", "5_goal_belief_mechanism/residual_trace", "Where the residual beyond the posterior changes decisions: margin, additively impossible, interaction-used, goal, entropy, H error; excess over a rotated control", "3 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True)], needs=("predictive_transfer", "query_swap", "additive_code", "history_mediator")),
     Experiment("hard_cases", "6_hard_cases_and_tasks/hard_cases", "Exploratory: hallmarks of the additively unsolvable cases, more of them after the reveal, fine-tuning and retraining on them, a matched-episode simulation, and a model-free screen of harder tasks (multi-goal collection)", "3.5 h GPU",
           [Step("hallmarks.py"), Step("hallmark_beliefs.py"), Step("later_cases.py"), Step("finetune.py"), Step("finetune_diag.py"),
            Step("train_cases.py", ("--arm", "targeted")), Step("train_cases.py", ("--arm", "control")), Step("eval_scratch.py"), Step("policy_diff.py"),
