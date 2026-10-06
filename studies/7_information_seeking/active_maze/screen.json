@@ -1,0 +1,32 @@
+{
+ "prefix 0-4, spawn: 4 corridor cells": {
+  "v_star": 0.650448203086853,
+  "loss_qmdp": 0.019146693809278803,
+  "loss_mls": 0.13386889549367276,
+  "qmdp_wrong_on_optimal_path": 0.055057645731191866,
+  "goals": 3,
+  "nodes": 4127571,
+  "dep_share": 0.6367747559817551,
+  "additive_share": 0.16075666371236652,
+  "add_fail_dep": 0.2562880204704454,
+  "add_loss_per_decision": 0.014458152394638045,
+  "add_loss_where_fails": 0.08050288225027354,
+  "unsolvable_dep": 0.17965830980291492,
+  "solver_success": 0.89065
+ },
+ "no prefix, spawn: 4 corridor cells": {
+  "v_star": 0.6307762265205383,
+  "loss_qmdp": 0.019680141206546597,
+  "loss_mls": 0.1643630951282582,
+  "qmdp_wrong_on_optimal_path": 0.04775890794514468,
+  "goals": 3,
+  "nodes": 399719,
+  "dep_share": 0.6730733282351941,
+  "additive_share": 0.14870657124969933,
+  "add_fail_dep": 0.2323434890657856,
+  "add_loss_per_decision": 0.014323449711723696,
+  "add_loss_where_fails": 0.08488172449617555,
+  "unsolvable_dep": 0.1658437000674484,
+  "solver_success": 0.86865
+ }
+}
