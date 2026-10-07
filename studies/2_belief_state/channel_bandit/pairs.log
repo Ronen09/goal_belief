@@ -1,0 +1,92 @@
+channel seed0 trained: regret 0.010 | pairs 16118 | spearman JS~Δb 0.73 | greedy differs where optimal differs 0.60 (where same 0.04) | R² Δb from decoded: res0 0.02 attn0 0.04 mid0 0.04 mlp0 0.05 res1 0.04 attn1 0.52 mid1 0.52 mlp1 0.59 res2 0.53 | 3s
+channel seed0 untrained: regret 1.722 | pairs 16118 | spearman JS~Δb 0.19 | greedy differs where optimal differs 0.11 (where same 0.08) | R² Δb from decoded: res0 0.02 attn0 0.01 mid0 0.01 mlp0 0.00 res1 0.00 attn1 0.06 mid1 0.02 mlp1 0.01 res2 0.02 | 5s
+channel seed1 trained: regret 0.010 | pairs 16112 | spearman JS~Δb 0.76 | greedy differs where optimal differs 0.59 (where same 0.04) | R² Δb from decoded: res0 0.02 attn0 0.03 mid0 0.03 mlp0 0.05 res1 0.05 attn1 0.58 mid1 0.55 mlp1 0.65 res2 0.60 | 6s
+channel seed1 untrained: regret 2.795 | pairs 16112 | spearman JS~Δb 0.23 | greedy differs where optimal differs 0.00 (where same 0.00) | R² Δb from decoded: res0 0.02 attn0 0.01 mid0 0.01 mlp0 0.01 res1 0.01 attn1 0.07 mid1 0.03 mlp1 0.03 res2 0.03 | 8s
+channel seed2 trained: regret 0.014 | pairs 16113 | spearman JS~Δb 0.71 | greedy differs where optimal differs 0.43 (where same 0.04) | R² Δb from decoded: res0 0.03 attn0 0.03 mid0 0.03 mlp0 0.02 res1 0.02 attn1 0.45 mid1 0.44 mlp1 0.48 res2 0.47 | 10s
+channel seed2 untrained: regret 2.647 | pairs 16113 | spearman JS~Δb 0.20 | greedy differs where optimal differs 0.16 (where same 0.16) | R² Δb from decoded: res0 0.03 attn0 0.01 mid0 0.01 mlp0 0.00 res1 0.00 attn1 0.06 mid1 0.01 mlp1 0.02 res2 0.00 | 12s
+channel seed3 trained: regret 0.012 | pairs 16124 | spearman JS~Δb 0.73 | greedy differs where optimal differs 0.53 (where same 0.05) | R² Δb from decoded: res0 0.03 attn0 0.03 mid0 0.02 mlp0 0.03 res1 0.03 attn1 0.55 mid1 0.52 mlp1 0.61 res2 0.58 | 14s
+channel seed3 untrained: regret 2.531 | pairs 16124 | spearman JS~Δb 0.26 | greedy differs where optimal differs 0.09 (where same 0.15) | R² Δb from decoded: res0 0.03 attn0 0.01 mid0 0.01 mlp0 0.01 res1 0.01 attn1 0.03 mid1 0.03 mlp1 0.02 res2 0.04 | 16s
+channel seed4 trained: regret 0.019 | pairs 16102 | spearman JS~Δb 0.75 | greedy differs where optimal differs 0.46 (where same 0.05) | R² Δb from decoded: res0 0.02 attn0 0.03 mid0 0.04 mlp0 0.03 res1 0.04 attn1 0.50 mid1 0.53 mlp1 0.64 res2 0.61 | 17s
+channel seed4 untrained: regret 2.795 | pairs 16102 | spearman JS~Δb 0.24 | greedy differs where optimal differs 0.00 (where same 0.00) | R² Δb from decoded: res0 0.02 attn0 0.01 mid0 0.01 mlp0 0.01 res1 0.01 attn1 0.06 mid1 0.01 mlp1 0.02 res2 0.02 | 20s
+channel seed5 trained: regret 0.011 | pairs 16133 | spearman JS~Δb 0.76 | greedy differs where optimal differs 0.59 (where same 0.03) | R² Δb from decoded: res0 0.03 attn0 0.03 mid0 0.04 mlp0 0.05 res1 0.05 attn1 0.61 mid1 0.57 mlp1 0.64 res2 0.58 | 22s
+channel seed5 untrained: regret 1.585 | pairs 16133 | spearman JS~Δb 0.22 | greedy differs where optimal differs 0.00 (where same 0.00) | R² Δb from decoded: res0 0.03 attn0 0.02 mid0 0.02 mlp0 0.03 res1 0.03 attn1 0.09 mid1 0.05 mlp1 0.03 res2 0.03 | 27s
+iid seed0 trained: regret 0.063 | pairs 16118 | spearman JS~Δb 0.60 | greedy differs where optimal differs 0.10 (where same 0.03) | R² Δb from decoded: res0 0.02 attn0 0.01 mid0 0.01 mlp0 0.01 res1 0.01 attn1 0.04 mid1 0.01 mlp1 0.01 res2 0.02 | 29s
+iid seed0 untrained: regret 1.722 | pairs 16118 | spearman JS~Δb 0.19 | greedy differs where optimal differs 0.11 (where same 0.08) | R² Δb from decoded: res0 0.02 attn0 0.01 mid0 0.01 mlp0 0.00 res1 0.00 attn1 0.06 mid1 0.02 mlp1 0.01 res2 0.02 | 31s
+iid seed1 trained: regret 0.056 | pairs 16112 | spearman JS~Δb 0.63 | greedy differs where optimal differs 0.12 (where same 0.01) | R² Δb from decoded: res0 0.02 attn0 0.01 mid0 0.01 mlp0 0.00 res1 0.00 attn1 0.02 mid1 0.00 mlp1 0.01 res2 0.00 | 33s
+iid seed1 untrained: regret 2.795 | pairs 16112 | spearman JS~Δb 0.23 | greedy differs where optimal differs 0.00 (where same 0.00) | R² Δb from decoded: res0 0.02 attn0 0.01 mid0 0.01 mlp0 0.01 res1 0.01 attn1 0.07 mid1 0.03 mlp1 0.03 res2 0.03 | 35s
+iid seed2 trained: regret 0.046 | pairs 16113 | spearman JS~Δb 0.63 | greedy differs where optimal differs 0.10 (where same 0.01) | R² Δb from decoded: res0 0.03 attn0 0.01 mid0 0.01 mlp0 0.00 res1 0.00 attn1 0.05 mid1 0.02 mlp1 0.01 res2 0.02 | 37s
+iid seed2 untrained: regret 2.647 | pairs 16113 | spearman JS~Δb 0.20 | greedy differs where optimal differs 0.16 (where same 0.16) | R² Δb from decoded: res0 0.03 attn0 0.01 mid0 0.01 mlp0 0.00 res1 0.00 attn1 0.06 mid1 0.01 mlp1 0.02 res2 0.00 | 38s
+iid seed3 trained: regret 0.058 | pairs 16124 | spearman JS~Δb 0.60 | greedy differs where optimal differs 0.13 (where same 0.02) | R² Δb from decoded: res0 0.03 attn0 0.01 mid0 0.01 mlp0 0.00 res1 0.00 attn1 0.02 mid1 0.01 mlp1 0.01 res2 0.01 | 40s
+iid seed3 untrained: regret 2.531 | pairs 16124 | spearman JS~Δb 0.26 | greedy differs where optimal differs 0.09 (where same 0.15) | R² Δb from decoded: res0 0.03 attn0 0.01 mid0 0.01 mlp0 0.01 res1 0.01 attn1 0.03 mid1 0.03 mlp1 0.02 res2 0.04 | 42s
+iid seed4 trained: regret 0.060 | pairs 16102 | spearman JS~Δb 0.60 | greedy differs where optimal differs 0.12 (where same 0.04) | R² Δb from decoded: res0 0.02 attn0 0.00 mid0 0.00 mlp0 0.00 res1 0.01 attn1 0.03 mid1 0.01 mlp1 0.01 res2 0.01 | 44s
+iid seed4 untrained: regret 2.795 | pairs 16102 | spearman JS~Δb 0.24 | greedy differs where optimal differs 0.00 (where same 0.00) | R² Δb from decoded: res0 0.02 attn0 0.01 mid0 0.01 mlp0 0.01 res1 0.01 attn1 0.06 mid1 0.01 mlp1 0.02 res2 0.02 | 46s
+iid seed5 trained: regret 0.485 | pairs 16133 | spearman JS~Δb 0.52 | greedy differs where optimal differs 0.06 (where same 0.02) | R² Δb from decoded: res0 0.03 attn0 0.01 mid0 0.00 mlp0 0.00 res1 0.00 attn1 0.04 mid1 0.02 mlp1 0.01 res2 0.01 | 47s
+iid seed5 untrained: regret 1.585 | pairs 16133 | spearman JS~Δb 0.22 | greedy differs where optimal differs 0.00 (where same 0.00) | R² Δb from decoded: res0 0.03 attn0 0.02 mid0 0.02 mlp0 0.03 res1 0.03 attn1 0.09 mid1 0.05 mlp1 0.03 res2 0.03 | 49s
+# Channel bandit tables
+
+Generated by `pairs.py`. Six transformers per arm, both measured on the same channel-generated evaluation cues (16 384 episodes) against the channel posterior; median (range). Matched pairs: each episode's cues and a random permutation (pairs with different tokens: 16115); Δb = ‖b − b′‖₁ between the exact posteriors of the two orders (median 0.082; share ≥ 0.2: 0.24; the optimal first action differs in 0.078).
+
+## Behaviour
+
+| arm | return | exact regret | optimal actions | where information pays: optimal action |
+|---|---|---|---|---|
+| channel trained | 4.981 (4.965–4.986) | 0.012 (0.010–0.019) | 0.98 (0.97–0.98) | 0.72 (0.61–0.87) |
+| channel untrained | 2.391 (2.167–3.390) | 2.589 (1.585–2.795) | 0.34 (0.33–0.36) | 0.33 (0.00–0.39) |
+| iid trained | 4.933 (4.505–4.948) | 0.059 (0.046–0.485) | 0.95 (0.67–0.96) | 0.62 (0.12–0.77) |
+| iid untrained | 2.391 (2.167–3.390) | 2.589 (1.585–2.795) | 0.34 (0.33–0.36) | 0.33 (0.00–0.39) |
+
+## Matched pairs: behaviour (all pairs)
+
+|  | channel trained | channel untrained | iid trained | iid untrained |
+|---|---|---|---|---|
+| JS divergence between the two orders' action distributions | 0.04 (0.03–0.04) | 0.00 (0.00–0.00) | 0.01 (0.01–0.01) | 0.00 (0.00–0.00) |
+| **Spearman(JS, Δb)** across pairs | 0.74 (0.71–0.76) | 0.23 (0.19–0.26) | 0.60 (0.52–0.63) | 0.23 (0.19–0.26) |
+| **the greedy action differs between the orders, where the optimal action differs** | 0.56 (0.43–0.60) | 0.05 (0.00–0.16) | 0.11 (0.06–0.13) | 0.05 (0.00–0.16) |
+| there: right on both orders | 0.48 (0.38–0.53) | 0.00 (0.00–0.04) | 0.04 (0.01–0.05) | 0.00 (0.00–0.04) |
+| the greedy action differs where the optimal action is the same | 0.04 (0.03–0.05) | 0.04 (0.00–0.16) | 0.02 (0.01–0.04) | 0.04 (0.00–0.16) |
+
+## Matched pairs: behaviour (pairs with Δb ≥ 0.2)
+
+|  | channel trained | channel untrained | iid trained | iid untrained |
+|---|---|---|---|---|
+| JS divergence between the two orders' action distributions | 0.10 (0.09–0.12) | 0.00 (0.00–0.00) | 0.02 (0.01–0.03) | 0.00 (0.00–0.00) |
+| **Spearman(JS, Δb)** across pairs | 0.30 (0.27–0.36) | 0.07 (0.04–0.09) | 0.12 (0.04–0.17) | 0.07 (0.04–0.09) |
+| **the greedy action differs between the orders, where the optimal action differs** | 0.61 (0.48–0.64) | 0.05 (0.00–0.17) | 0.11 (0.06–0.14) | 0.05 (0.00–0.17) |
+| there: right on both orders | 0.56 (0.44–0.59) | 0.00 (0.00–0.05) | 0.05 (0.01–0.06) | 0.00 (0.00–0.05) |
+| the greedy action differs where the optimal action is the same | 0.09 (0.07–0.13) | 0.05 (0.00–0.20) | 0.04 (0.02–0.08) | 0.05 (0.00–0.20) |
+
+## Matched pairs: representation (all pairs). R² of Δb from the decoded belief difference at each site
+
+| site | channel trained | channel untrained | iid trained | iid untrained |
+|---|---|---|---|---|
+| res0 | 0.02 (0.02–0.03) | 0.02 (0.02–0.03) | 0.02 (0.02–0.03) | 0.02 (0.02–0.03) |
+| attn0 | 0.03 (0.03–0.04) | 0.01 (0.01–0.02) | 0.01 (0.00–0.01) | 0.01 (0.01–0.02) |
+| mid0 | 0.03 (0.02–0.04) | 0.01 (0.01–0.02) | 0.01 (0.00–0.01) | 0.01 (0.01–0.02) |
+| **mlp0** | 0.04 (0.02–0.05) | 0.01 (0.00–0.03) | 0.00 (0.00–0.01) | 0.01 (0.00–0.03) |
+| res1 | 0.04 (0.02–0.05) | 0.01 (0.00–0.03) | 0.00 (0.00–0.01) | 0.01 (0.00–0.03) |
+| attn1 | 0.53 (0.45–0.61) | 0.06 (0.03–0.09) | 0.03 (0.02–0.05) | 0.06 (0.03–0.09) |
+| mid1 | 0.53 (0.44–0.57) | 0.03 (0.01–0.05) | 0.01 (0.00–0.02) | 0.03 (0.01–0.05) |
+| mlp1 | 0.63 (0.48–0.65) | 0.02 (0.01–0.03) | 0.01 (0.01–0.01) | 0.02 (0.01–0.03) |
+| **res2** | 0.58 (0.47–0.61) | 0.03 (0.00–0.04) | 0.01 (0.00–0.02) | 0.03 (0.00–0.04) |
+
+Pairs with Δb ≥ 0.2:
+
+| site | channel trained | channel untrained | iid trained | iid untrained |
+|---|---|---|---|---|
+| res0 | 0.07 (0.06–0.07) | 0.07 (0.06–0.07) | 0.07 (0.06–0.07) | 0.07 (0.06–0.07) |
+| attn0 | 0.09 (0.06–0.10) | 0.04 (0.02–0.05) | 0.02 (0.01–0.04) | 0.04 (0.02–0.05) |
+| mid0 | 0.09 (0.06–0.10) | 0.03 (0.02–0.06) | 0.02 (0.01–0.04) | 0.03 (0.02–0.06) |
+| mlp0 | 0.09 (0.05–0.12) | 0.03 (0.01–0.07) | 0.01 (0.00–0.02) | 0.03 (0.01–0.07) |
+| res1 | 0.10 (0.05–0.11) | 0.02 (0.01–0.08) | 0.01 (0.00–0.01) | 0.02 (0.01–0.08) |
+| attn1 | 0.70 (0.64–0.76) | 0.16 (0.08–0.25) | 0.06 (0.03–0.10) | 0.16 (0.08–0.25) |
+| mid1 | 0.70 (0.62–0.74) | 0.07 (0.02–0.13) | 0.03 (0.01–0.05) | 0.07 (0.02–0.13) |
+| mlp1 | 0.77 (0.66–0.78) | 0.07 (0.03–0.09) | 0.03 (0.01–0.03) | 0.07 (0.03–0.09) |
+| res2 | 0.74 (0.65–0.75) | 0.08 (0.01–0.11) | 0.02 (0.01–0.04) | 0.08 (0.01–0.11) |
+
+## Decision rule (registered)
+
+|  | criterion | value | held |
+|---|---|---|---|
+| **LEARN** | channel arm: regret ≤ a quarter of the evidence-blind policy's | 0.012 against — | no |
+| **ORDER-B** | Spearman(JS, Δb) ≥ 0.5 and the greedy action differs where it should in ≥ 0.5; i.i.d. arm ≤ 0.1 | 0.74; 0.56 (i.i.d. 0.11) | no |
+| **ORDER-R** | mlp0: R² of Δb from the decoded difference ≥ 0.5; i.i.d. arm ≤ 0.1 | 0.04 (i.i.d. 0.00) | no |

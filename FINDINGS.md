@@ -323,6 +323,20 @@ online patches at the decision token.
 - Registered: FORM held; GATHER (0.88 against 0.9; the embedding already holds 0.53 of the counts) and NONLIN (the
   registered patch left block 1's attention free to import the code) did not. 4 of 7 expectations held, one in part.
 
+**Channel bandit — matched-evidence counterfactuals (`studies/2_belief_state/channel_bandit/REPORT.md`, rule in
+`studies/2_belief_state/channel_bandit/PLAN.md`).** The reward bandit with 8 cues through the sticky channel, so the same counts in another
+order give another posterior; six transformers trained on it and six on i.i.d. cues (the control), measured on the
+same channel cues; each episode's cues and a permutation of them as a matched pair.
+
+- The channel arm plays within 0.012 of the optimum. Where the two orders call for different first actions it
+  changes its action in 0.56 of pairs and is right on both in 0.48 (control 0.11 and 0.04).
+- Nothing in block 0 separates the two orders: the belief difference decoded at block 0's MLP output explains 0.04
+  of the exact difference, as in the control. Block 0's MLP is a count-to-probability lookup. Block 1's attention
+  makes the order-dependent belief (0.53; 0.70 on pairs differing by ≥ 0.2), block 1's MLP sharpens it and the heads
+  read it (0.58 / 0.74).
+- Registered: LEARN held; ORDER-B failed by 0.01 on the control's bound (0.11 against 0.10); ORDER-R at mlp0 failed
+  (0.04) and held at res2. 1 of 5 expectations held, two in part.
+
 ## 3. Reward-trained agents ([experiments](studies/3_reward_trained_agents/))
 
 Agents trained by reward alone, first in a navigate-and-commit grid and then in an aliased maze where the agent never sees its cell. The belief is decodable before training; what training changes is whether the evidence is used. Edits along the decoded belief do not steer the policy, history matters a little beyond the belief, and an observation-prediction objective improves regret without making the policy more belief-consistent.

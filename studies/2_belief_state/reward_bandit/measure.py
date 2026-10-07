@@ -216,17 +216,18 @@ def main():
     out = Path(a.out) if a.out else HERE / ("smoke.json" if a.untrained else "results.json")
     for arch in a.archs:
         runs = Path(a.runs) / arch
-        args = json.load(open(runs / "task.json"))["args"]
+        info = json.load(open(runs / "task.json")); args = info["args"]
+        model_arch = info.get("arch", arch)                           # the run directory may be named after the arm (channel / iid), not the architecture
         for seed in a.seeds:
             d = runs / f"seed{seed}" / "ckpt"
             rows = {}
             for which, ck in (("trained", sorted(d.glob("u*.pt"))[-1]), ("untrained", d / "u000000.pt")):
                 if a.untrained and which == "trained":
                     continue
-                net = BD.build(arch, s, args.get("d", 128), args.get("layers", 2))
+                net = BD.build(model_arch, s, args.get("d", 128), args.get("layers", 2))
                 net.load_state_dict(torch.load(ck, map_location=dev))
                 net = net.to(dev).eval()
-                rows[which] = dict(checkpoint=ck.name, **measure_model(net, arch, t, goal, cues, u, seed, dev))
+                rows[which] = dict(checkpoint=ck.name, **measure_model(net, model_arch, t, goal, cues, u, seed, dev))
             res["runs"][f"{arch}/seed{seed}"] = rows
             k = "trained" if "trained" in rows else "untrained"
             b_, p_, tr_, eq_ = rows[k]["behaviour"], rows[k]["probes"][rows[k]["final_site"]], rows[k]["transplant"], rows[k]["equal_belief"]
