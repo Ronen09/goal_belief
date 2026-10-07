@@ -273,6 +273,27 @@ token for reading everywhere, c ∈ {0, 0.003, 0.01, 0.03, 0.1, 0.3}.
   because the gate decided per block. R7's threshold was taken from the K/V-dropout experiment's full-access KL
   instead of its own-dropout KL. R8 failed on substance: both families cross at c* = 0.003.
 
+**Reward bandit — a hidden goal, noisy cues and rewards as evidence, trained by reward only (`studies/2_belief_state/reward_bandit/REPORT.md`,
+rule in `studies/2_belief_state/reward_bandit/PLAN.md`).** Three goals, four cue tokens, six decisions among four actions with goal-dependent
+Bernoulli rewards (the brief's vectors clipped to [0.1, 0.9]). The posterior depends on the history only through its
+counts, so the belief MDP (210 210 states) is solved exactly. A 2-layer transformer and a 1-layer GRU, six seeds each,
+PPO on reward only.
+
+- The transformer plays within 0.05 of the optimum (regret 0.046 against the myopic policy's 0.068) and takes the
+  information-seeking action in half of the decisions where it pays; its return is above the myopic policy's in four
+  of six seeds (SEEK's test p 0.078). The GRU ends at regret 0.29 in every seed and setting, between the
+  evidence-blind and the myopic policy.
+- In distribution the log-odds decode at R² ≥ 0.98 from every site, untrained included (they are affine in the
+  counts). What training changes is the form: the transformer's final state extrapolates the probabilities at 0.85
+  (untrained 0.09) and the log-odds less than before (0.85 → 0.50); the GRU's state extrapolates the log-odds (0.94)
+  and never the probabilities (−0.06), which with a linear readout is why it cannot play the Bayes policy.
+- Both act on the belief alone: permuting the evidence changes the greedy action in 6 % (transformer) and 3 % (GRU)
+  of histories against 62 % and 53 % for random pairs; a table over belief states explains 0.998–0.999 of the logits.
+- Moving the state to another history's decoded belief along the probe's encoder carries 0.62 (transformer) and 0.68
+  (GRU) of the decision; the decoder's pseudo-inverse and a random direction carry nothing.
+- Registered: LEARN (transformer), STATE and TABLE held; SEEK, BELIEF (0.85 against 0.9) and STEER (0.62 against 0.8)
+  did not; the GRU fails LEARN by 0.004. 5 of 7 expectations held, two in part.
+
 ## 3. Reward-trained agents ([experiments](studies/3_reward_trained_agents/))
 
 Agents trained by reward alone, first in a navigate-and-commit grid and then in an aliased maze where the agent never sees its cell. The belief is decodable before training; what training changes is whether the evidence is used. Edits along the decoded belief do not steer the policy, history matters a little beyond the belief, and an observation-prediction objective improves regret without making the policy more belief-consistent.

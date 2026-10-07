@@ -12,7 +12,10 @@ then reports which held (`REPORT.md`). [FINDINGS.md](FINDINGS.md) has every resu
    interventions on a complete causal cut do not. Everything after this relies only on the invariant measures.
 2. **[Belief state](studies/2_belief_state/).** With a goal that must be inferred, the exact posterior is decodable
    from every model, but only a recurrent network uses it as its state. A transformer recomputes the belief from the
-   tokens, unless a carried state plus unreliable or priced access to the history make keeping it worthwhile.
+   tokens, unless a carried state plus unreliable or priced access to the history make keeping it worthwhile. Trained
+   by reward alone on a hidden-goal bandit, a transformer plays near the exact optimum, acts on the belief and nothing
+   else, and comes to hold the posterior's probabilities, the form its decision needs; a GRU keeps the log-odds and
+   stops short of the myopic policy.
 3. **[Reward-trained agents](studies/3_reward_trained_agents/).** Trained by reward in a grid and an aliased maze, agents
    learn to use evidence, but the belief is decodable before training too. Editing the decoded belief does not steer
    the policy, and an observation-prediction objective improves regret without making the policy more belief-consistent.
@@ -77,6 +80,7 @@ retraining.
 | `hmm`, `hmm4`, `seqmodels`, `prominence` | HMM-objectives to intervention-equivalence | HMMs with exact inference, GRUs and objectives, prominence measures |
 | `invariants`, `steering` | invariants to intervention-equivalence | invariant measures under exact coordinate changes, propagation-based steering |
 | `tfm`, `tfm_batched`, `tfm_measure`, `cuts`, `factorize` | transformer-reproduction to read-cost | causal transformer, stacked GPU trainer, complete-cut patching, readout factorisation |
+| `bandit` | reward-bandit | a hidden goal with cues and Bernoulli rewards as evidence: count-based exact filter, exact belief-MDP solver, GPU environment with common random numbers, transformer and GRU policies, PPO |
 | `latentgoal`, `belief_train`, `beliefprobe`, `beliefcausal`, `filterstate` | hidden-goal to window-carry | hidden-goal environments with the exact joint filter; training; probes; transplant / equivalence tests; full-state coordinates |
 | `wtfm`, `kvprior`, `readgate` | window-carry to read-cost | windowed transformer with a recurrent carry, K/V dropout and a priced read gate; K/V-source splicing for position t+1 |
 | `navcommit`, `navmodel`, `navppo`, `navbank`, `navprobe`, `navcausal` | navigate-commit | navigate / investigate / commit: exact solver, token format and transformer, vectorised environment and PPO, fixed evaluation histories, decoders, matched-pair patches |

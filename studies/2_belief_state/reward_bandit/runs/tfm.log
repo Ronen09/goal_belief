@@ -1,0 +1,22 @@
+references: optimal 4.535 (regret 0.000) myopic 4.472 (regret 0.068) random 2.546 (regret 1.979)
+[tfm] u=0 2s greedy regret 2.363 2.068 2.394 2.458 2.245 2.133 | return 2.173 2.461 2.140 2.081 2.289 2.404 | optimal where information pays 0.26 0.29 0.16 0.20 0.28 0.02
+[tfm] u=10 8s greedy regret 1.143 1.143 1.143 1.143 1.143 1.143 | return 3.394 3.394 3.394 3.394 3.394 3.394 | optimal where information pays 0.00 0.00 0.00 0.00 0.00 0.00
+[tfm] u=12 10s greedy regret 1.143 1.143 1.143 1.143 1.143 1.143 | return 3.394 3.394 3.394 3.394 3.394 3.394 | optimal where information pays 0.00 0.00 0.00 0.00 0.00 0.00
+[tfm] u=15 13s greedy regret 1.143 1.143 1.143 1.143 1.143 1.143 | return 3.394 3.394 3.394 3.394 3.394 3.394 | optimal where information pays 0.00 0.00 0.00 0.00 0.00 0.00
+[tfm] u=19 16s greedy regret 1.143 1.143 1.143 1.143 1.143 1.143 | return 3.394 3.394 3.394 3.394 3.394 3.394 | optimal where information pays 0.00 0.00 0.00 0.00 0.00 0.00
+[tfm] u=24 20s greedy regret 1.143 1.134 1.143 1.015 0.873 1.143 | return 3.394 3.404 3.394 3.518 3.661 3.394 | optimal where information pays 0.00 0.00 0.00 0.00 0.00 0.00
+[tfm] u=29 23s greedy regret 1.143 0.725 1.143 0.639 0.802 1.045 | return 3.394 3.814 3.394 3.899 3.732 3.491 | optimal where information pays 0.00 0.00 0.00 0.00 0.00 0.00
+[tfm] u=36 28s greedy regret 0.785 0.375 0.765 0.560 0.561 0.596 | return 3.749 4.164 3.769 3.977 3.980 3.938 | optimal where information pays 0.00 0.02 0.00 0.00 0.00 0.00
+[tfm] u=45 32s greedy regret 0.521 0.330 0.534 0.338 0.327 0.380 | return 4.016 4.202 4.001 4.197 4.211 4.151 | optimal where information pays 0.00 0.00 0.00 0.00 0.00 0.00
+[tfm] u=56 38s greedy regret 0.370 0.306 0.503 0.336 0.329 0.465 | return 4.165 4.229 4.031 4.202 4.206 4.063 | optimal where information pays 0.00 0.01 0.00 0.02 0.00 0.00
+[tfm] u=70 46s greedy regret 0.332 0.303 0.390 0.310 0.321 0.386 | return 4.203 4.231 4.142 4.228 4.214 4.143 | optimal where information pays 0.00 0.02 0.00 0.02 0.00 0.00
+[tfm] u=86 54s greedy regret 0.348 0.307 0.326 0.313 0.320 0.312 | return 4.181 4.229 4.208 4.225 4.217 4.224 | optimal where information pays 0.00 0.00 0.00 0.02 0.00 0.02
+[tfm] u=107 64s greedy regret 0.322 0.246 0.308 0.320 0.324 0.283 | return 4.210 4.292 4.230 4.216 4.214 4.259 | optimal where information pays 0.00 0.01 0.00 0.02 0.00 0.02
+[tfm] u=133 76s greedy regret 0.302 0.154 0.260 0.309 0.315 0.266 | return 4.234 4.388 4.281 4.229 4.221 4.271 | optimal where information pays 0.00 0.05 0.22 0.02 0.00 0.11
+[tfm] u=165 91s greedy regret 0.279 0.129 0.276 0.306 0.313 0.253 | return 4.262 4.415 4.260 4.230 4.223 4.292 | optimal where information pays 0.02 0.17 0.10 0.01 0.00 0.22
+[tfm] u=204 108s greedy regret 0.273 0.107 0.251 0.265 0.303 0.254 | return 4.271 4.434 4.292 4.278 4.235 4.292 | optimal where information pays 0.02 0.23 0.21 0.12 0.02 0.21
+[tfm] u=253 129s greedy regret 0.250 0.098 0.249 0.257 0.237 0.209 | return 4.289 4.440 4.295 4.286 4.300 4.332 | optimal where information pays 0.22 0.38 0.21 0.15 0.01 0.14
+[tfm] u=314 156s greedy regret 0.249 0.094 0.251 0.095 0.148 0.114 | return 4.294 4.441 4.291 4.448 4.390 4.433 | optimal where information pays 0.22 0.36 0.22 0.26 0.03 0.25
+[tfm] u=390 188s greedy regret 0.082 0.084 0.183 0.024 0.128 0.107 | return 4.454 4.457 4.359 4.513 4.411 4.438 | optimal where information pays 0.29 0.32 0.22 0.64 0.10 0.26
+[tfm] u=484 227s greedy regret 0.029 0.073 0.064 0.014 0.084 0.108 | return 4.505 4.458 4.479 4.522 4.453 4.439 | optimal where information pays 0.65 0.45 0.42 0.73 0.23 0.29
+[tfm] u=600 275s greedy regret 0.030 0.049 0.044 0.010 0.060 0.098 | return 4.511 4.481 4.498 4.525 4.475 4.449 | optimal where information pays 0.66 0.52 0.45 0.84 0.50 0.30

@@ -1,0 +1,63 @@
+{
+ "arch": "gru",
+ "task": {
+  "K": 3,
+  "n_cue": 4,
+  "T": 6,
+  "clip": 0.1
+ },
+ "states": 210210,
+ "references": {
+  "optimal": {
+   "ret": 4.53509521484375,
+   "regret": 0.0,
+   "v_star": 4.5391435623168945,
+   "opt_rate": 1.0,
+   "info_pays_share": 0.1191508024930954,
+   "opt_where_pays": 0.9999999403953552,
+   "myopic_where_pays": 0.0,
+   "myopic_rate": 0.8808492422103882
+  },
+  "myopic": {
+   "ret": 4.4715576171875,
+   "regret": 0.06797835975885391,
+   "v_star": 4.5391435623168945,
+   "opt_rate": 0.8759562373161316,
+   "info_pays_share": 0.1240437850356102,
+   "opt_where_pays": 0.0,
+   "myopic_where_pays": 1.0,
+   "myopic_rate": 1.0
+  },
+  "random": {
+   "ret": 2.5455322265625,
+   "regret": 1.9785845279693604,
+   "v_star": 4.5391435623168945,
+   "opt_rate": 0.2520650327205658,
+   "info_pays_share": 0.1402689665555954,
+   "opt_where_pays": 0.253390371799469,
+   "myopic_where_pays": 0.2585394084453583,
+   "myopic_rate": 0.2527872920036316
+  }
+ },
+ "args": {
+  "arch": "gru",
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "updates": 600,
+  "n_env": 4096,
+  "lr": 0.0003,
+  "ent": 0.03,
+  "ent_final": 0.003,
+  "epochs": 3,
+  "d": 128,
+  "layers": 2,
+  "quick": false,
+  "device": "cuda"
+ }
+}
