@@ -290,7 +290,9 @@ PPO on reward only.
 - Both act on the belief alone: permuting the evidence changes the greedy action in 6 % (transformer) and 3 % (GRU)
   of histories against 62 % and 53 % for random pairs; a table over belief states explains 0.998–0.999 of the logits.
 - Moving the state to another history's decoded belief along the probe's encoder carries 0.62 (transformer) and 0.68
-  (GRU) of the decision; the decoder's pseudo-inverse and a random direction carry nothing.
+  (GRU) of the decision; the decoder's pseudo-inverse and a random direction carry nothing. Post hoc: an encoder in
+  probabilities carries 0.85 (transformer), and the mean state of the target's belief node carries 1.00 in both: the
+  heads read nothing beyond the belief, and the shortfall was the log-odds parametrisation of the probe.
 - Registered: LEARN (transformer), STATE and TABLE held; SEEK, BELIEF (0.85 against 0.9) and STEER (0.62 against 0.8)
   did not; the GRU fails LEARN by 0.004. 5 of 7 expectations held, two in part.
 

@@ -1,0 +1,650 @@
+{
+ "tfm/seed0": {
+  "pairs": 16376,
+  "probe_e from y (log-odds)": 0.5795152371397507,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999607841623877,
+  "probe_e from b (probabilities)": 0.8140581914662035,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999993889420113,
+  "probe_e from y and b": -0.2753154001209266,
+  "probe_e from y and b: decoded target R\u00b2": -31.59907960971624,
+  "probe_e from Q*": 0.8272197727573303,
+  "probe_e from Q*: decoded target R\u00b2": 0.9999814832671945,
+  "probe_e from y, b and Q*": -0.00405788418988795,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -818.5309818612714,
+  "node mean of B": 0.9955526347797586,
+  "A + (node mean of B \u2212 node mean of A)": 0.9948130421660362,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.34629946262823647,
+    "gap_closed": 0.01694107660702615,
+    "base_js": 0.06327168061246573
+   },
+   "optimal action differs": {
+    "share": 0.6537005373717636,
+    "gap_closed": 0.6091733927188054,
+    "base_js": 0.6357962875075014
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.47282608695652173,
+    "gap_closed": 0.8452000165042146,
+    "base_js": 0.4690844538785204
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.3234611626770884,
+    "gap_closed": 0.1631080252576057,
+    "base_js": 0.40571375976038526
+   },
+   "step 0": {
+    "share": 0.1663409868099658,
+    "gap_closed": 0.05513992984007776,
+    "base_js": 0.4181754581419257
+   },
+   "steps 1\u20132": {
+    "share": 0.33152173913043476,
+    "gap_closed": 0.42938570431371637,
+    "base_js": 0.43009875368392203
+   },
+   "steps 3\u20135": {
+    "share": 0.5021372740595994,
+    "gap_closed": 0.8363293776228483,
+    "base_js": 0.44885040457162556
+   }
+  },
+  "edit length / true difference": 0.71363804544437
+ },
+ "tfm/seed1": {
+  "pairs": 16381,
+  "probe_e from y (log-odds)": 0.6464289335962454,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999965864803324,
+  "probe_e from b (probabilities)": 0.892643346974415,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999977424455819,
+  "probe_e from y and b": -0.3017729925397692,
+  "probe_e from y and b: decoded target R\u00b2": -54.99975285984502,
+  "probe_e from Q*": 0.9001555268430927,
+  "probe_e from Q*: decoded target R\u00b2": 0.9998705363846079,
+  "probe_e from y, b and Q*": -0.015026976661791869,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -4127.303720620388,
+  "node mean of B": 0.9968744234202583,
+  "A + (node mean of B \u2212 node mean of A)": 0.9962659136939626,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.3510774677980587,
+    "gap_closed": -0.05787538403146364,
+    "base_js": 0.03472854443751076
+   },
+   "optimal action differs": {
+    "share": 0.6489225322019413,
+    "gap_closed": 0.6680185949763398,
+    "base_js": 0.6129304599078993
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.46505097368903,
+    "gap_closed": 0.8876080389095106,
+    "base_js": 0.46825947735879553
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.3172577986691899,
+    "gap_closed": 0.23580868780507547,
+    "base_js": 0.32553168392591264
+   },
+   "step 0": {
+    "share": 0.16836578963433246,
+    "gap_closed": 0.14429433675380343,
+    "base_js": 0.26194969839844146
+   },
+   "steps 1\u20132": {
+    "share": 0.3322751968744277,
+    "gap_closed": 0.43884826669172017,
+    "base_js": 0.4311923399656017
+   },
+   "steps 3\u20135": {
+    "share": 0.49935901349123984,
+    "gap_closed": 0.8795665222231234,
+    "base_js": 0.4456891776608096
+   }
+  },
+  "edit length / true difference": 0.760323392453797
+ },
+ "tfm/seed2": {
+  "pairs": 16347,
+  "probe_e from y (log-odds)": 0.6418717232884394,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999387204566167,
+  "probe_e from b (probabilities)": 0.8522615941485282,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999975517483378,
+  "probe_e from y and b": -0.3191597791210119,
+  "probe_e from y and b: decoded target R\u00b2": -41.63727777876521,
+  "probe_e from Q*": 0.8462558839531686,
+  "probe_e from Q*: decoded target R\u00b2": 0.999966231179318,
+  "probe_e from y, b and Q*": 0.00843112850657346,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -441.8451532628002,
+  "node mean of B": 0.9945560604612398,
+  "A + (node mean of B \u2212 node mean of A)": 0.9935069817665758,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.34795375298219855,
+    "gap_closed": 0.16644449022669727,
+    "base_js": 0.052045819676761154
+   },
+   "optimal action differs": {
+    "share": 0.6520462470178015,
+    "gap_closed": 0.6633721764858624,
+    "base_js": 0.6141372202755466
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.4391019758977182,
+    "gap_closed": 0.9058759001645341,
+    "base_js": 0.4551386381127629
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.33565791888419894,
+    "gap_closed": 0.25445950220614877,
+    "base_js": 0.3831560075568373
+   },
+   "step 0": {
+    "share": 0.16529026732733834,
+    "gap_closed": 0.09214647012792065,
+    "base_js": 0.3756091122112901
+   },
+   "steps 1\u20132": {
+    "share": 0.33590261210007955,
+    "gap_closed": 0.5135455547265991,
+    "base_js": 0.4068288981338394
+   },
+   "steps 3\u20135": {
+    "share": 0.49880712057258214,
+    "gap_closed": 0.876913010303359,
+    "base_js": 0.4406833397584806
+   }
+  },
+  "edit length / true difference": 0.7545411598321639
+ },
+ "tfm/seed3": {
+  "pairs": 16338,
+  "probe_e from y (log-odds)": 0.6098134189363602,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999942199335776,
+  "probe_e from b (probabilities)": 0.8503685345386549,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999998808996833,
+  "probe_e from y and b": -0.26872419994020014,
+  "probe_e from y and b: decoded target R\u00b2": -36.19000534426401,
+  "probe_e from Q*": 0.8670735347346087,
+  "probe_e from Q*: decoded target R\u00b2": 0.999986915283912,
+  "probe_e from y, b and Q*": 0.04292804280344087,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -1289.3274061935153,
+  "node mean of B": 0.9976495816219102,
+  "A + (node mean of B \u2212 node mean of A)": 0.997100213419432,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.34600318276410824,
+    "gap_closed": -0.11535094185490591,
+    "base_js": 0.03453823579043648
+   },
+   "optimal action differs": {
+    "share": 0.6539968172358918,
+    "gap_closed": 0.6299519560993543,
+    "base_js": 0.6579806775783555
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.5056310441914555,
+    "gap_closed": 0.8971409606509697,
+    "base_js": 0.45659530479609217
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.29979189619292446,
+    "gap_closed": 0.1507318983921101,
+    "base_js": 0.4272945277534139
+   },
+   "step 0": {
+    "share": 0.16519769861672176,
+    "gap_closed": 0.06471476299112744,
+    "base_js": 0.4252035342988054
+   },
+   "steps 1\u20132": {
+    "share": 0.33272126331252294,
+    "gap_closed": 0.457824388888739,
+    "base_js": 0.44242108017831905
+   },
+   "steps 3\u20135": {
+    "share": 0.5020810380707553,
+    "gap_closed": 0.8796374610843937,
+    "base_js": 0.44778042861468353
+   }
+  },
+  "edit length / true difference": 0.7318586738082213
+ },
+ "tfm/seed4": {
+  "pairs": 16190,
+  "probe_e from y (log-odds)": 0.6296144111483173,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999573884810499,
+  "probe_e from b (probabilities)": 0.8822088595852434,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999999173593025,
+  "probe_e from y and b": -0.32480863961289286,
+  "probe_e from y and b: decoded target R\u00b2": -50.69793697566305,
+  "probe_e from Q*": 0.884954393001658,
+  "probe_e from Q*: decoded target R\u00b2": 0.999884186953883,
+  "probe_e from y, b and Q*": -0.012142292476090777,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -3513.6293487950898,
+  "node mean of B": 0.9985511458812543,
+  "A + (node mean of B \u2212 node mean of A)": 0.998085072964456,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.3531809759110562,
+    "gap_closed": -0.15909648730607295,
+    "base_js": 0.035320032683005216
+   },
+   "optimal action differs": {
+    "share": 0.6468190240889438,
+    "gap_closed": 0.6548723872803721,
+    "base_js": 0.6022196300054564
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.46806670784434834,
+    "gap_closed": 0.9020479154726856,
+    "base_js": 0.45820889770901463
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.319147621988882,
+    "gap_closed": 0.1813328109268122,
+    "base_js": 0.311908713616733
+   },
+   "step 0": {
+    "share": 0.16905497220506485,
+    "gap_closed": 0.07316530299285662,
+    "base_js": 0.22451485382731734
+   },
+   "steps 1\u20132": {
+    "share": 0.33415688696726376,
+    "gap_closed": 0.4209520099373141,
+    "base_js": 0.42780945979792545
+   },
+   "steps 3\u20135": {
+    "share": 0.4967881408276714,
+    "gap_closed": 0.8600613149812905,
+    "base_js": 0.44504010690866846
+   }
+  },
+  "edit length / true difference": 0.759387753100984
+ },
+ "tfm/seed5": {
+  "pairs": 16296,
+  "probe_e from y (log-odds)": 0.5510341138134274,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999985455673406,
+  "probe_e from b (probabilities)": 0.7736654587073901,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999989754724767,
+  "probe_e from y and b": -0.30501509937005067,
+  "probe_e from y and b: decoded target R\u00b2": -17.93367815083801,
+  "probe_e from Q*": 0.7749878114406586,
+  "probe_e from Q*: decoded target R\u00b2": 0.9999364953371432,
+  "probe_e from y, b and Q*": 0.07102975092515973,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -103.97243493940657,
+  "node mean of B": 0.9978292960809781,
+  "A + (node mean of B \u2212 node mean of A)": 0.9975535081427722,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.3404516445753559,
+    "gap_closed": 0.04094195562744429,
+    "base_js": 0.08625290239656815
+   },
+   "optimal action differs": {
+    "share": 0.6595483554246441,
+    "gap_closed": 0.5891970077562949,
+    "base_js": 0.5950998752110016
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.422987236131566,
+    "gap_closed": 0.836527935534389,
+    "base_js": 0.46552514547696855
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.3479995090819833,
+    "gap_closed": 0.20589344343720428,
+    "base_js": 0.38029740986545424
+   },
+   "step 0": {
+    "share": 0.16672803141875306,
+    "gap_closed": 0.053495258723564754,
+    "base_js": 0.353385159104679
+   },
+   "steps 1\u20132": {
+    "share": 0.33683112420225825,
+    "gap_closed": 0.45088061244959443,
+    "base_js": 0.4060446865298861
+   },
+   "steps 3\u20135": {
+    "share": 0.4964408443789887,
+    "gap_closed": 0.7412079036409305,
+    "base_js": 0.4555918170103892
+   }
+  },
+  "edit length / true difference": 0.6803147645436604
+ },
+ "gru/seed0": {
+  "pairs": 16376,
+  "probe_e from y (log-odds)": 0.6860550725853012,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999992559369718,
+  "probe_e from b (probabilities)": 0.7667754400210438,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999984067833094,
+  "probe_e from y and b": 0.511875730367402,
+  "probe_e from y and b: decoded target R\u00b2": 0.9970684135502011,
+  "probe_e from Q*": 0.693362996710082,
+  "probe_e from Q*: decoded target R\u00b2": 0.9993149168150217,
+  "probe_e from y, b and Q*": -0.03556530646082323,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -2.7058120604903,
+  "node mean of B": 0.9995669536394246,
+  "A + (node mean of B \u2212 node mean of A)": 0.9987857744633718,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.35051294577430386,
+    "gap_closed": 0.230302757383963,
+    "base_js": 0.10572035813484233
+   },
+   "optimal action differs": {
+    "share": 0.6494870542256962,
+    "gap_closed": 0.7382169274648016,
+    "base_js": 0.4985033100802553
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.3955788959452858,
+    "gap_closed": 0.8517823189358213,
+    "base_js": 0.4585866601636269
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.3506961406936981,
+    "gap_closed": 0.49005496432472195,
+    "base_js": 0.22807567600407871
+   },
+   "step 0": {
+    "share": 0.1663409868099658,
+    "gap_closed": 0.32165010617797385,
+    "base_js": 0.04226740082873325
+   },
+   "steps 1\u20132": {
+    "share": 0.33152173913043476,
+    "gap_closed": 0.65468444374627,
+    "base_js": 0.39860524474500375
+   },
+   "steps 3\u20135": {
+    "share": 0.5021372740595994,
+    "gap_closed": 0.7163169741030175,
+    "base_js": 0.4414145431265348
+   }
+  },
+  "edit length / true difference": 0.6723430389508361
+ },
+ "gru/seed1": {
+  "pairs": 16381,
+  "probe_e from y (log-odds)": 0.6801590974541232,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999998088195534,
+  "probe_e from b (probabilities)": 0.770681882106235,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999937051904316,
+  "probe_e from y and b": 0.20241444444451262,
+  "probe_e from y and b: decoded target R\u00b2": 0.9882005743585653,
+  "probe_e from Q*": 0.7162149647619858,
+  "probe_e from Q*: decoded target R\u00b2": 0.9992993746902549,
+  "probe_e from y, b and Q*": 0.08260097316774984,
+  "probe_e from y, b and Q*: decoded target R\u00b2": 0.670379265075709,
+  "node mean of B": 0.9983473720645039,
+  "A + (node mean of B \u2212 node mean of A)": 0.9965629645312574,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.3545571088456138,
+    "gap_closed": 0.2547117979832705,
+    "base_js": 0.10766362721358796
+   },
+   "optimal action differs": {
+    "share": 0.6454428911543861,
+    "gap_closed": 0.7303456014669504,
+    "base_js": 0.5013675367111732
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.4006470911421769,
+    "gap_closed": 0.836220824618181,
+    "base_js": 0.4515957010634628
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.35052805079055005,
+    "gap_closed": 0.5127911523866386,
+    "base_js": 0.2303096514796622
+   },
+   "step 0": {
+    "share": 0.16836578963433246,
+    "gap_closed": 0.391925702350728,
+    "base_js": 0.037426455083233966
+   },
+   "steps 1\u20132": {
+    "share": 0.3322751968744277,
+    "gap_closed": 0.6355503220724881,
+    "base_js": 0.4019126228449025
+   },
+   "steps 3\u20135": {
+    "share": 0.49935901349123984,
+    "gap_closed": 0.7151861670332905,
+    "base_js": 0.4444299197114168
+   }
+  },
+  "edit length / true difference": 0.6569640512437022
+ },
+ "gru/seed2": {
+  "pairs": 16347,
+  "probe_e from y (log-odds)": 0.679594266551491,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999980342440304,
+  "probe_e from b (probabilities)": 0.7549935232733009,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999862268210885,
+  "probe_e from y and b": 0.29167513432293346,
+  "probe_e from y and b: decoded target R\u00b2": 0.9925233577349059,
+  "probe_e from Q*": 0.6952866322382301,
+  "probe_e from Q*: decoded target R\u00b2": 0.99930718706382,
+  "probe_e from y, b and Q*": -0.28692178222358433,
+  "probe_e from y, b and Q*: decoded target R\u00b2": 0.6174940870020018,
+  "node mean of B": 0.9988277096085966,
+  "A + (node mean of B \u2212 node mean of A)": 0.9974362732281565,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.3522358842601089,
+    "gap_closed": 0.26340093549080623,
+    "base_js": 0.11359846025581619
+   },
+   "optimal action differs": {
+    "share": 0.6477641157398911,
+    "gap_closed": 0.7313588258821075,
+    "base_js": 0.4966515015346564
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.39719826267816727,
+    "gap_closed": 0.8353609436534222,
+    "base_js": 0.45509539131908006
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.3541934299871536,
+    "gap_closed": 0.5194880898639422,
+    "base_js": 0.23603151310129383
+   },
+   "step 0": {
+    "share": 0.16529026732733834,
+    "gap_closed": 0.3707350705439242,
+    "base_js": 0.042880858191910134
+   },
+   "steps 1\u20132": {
+    "share": 0.33590261210007955,
+    "gap_closed": 0.6506317217294939,
+    "base_js": 0.39524383816562614
+   },
+   "steps 3\u20135": {
+    "share": 0.49880712057258214,
+    "gap_closed": 0.7067910616530579,
+    "base_js": 0.44481171078016574
+   }
+  },
+  "edit length / true difference": 0.6618345392036427
+ },
+ "gru/seed3": {
+  "pairs": 16338,
+  "probe_e from y (log-odds)": 0.7049282196800963,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999969946370048,
+  "probe_e from b (probabilities)": 0.7610800336421502,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999911715030422,
+  "probe_e from y and b": 0.3192469445382796,
+  "probe_e from y and b: decoded target R\u00b2": 0.9934840238844048,
+  "probe_e from Q*": 0.7098248117418364,
+  "probe_e from Q*: decoded target R\u00b2": 0.9997284213280098,
+  "probe_e from y, b and Q*": 0.35669538324473893,
+  "probe_e from y, b and Q*: decoded target R\u00b2": 0.9266684591171055,
+  "node mean of B": 0.9996594329420966,
+  "A + (node mean of B \u2212 node mean of A)": 0.9988811869807636,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.3466764597869996,
+    "gap_closed": 0.23899486541993153,
+    "base_js": 0.10443788548073926
+   },
+   "optimal action differs": {
+    "share": 0.6533235402130003,
+    "gap_closed": 0.7572049832103933,
+    "base_js": 0.4939343446336989
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.39607051046639735,
+    "gap_closed": 0.8488051762974234,
+    "base_js": 0.45608612174390795
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.3445342147141633,
+    "gap_closed": 0.5562501314158016,
+    "base_js": 0.22736598063924346
+   },
+   "step 0": {
+    "share": 0.16519769861672176,
+    "gap_closed": 0.4787370280347968,
+    "base_js": 0.008829878144757846
+   },
+   "steps 1\u20132": {
+    "share": 0.33272126331252294,
+    "gap_closed": 0.7031857246159634,
+    "base_js": 0.40566204238447473
+   },
+   "steps 3\u20135": {
+    "share": 0.5020810380707553,
+    "gap_closed": 0.7074684185670621,
+    "base_js": 0.44310382475537036
+   }
+  },
+  "edit length / true difference": 0.6792797693042153
+ },
+ "gru/seed4": {
+  "pairs": 16190,
+  "probe_e from y (log-odds)": 0.7258035246396417,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.99999898614859,
+  "probe_e from b (probabilities)": 0.7635026456208733,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999900475694934,
+  "probe_e from y and b": 0.28092856966061985,
+  "probe_e from y and b: decoded target R\u00b2": 0.9916095086251033,
+  "probe_e from Q*": 0.7086928218068608,
+  "probe_e from Q*: decoded target R\u00b2": 0.999719333349901,
+  "probe_e from y, b and Q*": -0.38399855042444075,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -0.49359444865232427,
+  "node mean of B": 0.9990100352913892,
+  "A + (node mean of B \u2212 node mean of A)": 0.9978271594904391,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.3491043854231007,
+    "gap_closed": 0.346423915324906,
+    "base_js": 0.10697827890796802
+   },
+   "optimal action differs": {
+    "share": 0.6508956145768994,
+    "gap_closed": 0.7712858320420239,
+    "base_js": 0.4785982004757425
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.3903026559604694,
+    "gap_closed": 0.8623233636515543,
+    "base_js": 0.454240503370965
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.3579369981470043,
+    "gap_closed": 0.5433905799040764,
+    "base_js": 0.21243511530194925
+   },
+   "step 0": {
+    "share": 0.16905497220506485,
+    "gap_closed": 0.44369739584810597,
+    "base_js": 0.0002735315264791815
+   },
+   "steps 1\u20132": {
+    "share": 0.33415688696726376,
+    "gap_closed": 0.7203122362748619,
+    "base_js": 0.3842527213821344
+   },
+   "steps 3\u20135": {
+    "share": 0.4967881408276714,
+    "gap_closed": 0.7290615762028032,
+    "base_js": 0.4436843454601378
+   }
+  },
+  "edit length / true difference": 0.6933303087626579
+ },
+ "gru/seed5": {
+  "pairs": 16296,
+  "probe_e from y (log-odds)": 0.6775749330187868,
+  "probe_e from y (log-odds): decoded target R\u00b2": 0.9999975915904162,
+  "probe_e from b (probabilities)": 0.7294655948273128,
+  "probe_e from b (probabilities): decoded target R\u00b2": 0.9999902308903666,
+  "probe_e from y and b": 0.17268961366411562,
+  "probe_e from y and b: decoded target R\u00b2": 0.9894128191215888,
+  "probe_e from Q*": 0.6697036409256623,
+  "probe_e from Q*: decoded target R\u00b2": 0.999393289537019,
+  "probe_e from y, b and Q*": -0.3755723802787774,
+  "probe_e from y, b and Q*: decoded target R\u00b2": -1.0260344427817842,
+  "node mean of B": 0.9992067829610648,
+  "A + (node mean of B \u2212 node mean of A)": 0.9980393992626423,
+  "swap (B's state)": 1.0,
+  "strata": {
+   "optimal action same at A and B": {
+    "share": 0.3478154148257241,
+    "gap_closed": 0.24327409441427694,
+    "base_js": 0.114877720197753
+   },
+   "optimal action differs": {
+    "share": 0.6521845851742759,
+    "gap_closed": 0.7321555412543865,
+    "base_js": 0.4874907740752333
+   },
+   "B certain (max b \u2265 0.8)": {
+    "share": 0.38757977417771233,
+    "gap_closed": 0.8213494538905327,
+    "base_js": 0.45982327401379575
+   },
+   "B uncertain (max b < 0.6)": {
+    "share": 0.35327687776141387,
+    "gap_closed": 0.5410687700695865,
+    "base_js": 0.2250733795696077
+   },
+   "step 0": {
+    "share": 0.16672803141875306,
+    "gap_closed": 0.32537773814298243,
+    "base_js": 0.031101874724581695
+   },
+   "steps 1\u20132": {
+    "share": 0.33683112420225825,
+    "gap_closed": 0.6482047107785859,
+    "base_js": 0.40300200655652335
+   },
+   "steps 3\u20135": {
+    "share": 0.4964408443789887,
+    "gap_closed": 0.7043684902084023,
+    "base_js": 0.4370330107956734
+   }
+  },
+  "edit length / true difference": 0.6639562470449449
+ }
+}

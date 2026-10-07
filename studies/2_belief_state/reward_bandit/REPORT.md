@@ -91,6 +91,40 @@ the model's own on B.
   of the same length moves nothing: the effect is specific to the belief directions, and the remaining third lies in
   directions the probe does not pick out (the probe-e / probe-d gap is the belief-state study's, again).
 
+## 4b. Post hoc: where the missing third of the edit is (`edit_followup.py`, `edit_followup.md`)
+
+Not registered. The same pairs, other edits of A's state at the state the heads read:
+
+| edit | transformer | GRU |
+|---|---|---|
+| probe_e from the log-odds y (the registered edit) | 0.62 | 0.68 |
+| **probe_e from the probabilities b** | **0.85** (0.77–0.89) | 0.76 |
+| probe_e from Q* | 0.86 | 0.70 |
+| **the mean state of B's belief node** (the ceiling of any belief-only edit) | **1.00** | **1.00** |
+| A + (B's node mean − A's node mean) | 1.00 | 1.00 |
+
+| the y edit by stratum | transformer | GRU |
+|---|---|---|
+| B certain (max b ≥ 0.8; 0.47 of pairs) | 0.89 | 0.84 |
+| B uncertain (max b < 0.6; 0.32 of pairs) | 0.19 | 0.53 |
+| first decision (0.17 of pairs) | 0.07 | 0.38 |
+| decisions 4–6 (0.50 of pairs) | 0.87 | 0.71 |
+
+* **The heads read nothing beyond the belief.** Replacing A's state by the mean state of B's belief node closes the
+  gap completely (1.00 in every seed, both architectures), and so does adding the difference of node means to A's
+  own state. The missing third is the probe's, not the network's.
+* **It is the parametrisation.** The registered encoder is affine in the log-odds, which are affine in the counts;
+  the transformer's state holds the belief as probabilities (§2), a nonlinear function of the log-odds, so the
+  encoder's two directions reach the right log-odds reading (decoded R² 1.00) while leaving the probability code
+  behind. An encoder fitted from the probabilities closes 0.85, from Q* 0.86. The move along the log-odds encoder is
+  also too short: 0.74 of the true distance between the two states.
+* The y edit fails exactly where the two parametrisations differ most: with B uncertain (0.19 closed) and at the
+  first decision (0.07), and works where B is near a vertex (0.89), where log-odds and probabilities are both near
+  saturation. For the GRU, whose state is in log-odds, the b encoder gains less (0.68 → 0.76) and the uncertain
+  stratum is better served by y (0.53).
+* An encoder from y and b together collapses (−0.30): the joint target has two degrees of freedom in four
+  coordinates, so the reverse regression is ill-conditioned (a method artefact, reported for completeness).
+
 ## 5. Decision rule
 
 | | criterion | transformer | GRU |
@@ -132,8 +166,9 @@ and never forms the probabilities.
    of the decisions where it pays.
 2. **The belief it holds is in the form the decision needs.** Training moves the final state's extrapolating code
    from the log-odds (which the counts give for free, 0.85 untrained) to the probabilities (0.09 → 0.85), in which
-   the Bayes value is linear. Moving the state along those directions carries two thirds of the decision; a random
-   move carries nothing.
+   the Bayes value is linear. Moving the state along the log-odds probe's directions carries two thirds of the
+   decision, along a probability probe's 0.85, and to the mean state of the target belief all of it (post hoc); a
+   random move carries nothing.
 3. **The GRU stays with the counts.** Its state is the log-odds (0.94 beyond the fit region) and never the
    probabilities; with a linear readout that caps it at a regret of 0.29, between the evidence-blind and the myopic
    policy, in every seed and every setting tried.
