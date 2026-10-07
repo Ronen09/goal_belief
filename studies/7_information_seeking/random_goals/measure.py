@@ -21,8 +21,8 @@ sys.path.insert(0, str(HERE.parent / "maze10"))
 import measure as M10                                                # noqa: E402
 import train as TR                                                   # noqa: E402
 
-N_EVAL, N_FIT, N_INT, SB, MIN_BIN, CHUNK = 8192, 32768, 4096, 25, 50, 120_000
-episodes, seeking, natural, behaviour, removal, ridge_r2 = M10.episodes, M10.seeking, M10.natural, M10.behaviour, M10.removal, M10.ridge_r2
+N_EVAL, N_FIT, N_INT, SB, MIN_BIN, CHUNK = 8192, 32768, 4096, 25, 50, 60_000
+episodes, seeking, natural, behaviour, ridge_r2 = M10.episodes, M10.seeking, M10.natural, M10.behaviour, M10.ridge_r2
 
 
 def logits_goals(net, tok, p, K):
@@ -46,6 +46,38 @@ def additive(net, G, kind, K):
             return g.argmax(-1)
         H = logits_goals(net, env.tok[:, : s + 2], s + 1, K).mean(1)
         return (H + g if kind == "additive" else H).argmax(-1)
+    return f
+
+
+def removal(net, kind, K, chunk=1024):
+    """The maze10 experiment's removal (the network run under all goals, each component output at the decision token
+    replaced by its parts recomputed in order), with the histories in chunks: the goal part is the mean over the
+    chunk's live histories (maze10: over all 4 096)."""
+    comps = [(c, l) for l in range(net.nl) for c in ("attn", "mlp")]
+
+    def f(env, s):
+        N, p = env.N, s + 1
+        out = torch.empty(N, dtype=torch.long, device=env.t.dev)
+        for i0 in range(0, N, chunk):
+            sl = slice(i0, min(N, i0 + chunk))
+            n = sl.stop - sl.start
+            w = (~env.done[sl]).double()[:, None]
+
+            def patch(z):
+                z = z.clone()
+                v = z[:, p].view(K, n, -1).double()
+                xbar = v.mean(0)                                                              # history part [n, d]
+                Xb = (xbar * w).sum(0) / w.sum().clamp(min=1)                                 # mean over live histories [d]
+                M = (v * w[None]).sum(1) / w.sum().clamp(min=1) - Xb                          # goal part [K, d]
+                new = xbar[None] + M[:, None] if kind == "noI" else v - (xbar - Xb)[None] if kind == "noH" else v - M[:, None]
+                z[:, p] = new.reshape(K * n, -1).to(z.dtype)
+                return z
+
+            tok = env.tok[sl, : s + 2].repeat(K, 1, 1)
+            tok[:, 1, MM.F_GOAL] = torch.arange(K, device=tok.device).repeat_interleave(n) + 1
+            lg = net(tok, patch={c: patch for c in comps})[0][:, p].view(K, n, 4)
+            out[sl] = lg[env.goal[sl], torch.arange(n, device=tok.device)].argmax(-1)
+        return out
     return f
 
 
@@ -189,7 +221,7 @@ def main():
         row["online"] = {k: episodes(t, additive(net, G, k, K), goal, cell, 79)[0] for k in ("additive", "goal_blind", "history_blind")}
         # D: removals at the decision token, online (first n_int evaluation episodes)
         gi, ci = goal[:n_int], cell[:n_int]
-        row["removal"] = dict(natural=episodes(t, natural(net), gi, ci, 79)[0], **{k: episodes(t, removal(net, k), gi, ci, 79)[0] for k in ("noI", "noH", "noG")},
+        row["removal"] = dict(natural=episodes(t, natural(net), gi, ci, 79)[0], **{k: episodes(t, removal(net, k, K), gi, ci, 79)[0] for k in ("noI", "noH", "noG")},
                               goal_blind=episodes(t, additive(net, G, "goal_blind", K), gi, ci, 79)[0])
         # E: the posterior decoder.  F: the fixed bias per goal
         row["decoders"] = decoders(t, net, r)

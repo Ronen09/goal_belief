@@ -34,7 +34,8 @@ then reports which held (`REPORT.md`). [FINDINGS.md](FINDINGS.md) has every resu
    passive prefix and random spawns, reward-trained agents reach the level of QMDP and localise faster than it does.
    The additive policy, run in the environment, keeps four fifths of the goal-directed return; the goal × history
    interaction carries the rest. Moving the goals to interior junctions changes little (three quarters); collecting
-   two goals per episode lowers it to two thirds.
+   two goals per episode, or drawing the goal from every cell, lowers it to two thirds, although the fully observed
+   task is as additive as ever; with a goal from anywhere the agents pass QMDP.
 
 ## Layout
 

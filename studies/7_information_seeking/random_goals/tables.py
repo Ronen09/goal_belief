@@ -91,7 +91,7 @@ def main():
     L.append(row("the best single move per goal: that share", mr(vr("bias_field", "best_single_move_share"))))
     L.append(row("G(goal)'s preferred move is the best single move: share of goals", mr(vr("bias_field", "bias_is_best_single_move"))))
     L.append(row("(goal, step) bins that fell back to the goal's all-step mean", mr(vr("G_fit", "bins_sparse"))))
-    L.append(row("fit decisions per goal, fewest", mr(vr("G_fit", "fit_per_goal_min"), 0)))
+    L.append(row("fit decisions × goals (every decision gives a deviation for every goal)", mr(vr("G_fit", "fit_decisions"), 0)))
     yes = lambda b: "**yes**" if b else "no"
     nat, mls_ = vr("natural", "ret"), R["references"]["mls"]["ret"]
     ig, ign = vr("natural", "ig_advantage"), vr("noisy_qmdp", "ig_advantage")

@@ -820,3 +820,21 @@ reward-trained models per arm: one goal per episode; two goals per episode, coll
   first goal, taken in 41 % of the episodes where the other is clearly nearer (QMDP 20 %).
 - Registered: LEARN held in both arms; AD, PLACE and COLLECT did not. 4 of 6 expectations held, one in part.
 
+**Additive ceiling — no network (`studies/7_information_seeking/additive_ceiling/tables.md`).** If the agent knew its cell, the best rule
+argmax H(cell) + G(goal), fitted to the shortest-path moves, picks one in 0.926 of (cell, goal) decisions with maze10's
+four goals, 0.969 with the six junction goals, 0.958 with every cell a goal (the small maze: 1.000); a per-cell move
+alone, 0.77–0.83. The fully observed task is about as additive whatever the goal set.
+
+**Random goals — every cell a possible goal (`studies/7_information_seeking/random_goals/REPORT.md`, rule in
+`studies/7_information_seeking/random_goals/PLAN.md`).** The maze10 maze with 55 goals, one per episode; six reward-trained models.
+
+- Return 0.606 (0.598–0.607): every seed above QMDP (0.587), none at QMDP + lookahead (0.616). Deviations from QMDP
+  are the more informative move in 0.70 (advantage +0.104, null −0.030); posterior entropy after 20 moves 0.72
+  against QMDP's 1.56.
+- The additive policy run in the environment keeps 0.645 of the goal-directed return (4 goals 0.81, 6 goals 0.75);
+  the interaction removed online at the decision token 0.54 (0.74, 0.69). The additive choice is still the model's
+  move in 0.855 of goal-dependent decisions. The fixed bias per goal is nearly the best single direction to it (a
+  shortest-path move from 0.435 of cells; the best single move 0.461).
+- The posterior decodes from the final state at R² 0.28 (0.46 before).
+- Registered: LEARN and SEEK-B held; AD and DROP (0.10 below the junction arm, 0.15 asked) did not. 4 of 6
+  expectations held, one in part.
