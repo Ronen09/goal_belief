@@ -98,6 +98,36 @@ probabilities.
   is all the heads need, and it is better than the network's own estimate. So of what the MLPs compute (a function
   of the belief node at 0.995, only 0.56–0.82 affine in b), the affine-in-b part is the part the decision uses.
 
+## 4b. Post hoc: the belief simplex (`simplex.py`, `simplex.md`, `simplex_*.png`)
+
+Not registered. The exact posterior of every decision state is a point of the triangle with vertices G1, G2, G3;
+`simplex_exact.png` shows them (a lattice, since the counts are discrete), coloured by decision, optimal action,
+entropy and the belief itself as RGB. `simplex_decoded_*.png` shows the beliefs an affine probe decodes from held-out
+activations: in distribution every site, trained or not, fills a recognisable triangle (R² 0.93–0.99), which is the
+in-distribution non-result again. The discriminating picture is `simplex_ext_*.png`: the probe fitted on the
+uncertain states only (every |log-odds| < 2, grey) and applied to the confident ones.
+
+* **Untrained**: the confident states fly out of the triangle along straight lines (R² −2.5 to −3.4 at every site).
+  A code affine in the log-odds extrapolates linearly, and the probabilities it predicts leave the simplex.
+* **Trained, mid0** (block 0's MLP input): still outside (0.21). **mlp0**: the confident states fold back toward the
+  vertices (0.64). **res2**: all three land on the corners (0.86). The MLP's nonlinearity is the saturation that
+  bends the log-odds line into the simplex's corners; this is what "a probability code" looks like.
+
+How curved the embedding is (fits within each step, pooled; `simplex.md`):
+
+| trained | affine in y | affine in b | cubic in b | MLP from (b, step) | node table | PCA within a step: top 2 / 3 components |
+|---|---|---|---|---|---|---|
+| mlp0 | 0.82 | 0.86 | 0.95 | 0.94 | 0.995 | 0.88 / 0.96 |
+| **res2** | 0.86 | **0.91** | 0.96 | 0.95 | 0.997 | **0.96** / 0.98 |
+| untrained res2 | 0.67 | 0.68 | 0.74 | 0.70 | 0.958 | 0.58 / 0.72 |
+
+* Within a step the trained final state is nearly planar (two principal components hold 0.96 of its variance;
+  untrained 0.58) and mostly an affine image of the probabilities (0.91; cubic terms add 0.05). The rest, up to the
+  node table's 0.997 (cross-validated 0.996: 3 247 distinct belief states over 98 304 decisions, 30 visits each),
+  is not a smooth function of b: `simplex_pca_trained.png` shows the plane striped by the count lattice.
+* So the manifold is a curved but nearly flat embedding of the simplex, folded at the corners, with the discrete
+  count structure printed on it; the untrained network's is a plane of log-odds.
+
 ## 5. Decision rule
 
 | | criterion | value | held |
@@ -137,7 +167,11 @@ import the code from other positions. With that cut, the policy cannot do withou
 3. **The nonlinearity is what the policy pays for.** A decision affine in the exact log-odds costs 0.158 of regret
    against 0.062 affine in the exact probabilities, with the same network otherwise. The affine-in-b part of the
    MLPs' output is all the heads use; it does better than the network's own estimate (0.027).
-4. **The GRU's shortfall (0.29) is larger than this parametrisation cost (0.16).** The reward-bandit report's
+4. **Seen on the simplex** (post hoc): a probe fitted on the uncertain states sends the untrained network's confident
+   states out of the triangle along straight lines; block 0's MLP folds them back toward the vertices and the final
+   state puts them on the corners. Within a step the final state is a nearly flat image of the simplex (two
+   components, 0.96 of the variance; 0.91 affine in b), striped by the count lattice.
+5. **The GRU's shortfall (0.29) is larger than this parametrisation cost (0.16).** The reward-bandit report's
    reading, that a log-odds code with a linear readout caps the GRU, explains part of it; what else limits the GRU
    is open.
 

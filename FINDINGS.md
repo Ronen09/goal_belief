@@ -311,6 +311,10 @@ online patches at the decision token.
 - With block 1's attention cut (post hoc), a decision affine in the exact log-odds costs 0.158 of regret against
   0.062 affine in the exact probabilities; affine-in-probability MLP outputs improve on the network's own (0.027
   against 0.046). The GRU's 0.29 is more than this parametrisation cost explains.
+- On the simplex (post hoc): a probe fitted on the uncertain states sends the untrained network's confident states
+  out of the triangle along straight lines; block 0's MLP folds them back toward the vertices (0.64) and the final
+  state puts them on the corners (0.86). Within a step the final state is a nearly flat image of the simplex (two
+  components 0.96 of the variance, 0.91 affine in b), striped by the count lattice.
 - Registered: FORM held; GATHER (0.88 against 0.9; the embedding already holds 0.53 of the counts) and NONLIN (the
   registered patch left block 1's attention free to import the code) did not. 4 of 7 expectations held, one in part.
 
