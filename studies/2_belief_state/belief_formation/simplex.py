@@ -79,6 +79,25 @@ def mlp_fit(X, H, fold, hidden=64, steps=1500):
         return float(1 - ((P - Ht[test]) ** 2).sum() / ((Ht[test] - Ht[fit].mean(0)) ** 2).sum())
 
 
+def softmax_probe(H, B, fit, test, steps=600, wd=1e-4):
+    """A decoder z = W x + c, p = softmax(z), fitted by cross-entropy to the exact posterior on `fit`, applied to
+    `test`: decoded probabilities [n_test, K] (inside the simplex by construction) and their R²."""
+    dev = "cuda"
+    X = torch.tensor(H, dtype=torch.float32, device=dev); Y = torch.tensor(B, dtype=torch.float32, device=dev)
+    mu, sd = X[fit].mean(0), X[fit].std(0) + 1e-6; X = (X - mu) / sd
+    f, t_ = torch.tensor(fit, device=dev), torch.tensor(test, device=dev)
+    lin = torch.nn.Linear(X.shape[1], Y.shape[1]).to(dev)
+    opt = torch.optim.Adam(lin.parameters(), lr=1e-2, weight_decay=wd)
+    with torch.enable_grad():
+        for i in range(steps):
+            lp = torch.log_softmax(lin(X[f]), -1)
+            loss = -(Y[f] * lp).sum(-1).mean()
+            opt.zero_grad(); loss.backward(); opt.step()
+    with torch.no_grad():
+        P = torch.softmax(lin(X[t_]), -1).double().cpu().numpy()
+    return P, BP.r2(B[test], P)
+
+
 def curvature(H, D):
     """R² (5-fold) of the activations from polynomials in b of degree 1..3, affine in y and in [y, b], a small MLP
     from b (a smooth function of the belief), the node table, and PCA variance shares."""
@@ -124,6 +143,10 @@ def main():
             pos = torch.as_tensor(D.step[: D.T] + t.n_cue, device=dev)
             sites, _ = record(net, r.tok, pos)
             res[f"seed{seed}/{which}"] = {k: curvature(sites[k], D) for k in ("mid0", "mlp0", "res1", "res2")}
+            for k in ("mid0", "mlp0", "res1", "res2"):
+                res[f"seed{seed}/{which}"][k]["softmax_EXT_r2b"] = softmax_probe(sites[k], D.b, D.ext_fit, D.ext_test)[1]
+                res[f"seed{seed}/{which}"][k]["softmax_IID_r2b"] = softmax_probe(sites[k], D.b, D.fold != 0, D.fold == 0)[1]
+                res[f"seed{seed}/{which}"][k]["affine_EXT_r2b"] = BP.r2(D.b[D.ext_test], BP.probe_pred(sites[k], D.b, D.ext_fit, D.ext_test))
             if seed == 0:
                 figures(sites, D, which)
             print(seed, which, {k: {m: round(v, 3) for m, v in c.items()} for k, c in res[f"seed{seed}/{which}"].items()}, flush=True)
@@ -136,6 +159,11 @@ def main():
     for w in ("trained", "untrained"):
         for k in ("mid0", "mlp0", "res1", "res2"):
             L.append(f"| {w} {k} | {med(w, k, 'affine_y')} | {med(w, k, 'poly1')} | {med(w, k, 'affine_y_b')} | {med(w, k, 'poly2')} | {med(w, k, 'poly3')} | {med(w, k, 'mlp_from_b')} | {med(w, k, 'node_table')} | {med(w, k, 'pca_step3_top2')} / {med(w, k, 'pca_step3_top3')} / {med(w, k, 'pca_step3_top6')} |")
+    L += ["", "A softmax decoder (z = W x + c, p = softmax(z), fitted by cross-entropy to the exact posterior; the decoded beliefs stay inside the simplex): R² of b, against the affine probe, on the extrapolation split and 5-fold. Median over six seeds.", "",
+          "| site | affine probe, EXT | **softmax decoder, EXT** | softmax decoder, IID |", "|---|---|---|---|"]
+    for w in ("trained", "untrained"):
+        for k in ("mid0", "mlp0", "res1", "res2"):
+            L.append(f"| {w} {k} | {med(w, k, 'affine_EXT_r2b')} | {med(w, k, 'softmax_EXT_r2b')} | {med(w, k, 'softmax_IID_r2b')} |")
     (HERE / "simplex.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 
@@ -177,6 +205,16 @@ def figures(sites, D, which):
         ax.set_xlim(-0.5, 1.5); ax.set_ylim(-0.5, 1.3)
     fig.suptitle(f"Probe fitted on the uncertain states (grey: their exact beliefs, every |log-odds| < 2), applied to the confident ones ({which})", fontsize=9, color=INK)
     fig.tight_layout(); fig.savefig(HERE / f"simplex_ext_{which}.png", dpi=150); plt.close(fig)
+    # 2c. the same split, decoded through a softmax
+    fig, axes = plt.subplots(1, len(keys), figsize=(3.4 * len(keys), 3.6))
+    for ax, k in zip(axes, keys):
+        P, r2 = softmax_probe(sites[k], b, D.ext_fit, D.ext_test)
+        xy = bary(P)
+        triangle(ax, f"{k}: softmax-decoded b (R² {r2:.2f})")
+        fx = bary(b[D.ext_fit]); ax.scatter(fx[:, 0], fx[:, 1], c="#bbbbbb", s=1, alpha=0.3, linewidths=0)
+        ax.scatter(xy[:, 0], xy[:, 1], c=rgb(b[D.ext_test]), s=2, alpha=0.4, linewidths=0)
+    fig.suptitle(f"Softmax decoder fitted on the uncertain states (grey), applied to the confident ones ({which})", fontsize=9, color=INK)
+    fig.tight_layout(); fig.savefig(HERE / f"simplex_softmax_{which}.png", dpi=150); plt.close(fig)
     # 3. raw activations at one step: top principal components
     m = D.step == 3
     fig, axes = plt.subplots(2, 4, figsize=(13, 6.4))

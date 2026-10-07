@@ -128,6 +128,26 @@ How curved the embedding is (fits within each step, pooled; `simplex.md`):
 * So the manifold is a curved but nearly flat embedding of the simplex, folded at the corners, with the discrete
   count structure printed on it; the untrained network's is a plane of log-odds.
 
+**A softmax decoder** (z = Wx + c, p = softmax(z), fitted by cross-entropy to the exact posterior; the decoded beliefs
+stay inside the simplex by construction; `simplex_softmax_*.png`), on the same extrapolation split:
+
+| EXT R² of b | affine probe | softmax decoder |
+|---|---|---|
+| trained res2 | 0.85 | 0.82 |
+| trained mlp0 | 0.75 | 0.81 |
+| trained mid0 | 0.33 | 0.58 |
+| **untrained res2** | 0.09 | **0.85** |
+| untrained mid0 | −1.13 | 0.88 |
+
+* The softmax decoder recovers the posterior from the *untrained* network as well as from the trained one
+  (0.85–0.88 against 0.82): its states are affine in the log-odds, and the decoder's softmax is exactly the
+  nonlinearity they lack. For the trained network the softmax of an affine function is a slightly worse model than
+  the affine probe in b (0.82 against 0.85), because its code is no longer a log-odds code.
+* So the two probes answer different questions. The softmax decoder asks whether the belief is recoverable at all
+  (yes, from either network), and it cannot tell a log-odds code from a probability code, because it supplies the
+  fold itself. The affine probe asks which parametrisation the state is linear in, and its extrapolation failure on
+  the untrained network is the fold that block 0's MLP later makes.
+
 ## 5. Decision rule
 
 | | criterion | value | held |

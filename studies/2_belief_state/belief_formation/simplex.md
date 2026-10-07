@@ -6,11 +6,24 @@ How curved the embedding is: R² (5-fold) of the activations from functions of t
 
 | site | affine in y | affine in b | affine in y and b | quadratic in b | cubic in b | **MLP from b** | node table | PCA within step 3: top 2 / 3 / 6 components |
 |---|---|---|---|---|---|---|---|---|
-| trained mid0 | 0.808 | 0.826 | 0.849 | 0.911 | 0.926 | 0.916 | 0.993 | 0.737 / 0.861 / 0.968 |
-| trained mlp0 | 0.818 | 0.864 | 0.883 | 0.928 | 0.945 | 0.935 | 0.995 | 0.881 / 0.955 / 0.989 |
+| trained mid0 | 0.808 | 0.826 | 0.849 | 0.911 | 0.926 | 0.918 | 0.993 | 0.737 / 0.861 / 0.968 |
+| trained mlp0 | 0.818 | 0.864 | 0.883 | 0.928 | 0.945 | 0.934 | 0.995 | 0.881 / 0.955 / 0.989 |
 | trained res1 | 0.838 | 0.873 | 0.890 | 0.935 | 0.948 | 0.933 | 0.995 | 0.857 / 0.931 / 0.982 |
 | trained res2 | 0.863 | 0.912 | 0.924 | 0.954 | 0.964 | 0.951 | 0.997 | 0.956 / 0.978 / 0.993 |
-| untrained mid0 | 0.757 | 0.755 | 0.784 | 0.790 | 0.808 | 0.763 | 0.976 | 0.617 / 0.739 / 0.948 |
-| untrained mlp0 | 0.720 | 0.725 | 0.769 | 0.772 | 0.793 | 0.773 | 0.977 | 0.646 / 0.758 / 0.946 |
-| untrained res1 | 0.755 | 0.751 | 0.785 | 0.789 | 0.807 | 0.772 | 0.976 | 0.632 / 0.755 / 0.943 |
-| untrained res2 | 0.674 | 0.677 | 0.712 | 0.715 | 0.736 | 0.704 | 0.958 | 0.583 / 0.719 / 0.933 |
+| untrained mid0 | 0.757 | 0.755 | 0.784 | 0.790 | 0.808 | 0.764 | 0.976 | 0.617 / 0.739 / 0.948 |
+| untrained mlp0 | 0.720 | 0.725 | 0.769 | 0.772 | 0.793 | 0.776 | 0.977 | 0.646 / 0.758 / 0.946 |
+| untrained res1 | 0.755 | 0.751 | 0.785 | 0.789 | 0.807 | 0.774 | 0.976 | 0.632 / 0.755 / 0.943 |
+| untrained res2 | 0.674 | 0.677 | 0.712 | 0.715 | 0.736 | 0.699 | 0.958 | 0.583 / 0.719 / 0.933 |
+
+A softmax decoder (z = W x + c, p = softmax(z), fitted by cross-entropy to the exact posterior; the decoded beliefs stay inside the simplex): R² of b, against the affine probe, on the extrapolation split and 5-fold. Median over six seeds.
+
+| site | affine probe, EXT | **softmax decoder, EXT** | softmax decoder, IID |
+|---|---|---|---|
+| trained mid0 | 0.331 | 0.583 | 0.963 |
+| trained mlp0 | 0.755 | 0.808 | 0.977 |
+| trained res1 | 0.641 | 0.819 | 0.981 |
+| trained res2 | 0.847 | 0.815 | 0.984 |
+| untrained mid0 | -1.132 | 0.879 | 0.965 |
+| untrained mlp0 | 0.095 | 0.848 | 0.971 |
+| untrained res1 | 0.021 | 0.855 | 0.970 |
+| untrained res2 | 0.087 | 0.847 | 0.965 |

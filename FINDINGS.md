@@ -314,7 +314,9 @@ online patches at the decision token.
 - On the simplex (post hoc): a probe fitted on the uncertain states sends the untrained network's confident states
   out of the triangle along straight lines; block 0's MLP folds them back toward the vertices (0.64) and the final
   state puts them on the corners (0.86). Within a step the final state is a nearly flat image of the simplex (two
-  components 0.96 of the variance, 0.91 affine in b), striped by the count lattice.
+  components 0.96 of the variance, 0.91 affine in b), striped by the count lattice. A softmax decoder, which supplies the
+  fold itself, recovers the posterior from the untrained network as well as from the trained one (EXT 0.85 against
+  0.82): it cannot tell a log-odds code from a probability code; the affine probe can.
 - Registered: FORM held; GATHER (0.88 against 0.9; the embedding already holds 0.53 of the counts) and NONLIN (the
   registered patch left block 1's attention free to import the code) did not. 4 of 7 expectations held, one in part.
 
