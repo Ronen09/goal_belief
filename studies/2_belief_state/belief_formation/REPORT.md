@@ -148,6 +148,30 @@ stay inside the simplex by construction; `simplex_softmax_*.png`), on the same e
   fold itself. The affine probe asks which parametrisation the state is linear in, and its extrapolation failure on
   the untrained network is the fold that block 0's MLP later makes.
 
+## 4c. Post hoc: the MLP as a low-order function of the log-odds
+
+Not registered (a follow-up brief). The MLPs' outputs at the decision token replaced by their least-squares fit from
+the exact log-odds y with quadratic (y₁², y₂², y₁y₂) or cubic terms, alone and with block 1's attention cut.
+
+| fit of mlp0's output (IID R²) | affine in y 0.41 | quadratic in y 0.53 | cubic in y 0.63 | affine in b 0.56 | node table 0.995 |
+|---|---|---|---|---|---|
+
+| patch at the decision token | exact regret |
+|---|---|
+| none | 0.046 |
+| both MLPs quadratic in y | 0.044 |
+| both MLPs cubic in y | 0.038 |
+| attn1 mean + both MLPs affine in y | 0.158 |
+| **attn1 mean + both MLPs quadratic in y** | **0.108** |
+| attn1 mean + both MLPs cubic in y | 0.094 |
+| attn1 mean + both MLPs affine in b | 0.062 |
+
+* With block 1's attention left in place, a quadratic in the log-odds at the decision token keeps the policy at the
+  natural regret (0.044 against 0.046); with it cut, the quadratic recovers half of what the affine-in-y patch
+  loses (0.158 → 0.108; cubic 0.094; affine in the probabilities 0.062). Block 0's MLP's probability geometry is, to
+  that extent, a quadratic in the log-odds: the second-order terms carry most of the saturation the decision needs,
+  and the rest is higher order (the cubic fit of its output reaches 0.63, above the affine-in-b fit's 0.56).
+
 ## 5. Decision rule
 
 | | criterion | value | held |

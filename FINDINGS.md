@@ -317,6 +317,9 @@ online patches at the decision token.
   components 0.96 of the variance, 0.91 affine in b), striped by the count lattice. A softmax decoder, which supplies the
   fold itself, recovers the posterior from the untrained network as well as from the trained one (EXT 0.85 against
   0.82): it cannot tell a log-odds code from a probability code; the affine probe can.
+- Post hoc: with block 1's attention cut, replacing both MLPs by a quadratic in the exact log-odds gives regret 0.108
+  (affine in the log-odds 0.158, cubic 0.094, affine in the probabilities 0.062): the MLP's probability geometry is
+  half a quadratic in the log-odds and the rest higher order.
 - Registered: FORM held; GATHER (0.88 against 0.9; the embedding already holds 0.53 of the counts) and NONLIN (the
   registered patch left block 1's attention free to import the code) did not. 4 of 7 expectations held, one in part.
 
