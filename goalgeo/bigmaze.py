@@ -71,10 +71,11 @@ def junction_goals(maze, D, k):
     return sel
 
 
-def make(seed=0, size=10, loops=6, pairs=2, n_land=2, n_goals=4, eps=0.2, gamma=0.97, H=40, junctions=0):
+def make(seed=0, size=10, loops=6, pairs=2, n_land=2, n_goals=4, eps=0.2, gamma=0.97, H=40, junctions=0, all_goals=False):
     """The maze: random symbols from `pairs` sibling pairs, `n_land` landmarks, `n_goals` goals spread out by
     farthest-point sampling on path distance. Start: every cell that is not a goal. junctions > 0: the same maze,
-    symbols and landmarks, with the goals replaced by that many junction cells (junction_goals)."""
+    symbols and landmarks, with the goals replaced by that many junction cells (junction_goals). all_goals: the same
+    maze, symbols and landmarks, with every cell a possible goal (one per episode; the spawn is any other cell)."""
     cells, rng = layout(seed, size, loops)
     n = len(cells)
     sym = rng.integers(0, 2 * pairs, n)
@@ -93,8 +94,8 @@ def make(seed=0, size=10, loops=6, pairs=2, n_land=2, n_goals=4, eps=0.2, gamma=
         if sym[s] < 2 * pairs:
             m.E[s] = 0; m.E[s, sym[s]] = 1 - eps; m.E[s, sym[s] ^ 1] = eps
     m.landmarks = tuple(land)
-    if junctions:
-        m2 = MB.Maze(cells, sym, tuple(junction_goals(m, D, junctions)), eps, gamma, H)
+    if junctions or all_goals:
+        m2 = MB.Maze(cells, sym, tuple(range(n)) if all_goals else tuple(junction_goals(m, D, junctions)), eps, gamma, H)
         m2.E, m2.landmarks = m.E, m.landmarks
         return m2
     return m
@@ -127,8 +128,9 @@ class Sim:
         self.maze, self.dev, self.H, self.gamma, self.n, self.n_sym, self.max_prefix = maze, device, maze.H, maze.gamma, maze.n, maze.n_sym, 0
         self.nxt_cell, self.E = t(maze.nxt), t(maze.E, torch.float32)
         self.goal_cell = t(maze.goals)
-        self.starts = t([i for i in range(maze.n) if i not in maze.goals])
-        self.prior = t(maze.prior(), torch.float32)
+        self.all_goals = len(maze.goals) == maze.n                                             # every cell a goal: the spawn and the prior exclude the episode's goal
+        self.starts = t(list(range(maze.n)) if self.all_goals else [i for i in range(maze.n) if i not in maze.goals])
+        self.prior = t(np.ones(maze.n) / (maze.n - 1) if self.all_goals else maze.prior(), torch.float32)
         self.dist = t(np.stack([distances(maze.nxt, g) for g in maze.goals]), torch.float32)          # [goals, n]
         self.L = MM.seq_len(maze.H, 0)
         self.cells = list(maze.cells)
@@ -146,13 +148,23 @@ class Env:
         self.t, self.N, self.gen = t, N, gen
         dev = t.dev
         r = lambda hi: torch.randint(hi, (N,), device=dev, generator=gen)
-        self.cell = t.starts[r(len(t.starts))] if cell is None else cell
-        self.goal = r(len(t.goal_cell)) if goal is None else goal
+        if t.all_goals:                                                   # goal first, then the spawn among the other cells
+            self.goal = r(t.n) if goal is None else goal
+            if cell is None:
+                x = r(t.n - 1)
+                cell = x + (x >= self.goal).long()
+            self.cell = cell
+            prior = t.prior[None].repeat(N, 1)
+            prior[torch.arange(N, device=dev), self.goal] = 0
+        else:
+            self.cell = t.starts[r(len(t.starts))] if cell is None else cell
+            self.goal = r(len(t.goal_cell)) if goal is None else goal
+            prior = t.prior[None]
         self.tok = torch.zeros(N, t.L, MM.NF, dtype=torch.long, device=dev)
         o = self.sample_symbol()
         self.tok[:, 0, MM.F_TYPE], self.tok[:, 0, MM.F_SYM] = MM.OBS, o + 1
         self.tok[:, 1, MM.F_TYPE], self.tok[:, 1, MM.F_GOAL] = MM.GOAL, self.goal + 1
-        b = t.prior[None] * t.E[:, o].T
+        b = prior * t.E[:, o].T
         self.belief = b / b.sum(1, keepdim=True)
         self.idx = torch.ones(N, dtype=torch.long, device=dev)        # token index of the current decision
         self.k = torch.full((N,), t.H, device=dev)

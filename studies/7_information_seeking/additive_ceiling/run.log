@@ -1,0 +1,6 @@
+| small maze, its 3 goals | 1.000 | 0.872 |
+| small maze, every cell a goal (14) | 1.000 | 0.835 |
+| larger maze, the 4 spread goals (maze10) | 0.926 | 0.773 |
+| larger maze, the 6 junction goals | 0.969 | 0.790 |
+| larger maze, 16 goals (every third cell) | 0.949 | 0.829 |
+| larger maze, every cell a goal (55) | 0.958 | 0.799 |

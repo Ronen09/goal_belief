@@ -184,6 +184,10 @@ EXPERIMENTS = [
           [Step("train.py", ("--arm", "single", "--seeds", "0", "1", "2", "3", "4", "5"), quick=True), Step("train.py", ("--arm", "collect", "--seeds", "0", "1", "2", "3", "4", "5"), quick=True),
            Step("../maze10/measure.py", ("--runs", "studies/7_information_seeking/interior_goals/runs/single", "--out", "studies/7_information_seeking/interior_goals/results_single.json")),
            Step("measure_collect.py"), Step("order.py"), Step("tables.py", tables=True)], needs=("maze10",)),
+    Experiment("additive_ceiling", "7_information_seeking/additive_ceiling", "No network: how often the best additive rule argmax H(cell) + G(goal) picks a shortest-path move when the cell is known, for each maze and goal set", "15 min CPU",
+          [Step("run.py")]),
+    Experiment("random_goals", "7_information_seeking/random_goals", "The maze10 maze with every cell a possible goal, one per episode: does a goal from anywhere force the goal × history interaction? the additive policy run in the environment and removed online", "2 h GPU",
+          [Step("train.py", ("--seeds", "0", "1", "2", "3", "4", "5"), quick=True), Step("measure.py"), Step("tables.py", tables=True)], needs=("maze10", "interior_goals")),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 

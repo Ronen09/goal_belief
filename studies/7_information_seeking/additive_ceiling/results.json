@@ -1,0 +1,26 @@
+{
+ "small maze, its 3 goals": {
+  "additive": 1.0,
+  "goal_blind": 0.8717948794364929
+ },
+ "small maze, every cell a goal (14)": {
+  "additive": 1.0,
+  "goal_blind": 0.8351648449897766
+ },
+ "larger maze, the 4 spread goals (maze10)": {
+  "additive": 0.9259259104728699,
+  "goal_blind": 0.7731481194496155
+ },
+ "larger maze, the 6 junction goals": {
+  "additive": 0.9691358208656311,
+  "goal_blind": 0.790123462677002
+ },
+ "larger maze, 16 goals (every third cell)": {
+  "additive": 0.9490740895271301,
+  "goal_blind": 0.8287037014961243
+ },
+ "larger maze, every cell a goal (55)": {
+  "additive": 0.9575757384300232,
+  "goal_blind": 0.7993265986442566
+ }
+}
