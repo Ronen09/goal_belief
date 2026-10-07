@@ -11,5 +11,6 @@ A goal that must be inferred from noisy evidence. The exact posterior is decodab
 | [K/V dropout](kv_dropout/) | Can K/V dropout induce recurrence continuously? | [report](kv_dropout/REPORT.md) | 1 h GPU + CPU workers |
 | [Read cost](read_cost/) | Does a price on reading the history induce a selective, recurrent belief state? | [report](read_cost/REPORT.md) | 3 h (32 min GPU + carry family on CPU workers) |
 | [Reward bandit](reward_bandit/) | A hidden goal, noisy cues and rewards as evidence, trained by reward only: does the policy infer a Bayesian belief and act through it? | [report](reward_bandit/REPORT.md) | 25 min GPU |
+| [Belief formation](belief_formation/) | How the reward-trained transformer forms its probability-space belief: which block and component make it, and whether the policy needs the nonlinearity | [report](belief_formation/REPORT.md) | 10 min GPU |
 
 Rerun one: `python reproduce.py <experiment>` (e.g. `python reproduce.py hidden_goal`); results of the whole project: [FINDINGS.md](../../FINDINGS.md).

@@ -286,7 +286,8 @@ PPO on reward only.
 - In distribution the log-odds decode at R² ≥ 0.98 from every site, untrained included (they are affine in the
   counts). What training changes is the form: the transformer's final state extrapolates the probabilities at 0.85
   (untrained 0.09) and the log-odds less than before (0.85 → 0.50); the GRU's state extrapolates the log-odds (0.94)
-  and never the probabilities (−0.06), which with a linear readout is why it cannot play the Bayes policy.
+  and never the probabilities (−0.06); with a linear readout that costs it part of the Bayes policy (the
+  belief-formation experiment puts a log-odds-affine decision at regret 0.16, so not all of its 0.29).
 - Both act on the belief alone: permuting the evidence changes the greedy action in 6 % (transformer) and 3 % (GRU)
   of histories against 62 % and 53 % for random pairs; a table over belief states explains 0.998–0.999 of the logits.
 - Moving the state to another history's decoded belief along the probe's encoder carries 0.62 (transformer) and 0.68
@@ -295,6 +296,23 @@ PPO on reward only.
   heads read nothing beyond the belief, and the shortfall was the log-odds parametrisation of the probe.
 - Registered: LEARN (transformer), STATE and TABLE held; SEEK, BELIEF (0.85 against 0.9) and STEER (0.62 against 0.8)
   did not; the GRU fails LEARN by 0.004. 5 of 7 expectations held, two in part.
+
+**Belief formation — how the probability code is made (`studies/2_belief_state/belief_formation/REPORT.md`, rule in
+`studies/2_belief_state/belief_formation/PLAN.md`).** The reward-bandit transformers, no training; probes at every site, component fits, attention,
+online patches at the decision token.
+
+- Block 0's MLP makes the probability code: extrapolation of b goes from 0.33 at its input to 0.75 at its output
+  (untrained 0.10); block 1's attention carries it from earlier positions (0.74) and block 1's MLP finishes it
+  (res2 0.85). Mean-ablating block 0's MLP at the decision token costs 0.15 of regret, block 1's 0.006.
+- Counting is free: an untrained attention over the history gives the counts at R² 0.98, the trained one 0.88 with
+  a less even pattern. The trained network never extrapolates the log-odds beyond 0.50.
+- Every component's output is a function of the belief state (node table 0.994–0.998) but only 0.56–0.82 affine in
+  the probabilities (0.41–0.71 in the log-odds).
+- With block 1's attention cut (post hoc), a decision affine in the exact log-odds costs 0.158 of regret against
+  0.062 affine in the exact probabilities; affine-in-probability MLP outputs improve on the network's own (0.027
+  against 0.046). The GRU's 0.29 is more than this parametrisation cost explains.
+- Registered: FORM held; GATHER (0.88 against 0.9; the embedding already holds 0.53 of the counts) and NONLIN (the
+  registered patch left block 1's attention free to import the code) did not. 4 of 7 expectations held, one in part.
 
 ## 3. Reward-trained agents ([experiments](studies/3_reward_trained_agents/))
 

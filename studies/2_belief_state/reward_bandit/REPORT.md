@@ -170,8 +170,9 @@ and never forms the probabilities.
    decision, along a probability probe's 0.85, and to the mean state of the target belief all of it (post hoc); a
    random move carries nothing.
 3. **The GRU stays with the counts.** Its state is the log-odds (0.94 beyond the fit region) and never the
-   probabilities; with a linear readout that caps it at a regret of 0.29, between the evidence-blind and the myopic
-   policy, in every seed and every setting tried.
+   probabilities; it ends at a regret of 0.29, between the evidence-blind and the myopic policy, in every seed and
+   every setting tried. The belief-formation experiment (later) finds that a decision affine in the exact log-odds
+   costs 0.16 of regret, so the linear readout of a log-odds code explains part of the GRU's shortfall, not all.
 4. The usual caution holds: in distribution everything is decodable from everything, trained or not. The
    discriminating measures were extrapolation of the non-affine quantity, the permutation test, and the edit.
 

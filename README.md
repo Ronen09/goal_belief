@@ -14,8 +14,9 @@ then reports which held (`REPORT.md`). [FINDINGS.md](FINDINGS.md) has every resu
    from every model, but only a recurrent network uses it as its state. A transformer recomputes the belief from the
    tokens, unless a carried state plus unreliable or priced access to the history make keeping it worthwhile. Trained
    by reward alone on a hidden-goal bandit, a transformer plays near the exact optimum, acts on the belief and nothing
-   else, and comes to hold the posterior's probabilities, the form its decision needs; a GRU keeps the log-odds and
-   stops short of the myopic policy.
+   else, and comes to hold the posterior's probabilities, the form its decision needs: block 0's MLP makes that code
+   from counts that attention gathers for free, and a decision affine in the log-odds costs three times the regret;
+   a GRU keeps the log-odds and stops short of the myopic policy.
 3. **[Reward-trained agents](studies/3_reward_trained_agents/).** Trained by reward in a grid and an aliased maze, agents
    learn to use evidence, but the belief is decodable before training too. Editing the decoded belief does not steer
    the policy, and an observation-prediction objective improves regret without making the policy more belief-consistent.

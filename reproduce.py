@@ -70,6 +70,8 @@ EXPERIMENTS = [
     Experiment("reward_bandit", "2_belief_state/reward_bandit", "A hidden goal, noisy cues and rewards as evidence, trained by reward only: does the policy infer and act on a Bayesian belief? exact belief-MDP solver, transformer and GRU", "25 min GPU",
           [Step("train.py", ("--arch", "tfm", "--seeds", "0", "1", "2", "3", "4", "5"), quick=True), Step("train.py", ("--arch", "gru", "--seeds", "0", "1", "2", "3", "4", "5"), quick=True),
            Step("measure.py"), Step("tables.py", tables=True)]),
+    Experiment("belief_formation", "2_belief_state/belief_formation", "Where along the reward-bandit transformer the posterior's probabilities appear, what each component computes of the belief, and online patches at the decision token", "10 min GPU",
+          [Step("measure.py", quick=True), Step("measure.py", ("--tables",), tables=True)], needs=("reward_bandit",)),
     Experiment("filter_state", "2_belief_state/filter_state", "Is the recurrent state the environment's minimal predictive state?", "7 min, 96 CPU workers",
           [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("hidden_goal",)),
     Experiment("window_carry", "2_belief_state/window_carry", "Does a narrow attention window force a steerable belief state?", "31 min CPU workers",

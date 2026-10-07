@@ -1,0 +1,78 @@
+seed0 trained: EXT b by site res0 0.69 attn0 0.17 mid0 0.21 mlp0 0.64 res1 0.58 attn1 0.66 mid1 0.83 mlp1 0.82 res2 0.86 | counts attn0 0.92 res0 0.54 | patches: mlp0 mean: regret 0.272 EXTb 0.35 mlp1 mean: regret 0.031 EXTb 0.85 attn0 mean: regret 0.861 EXTb 0.45 attn1 mean: regret 0.094 EXTb 0.57 mlp0 affine in y: regret 0.078 EXTb -0.59 mlp1 affine in y: regret 0.030 EXTb -0.39 both MLPs affine in y: regret 0.058 EXTb -0.72 mlp0 affine in b: regret 0.035 EXTb 1.00 mlp1 affine in b: regret 0.028 EXTb 1.00 both MLPs affine in b: regret 0.022 EXTb 1.00 attn1 mean + mlp0 affine in y: regret 0.168 EXTb -1.19 attn1 mean + both MLPs affine in y: regret 0.157 EXTb -0.44 attn1 mean + both MLPs affine in b: regret 0.043 EXTb 1.00 | 71s
+seed0 untrained: EXT b by site res0 0.11 attn0 -3.57 mid0 -3.44 mlp0 -2.59 res1 -2.38 attn1 -2.74 mid1 -2.43 mlp1 -2.10 res2 -2.48 | counts attn0 0.99 res0 0.50 | 96s
+seed1 trained: EXT b by site res0 -0.20 attn0 0.13 mid0 0.37 mlp0 0.80 res1 0.81 attn1 0.87 mid1 0.89 mlp1 0.87 res2 0.90 | counts attn0 0.88 res0 0.52 | patches: mlp0 mean: regret 0.142 EXTb 0.70 mlp1 mean: regret 0.057 EXTb 0.85 attn0 mean: regret 0.624 EXTb 0.06 attn1 mean: regret 0.084 EXTb 0.83 mlp0 affine in y: regret 0.091 EXTb -0.05 mlp1 affine in y: regret 0.046 EXTb -0.03 both MLPs affine in y: regret 0.079 EXTb -0.20 mlp0 affine in b: regret 0.032 EXTb 1.00 mlp1 affine in b: regret 0.034 EXTb 1.00 both MLPs affine in b: regret 0.015 EXTb 1.00 attn1 mean + mlp0 affine in y: regret 0.210 EXTb -0.89 attn1 mean + both MLPs affine in y: regret 0.195 EXTb -0.17 attn1 mean + both MLPs affine in b: regret 0.063 EXTb 1.00 | 148s
+seed1 untrained: EXT b by site res0 -0.01 attn0 0.56 mid0 0.54 mlp0 0.51 res1 0.47 attn1 0.48 mid1 0.53 mlp1 0.57 res2 0.64 | counts attn0 0.96 res0 0.42 | 173s
+seed2 trained: EXT b by site res0 -0.07 attn0 0.35 mid0 0.44 mlp0 0.69 res1 0.62 attn1 0.72 mid1 0.77 mlp1 0.79 res2 0.84 | counts attn0 0.87 res0 0.53 | patches: mlp0 mean: regret 0.095 EXTb 0.77 mlp1 mean: regret 0.046 EXTb 0.78 attn0 mean: regret 0.600 EXTb -0.34 attn1 mean: regret 0.078 EXTb 0.77 mlp0 affine in y: regret 0.080 EXTb -0.08 mlp1 affine in y: regret 0.045 EXTb -0.39 both MLPs affine in y: regret 0.081 EXTb -0.38 mlp0 affine in b: regret 0.045 EXTb 1.00 mlp1 affine in b: regret 0.040 EXTb 1.00 both MLPs affine in b: regret 0.035 EXTb 1.00 attn1 mean + mlp0 affine in y: regret 0.185 EXTb -2.03 attn1 mean + both MLPs affine in y: regret 0.159 EXTb -0.23 attn1 mean + both MLPs affine in b: regret 0.063 EXTb 1.00 | 212s
+seed2 untrained: EXT b by site res0 0.12 attn0 0.40 mid0 0.39 mlp0 -0.18 res1 -0.26 attn1 -0.02 mid1 -0.32 mlp1 -0.16 res2 -0.08 | counts attn0 0.96 res0 0.45 | 238s
+seed3 trained: EXT b by site res0 -0.36 attn0 0.68 mid0 0.32 mlp0 0.80 res1 0.30 attn1 0.76 mid1 0.86 mlp1 0.78 res2 0.72 | counts attn0 0.87 res0 0.53 | patches: mlp0 mean: regret 0.207 EXTb 0.80 mlp1 mean: regret 0.013 EXTb 0.80 attn0 mean: regret 0.764 EXTb 0.51 attn1 mean: regret 0.051 EXTb 0.54 mlp0 affine in y: regret 0.068 EXTb -0.10 mlp1 affine in y: regret 0.012 EXTb -0.27 both MLPs affine in y: regret 0.056 EXTb -0.19 mlp0 affine in b: regret 0.028 EXTb 1.00 mlp1 affine in b: regret 0.008 EXTb 1.00 both MLPs affine in b: regret 0.019 EXTb 1.00 attn1 mean + mlp0 affine in y: regret 0.106 EXTb -2.76 attn1 mean + both MLPs affine in y: regret 0.120 EXTb -0.59 attn1 mean + both MLPs affine in b: regret 0.032 EXTb 1.00 | 287s
+seed3 untrained: EXT b by site res0 -3805280714.59 attn0 -8.35 mid0 -6.75 mlp0 0.37 res1 0.36 attn1 0.31 mid1 0.49 mlp1 0.61 res2 0.52 | counts attn0 0.98 res0 0.44 | 315s
+seed4 trained: EXT b by site res0 -0.01 attn0 0.37 mid0 0.26 mlp0 0.78 res1 0.66 attn1 0.85 mid1 0.75 mlp1 0.83 res2 0.83 | counts attn0 0.89 res0 0.52 | patches: mlp0 mean: regret 0.196 EXTb 0.37 mlp1 mean: regret 0.064 EXTb 0.75 attn0 mean: regret 1.077 EXTb 0.43 attn1 mean: regret 0.096 EXTb 0.68 mlp0 affine in y: regret 0.115 EXTb 0.09 mlp1 affine in y: regret 0.060 EXTb -0.05 both MLPs affine in y: regret 0.093 EXTb -0.15 mlp0 affine in b: regret 0.067 EXTb 1.00 mlp1 affine in b: regret 0.059 EXTb 1.00 both MLPs affine in b: regret 0.033 EXTb 1.00 attn1 mean + mlp0 affine in y: regret 0.210 EXTb -0.70 attn1 mean + both MLPs affine in y: regret 0.149 EXTb -0.05 attn1 mean + both MLPs affine in b: regret 0.061 EXTb 1.00 | 355s
+seed4 untrained: EXT b by site res0 -509606338.53 attn0 -1.08 mid0 -2.59 mlp0 -1.16 res1 -1.23 attn1 -1.68 mid1 -1.18 mlp1 -0.35 res2 -1.07 | counts attn0 0.99 res0 0.51 | 399s
+seed5 trained: EXT b by site res0 0.42 attn0 0.34 mid0 0.34 mlp0 0.73 res1 0.68 attn1 0.62 mid1 0.76 mlp1 0.72 res2 0.86 | counts attn0 0.90 res0 0.54 | patches: mlp0 mean: regret 0.238 EXTb 0.74 mlp1 mean: regret 0.110 EXTb 0.76 attn0 mean: regret 0.708 EXTb 0.22 attn1 mean: regret 0.111 EXTb 0.78 mlp0 affine in y: regret 0.142 EXTb -0.60 mlp1 affine in y: regret 0.106 EXTb -0.14 both MLPs affine in y: regret 0.127 EXTb -0.24 mlp0 affine in b: regret 0.104 EXTb 1.00 mlp1 affine in b: regret 0.087 EXTb 1.00 both MLPs affine in b: regret 0.059 EXTb 1.00 attn1 mean + mlp0 affine in y: regret 0.191 EXTb -0.37 attn1 mean + both MLPs affine in y: regret 0.184 EXTb 0.12 attn1 mean + both MLPs affine in b: regret 0.078 EXTb 1.00 | 446s
+seed5 untrained: EXT b by site res0 -0.23 attn0 0.34 mid0 0.32 mlp0 0.44 res1 0.30 attn1 0.22 mid1 0.20 mlp1 0.35 res2 0.25 | counts attn0 0.97 res0 0.38 | 474s
+# Belief formation tables
+
+Generated by `measure.py`. The reward-bandit experiment's six trained transformers (and their untrained checkpoints) at decision positions of 16 384 evaluation episodes; median (range).
+
+## A. Where the belief appears (affine probes)
+
+| site | counts R² (IID) | y R² (IID) | b R² (IID) | **EXT R² y** | **EXT R² b** | untrained: counts | untrained: EXT b |
+|---|---|---|---|---|---|---|---|
+| res0 | 0.53 (0.52–0.54) | 0.90 (0.89–0.90) | 0.89 (0.87–0.90) | -0.03 (-0.20–0.40) | -0.04 (-0.36–0.69) | 0.44 (0.38–0.51) | -0.12 (-3805280714.59–0.12) |
+| attn0 | 0.88 (0.87–0.92) | 0.96 (0.94–0.97) | 0.96 (0.95–0.97) | 0.28 (0.21–0.39) | 0.35 (0.13–0.68) | 0.98 (0.96–0.99) | -0.37 (-8.35–0.56) |
+| mid0 | 0.89 (0.88–0.92) | 0.96 (0.95–0.97) | 0.97 (0.96–0.97) | 0.33 (0.15–0.40) | 0.33 (0.21–0.44) | 0.98 (0.97–0.99) | -1.13 (-6.75–0.54) |
+| mlp0 | 0.87 (0.85–0.90) | 0.97 (0.96–0.98) | 0.98 (0.98–0.99) | 0.48 (0.36–0.60) | 0.75 (0.64–0.80) | 0.99 (0.99–1.00) | 0.10 (-2.59–0.51) |
+| **res1** | 0.91 (0.90–0.94) | 0.98 (0.97–0.98) | 0.99 (0.98–0.99) | 0.49 (0.42–0.59) | 0.64 (0.30–0.81) | 0.99 (0.99–1.00) | 0.02 (-2.38–0.47) |
+| attn1 | 0.95 (0.94–0.95) | 0.97 (0.97–0.98) | 0.98 (0.98–0.98) | 0.50 (0.42–0.51) | 0.74 (0.62–0.87) | 0.99 (0.99–1.00) | 0.10 (-2.74–0.48) |
+| mid1 | 0.93 (0.92–0.94) | 0.98 (0.98–0.99) | 0.99 (0.99–0.99) | 0.50 (0.41–0.64) | 0.80 (0.75–0.89) | 0.99 (0.98–1.00) | -0.06 (-2.43–0.53) |
+| mlp1 | 0.86 (0.85–0.88) | 0.99 (0.98–0.99) | 0.99 (0.99–0.99) | 0.49 (0.39–0.63) | 0.81 (0.72–0.87) | 0.99 (0.98–1.00) | 0.09 (-2.10–0.61) |
+| **res2** | 0.92 (0.91–0.93) | 0.98 (0.98–0.99) | 0.99 (0.99–0.99) | 0.50 (0.41–0.66) | 0.85 (0.72–0.90) | 0.99 (0.98–1.00) | 0.09 (-2.48–0.64) |
+
+## B. What each component computes (IID R² of its output from…)
+
+| component | affine in y | affine in b | quadratic in y | the step alone | the belief-node table (ceiling) |
+|---|---|---|---|---|---|
+| attn0 | 0.163 (0.139–0.201) | 0.211 (0.179–0.256) | 0.441 (0.434–0.471) | 0.510 (0.472–0.559) | 0.994 (0.990–0.995) |
+| mlp0 | 0.407 (0.382–0.494) | 0.557 (0.516–0.652) | 0.533 (0.503–0.606) | 0.181 (0.115–0.221) | 0.995 (0.991–0.997) |
+| attn1 | 0.615 (0.508–0.637) | 0.720 (0.613–0.756) | 0.672 (0.555–0.701) | 0.107 (0.060–0.146) | 0.994 (0.989–0.995) |
+| mlp1 | 0.712 (0.582–0.722) | 0.817 (0.660–0.866) | 0.792 (0.636–0.799) | 0.091 (0.050–0.119) | 0.998 (0.996–0.998) |
+
+## C. Attention from the decision position
+
+| block, head | mass on BOS | on cue tokens | on event tokens | evenness over history tokens (1 = uniform) |
+|---|---|---|---|---|
+| block 0, head 0 | 0.07 (0.05–0.16) | 0.36 (0.27–0.43) | 0.58 (0.41–0.67) | 0.62 (0.52–0.84) |
+| block 0, head 1 | 0.08 (0.05–0.28) | 0.33 (0.25–0.37) | 0.60 (0.34–0.69) | 0.66 (0.51–0.78) |
+| block 0, head 2 | 0.08 (0.06–0.19) | 0.46 (0.38–0.54) | 0.46 (0.33–0.54) | 0.80 (0.75–0.89) |
+| block 0, head 3 | 0.12 (0.09–0.17) | 0.44 (0.39–0.51) | 0.43 (0.39–0.47) | 0.84 (0.70–0.88) |
+| block 1, head 0 | 0.15 (0.06–0.18) | 0.38 (0.34–0.45) | 0.48 (0.41–0.56) | 0.72 (0.54–0.77) |
+| block 1, head 1 | 0.14 (0.04–0.38) | 0.41 (0.24–0.50) | 0.45 (0.32–0.54) | 0.68 (0.55–0.76) |
+| block 1, head 2 | 0.04 (0.02–0.32) | 0.33 (0.20–0.46) | 0.56 (0.48–0.68) | 0.58 (0.53–0.75) |
+| block 1, head 3 | 0.05 (0.01–0.34) | 0.35 (0.20–0.44) | 0.59 (0.46–0.66) | 0.61 (0.39–0.85) |
+
+## D. Patches at the decision token, online
+
+| patch | return | exact regret | EXT R² b at res2 | EXT R² y at res2 | IID R² b at res2 |
+|---|---|---|---|---|---|
+| none | 4.489 (4.449–4.525) | 0.046 (0.010–0.098) | 0.85 (0.72–0.90) | 0.50 (0.41–0.66) | 0.99 (0.99–0.99) |
+| mlp0 mean | 4.340 (4.276–4.444) | 0.201 (0.095–0.272) | 0.72 (0.35–0.80) | 0.58 (0.44–0.65) | 0.98 (0.98–0.99) |
+| mlp1 mean | 4.486 (4.433–4.522) | 0.052 (0.013–0.110) | 0.79 (0.75–0.85) | 0.49 (0.40–0.64) | 0.99 (0.99–0.99) |
+| attn0 mean | 3.806 (3.459–3.938) | 0.736 (0.600–1.077) | 0.32 (-0.34–0.51) | 0.51 (0.21–0.72) | 0.90 (0.87–0.92) |
+| attn1 mean | 4.450 (4.439–4.490) | 0.089 (0.051–0.111) | 0.73 (0.54–0.83) | 0.47 (0.38–0.62) | 0.98 (0.98–0.99) |
+| mlp0 affine in y | 4.455 (4.406–4.479) | 0.085 (0.068–0.142) | -0.09 (-0.60–0.09) | 1.00 (0.99–1.00) | 0.99 (0.99–0.99) |
+| mlp1 affine in y | 4.491 (4.440–4.523) | 0.046 (0.012–0.106) | -0.20 (-0.39–-0.03) | 1.00 (1.00–1.00) | 0.99 (0.99–0.99) |
+| **both MLPs affine in y** | 4.458 (4.418–4.488) | 0.080 (0.056–0.127) | -0.22 (-0.72–-0.15) | 1.00 (1.00–1.00) | 0.99 (0.99–0.99) |
+| mlp0 affine in b | 4.500 (4.441–4.512) | 0.040 (0.028–0.104) | 1.00 (1.00–1.00) | 0.61 (0.59–0.67) | 1.00 (1.00–1.00) |
+| mlp1 affine in b | 4.501 (4.458–4.527) | 0.037 (0.008–0.087) | 1.00 (1.00–1.00) | 0.60 (0.57–0.66) | 1.00 (1.00–1.00) |
+| **both MLPs affine in b** | 4.512 (4.483–4.521) | 0.027 (0.015–0.059) | 1.00 (1.00–1.00) | 0.59 (0.55–0.63) | 1.00 (1.00–1.00) |
+| attn1 mean + mlp0 affine in y | 4.355 (4.326–4.441) | 0.188 (0.106–0.210) | -1.04 (-2.76–-0.37) | 1.00 (1.00–1.00) | 1.00 (0.99–1.00) |
+| **attn1 mean + both MLPs affine in y** | 4.383 (4.345–4.426) | 0.158 (0.120–0.195) | -0.20 (-0.59–0.12) | 1.00 (1.00–1.00) | 0.97 (0.97–0.98) |
+| **attn1 mean + both MLPs affine in b** | 4.478 (4.465–4.509) | 0.062 (0.032–0.078) | 1.00 (1.00–1.00) | 0.57 (0.57–0.63) | 1.00 (1.00–1.00) |
+
+## Decision rule (registered)
+
+|  | criterion | value | held |
+|---|---|---|---|
+| **GATHER** | attn0 holds the counts (≥ 0.9), res0 does not (≤ 0.3) | 0.88 / 0.53 | no |
+| **FORM** | the first site with EXT R² b ≥ 0.6 is an MLP output or the residual after one | mlp0 | **yes** |
+| **NONLIN** | both MLPs affine in y: regret ≥ 0.15 and EXT b ≤ 0.5; affine in b: regret ≤ 0.10 | 0.080, -0.22; 0.027 | no |
