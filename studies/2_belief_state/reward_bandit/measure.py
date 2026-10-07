@@ -60,8 +60,8 @@ class Decisions:
     def __init__(self, t, r, seed=0):
         N, T = r.act.shape
         self.N, self.T = N, T
-        self.b = t.B[r.ci[:, None], r.oi].flatten(0, 1).double().cpu().numpy()                # [N*T, K]
-        self.q = t.Q[r.ci[:, None], r.oi].flatten(0, 1).double().cpu().numpy()                # [N*T, A]
+        self.b = r.b.flatten(0, 1).double().cpu().numpy()                                     # [N*T, K]
+        self.q = r.q.flatten(0, 1).double().cpu().numpy()                                     # [N*T, A]
         self.v = self.q.max(1)
         self.y = np.log(np.clip(self.b[:, :-1], 1e-300, None)) - np.log(np.clip(self.b[:, -1:], 1e-300, None))
         self.nondeg = self.b.min(1) > NONDEG
@@ -71,7 +71,7 @@ class Decisions:
         self.ext_fit, self.ext_test = self.nondeg & later & (ymax < EXT_FIT), self.nondeg & later & (ymax >= EXT_TEST)
         self.action = self.q.argmax(1)
         self.ep = np.repeat(np.arange(N), T)
-        self.node = (r.ci[:, None] * t.B.shape[1] + r.oi).flatten().cpu().numpy()
+        self.node = (r.cue_id[:, None] * t.B.shape[1] + r.oi).flatten().cpu().numpy()         # the belief state: cue state × outcome counts
         self.fold = np.random.default_rng(seed).permutation(N)[self.ep] % 5
 
 
@@ -201,13 +201,14 @@ def main():
     a = ap.parse_args()
     torch.set_grad_enabled(False)
     dev, t0 = a.device, time.time()
-    s = BD.Spec(**TR.TASK)
+    task = json.load(open(Path(a.runs) / a.archs[0] / "task.json"))["task"]
+    s = BD.Spec(**task)
     t = BD.Sim(BD.Graph(s), dev)
     n_eval = 2048 if a.untrained else N_EVAL
     gen = torch.Generator(device=dev); gen.manual_seed(78)
     e = BD.Env(t, n_eval, gen)
     goal, cues, u = e.goal, e.cues, e.u
-    res = dict(task=TR.TASK, states=int(t.B.shape[0] * t.B.shape[1]), references={}, runs={})
+    res = dict(task=task, states=int(t.B.shape[0] * t.B.shape[1]), references={}, runs={})
     for name, pol in (("optimal", BD.optimal), ("myopic", BD.myopic), ("constant", lambda g: constant(t)), ("random", BD.uniform)):
         gen.manual_seed(79)
         res["references"][name] = BD.summarize(BD.rollout(None, t, n_eval, gen, behaviour=pol(gen), goal=goal, cues=cues, u=u), t)[0]

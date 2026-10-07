@@ -52,6 +52,10 @@ class Spec:
     R: np.ndarray = None                  # [K, A] success probabilities
     L: np.ndarray = None                  # [K, M] cue emission
     clip: float = 0.0                     # success probabilities clipped to [clip, 1 - clip]: no outcome is conclusive
+    channel: bool = False                 # cues through the hidden-goal experiment's sticky reliability channel (the order of the cues matters)
+    stay: float = LG.STAY                 # the channel's persistence, and its emission when on
+    hit_on: float = LG.HIT_ON
+    neigh_on: float = LG.NEIGH_ON
 
     def __post_init__(self):
         self.R = R_DEFAULT.copy() if self.R is None else np.asarray(self.R, float)
@@ -60,6 +64,9 @@ class Spec:
         self.L = LG._goal_emission(self.K, LG.HIT, LG.NEIGH) if self.L is None else np.asarray(self.L, float)
         self.A, self.M = self.R.shape[1], self.L.shape[1]
         assert self.R.shape[0] == self.K == self.L.shape[0]
+        if self.channel:                  # c = 0 off (uniform cues), 1 on; P(stay) = STAY; starts at (1/2, 1/2)
+            self.L_c = np.stack([np.full((self.K, self.M), 1.0 / self.M), LG._goal_emission(self.K, self.hit_on, self.neigh_on)])
+            self.A_c = np.array([[self.stay, 1 - self.stay], [1 - self.stay, self.stay]]); self.c0 = np.array([0.5, 0.5])
 
     @property
     def L_seq(self):
@@ -124,6 +131,55 @@ class Sim:
         self.nxt = t(g.nxt, torch.long)
         self.cue_key, self.cue_base = t(g.cue_key, torch.long), g.cue_base
         self.A, self.K, self.M, self.T, self.n_cue, self.L_seq = g.s.A, g.s.K, g.s.M, g.s.T, g.s.n_cue, g.s.L_seq
+        self.channel = g.s.channel
+        if self.channel:
+            self.L_c, self.A_c, self.c0 = t(g.s.L_c, torch.float32), t(g.s.A_c, torch.float32), t(g.s.c0, torch.float32)
+        lg = lambda x: np.log(np.clip(x, 1e-300, None))
+        self.out_loglik = t(g.out[:, 0::2] @ lg(g.s.R).T + g.out[:, 1::2] @ lg(1 - g.s.R).T, torch.float32)   # [n_out, K]
+        self.level = t(g.level, torch.long)
+
+
+def channel_cues(t: Sim, goal, gen):
+    """Cue tokens [N, n_cue] from the sticky channel, and the exact posterior over the goal after them [N, K]."""
+    N, dev = len(goal), t.dev
+    c = (torch.rand(N, device=dev, generator=gen) < t.c0[1]).long()
+    cues = torch.zeros(N, t.n_cue, dtype=torch.long, device=dev)
+    for i in range(t.n_cue):
+        if i > 0:
+            stay = torch.rand(N, device=dev, generator=gen) < t.A_c[c, c]
+            c = torch.where(stay, c, 1 - c)
+        cues[:, i] = torch.multinomial(t.L_c[c, goal], 1, generator=gen).squeeze(1)
+    return cues, channel_posterior(t, cues)
+
+
+def channel_posterior(t: Sim, cues):
+    """The exact joint filter over (goal, channel) run over the cue tokens [N, n_cue]; returns P(goal | cues) [N, K]."""
+    N = cues.shape[0]
+    alpha = (torch.full((t.K,), 1.0 / t.K, device=t.dev)[:, None] * t.c0[None, :]).expand(N, -1, -1).clone()     # [N, K, C]
+    for i in range(cues.shape[1]):
+        if i > 0:
+            alpha = alpha @ t.A_c
+        lik = t.L_c[:, :, cues[:, i]].permute(2, 1, 0)                                                            # [N, K, C]
+        alpha = alpha * lik
+        alpha = alpha / alpha.sum((1, 2), keepdim=True)
+    return alpha.sum(-1)
+
+
+def episode_tables(t: Sim, b0):
+    """Per-episode decision-phase tables from a belief after the cues b0 [N, K]: the belief at every outcome-count
+    state B [N, n_out, K] and Q* [N, n_out, A] by value iteration (the Graph's computation, batched over episodes)."""
+    N = b0.shape[0]
+    z = torch.log(b0.clamp(min=1e-30))[:, None, :] + t.out_loglik[None]                                           # [N, n_out, K]
+    z = z - z.max(-1, keepdim=True).values
+    B = torch.exp(z); B = B / B.sum(-1, keepdim=True)
+    Q = torch.zeros(N, B.shape[1], t.A, device=t.dev); V = torch.zeros(N, B.shape[1], device=t.dev)
+    for lev in range(t.T - 1, -1, -1):
+        idx = torch.nonzero(t.level == lev).squeeze(1)
+        p1 = B[:, idx] @ t.R                                                                                      # [N, len(idx), A]
+        v1, v0 = V[:, t.nxt[idx, :, 1]], V[:, t.nxt[idx, :, 0]]
+        Q[:, idx] = p1 * (1 + v1) + (1 - p1) * v0
+        V[:, idx] = Q[:, idx].max(-1).values
+    return B, Q
 
 
 class Env:
@@ -135,7 +191,10 @@ class Env:
         dev = t.dev
         self.goal = torch.randint(t.K, (N,), device=dev, generator=gen) if goal is None else goal
         if cues is None:
-            cues = torch.multinomial(t.L[self.goal], t.n_cue, replacement=True, generator=gen) if t.n_cue else torch.zeros(N, 0, dtype=torch.long, device=dev)
+            if t.channel:
+                cues, _ = channel_cues(t, self.goal, gen)
+            else:
+                cues = torch.multinomial(t.L[self.goal], t.n_cue, replacement=True, generator=gen) if t.n_cue else torch.zeros(N, 0, dtype=torch.long, device=dev)
         self.cues = cues
         self.u = torch.rand(N, t.T, t.A, device=dev, generator=gen) if u is None else u
         self.tok = torch.zeros(N, t.L_seq, NF, dtype=torch.long, device=dev)
@@ -144,18 +203,25 @@ class Env:
         self.tok[:, 1: 1 + t.n_cue, F_SYM] = self.cues + 1
         counts = torch.nn.functional.one_hot(self.cues, t.M).sum(1)
         self.ci = torch.searchsorted(t.cue_key, (counts * t.cue_base ** torch.arange(t.M, device=dev)).sum(1))
+        self.n = torch.arange(N, device=dev)
+        if t.channel:                                                 # the belief after the cues depends on their order: tables per episode
+            self.Bep, self.Qep = episode_tables(t, channel_posterior(t, self.cues))
+            self.cue_id = (self.cues * t.M ** torch.arange(t.n_cue, device=dev)).sum(1)
+        else:
+            self.Bep = self.Qep = None
+            self.cue_id = self.ci
         self.oi = torch.full((N,), t.g.start, device=dev)
         self.step_i = 0
 
     @property
     def belief(self):
-        return self.t.B[self.ci, self.oi]
+        return self.Bep[self.n, self.oi] if self.t.channel else self.t.B[self.ci, self.oi]
 
     def q_star(self):
-        return self.t.Q[self.ci, self.oi]
+        return self.Qep[self.n, self.oi] if self.t.channel else self.t.Q[self.ci, self.oi]
 
     def q_myopic(self):
-        return self.t.Qmy[self.ci, self.oi]
+        return self.belief @ self.t.R
 
     @property
     def pos(self):
@@ -186,6 +252,9 @@ class Batch:
     ci: torch.Tensor             # [N] cue state
     oi: torch.Tensor             # [N, T] outcome state at each decision
     info_pays: torch.Tensor      # [N, T] the myopic action is not optimal here
+    b: torch.Tensor = None       # [N, T, K] exact belief at each decision
+    q: torch.Tensor = None       # [N, T, A] Q* at each decision
+    cue_id: torch.Tensor = None  # [N] the cue state: counts (i.i.d.) or the sequence (channel)
 
 
 @torch.no_grad()
@@ -195,6 +264,7 @@ def rollout(net, t: Sim, N, gen=None, greedy=False, behaviour=None, goal=None, c
     z = lambda *s, dt=torch.float32: torch.zeros(N, T, *s, dtype=dt, device=dev)
     pos, act, oi = z(dt=torch.long), z(dt=torch.long), z(dt=torch.long)
     logp, val, rew, reg, pays = z(), z(), z(), z(), z(dt=torch.bool)
+    bel, qs = z(t.K), z(t.A)
     for s in range(T):
         p = env.pos
         if behaviour is None:
@@ -208,9 +278,9 @@ def rollout(net, t: Sim, N, gen=None, greedy=False, behaviour=None, goal=None, c
         best = q.max(1).values
         reg[:, s] = best - q.gather(1, a[:, None]).squeeze(1)
         pays[:, s] = q.gather(1, qm.argmax(1, keepdim=True)).squeeze(1) < best - 1e-6
-        pos[:, s], act[:, s], oi[:, s] = p, a, env.oi
+        pos[:, s], act[:, s], oi[:, s], bel[:, s], qs[:, s] = p, a, env.oi, env.belief, q
         rew[:, s] = env.step(a)
-    return Batch(env.tok, pos, act, logp, val, rew, torch.ones(N, T, dtype=torch.bool, device=dev), reg, env.goal, env.ci, oi, pays)
+    return Batch(env.tok, pos, act, logp, val, rew, torch.ones(N, T, dtype=torch.bool, device=dev), reg, env.goal, env.ci, oi, pays, bel, qs, env.cue_id)
 
 
 def optimal(gen):
@@ -240,13 +310,13 @@ def summarize(b: Batch, t: Sim, M=1):
     out = []
     for m in range(M):
         s = slice(m * N // M, (m + 1) * N // M)
-        q = t.Q[b.ci[s, None], b.oi[s]]                                                        # [n, T, A]
-        qm = t.Qmy[b.ci[s, None], b.oi[s]]
+        q = b.q[s]                                                                             # [n, T, A]
+        qm = b.b[s] @ t.R
         opt = (q.gather(2, b.act[s][..., None]).squeeze(2) >= q.max(-1).values - 1e-6)
         my = (qm.gather(2, b.act[s][..., None]).squeeze(2) >= qm.max(-1).values - 1e-6)
         pays = b.info_pays[s]
         out.append(dict(ret=b.rew[s].sum(1).mean().item(), regret=b.regret[s].sum(1).mean().item(),
-                        v_star=t.V[b.ci[s], t.g.start].mean().item(), opt_rate=opt.float().mean().item(),
+                        v_star=q[:, 0].max(-1).values.mean().item(), opt_rate=opt.float().mean().item(),
                         info_pays_share=pays.float().mean().item(), opt_where_pays=opt[pays].float().mean().item() if pays.any() else float("nan"),
                         myopic_where_pays=my[pays].float().mean().item() if pays.any() else float("nan"), myopic_rate=my.float().mean().item()))
     return out

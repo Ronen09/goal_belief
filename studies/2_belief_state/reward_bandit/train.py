@@ -39,6 +39,11 @@ def main():
     ap.add_argument("--d", type=int, default=128)
     ap.add_argument("--layers", type=int, default=2)
     ap.add_argument("--out", default=None, help="default: runs/<arch> (with --quick: _smoke/train/<arch>)")
+    ap.add_argument("--n-cue", type=int, default=None)
+    ap.add_argument("--channel", action="store_true", help="cues through the sticky reliability channel (the channel-bandit experiment)")
+    ap.add_argument("--stay", type=float, default=None)
+    ap.add_argument("--hit-on", type=float, default=None)
+    ap.add_argument("--neigh-on", type=float, default=None)
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--device", default="cuda")
     a = ap.parse_args()
@@ -46,7 +51,12 @@ def main():
         a.updates, a.n_env, a.seeds = 10, 256, a.seeds[:2]
     out = Path(a.out) if a.out else HERE / ("_smoke/train" if a.quick else "runs") / a.arch
     dev, M = a.device, len(a.seeds)
-    s = BD.Spec(**TASK)
+    task = dict(TASK)
+    if a.n_cue is not None:
+        task["n_cue"] = a.n_cue
+    if a.channel:
+        task.update(channel=True, **{k: v for k, v in dict(stay=a.stay, hit_on=a.hit_on, neigh_on=a.neigh_on).items() if v is not None})
+    s = BD.Spec(**task)
     t = BD.Sim(BD.Graph(s), dev)
     nets = []
     for seed in a.seeds:
@@ -67,7 +77,7 @@ def main():
     for name, pol in (("optimal", BD.optimal), ("myopic", BD.myopic), ("random", BD.uniform)):
         egen.manual_seed(79)
         refs[name] = BD.summarize(BD.rollout(None, t, n_eval, egen, behaviour=pol(egen), goal=goal, cues=cues, u=u), t)[0]
-    (out / "task.json").write_text(json.dumps(dict(arch=a.arch, task=TASK, states=int(t.B.shape[0] * t.B.shape[1]), references=refs,
+    (out / "task.json").write_text(json.dumps(dict(arch=a.arch, task=task, states=int(t.B.shape[0] * t.B.shape[1]), references=refs,
                                                    args={k: v for k, v in vars(a).items() if k != "out"}), indent=1))
     print("references: " + " ".join(f"{k} {v['ret']:.3f} (regret {v['regret']:.3f})" for k, v in refs.items()), flush=True)
     save_at = set(checkpoints(a.updates))

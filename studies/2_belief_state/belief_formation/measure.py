@@ -62,7 +62,7 @@ def component_fits(Z, D):
     node table (the ceiling)."""
     y, b = D.y, D.b[:, :2]
     quad = np.c_[y, y ** 2, y[:, :1] * y[:, 1:]]
-    out = dict(from_y=fits(y, Z, D.fold), from_b=fits(b, Z, D.fold), from_y_quadratic=fits(quad, Z, D.fold), from_step=fits(np.eye(D.T)[D.step], Z, D.fold))
+    out = dict(from_y=fits(y, Z, D.fold), from_b=fits(b, Z, D.fold), from_y_quadratic=fits(quad, Z, D.fold), from_y_cubic=fits(poly_y(y, 3)[:, :-1], Z, D.fold), from_step=fits(np.eye(D.T)[D.step], Z, D.fold))
     _, inv = np.unique(D.node, return_inverse=True)
     means = np.zeros((inv.max() + 1, Z.shape[1])); cnt = np.zeros(inv.max() + 1)
     np.add.at(means, inv, Z); np.add.at(cnt, inv, 1); means /= cnt[:, None]
@@ -94,7 +94,25 @@ PATCHES = {"mlp0 mean": ("mean", ["mlp0"]), "mlp1 mean": ("mean", ["mlp1"]), "at
            # post hoc, not registered: block 1's attention cannot import a probability code made at earlier positions
            "attn1 mean + mlp0 affine in y": ({"attn1": "mean", "mlp0": "affine_y"}, ["attn1", "mlp0"]),
            "attn1 mean + both MLPs affine in y": ({"attn1": "mean", "mlp0": "affine_y", "mlp1": "affine_y"}, ["attn1", "mlp0", "mlp1"]),
-           "attn1 mean + both MLPs affine in b": ({"attn1": "mean", "mlp0": "affine_b", "mlp1": "affine_b"}, ["attn1", "mlp0", "mlp1"])}
+           "attn1 mean + both MLPs affine in b": ({"attn1": "mean", "mlp0": "affine_b", "mlp1": "affine_b"}, ["attn1", "mlp0", "mlp1"]),
+           # post hoc (follow-up): the MLP as a low-order function of the exact log-odds, A y + B phi(y)
+           "mlp0 quadratic in y": ("quad_y", ["mlp0"]), "mlp0 cubic in y": ("cubic_y", ["mlp0"]),
+           "both MLPs quadratic in y": ("quad_y", ["mlp0", "mlp1"]), "both MLPs cubic in y": ("cubic_y", ["mlp0", "mlp1"]),
+           "attn1 mean + both MLPs quadratic in y": ({"attn1": "mean", "mlp0": "quad_y", "mlp1": "quad_y"}, ["attn1", "mlp0", "mlp1"]),
+           "attn1 mean + both MLPs cubic in y": ({"attn1": "mean", "mlp0": "cubic_y", "mlp1": "cubic_y"}, ["attn1", "mlp0", "mlp1"])}
+
+
+def poly_y(y, degree):
+    """[y, 1] for degree 1; adds y1², y2², y1 y2 for 2; and the cubic monomials for 3 (numpy or torch)."""
+    lib = torch if isinstance(y, torch.Tensor) else np
+    y1, y2 = y[:, 0], y[:, 1]
+    cols = [y1, y2]
+    if degree >= 2:
+        cols += [y1 * y1, y2 * y2, y1 * y2]
+    if degree >= 3:
+        cols += [y1 ** 3, y2 ** 3, y1 * y1 * y2, y1 * y2 * y2]
+    cols.append(lib.ones_like(y1))
+    return lib.stack(cols, 1)
 
 
 class Patch:
@@ -116,6 +134,10 @@ class Patch:
             X = torch.cat([b[:, :2], torch.ones(len(b), 1, dtype=b.dtype, device=b.device)], 1)
             return (X @ f["W_b"]).float()
         y = torch.log(b[:, :2].clamp(min=1e-300)) - torch.log(b[:, 2:].clamp(min=1e-300))
+        if kind == "quad_y":
+            return (poly_y(y, 2) @ f["W_q"]).float()
+        if kind == "cubic_y":
+            return (poly_y(y, 3) @ f["W_c"]).float()
         X = torch.cat([y, torch.ones(len(y), 1, dtype=y.dtype, device=y.device)], 1)
         return (X @ f["W_y"]).float()
 
@@ -133,7 +155,8 @@ def fit_component_maps(sites, D, dev):
         Z = sites[c]
         y, b = D.y, D.b[:, :2]
         Wy = BP._fit(y, Z); Wb = BP._fit(b, Z)
-        out[c] = dict(W_y=torch.tensor(Wy, device=dev), W_b=torch.tensor(Wb, device=dev),
+        Wq, *_ = np.linalg.lstsq(poly_y(y, 2), Z, rcond=None); Wc, *_ = np.linalg.lstsq(poly_y(y, 3), Z, rcond=None)
+        out[c] = dict(W_y=torch.tensor(Wy, device=dev), W_b=torch.tensor(Wb, device=dev), W_q=torch.tensor(Wq, device=dev), W_c=torch.tensor(Wc, device=dev),
                       mean_by_step=torch.tensor(np.stack([Z[D.step == s].mean(0) for s in range(D.T)]), dtype=torch.float32, device=dev))
     return out
 
@@ -191,12 +214,12 @@ def decisions_of_patched(net, t, goal, cues, u, patch, seed):
     """The belief states the patched policy visits (its own greedy episodes)."""
     env = BD.Env(t, len(goal), None, goal, cues, u); patch.env = env
     N, T = len(goal), t.T
-    oi = torch.zeros(N, T, dtype=torch.long, device=t.dev)
+    oi = torch.zeros(N, T, dtype=torch.long, device=t.dev); bel = torch.zeros(N, T, t.K, device=t.dev); qs = torch.zeros(N, T, t.A, device=t.dev)
     for s in range(T):
         patch.step = s; p = env.pos
         a = net(env.tok[:, : p + 1], patch=patch.patches())[0][:, p].argmax(-1)
-        oi[:, s] = env.oi; env.step(a)
-    r = BD.Batch(env.tok, None, torch.zeros(N, T, dtype=torch.long), None, None, None, None, None, goal, env.ci, oi, None)
+        oi[:, s], bel[:, s], qs[:, s] = env.oi, env.belief, env.q_star(); env.step(a)
+    r = BD.Batch(env.tok, None, torch.zeros(N, T, dtype=torch.long), None, None, None, None, None, goal, env.ci, oi, None, bel, qs, env.cue_id)
     return ME.Decisions(t, r, seed)
 
 
@@ -243,9 +266,9 @@ def tables(out):
          "## A. Where the belief appears (affine probes)", "", row("site", "counts R² (IID)", "y R² (IID)", "b R² (IID)", "**EXT R² y**", "**EXT R² b**", "untrained: counts", "untrained: EXT b"), "|---|---|---|---|---|---|---|---|"]
     for k in SITES:
         L.append(row(f"**{k}**" if k in ("res1", "res2") else k, *[mr(v("trained", "sites", k, m)) for m in ("counts_r2", "IID_r2y", "IID_r2b", "EXT_r2y", "EXT_r2b")], mr(v("untrained", "sites", k, "counts_r2")), mr(v("untrained", "sites", k, "EXT_r2b"))))
-    L += ["", "## B. What each component computes (IID R² of its output from…)", "", row("component", "affine in y", "affine in b", "quadratic in y", "the step alone", "the belief-node table (ceiling)"), "|---|---|---|---|---|---|"]
+    L += ["", "## B. What each component computes (IID R² of its output from…)", "", row("component", "affine in y", "affine in b", "quadratic in y", "cubic in y", "the step alone", "the belief-node table (ceiling)"), "|---|---|---|---|---|---|---|"]
     for c in COMPS:
-        L.append(row(c, *[mr(v("trained", "components", c, m), 3) for m in ("from_y", "from_b", "from_y_quadratic", "from_step", "node_table")]))
+        L.append(row(c, *[mr(v("trained", "components", c, m), 3) for m in ("from_y", "from_b", "from_y_quadratic", "from_y_cubic", "from_step", "node_table")]))
     L += ["", "## C. Attention from the decision position", "", row("block, head", "mass on BOS", "on cue tokens", "on event tokens", "evenness over history tokens (1 = uniform)"), "|---|---|---|---|---|"]
     for l in ("0", "1"):
         for h in range(4):
