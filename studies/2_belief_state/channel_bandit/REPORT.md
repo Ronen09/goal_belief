@@ -1,6 +1,6 @@
 # Channel bandit: matched-evidence counterfactuals (channel bandit)
 
-Run date: 2026-10-07. Brief: `BRIEF.md` (pasted). Task, measures and decision rule: `PLAN.md`, committed (`b2249be`) **before any model was trained**; the design probe of the
+Run date: 2026-10-07. Brief: `BRIEF.md` (pasted). Task, measures and decision rule: `PLAN.md`, committed (`59054ec`) **before any model was trained**; the design probe of the
 cue process is disclosed there. Numbers from `tables.md`; data in `pairs.json` (matched pairs) and `results.json`
 (the reward-bandit measures on the channel arm); training logs in `runs/`. Reproduce: `reproduce.py channel_bandit`
 (20 min on one GPU).

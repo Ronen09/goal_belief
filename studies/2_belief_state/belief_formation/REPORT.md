@@ -1,7 +1,7 @@
 # How the probability-space belief is formed (belief formation)
 
 Run date: 2026-10-07. Brief: `BRIEF.md` (given in conversation). Measures and decision rule: `PLAN.md`, committed
-(`45440ac`) **before any measurement was run**. The reward-bandit experiment's six trained transformers and their
+(`d231a7a`) **before any measurement was run**. The reward-bandit experiment's six trained transformers and their
 untrained checkpoints; no training. Numbers from `tables.md`; data in `results.json`. Reproduce:
 `reproduce.py belief_formation` (10 min on one GPU). The three combined patches at the end of §4 were added after a
 one-seed smoke run showed why the registered patch is weak; they are marked post hoc.

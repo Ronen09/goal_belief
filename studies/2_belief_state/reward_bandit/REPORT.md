@@ -1,6 +1,6 @@
 # Reward-trained hidden goal: does reward alone produce a Bayesian belief? (reward bandit)
 
-Run date: 2026-10-07. Brief: `BRIEF.md`. Task, measures and decision rule: `PLAN.md`, committed (`05925f7`) **before any
+Run date: 2026-10-07. Brief: `BRIEF.md`. Task, measures and decision rule: `PLAN.md`, committed (`b34f3f4`) **before any
 model was trained**; the pilot it discloses (hyperparameters, and the clipping of the reward probabilities) came first.
 Numbers from `tables.md`; data in `results.json`; training logs in `runs/`. Reproduce: `reproduce.py reward_bandit`
 (25 min on one GPU).

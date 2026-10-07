@@ -1,7 +1,7 @@
 # Random goals: a goal drawn from every cell (random goals)
 
 Run date: 2026-10-07. Brief: `BRIEF.md` (given in conversation). Task, measures and decision rule: `PLAN.md`, committed
-(`f44e390`) **before any model was trained**; the additive ceiling (`../additive_ceiling/`, no network) and the
+(`5fc2a20`) **before any model was trained**; the additive ceiling (`../additive_ceiling/`, no network) and the
 reference policies came first and are given there. Numbers from `tables.md`; data in `results.json`; training logs in
 `runs/`. Reproduce: `reproduce.py random_goals` (2 h on one GPU).
 
