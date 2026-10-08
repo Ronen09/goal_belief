@@ -1,0 +1,131 @@
+seed0 A ('resid', 1): shares hist 0.66 goal 0.15 inter 0.19 | R2 shared+offset 0.755 per-goal 0.940 gap 0.185 | I from b 0.96
+seed0 A ('resid', 2): shares hist 0.55 goal 0.24 inter 0.21 | R2 shared+offset 0.757 per-goal 0.961 gap 0.203 | I from b 0.96
+seed0 A ('resid', 3): shares hist 0.54 goal 0.21 inter 0.25 | R2 shared+offset 0.724 per-goal 0.966 gap 0.242 | I from b 0.96
+seed0 A ('resid', 4): shares hist 0.53 goal 0.23 inter 0.25 | R2 shared+offset 0.733 per-goal 0.971 gap 0.238 | I from b 0.96
+seed0 A ('attn', 0): shares hist 0.65 goal 0.17 inter 0.18 | R2 shared+offset 0.763 per-goal 0.938 gap 0.174 | I from b 0.96
+seed0 A ('mlp', 0): shares hist 0.69 goal 0.13 inter 0.18 | R2 shared+offset 0.768 per-goal 0.942 gap 0.174 | I from b 0.96
+seed0 A ('attn', 1): shares hist 0.51 goal 0.36 inter 0.13 | R2 shared+offset 0.835 per-goal 0.960 gap 0.125 | I from b 0.94
+seed0 A ('mlp', 1): shares hist 0.52 goal 0.20 inter 0.27 | R2 shared+offset 0.698 per-goal 0.960 gap 0.262 | I from b 0.95
+seed0 A ('attn', 2): shares hist 0.43 goal 0.40 inter 0.18 | R2 shared+offset 0.803 per-goal 0.967 gap 0.164 | I from b 0.94
+seed0 A ('mlp', 2): shares hist 0.50 goal 0.18 inter 0.31 | R2 shared+offset 0.665 per-goal 0.967 gap 0.301 | I from b 0.96
+seed0 A ('attn', 3): shares hist 0.51 goal 0.34 inter 0.15 | R2 shared+offset 0.839 per-goal 0.975 gap 0.136 | I from b 0.93
+seed0 A ('mlp', 3): shares hist 0.47 goal 0.22 inter 0.31 | R2 shared+offset 0.671 per-goal 0.969 gap 0.298 | I from b 0.95
+seed0 B: goal-specific share edit 0.17 natural 0.44 | transfer shared 0.87 goal-specific 0.25 | to donor every goal 0.55 own 0.43
+seed0 C: attn0 chg 0.04 gdep 0.96 mlp0 chg 0.04 gdep 0.94 attn1 chg 0.08 gdep 0.96 mlp1 chg 0.06 gdep 0.94 attn2 chg 0.03 gdep 0.96 mlp2 chg 0.07 gdep 0.95 attn3 chg 0.02 gdep 0.97 mlp3 chg 0.07 gdep 0.96 all chg 0.20 gdep 0.78 (natural gdep 0.94)
+seed1 A ('resid', 1): shares hist 0.66 goal 0.18 inter 0.16 | R2 shared+offset 0.775 per-goal 0.931 gap 0.156 | I from b 0.95
+seed1 A ('resid', 2): shares hist 0.61 goal 0.20 inter 0.19 | R2 shared+offset 0.768 per-goal 0.946 gap 0.178 | I from b 0.95
+seed1 A ('resid', 3): shares hist 0.55 goal 0.21 inter 0.24 | R2 shared+offset 0.729 per-goal 0.960 gap 0.230 | I from b 0.95
+seed1 A ('resid', 4): shares hist 0.53 goal 0.21 inter 0.26 | R2 shared+offset 0.721 per-goal 0.967 gap 0.246 | I from b 0.96
+seed1 A ('attn', 0): shares hist 0.67 goal 0.18 inter 0.15 | R2 shared+offset 0.780 per-goal 0.922 gap 0.142 | I from b 0.95
+seed1 A ('mlp', 0): shares hist 0.65 goal 0.17 inter 0.18 | R2 shared+offset 0.764 per-goal 0.932 gap 0.168 | I from b 0.95
+seed1 A ('attn', 1): shares hist 0.56 goal 0.35 inter 0.10 | R2 shared+offset 0.865 per-goal 0.955 gap 0.090 | I from b 0.92
+seed1 A ('mlp', 1): shares hist 0.59 goal 0.16 inter 0.24 | R2 shared+offset 0.715 per-goal 0.946 gap 0.231 | I from b 0.95
+seed1 A ('attn', 2): shares hist 0.45 goal 0.33 inter 0.22 | R2 shared+offset 0.754 per-goal 0.963 gap 0.209 | I from b 0.94
+seed1 A ('mlp', 2): shares hist 0.49 goal 0.19 inter 0.32 | R2 shared+offset 0.660 per-goal 0.964 gap 0.304 | I from b 0.95
+seed1 A ('attn', 3): shares hist 0.63 goal 0.24 inter 0.13 | R2 shared+offset 0.850 per-goal 0.971 gap 0.121 | I from b 0.93
+seed1 A ('mlp', 3): shares hist 0.43 goal 0.23 inter 0.34 | R2 shared+offset 0.644 per-goal 0.967 gap 0.323 | I from b 0.96
+seed1 B: goal-specific share edit 0.22 natural 0.43 | transfer shared 0.85 goal-specific 0.34 | to donor every goal 0.57 own 0.42
+seed1 C: attn0 chg 0.07 gdep 0.92 mlp0 chg 0.05 gdep 0.96 attn1 chg 0.11 gdep 0.97 mlp1 chg 0.09 gdep 0.94 attn2 chg 0.09 gdep 0.96 mlp2 chg 0.12 gdep 0.94 attn3 chg 0.02 gdep 0.97 mlp3 chg 0.10 gdep 0.96 all chg 0.20 gdep 0.70 (natural gdep 0.97)
+seed2 A ('resid', 1): shares hist 0.69 goal 0.14 inter 0.17 | R2 shared+offset 0.780 per-goal 0.943 gap 0.163 | I from b 0.97
+seed2 A ('resid', 2): shares hist 0.52 goal 0.25 inter 0.23 | R2 shared+offset 0.739 per-goal 0.959 gap 0.220 | I from b 0.96
+seed2 A ('resid', 3): shares hist 0.48 goal 0.24 inter 0.27 | R2 shared+offset 0.702 per-goal 0.963 gap 0.261 | I from b 0.96
+seed2 A ('resid', 4): shares hist 0.44 goal 0.27 inter 0.28 | R2 shared+offset 0.695 per-goal 0.966 gap 0.271 | I from b 0.95
+seed2 A ('attn', 0): shares hist 0.71 goal 0.15 inter 0.14 | R2 shared+offset 0.795 per-goal 0.933 gap 0.138 | I from b 0.97
+seed2 A ('mlp', 0): shares hist 0.71 goal 0.12 inter 0.17 | R2 shared+offset 0.778 per-goal 0.942 gap 0.165 | I from b 0.96
+seed2 A ('attn', 1): shares hist 0.45 goal 0.38 inter 0.18 | R2 shared+offset 0.789 per-goal 0.954 gap 0.165 | I from b 0.94
+seed2 A ('mlp', 1): shares hist 0.48 goal 0.23 inter 0.28 | R2 shared+offset 0.691 per-goal 0.960 gap 0.269 | I from b 0.95
+seed2 A ('attn', 2): shares hist 0.43 goal 0.38 inter 0.19 | R2 shared+offset 0.774 per-goal 0.943 gap 0.169 | I from b 0.91
+seed2 A ('mlp', 2): shares hist 0.47 goal 0.20 inter 0.32 | R2 shared+offset 0.654 per-goal 0.963 gap 0.309 | I from b 0.95
+seed2 A ('attn', 3): shares hist 0.33 goal 0.45 inter 0.22 | R2 shared+offset 0.757 per-goal 0.957 gap 0.200 | I from b 0.92
+seed2 A ('mlp', 3): shares hist 0.42 goal 0.26 inter 0.32 | R2 shared+offset 0.659 per-goal 0.963 gap 0.304 | I from b 0.95
+seed2 B: goal-specific share edit 0.12 natural 0.39 | transfer shared 0.91 goal-specific 0.21 | to donor every goal 0.52 own 0.45
+seed2 C: attn0 chg 0.04 gdep 0.89 mlp0 chg 0.03 gdep 0.92 attn1 chg 0.02 gdep 0.93 mlp1 chg 0.01 gdep 0.90 attn2 chg 0.01 gdep 0.93 mlp2 chg 0.01 gdep 0.91 attn3 chg 0.01 gdep 0.93 mlp3 chg 0.01 gdep 0.93 all chg 0.20 gdep 0.77 (natural gdep 0.92)
+seed3 A ('resid', 1): shares hist 0.68 goal 0.15 inter 0.17 | R2 shared+offset 0.775 per-goal 0.940 gap 0.165 | I from b 0.95
+seed3 A ('resid', 2): shares hist 0.56 goal 0.24 inter 0.20 | R2 shared+offset 0.772 per-goal 0.962 gap 0.190 | I from b 0.95
+seed3 A ('resid', 3): shares hist 0.58 goal 0.19 inter 0.23 | R2 shared+offset 0.752 per-goal 0.968 gap 0.216 | I from b 0.96
+seed3 A ('resid', 4): shares hist 0.53 goal 0.22 inter 0.25 | R2 shared+offset 0.730 per-goal 0.971 gap 0.241 | I from b 0.96
+seed3 A ('attn', 0): shares hist 0.68 goal 0.17 inter 0.15 | R2 shared+offset 0.787 per-goal 0.933 gap 0.145 | I from b 0.95
+seed3 A ('mlp', 0): shares hist 0.68 goal 0.14 inter 0.18 | R2 shared+offset 0.773 per-goal 0.941 gap 0.169 | I from b 0.95
+seed3 A ('attn', 1): shares hist 0.51 goal 0.37 inter 0.12 | R2 shared+offset 0.852 per-goal 0.970 gap 0.118 | I from b 0.95
+seed3 A ('mlp', 1): shares hist 0.50 goal 0.23 inter 0.27 | R2 shared+offset 0.702 per-goal 0.962 gap 0.259 | I from b 0.95
+seed3 A ('attn', 2): shares hist 0.56 goal 0.28 inter 0.15 | R2 shared+offset 0.825 per-goal 0.970 gap 0.146 | I from b 0.94
+seed3 A ('mlp', 2): shares hist 0.52 goal 0.18 inter 0.30 | R2 shared+offset 0.681 per-goal 0.966 gap 0.285 | I from b 0.95
+seed3 A ('attn', 3): shares hist 0.53 goal 0.33 inter 0.14 | R2 shared+offset 0.844 per-goal 0.974 gap 0.129 | I from b 0.93
+seed3 A ('mlp', 3): shares hist 0.42 goal 0.23 inter 0.35 | R2 shared+offset 0.630 per-goal 0.967 gap 0.336 | I from b 0.96
+seed3 B: goal-specific share edit 0.15 natural 0.44 | transfer shared 0.88 goal-specific 0.22 | to donor every goal 0.51 own 0.46
+seed3 C: attn0 chg 0.11 gdep 0.95 mlp0 chg 0.10 gdep 0.93 attn1 chg 0.12 gdep 0.94 mlp1 chg 0.11 gdep 0.93 attn2 chg 0.10 gdep 0.95 mlp2 chg 0.13 gdep 0.94 attn3 chg 0.08 gdep 0.95 mlp3 chg 0.15 gdep 0.95 all chg 0.33 gdep 0.85 (natural gdep 0.92)
+seed4 A ('resid', 1): shares hist 0.65 goal 0.19 inter 0.16 | R2 shared+offset 0.785 per-goal 0.940 gap 0.155 | I from b 0.96
+seed4 A ('resid', 2): shares hist 0.46 goal 0.30 inter 0.23 | R2 shared+offset 0.731 per-goal 0.950 gap 0.219 | I from b 0.95
+seed4 A ('resid', 3): shares hist 0.47 goal 0.23 inter 0.30 | R2 shared+offset 0.657 per-goal 0.946 gap 0.289 | I from b 0.95
+seed4 A ('resid', 4): shares hist 0.44 goal 0.23 inter 0.32 | R2 shared+offset 0.641 per-goal 0.948 gap 0.307 | I from b 0.95
+seed4 A ('attn', 0): shares hist 0.66 goal 0.21 inter 0.13 | R2 shared+offset 0.806 per-goal 0.932 gap 0.125 | I from b 0.96
+seed4 A ('mlp', 0): shares hist 0.66 goal 0.16 inter 0.17 | R2 shared+offset 0.778 per-goal 0.943 gap 0.165 | I from b 0.96
+seed4 A ('attn', 1): shares hist 0.41 goal 0.43 inter 0.15 | R2 shared+offset 0.812 per-goal 0.956 gap 0.144 | I from b 0.93
+seed4 A ('mlp', 1): shares hist 0.45 goal 0.27 inter 0.28 | R2 shared+offset 0.680 per-goal 0.944 gap 0.263 | I from b 0.95
+seed4 A ('attn', 2): shares hist 0.37 goal 0.43 inter 0.20 | R2 shared+offset 0.774 per-goal 0.959 gap 0.184 | I from b 0.93
+seed4 A ('mlp', 2): shares hist 0.45 goal 0.19 inter 0.36 | R2 shared+offset 0.601 per-goal 0.942 gap 0.341 | I from b 0.95
+seed4 A ('attn', 3): shares hist 0.45 goal 0.31 inter 0.24 | R2 shared+offset 0.724 per-goal 0.948 gap 0.223 | I from b 0.92
+seed4 A ('mlp', 3): shares hist 0.41 goal 0.21 inter 0.38 | R2 shared+offset 0.587 per-goal 0.944 gap 0.357 | I from b 0.95
+seed4 B: goal-specific share edit 0.15 natural 0.39 | transfer shared 0.91 goal-specific 0.26 | to donor every goal 0.56 own 0.46
+seed4 C: attn0 chg 0.03 gdep 0.87 mlp0 chg 0.05 gdep 0.85 attn1 chg 0.03 gdep 0.86 mlp1 chg 0.03 gdep 0.84 attn2 chg 0.01 gdep 0.86 mlp2 chg 0.03 gdep 0.83 attn3 chg 0.00 gdep 0.87 mlp3 chg 0.02 gdep 0.85 all chg 0.20 gdep 0.65 (natural gdep 0.87)
+seed5 A ('resid', 1): shares hist 0.67 goal 0.17 inter 0.16 | R2 shared+offset 0.794 per-goal 0.943 gap 0.149 | I from b 0.95
+seed5 A ('resid', 2): shares hist 0.55 goal 0.25 inter 0.19 | R2 shared+offset 0.774 per-goal 0.956 gap 0.182 | I from b 0.95
+seed5 A ('resid', 3): shares hist 0.51 goal 0.25 inter 0.24 | R2 shared+offset 0.737 per-goal 0.961 gap 0.224 | I from b 0.95
+seed5 A ('resid', 4): shares hist 0.48 goal 0.27 inter 0.25 | R2 shared+offset 0.726 per-goal 0.965 gap 0.238 | I from b 0.95
+seed5 A ('attn', 0): shares hist 0.70 goal 0.16 inter 0.13 | R2 shared+offset 0.812 per-goal 0.939 gap 0.127 | I from b 0.94
+seed5 A ('mlp', 0): shares hist 0.69 goal 0.15 inter 0.16 | R2 shared+offset 0.795 per-goal 0.946 gap 0.151 | I from b 0.95
+seed5 A ('attn', 1): shares hist 0.48 goal 0.38 inter 0.13 | R2 shared+offset 0.840 per-goal 0.966 gap 0.126 | I from b 0.94
+seed5 A ('mlp', 1): shares hist 0.51 goal 0.23 inter 0.26 | R2 shared+offset 0.702 per-goal 0.950 gap 0.248 | I from b 0.94
+seed5 A ('attn', 2): shares hist 0.46 goal 0.34 inter 0.20 | R2 shared+offset 0.774 per-goal 0.963 gap 0.189 | I from b 0.93
+seed5 A ('mlp', 2): shares hist 0.45 goal 0.24 inter 0.31 | R2 shared+offset 0.666 per-goal 0.957 gap 0.291 | I from b 0.94
+seed5 A ('attn', 3): shares hist 0.53 goal 0.32 inter 0.16 | R2 shared+offset 0.825 per-goal 0.970 gap 0.145 | I from b 0.92
+seed5 A ('mlp', 3): shares hist 0.39 goal 0.28 inter 0.33 | R2 shared+offset 0.653 per-goal 0.960 gap 0.307 | I from b 0.94
+seed5 B: goal-specific share edit 0.21 natural 0.47 | transfer shared 0.82 goal-specific 0.31 | to donor every goal 0.56 own 0.46
+seed5 C: attn0 chg 0.06 gdep 0.99 mlp0 chg 0.03 gdep 0.99 attn1 chg 0.08 gdep 0.99 mlp1 chg 0.05 gdep 0.98 attn2 chg 0.04 gdep 0.98 mlp2 chg 0.16 gdep 0.98 attn3 chg 0.02 gdep 0.97 mlp3 chg 0.14 gdep 0.98 all chg 0.33 gdep 0.85 (natural gdep 0.98)
+# Does the goal change what is read from the belief?
+
+Generated by `goal_belief.py` (exploratory); six maze10 models, medians (min–max).
+
+## A. History fixed, goal changed: the state at the decision token as hist(h) + M(g) + I(h, g)
+
+Variance shares of the three parts; R² of the state from a shared encoder of the posterior plus a goal offset (f(b) + M(g)) against per-goal encoders f_g(b) (MLPs); the gap is the goal × belief part that is a function of the belief; R² of the interaction I(h, g) itself from b, per goal.
+
+| site / component | hist | goal | interaction | R² shared + offset | R² per-goal encoders | gap | interaction from b |
+|---|---|---|---|---|---|---|---|
+| resid1 | 0.67 (0.65–0.69) | 0.16 (0.14–0.19) | 0.17 (0.16–0.19) | 0.78 (0.75–0.79) | 0.94 (0.93–0.94) | 0.16 (0.15–0.19) | 0.96 (0.95–0.97) |
+| resid2 | 0.55 (0.46–0.61) | 0.25 (0.20–0.30) | 0.21 (0.19–0.23) | 0.76 (0.73–0.77) | 0.96 (0.95–0.96) | 0.20 (0.18–0.22) | 0.95 (0.95–0.96) |
+| resid3 | 0.52 (0.47–0.58) | 0.22 (0.19–0.25) | 0.25 (0.23–0.30) | 0.73 (0.66–0.75) | 0.96 (0.95–0.97) | 0.24 (0.22–0.29) | 0.95 (0.95–0.96) |
+| resid4 | 0.50 (0.44–0.53) | 0.23 (0.21–0.27) | 0.25 (0.25–0.32) | 0.72 (0.64–0.73) | 0.97 (0.95–0.97) | 0.24 (0.24–0.31) | 0.96 (0.95–0.96) |
+| attn0 | 0.68 (0.65–0.71) | 0.17 (0.15–0.21) | 0.15 (0.13–0.18) | 0.79 (0.76–0.81) | 0.93 (0.92–0.94) | 0.14 (0.13–0.17) | 0.96 (0.94–0.97) |
+| mlp0 | 0.68 (0.65–0.71) | 0.14 (0.12–0.17) | 0.17 (0.16–0.18) | 0.78 (0.76–0.80) | 0.94 (0.93–0.95) | 0.17 (0.15–0.17) | 0.95 (0.95–0.96) |
+| attn1 | 0.50 (0.41–0.56) | 0.37 (0.35–0.43) | 0.13 (0.10–0.18) | 0.84 (0.79–0.87) | 0.96 (0.95–0.97) | 0.13 (0.09–0.17) | 0.94 (0.92–0.95) |
+| mlp1 | 0.50 (0.45–0.59) | 0.23 (0.16–0.27) | 0.27 (0.24–0.28) | 0.70 (0.68–0.72) | 0.96 (0.94–0.96) | 0.26 (0.23–0.27) | 0.95 (0.94–0.95) |
+| attn2 | 0.44 (0.37–0.56) | 0.36 (0.28–0.43) | 0.19 (0.15–0.22) | 0.77 (0.75–0.82) | 0.96 (0.94–0.97) | 0.18 (0.15–0.21) | 0.94 (0.91–0.94) |
+| mlp2 | 0.48 (0.45–0.52) | 0.19 (0.18–0.24) | 0.32 (0.30–0.36) | 0.66 (0.60–0.68) | 0.96 (0.94–0.97) | 0.30 (0.28–0.34) | 0.95 (0.94–0.96) |
+| attn3 | 0.52 (0.33–0.63) | 0.32 (0.24–0.45) | 0.15 (0.13–0.24) | 0.83 (0.72–0.85) | 0.97 (0.95–0.98) | 0.14 (0.12–0.22) | 0.93 (0.92–0.93) |
+| mlp3 | 0.42 (0.39–0.47) | 0.23 (0.21–0.28) | 0.33 (0.31–0.38) | 0.65 (0.59–0.67) | 0.96 (0.94–0.97) | 0.31 (0.30–0.36) | 0.95 (0.94–0.96) |
+
+## B. One donor belief component, every recipient goal (posterior-part edit at the input of block 2)
+
+The induced logit change per goal, split into the part shared across goals and the goal-specific part; the natural change L_B(g) − L_A(g) likewise; transfer = projection of the edit's part on the natural part.
+
+| | goal-specific share of the change | mean cosine between goals' changes | transfer |
+|---|---|---|---|
+| edit | 0.16 (0.12–0.22) | 0.78 (0.73–0.79) | shared 0.87 (0.82–0.91), goal-specific 0.26 (0.21–0.34) |
+| natural | 0.44 (0.39–0.47) | 0.41 (0.39–0.45) | |
+
+Decisions to the donor's where they differ: under every goal 0.55 (0.51–0.57); by goal 0.53 (0.46–0.60), 0.54 (0.45–0.56), 0.50 (0.35–0.55), 0.70 (0.55–0.74); under the episode's own goal 0.45 (0.42–0.46).
+
+## C. Removing one component's interaction (offline, output → hist + M at the decision token)
+
+| component | own-goal decisions changed | goal-dependence of the move after (natural 0.93 (0.87–0.98)) |
+|---|---|---|
+| attn0 | 0.05 (0.03–0.11) | 0.94 (0.87–0.99) |
+| mlp0 | 0.04 (0.03–0.10) | 0.93 (0.85–0.99) |
+| attn1 | 0.08 (0.02–0.12) | 0.95 (0.86–0.99) |
+| mlp1 | 0.06 (0.01–0.11) | 0.94 (0.84–0.98) |
+| attn2 | 0.04 (0.01–0.10) | 0.95 (0.86–0.98) |
+| mlp2 | 0.10 (0.01–0.16) | 0.94 (0.83–0.98) |
+| attn3 | 0.02 (0.00–0.08) | 0.96 (0.87–0.97) |
+| mlp3 | 0.08 (0.01–0.15) | 0.95 (0.85–0.98) |
+| all | 0.20 (0.20–0.33) | 0.77 (0.65–0.85) |

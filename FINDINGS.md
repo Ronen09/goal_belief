@@ -918,4 +918,9 @@ decision of their own episodes, fitted as functions of the exact 55-cell posteri
   0.96 of decisions, 0.91 where the current preferences cannot tell the beliefs apart (H alone 0.69, all current
   logits 0.81, chance 0.44); swapping the posterior-predicted component transfers those new decisions 0.74 to the
   donor's, the whole state 0.76, the residual 0.06.
+- The goal changes what is read from the belief: with the history fixed, the goal × history interaction is 0.17 of the
+  state after block 0 and 0.25 at the end, 0.95 predictable from the posterior per goal; a shared belief code plus a
+  goal offset explains 0.72–0.78 of the state, per-goal encoders 0.94–0.97. The goal-free belief edit produces a
+  change 0.84 shared across goals (the natural change: 0.56), reproducing 0.87 of the shared part of the natural
+  change and 0.26 of its goal-specific part; no single component's interaction matters (≤ 0.10), all together 0.20.
 

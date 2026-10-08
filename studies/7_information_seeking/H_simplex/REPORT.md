@@ -234,3 +234,53 @@ of block 2, propagated through blocks 2–3 to the final residual and read by th
 small new readout can turn into new decisions, and whose causal content for those decisions is the same
 posterior-predicted component that drives the trained policy. This strengthens the interpretation of section 6: the
 posterior is represented as such, not merely as whatever the current action preferences happen to need.
+
+## 8. Post hoc: the goal changes what is read from the belief, from block 0 on (`goal_belief.md`)
+
+Exploratory. History fixed, the goal token changed: the decision token's state x(h, g) = hist(h) + M(g) + I(h, g) at
+every residual site and component output; the posterior-predictable part compared between one shared encoder plus a
+goal offset, f(b) + M(g), and per-goal encoders f_g(b) (MLPs, 12 288 fit decisions, 6 144 test).
+
+| site / component | hist / goal / interaction (variance shares) | R² shared + offset | R² per-goal | interaction from b |
+|---|---|---|---|---|
+| after block 0 (resid1) | 0.67 / 0.16 / 0.17 | 0.78 | 0.94 | 0.96 |
+| after block 1 (resid2) | 0.55 / 0.25 / 0.21 | 0.76 | 0.96 | 0.95 |
+| final residual | 0.50 / 0.23 / 0.25 | 0.72 | 0.97 | 0.96 |
+| block 0 attention / MLP | 0.68 / 0.17 / 0.15 and 0.68 / 0.14 / 0.17 | 0.79 / 0.78 | 0.93 / 0.94 | 0.96 / 0.95 |
+| block 1 attention / MLP | 0.50 / 0.37 / 0.13 and 0.50 / 0.23 / 0.27 | 0.84 / 0.70 | 0.96 / 0.96 | 0.94 / 0.95 |
+| blocks 2–3 MLPs | interaction 0.32, 0.33 | 0.66, 0.65 | 0.96 | 0.95 |
+
+* **The goal × history interaction is a function of the belief (0.95 from b per goal) and is there from block 0's
+  attention onward** (0.15 of that output's variance; 0.17 of the residual after block 0). A shared belief code plus a
+  goal offset explains 0.72–0.78 of the state; letting the goal choose the encoder explains 0.94–0.97. The gap (0.16
+  after block 0, 0.24 at the end) is the goal-dependent reading of the belief; the MLPs add most of it (block 1's MLP
+  0.27, blocks 2–3's MLPs 0.32–0.33 interaction shares), the attention outputs carry more of the pure goal offset.
+* So the computation is not b → H(b), L = H(b) + G(g) at the level of the state: the goal changes which features of
+  the belief the state holds, already at the first component, and increasingly through the MLPs.
+
+**One donor belief component under every recipient goal** (the posterior-part edit at the input of block 2, logits
+read under each of the four goals):
+
+| | goal-specific share of the logit change | mean cosine between the goals' changes | transfer of the natural change |
+|---|---|---|---|
+| the edit | 0.16 | 0.78 | shared part 0.87, goal-specific part 0.26 |
+| the natural change (donor − recipient) | 0.44 | 0.41 | |
+
+* The edited belief component produces a change that is mostly **shared across goals** (0.84 of its variance; cosine
+  0.78 between goals), and it reproduces 0.87 of the shared part of the natural change but only 0.26 of its
+  goal-specific part, which is 0.44 of the natural change. Decisions switch to the donor's in 0.55 under the four
+  goals (0.70 under one of them), 0.45 under the episode's own goal.
+* So what blocks 2–3 compute from a goal-free belief vector is largely goal-independent; the goal-specific part of the
+  response is made earlier, in the goal-dependent reading of the history that the belief component (goal-averaged by
+  construction) does not carry.
+
+**Localisation by removal** (one component's interaction at a time replaced by its history and goal parts, offline):
+no single component matters much (own-goal decisions changed 0.02–0.10; the two late MLPs most), all eight together
+change 0.20 of decisions and leave 0.77 of the goal-dependence (natural 0.93). The goal-dependent reading is
+distributed over the components, as the maze10 removals found online.
+
+**Reading.** At the level of the output the additive code holds to first order, but the state is not additive: from
+block 0's attention, each goal extracts its own function of the belief, the MLPs deepen it, and the goal-free belief
+component carries the shared part of the response while the goal-specific part rides on the goal-dependent reading.
+A belief-encoding edit therefore transfers the shared response (and new readouts, section 7), not the full
+goal-conditioned one; the whole per-goal swap (0.96) does both.
