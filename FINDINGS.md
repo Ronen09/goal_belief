@@ -1,3 +1,16 @@
+**Pair terms — what H does on a belief split between two cells (`studies/7_information_seeking/pair_terms/REPORT.md`, rule in
+`studies/7_information_seeking/pair_terms/PLAN.md`).** Two-cell decisions (top two cells ≥ 0.85 of the mass, the minor ≥ 0.15; 0.12 of
+decisions) of the maze10 models; H against five readings of the pair term, each through a free 4 × 4 map.
+
+- The mixture of the model's own single-cell profiles explains 0.31 of H there; robust (a move optimal from both
+  cells) 0.19, commit (the likelier cell's profile) 0.20, disambiguate (information gain) 0.22, lookahead 0.16; all
+  together 0.45; an MLP on the full belief 0.88. Taken literally, the mixture of the two certain profiles has no
+  explanatory power (R² −0.03), at conflict 0 as at conflict 1.
+- Behaviour: QMDP-optimal moves in 0.96 of near-certain decisions, 0.59 of two-cell ones; a shortest-path move from
+  the likelier cell in 0.30. Not hedging (common moves at chance), not landmark seeking (below chance).
+- Post hoc: an MLP on the pair identity and weight alone reaches 0.77 (a per-pair table 0.66): the pair term is a
+  learned response per aliased pair, not reducible to the two cells' routes. 0 of 7 expectations held.
+
 # Findings
 
 Every experiment's result in a few lines, grouped by study and in the order the work was done. Numbers are seed

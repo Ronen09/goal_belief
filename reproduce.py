@@ -200,6 +200,8 @@ EXPERIMENTS = [
           [Step("train.py", ("--seeds", "0", "1", "2", "3", "4", "5"), quick=True), Step("measure.py"), Step("tables.py", tables=True)], needs=("maze10", "interior_goals")),
     Experiment("H_simplex", "7_information_seeking/H_simplex", "Is the history profile H a belief-weighted per-cell table (the QMDP form H(b) = sum_s b(s) h_s)? fits of H on the 55-cell posterior along the maze10 models' own episodes, the per-cell profiles against goal-averaged optimal share and reachability, the fitted forms run in the additive code offline and online", "15 min GPU",
           [Step("run.py"), Step("tables.py", tables=True), Step("posthoc.py"), Step("posthoc2.py")], needs=("maze10",)),
+    Experiment("pair_terms", "7_information_seeking/pair_terms", "What H does when the belief is split between two cells: the mixture of the model's own single-cell profiles against robust, commit, disambiguate and lookahead readings of the pair term; departure by conflict, held-out R², top actions, the model's own moves; post hoc: is H a function of the pair alone, hedging, landmark seeking", "6 min GPU",
+          [Step("run.py"), Step("tables.py", tables=True), Step("posthoc.py")], needs=("maze10", "H_simplex")),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 
