@@ -198,6 +198,8 @@ EXPERIMENTS = [
           [Step("run.py")]),
     Experiment("random_goals", "7_information_seeking/random_goals", "The maze10 maze with every cell a possible goal, one per episode: does a goal from anywhere force the goal × history interaction? the additive policy run in the environment and removed online", "2 h GPU",
           [Step("train.py", ("--seeds", "0", "1", "2", "3", "4", "5"), quick=True), Step("measure.py"), Step("tables.py", tables=True)], needs=("maze10", "interior_goals")),
+    Experiment("H_simplex", "7_information_seeking/H_simplex", "Is the history profile H a belief-weighted per-cell table (the QMDP form H(b) = sum_s b(s) h_s)? fits of H on the 55-cell posterior along the maze10 models' own episodes, the per-cell profiles against goal-averaged optimal share and reachability, the fitted forms run in the additive code offline and online", "15 min GPU",
+          [Step("run.py", quick=False), Step("tables.py", tables=True)], needs=("maze10",)),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 
