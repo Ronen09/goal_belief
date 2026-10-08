@@ -96,9 +96,9 @@ def r2(P, Y, Yfit_mean):
 
 
 class MLP(torch.nn.Module):
-    def __init__(self, d_in, d=64):
+    def __init__(self, d_in, d=64, d_out=4):
         super().__init__()
-        self.f = torch.nn.Sequential(torch.nn.Linear(d_in, d), torch.nn.GELU(), torch.nn.Linear(d, d), torch.nn.GELU(), torch.nn.Linear(d, 4))
+        self.f = torch.nn.Sequential(torch.nn.Linear(d_in, d), torch.nn.GELU(), torch.nn.Linear(d, d), torch.nn.GELU(), torch.nn.Linear(d, d_out))
 
     def forward(self, x):
         return self.f(x)
@@ -110,7 +110,7 @@ def fit_mlp(X, Y, va_mask, seed=0, steps=3000, d=64):
     X, Y = X.float(), Y.float()
     n = len(X); idx = torch.arange(n, device=X.device); va, tr = idx[va_mask], idx[~va_mask]
     mu, sd = X[tr].mean(0), X[tr].std(0).clamp(min=1e-6)
-    net = MLP(X.shape[1], d).to(X.device)
+    net = MLP(X.shape[1], d, Y.shape[1]).to(X.device)
     opt = torch.optim.AdamW(net.parameters(), lr=2e-3, weight_decay=1e-4)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, steps)
     best, best_state = float("inf"), None

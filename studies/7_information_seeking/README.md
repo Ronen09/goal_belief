@@ -1,6 +1,6 @@
 # Information seeking in a larger maze
 
-A 55-cell maze without a solver: no passive prefix, random spawns, the exact filter as the only ground truth. Trained by reward, the agents reach the level of QMDP (and pass it with a goal from anywhere) and localise faster than it does; the additive policy, run as a policy and enforced as a state, keeps three quarters to four fifths of the goal-directed return, with interior goals as with spread ones; two thirds when two goals are collected or when every cell can be the goal, although the fully observed task is as additive as ever (the additive ceiling).
+A 55-cell maze without a solver: no passive prefix, random spawns, the exact filter as the only ground truth. Trained by reward, the agents reach the level of QMDP (and pass it with a goal from anywhere) and localise faster than it does; the additive policy, run as a policy and enforced as a state, keeps three quarters to four fifths of the goal-directed return, with interior goals as with spread ones; two thirds when two goals are collected or when every cell can be the goal, although the fully observed task is as additive as ever (the additive ceiling). The history profile H of the additive code is a function of the posterior but not a belief-weighted per-cell table: it is close to quadratic in the belief (H simplex).
 
 | experiment | question | report | cost |
 |---|---|---|---|
@@ -9,5 +9,6 @@ A 55-cell maze without a solver: no passive prefix, random spawns, the exact fil
 | [Interior goals](interior_goals/) | The same maze with six junction goals: one goal per episode, and two goals to collect. Is the additive policy a consequence of goal placement? Does collection break it? | [report](interior_goals/REPORT.md) | 2.5 h GPU |
 | [Additive ceiling](additive_ceiling/) | No network: given the cell, how often can the best rule argmax H(cell) + G(goal) pick a shortest-path move, for each maze and goal set? (0.93–0.97 in the larger maze whatever the goal set.) | [tables](additive_ceiling/tables.md) | 15 min CPU |
 | [Random goals](random_goals/) | The same maze with every cell a possible goal, one per episode: does a goal from anywhere force the goal × history interaction? | [report](random_goals/REPORT.md) | 2 h GPU |
+| [H simplex](H_simplex/) | Is the history profile H a belief-weighted per-cell table (the QMDP form)? No: affine in the 55-cell posterior explains 0.45 of H, an MLP on it 0.94, pairwise products of the belief 0.86; the prefix record adds 0.05; an MLP on the posterior recovers the additive code's return in full | [report](H_simplex/REPORT.md) | 15 min GPU |
 
 Rerun one: `python reproduce.py <experiment>` (e.g. `python reproduce.py maze10`); results of the whole project: [FINDINGS.md](../../FINDINGS.md).

@@ -101,7 +101,7 @@ def main():
     fig, axes = plt.subplots(1, 3, figsize=(13, 4.6))
     for ax, (title, key) in zip(axes, (("h_s: the affine fit's per-cell profile", "h_cells"), ("popt(s, ·): share of goals for which the move is optimal", "popt"), ("reach(s, ·): mean γ^d to the goals", "reach"))):
         V = np.array(r0["profiles"][key])                                                      # [n, 4] centred: N S W E
-        V = V / (np.abs(V).max() + 1e-9)
+        V = np.clip(V / (np.quantile(np.abs(V), 0.95) + 1e-9), -1, 1)                            # robust scale: the 95th percentile fills a cell
         R, C = max(r for r, _ in maze.cells) + 1, max(c for _, c in maze.cells) + 1
         grid = np.ones((R, C, 3)) * 0.25
         for (rr, cc) in maze.cells:

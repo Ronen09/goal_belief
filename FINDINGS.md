@@ -881,3 +881,19 @@ alone, 0.77–0.83. The fully observed task is about as additive whatever the go
 - The posterior decodes from the final state at R² 0.28 (0.46 before).
 - Registered: LEARN and SEEK-B held; AD and DROP (0.10 below the junction arm, 0.15 asked) did not. 4 of 6
   expectations held, one in part.
+
+**H simplex — is the history profile a belief-weighted per-cell table? (`studies/7_information_seeking/H_simplex/REPORT.md`, rule in
+`studies/7_information_seeking/H_simplex/PLAN.md`).** The maze10 models' H (the goal-averaged logit profile of the additive code) at every
+decision of their own episodes, fitted as functions of the exact 55-cell posterior; held-out R² on separate episodes.
+
+- The QMDP form H(b) = Σ_s b(s) h_s explains 0.445 of H (the small maze: 0.82); the per-cell optimal-share and
+  reachability candidates mixed under the belief 0.30. An MLP on the same posterior explains 0.94, prefix features on
+  top add 0.05: the missing half is nonlinear in the belief, not information beyond it.
+- Run as policies with the goal bias G: the affine form recovers 0.63 of the goal-directed return, the MLP on the
+  posterior 0.80, the additive code read from the network 0.81. The history reaches the decision through the
+  posterior; the map from posterior to profile is not linear.
+- Post hoc: not a logit of a belief-weighted action probability (0.455), not a gain on a fixed direction (direction
+  0.39, ‖H‖ uncorrelated with entropy), not the value of information (+0.08); a table per entropy bin 0.78 with
+  unrelated tables across bins; **b with all pairwise products b(s) b(s′) 0.86**, log b a better coordinate (0.62
+  affine, 0.95 MLP). 0 of 7 expectations held.
+
