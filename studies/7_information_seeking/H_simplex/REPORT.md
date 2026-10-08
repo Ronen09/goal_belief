@@ -146,3 +146,46 @@ often concentrated, which favours low-order fits. R² is pooled over the four ce
 decision equally. No causal edit is made here; the maze10 experiment's removals are the causal evidence for the
 history part, and the online runs show that a function of the exact posterior plus G reproduces the additive code's
 return. The post hoc models were chosen after the registered result and after the user suggested the logit reading.
+
+## 6. Post hoc: H is computed through the encoded posterior, not in parallel to it (`causal.md`, `causal2.md`)
+
+Exploratory, no registration. Matched pairs of decisions (recipient A, donor B; the same step; posteriors differing by
+1.6 of mass in L1; 4 096 pairs per model); the decision token's residual stream edited at the input of block l (site
+l), the same vector under every goal; read-outs: the transfer of H toward the donor's (projection on H_B − H_A) and,
+among pairs whose decisions differ, the share now taking the donor's.
+
+**Where H is determined.** Swapping the decision token's whole state (per goal) at site 2, after block 1, transfers
+0.96 of H and 0.89 of decisions; at site 1, 0.76; at site 4, 1.00. Blocks 2 and 3 compute H from that token's own
+state; the history is not re-read.
+
+**How the posterior is encoded there.** From the goal-averaged state the posterior decodes linearly at 0.49, in log
+coordinates at 0.76, by an MLP at 0.81, from site 1 on and unchanged after: a nonlinear code made by block 0. The
+state is predicted *from* the posterior at 0.57–0.65 linearly and **0.93–0.97 by an MLP** (inputs b and log b): all but
+3–7 % of the goal-averaged state's variance is a function of the posterior.
+
+**The decomposition test.** x̄ = f(b) + r at each site, f the MLP encoder; swap one part at a time:
+
+| site | edit | H transfer | decision to donor |
+|---|---|---|---|
+| 2 (after block 1) | **posterior part f(b_B) − f(b_A)** | **0.75 (0.72–0.80)** | **0.74 (0.70–0.80)** |
+| 2 | residual part r_B − r_A | 0.07 (0.05–0.10) | 0.06 (0.04–0.10) |
+| 2 | both parts (the goal-averaged difference) | 0.83 | 0.80 |
+| 2 | linear belief edit | 0.34 | 0.33 |
+| 2 | random direction, the posterior part's norm | 0.05 | 0.06 |
+| 2 | whole per-goal swap | 0.96 | 0.89 |
+| 4 (final) | posterior part | 0.82 (0.80–0.84) | 0.82 (0.75–0.84) |
+| 4 | residual part | 0.09 | 0.08 |
+| 4 | both parts | 0.92 | 0.90 |
+
+* **The posterior part carries H; the residual does not.** Moving the part of the state that the posterior predicts
+  moves H three quarters of the way to the donor's and switches three quarters of the differing decisions; moving the
+  part it does not predict (the 5 % of the state that is history beyond the belief) does what a random direction does.
+  Together they reach 0.83–0.92; the rest, up to the whole per-goal swap, is the goal-specific part of the state that a
+  goal-free vector cannot carry.
+* The linear belief edit's 0.35 was the instrument, not the mechanism: the posterior code is nonlinear (log-like), and
+  the nonlinear encoder's edit recovers what the linear one missed.
+
+**Reading.** The network computes its action response through its encoded posterior: the decision token holds a
+nonlinear code of the belief, formed by block 0, from which blocks 2–3 compute H, including its pair terms; the
+posterior and the response are not parallel consequences of the history. This is the causal counterpart of the
+behavioural result that an MLP on the exact posterior recovers the additive code's return in full.

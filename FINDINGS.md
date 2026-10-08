@@ -909,4 +909,9 @@ decision of their own episodes, fitted as functions of the exact 55-cell posteri
   0.39, ‖H‖ uncorrelated with entropy), not the value of information (+0.08); a table per entropy bin 0.78 with
   unrelated tables across bins; **b with all pairwise products b(s) b(s′) 0.86**, log b a better coordinate (0.62
   affine, 0.95 MLP). 0 of 7 expectations held.
+- Exploratory follow-ups: the nonlinear part of H changes the goal-free top action in 0.41 of decisions and the
+  decision with the goal bias in 0.20 (two-cell beliefs 0.31), 0.17 of it from the pair terms. Causally, swapping the
+  decision token's whole state after block 1 transfers 0.96 of H to a donor's; the state there is 0.93–0.97 a nonlinear
+  function of the posterior; swapping that posterior part alone transfers 0.75 of H and 0.74 of decisions, swapping
+  the residual 0.07 (random 0.05): **H is computed through the encoded posterior, not in parallel to it**.
 
