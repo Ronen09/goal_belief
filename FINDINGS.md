@@ -923,4 +923,9 @@ decision of their own episodes, fitted as functions of the exact 55-cell posteri
   goal offset explains 0.72–0.78 of the state, per-goal encoders 0.94–0.97. The goal-free belief edit produces a
   change 0.84 shared across goals (the natural change: 0.56), reproducing 0.87 of the shared part of the natural
   change and 0.26 of its goal-specific part; no single component's interaction matters (≤ 0.10), all together 0.20.
+- Beliefs equivalent for goal A (QMDP profiles within 0.5 step, same optimal set) and different for goal B (≥ 1 step,
+  disjoint sets): the states are equally far apart under both goals after block 0 (0.87 / 0.88 of typical) and more
+  under B at the end (0.66 / 0.94); B's move decodes from the state under A at 0.94 (chance 0.43); patched at the
+  input of block 2, the distinction written as B writes it moves B's decision 0.91, written as A writes it 0.31, the
+  goal-free posterior part 0.48: the information is kept under both goals, its representation is goal-specific.
 

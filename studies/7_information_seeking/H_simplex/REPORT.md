@@ -284,3 +284,44 @@ block 0's attention, each goal extracts its own function of the belief, the MLPs
 component carries the shared part of the response while the goal-specific part rides on the goal-dependent reading.
 A belief-encoding edit therefore transfers the shared response (and new readouts, section 7), not the full
 goal-conditioned one; the whole per-goal swap (0.96) does both.
+
+## 9. Post hoc: beliefs equivalent for one goal, different for another (`equiv.md`)
+
+Exploratory. Pairs of test decisions at the same step whose horizon-free QMDP profiles (Σ_s b(s) γ^d, in effective
+steps) are within 0.5 step of each other with the same optimal set under goal A, with A within reach (value ≥ 0.4),
+and at least 1 step apart with disjoint optimal sets under goal B; pooled over ordered goal pairs, about 5 300 pairs
+per model, their posteriors 1.9 apart in L1. The model's own decision is the same for the two beliefs under A in 0.60
+and under B in 0.39. (A first selection on horizon-limited values was degenerate: late decisions with goal A out of
+reach, every action worth 0; it was discarded.)
+
+**The representation distinguishes them equally at first, then more under B.** Distance between the two states,
+over the typical same-step distance under that goal: after block 0, 0.87 under A and 0.88 under B; after block 1,
+0.84 and 0.93; at the final residual, 0.66 and 0.94 (logits 0.72 and 1.11). The late blocks amplify the distinction
+under the goal it matters to and attenuate it under the goal it does not.
+
+**The distinction is fully decodable under A.** An MLP decoder of B's optimal move from the state under A hits 0.94
+on these pairs (from the state under B 0.94; chance 0.43), at both sites. What is irrelevant to A's decision is
+retained in A's state.
+
+**Patched, its effect depends on how it is represented** (added at the input of block 2 under the recipient goal only):
+
+| vector added to b1's state | under B: to b2's decision | under A: decision changed |
+|---|---|---|
+| the distinction as represented under B, x2(B) − x1(B) | **0.91** | 0.39 |
+| the distinction as represented under A, x2(A) − x1(A) | 0.31 | 0.40 |
+| the goal-free posterior part f(b2) − f(b1) | 0.48 | 0.35 |
+| random, the B-distinction's norm | 0.04 | 0.08 |
+
+* The same information, written as goal A writes it, moves B's decision a third as often as written as goal B writes
+  it (0.31 against 0.91). The goal-free belief component is in between (0.48). So what changes across goals is not
+  whether the distinction is kept, it is kept and decodable either way, but **how it is represented**: each goal
+  holds the belief in its own coordinates from block 0 onward (section 8), and blocks 2–3 read those coordinates.
+* Every non-random vector also changes A's decision in 0.35–0.40 of pairs, although the beliefs are A-equivalent: the
+  recipient's A-decision is not invariant to a change of belief that leaves A's values unchanged. (The model's own
+  A-decisions agree on only 0.60 of these pairs, so A-equivalence by exact values does not imply equivalence for the
+  network's policy.)
+
+**Reading.** Across goals the information is the same and the format differs: a goal-specific encoding of the belief
+that the late blocks read, with the goal-free posterior component as its common part. This is the mechanism behind
+the earlier pattern: belief edits transfer the shared response (0.87 of the natural change's shared part) but not the
+goal-specific one (0.26), while a change written in the recipient goal's own coordinates transfers almost fully.
