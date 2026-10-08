@@ -189,3 +189,48 @@ state is predicted *from* the posterior at 0.57–0.65 linearly and **0.93–0.9
 nonlinear code of the belief, formed by block 0, from which blocks 2–3 compute H, including its pair terms; the
 posterior and the response are not parallel consequences of the history. This is the causal counterpart of the
 behavioural result that an MLP on the exact posterior recovers the additive code's return in full.
+
+## 7. Post hoc: the encoded posterior is reusable for new decisions, and the posterior part transfers them (`readout.md`)
+
+Exploratory. Seven new decision tasks per belief: the QMDP-optimal move under the exact posterior for six new goal
+cells (the interior-goals experiment's junction goals, none a trained goal) and for a new rule (toward the nearest
+landmark). Readouts (linear, or an MLP of 64 units) from the frozen, goal-averaged decision-token state, fitted on
+24 576 fit decisions, scored by hit rate on 8 192 test decisions. **Matched-preference subset**: test decisions paired
+with another of the same step, the same own-goal move and nearly the same H (within the 25th percentile of H
+distances), whose optimal moves for the task are disjoint, so the current preferences do not tell them apart (7–17 %
+of decisions per task; chance there 0.44).
+
+| readout from | all decisions | matched-preference subset |
+|---|---|---|
+| majority move | 0.58 | 0.44 (chance) |
+| H (the current preferences), MLP | 0.85 | 0.69 |
+| all 16 current logits, MLP | 0.92 | 0.81 |
+| **state after block 1, MLP** | **0.96** | **0.91** |
+| state after block 1, linear | 0.89 | 0.76 |
+| final residual, MLP | 0.95 | 0.90 |
+| the exact posterior, MLP (ceiling) | 0.99 | 0.99 |
+
+* **A small readout of the state supports the new decisions** (0.96 of decisions; 0.91 where current preferences
+  cannot distinguish the beliefs, against 0.69 from H and 0.81 from every current logit). The representation carries
+  the belief beyond what the trained goals' decisions use; a linear readout is weaker (0.76 on the matched subset),
+  as expected of a nonlinear code.
+
+**Transfer.** On the matched pairs of section 6 whose optimal moves for a task are disjoint, the swap at the input
+of block 2, propagated through blocks 2–3 to the final residual and read by the new readouts there:
+
+| edit at the input of block 2 | new decision to the donor's | kept the recipient's |
+|---|---|---|
+| **posterior part f(b_B) − f(b_A)** | **0.74 (0.72–0.77)** | 0.16 |
+| residual part | 0.06 | 0.90 |
+| random direction, the posterior part's norm | 0.18 | 0.66 |
+| whole swap | 0.76 | 0.15 |
+| no edit | 0.04 | 0.93 |
+
+* **Swapping the posterior-predicted component transfers the new decisions as completely as swapping the whole
+  state** (0.74 against 0.76), and the residual transfers nothing (0.06). The same component that carries H (section
+  6: 0.75) carries decisions the network was never trained to make.
+
+**Reading.** The decision token holds a reusable belief: a nonlinear code of the posterior, formed by block 0, that a
+small new readout can turn into new decisions, and whose causal content for those decisions is the same
+posterior-predicted component that drives the trained policy. This strengthens the interpretation of section 6: the
+posterior is represented as such, not merely as whatever the current action preferences happen to need.

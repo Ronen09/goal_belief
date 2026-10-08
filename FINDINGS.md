@@ -914,4 +914,8 @@ decision of their own episodes, fitted as functions of the exact 55-cell posteri
   decision token's whole state after block 1 transfers 0.96 of H to a donor's; the state there is 0.93–0.97 a nonlinear
   function of the posterior; swapping that posterior part alone transfers 0.75 of H and 0.74 of decisions, swapping
   the residual 0.07 (random 0.05): **H is computed through the encoded posterior, not in parallel to it**.
+- Reusable: an MLP readout of the frozen state makes the QMDP-optimal move for six new goals and a landmark rule in
+  0.96 of decisions, 0.91 where the current preferences cannot tell the beliefs apart (H alone 0.69, all current
+  logits 0.81, chance 0.44); swapping the posterior-predicted component transfers those new decisions 0.74 to the
+  donor's, the whole state 0.76, the residual 0.06.
 
