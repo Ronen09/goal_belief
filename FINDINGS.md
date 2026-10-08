@@ -928,4 +928,8 @@ decision of their own episodes, fitted as functions of the exact 55-cell posteri
   under B at the end (0.66 / 0.94); B's move decodes from the state under A at 0.94 (chance 0.43); patched at the
   input of block 2, the distinction written as B writes it moves B's decision 0.91, written as A writes it 0.31, the
   goal-free posterior part 0.48: the information is kept under both goals, its representation is goal-specific.
+- That change of representation is systematic: a linear map per goal pair from A-written to B-written differences,
+  fitted on unrelated pairs, moves B's decision 0.86 on held-out pairs (direct B-written difference 0.91,
+  untransformed 0.33, random 0.05; held-out R² 0.95; MLPs 0.89–0.91): a reusable, close-to-linear change of
+  coordinates between goals over a common nonlinear code of the posterior.
 

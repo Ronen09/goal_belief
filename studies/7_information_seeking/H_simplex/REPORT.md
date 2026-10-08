@@ -325,3 +325,28 @@ retained in A's state.
 that the late blocks read, with the goal-free posterior component as its common part. This is the mechanism behind
 the earlier pattern: belief edits transfer the shared response (0.87 of the natural change's shared part) but not the
 goal-specific one (0.26), while a change written in the recipient goal's own coordinates transfers almost fully.
+
+## 10. Post hoc: the change of representation across goals is systematic and largely linear (`equiv2.md`)
+
+Exploratory. For each ordered goal pair (A, B), a map from the A-written difference x2(A) − x1(A) to the B-written
+difference at the input of block 2, fitted on 12 288 random same-step pairs of fit decisions (posteriors ≥ 0.5
+apart), applied to the held-out A-equivalent, B-different pairs of section 9 (test episodes, about 450 per goal
+pair): x1(B) + T(Δ_A), logits read under B.
+
+| vector added under B | B's decision to b2's | held-out R² for the B-written difference |
+|---|---|---|
+| direct B-written difference | 0.91 (0.89–0.96) | 1 |
+| **linear map of the A-written difference** | **0.86 (0.80–0.89)** | 0.95 (0.94–0.96) |
+| MLP on differences | 0.89 | 0.96 |
+| MLP from the A-written state to the B-written state | 0.91 | 0.99 |
+| untransformed A-written difference | 0.33 (0.24–0.40) | 0.39 |
+| random, the same norm | 0.05 | |
+
+* **Strong transfer.** A single linear map per goal pair, fitted on unrelated pairs of beliefs, turns the A-written
+  difference into one that moves B's decision 0.86 of the time on entirely held-out pairs, against 0.33 untransformed
+  and 0.91 for the B-written difference itself; it predicts the B-written difference at R² 0.95. Nonlinear maps add
+  little (0.89 on differences, 0.91 from state to state).
+* So the goal-specific representation of the belief (sections 8–9) is a **systematic, reusable change of coordinates**
+  between goals, close to linear, not a belief-specific recoding. Together with the shared posterior component
+  (section 6) this gives the structure of the decision token's state: a common nonlinear code of the posterior, read
+  through a goal-dependent, approximately linear transformation that each goal applies from block 0 onward.
