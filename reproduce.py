@@ -202,6 +202,8 @@ EXPERIMENTS = [
           [Step("run.py"), Step("tables.py", tables=True), Step("posthoc.py"), Step("posthoc2.py")], needs=("maze10",)),
     Experiment("pair_terms", "7_information_seeking/pair_terms", "What H does when the belief is split between two cells: the mixture of the model's own single-cell profiles against robust, commit, disambiguate and lookahead readings of the pair term; departure by conflict, held-out R², top actions, the model's own moves; post hoc: is H a function of the pair alone, hedging, landmark seeking", "6 min GPU",
           [Step("run.py"), Step("tables.py", tables=True), Step("posthoc.py")], needs=("maze10", "H_simplex")),
+    Experiment("factorial_patch", "7_information_seeking/factorial_patch", "Two histories x two goals in the maze10 models, every cell patched into every other (12 directions) for the decision token's residual, the history tokens' and goal token's residuals, the eight sublayer outputs and the 16 heads: where the decision goes (source / the source's history under the recipient's goal / the recipient's history under the source's goal / kept), per-component causal additivity in history and goal, symmetry across recipients", "5 min GPU",
+          [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("maze10",)),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 

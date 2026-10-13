@@ -1,16 +1,3 @@
-**Pair terms — what H does on a belief split between two cells (`studies/7_information_seeking/pair_terms/REPORT.md`, rule in
-`studies/7_information_seeking/pair_terms/PLAN.md`).** Two-cell decisions (top two cells ≥ 0.85 of the mass, the minor ≥ 0.15; 0.12 of
-decisions) of the maze10 models; H against five readings of the pair term, each through a free 4 × 4 map.
-
-- The mixture of the model's own single-cell profiles explains 0.31 of H there; robust (a move optimal from both
-  cells) 0.19, commit (the likelier cell's profile) 0.20, disambiguate (information gain) 0.22, lookahead 0.16; all
-  together 0.45; an MLP on the full belief 0.88. Taken literally, the mixture of the two certain profiles has no
-  explanatory power (R² −0.03), at conflict 0 as at conflict 1.
-- Behaviour: QMDP-optimal moves in 0.96 of near-certain decisions, 0.59 of two-cell ones; a shortest-path move from
-  the likelier cell in 0.30. Not hedging (common moves at chance), not landmark seeking (below chance).
-- Post hoc: an MLP on the pair identity and weight alone reaches 0.77 (a per-pair table 0.66): the pair term is a
-  learned response per aliased pair, not reducible to the two cells' routes. 0 of 7 expectations held.
-
 # Findings
 
 Every experiment's result in a few lines, grouped by study and in the order the work was done. Numbers are seed
@@ -933,3 +920,38 @@ decision of their own episodes, fitted as functions of the exact 55-cell posteri
   untransformed 0.33, random 0.05; held-out R² 0.95; MLPs 0.89–0.91): a reusable, close-to-linear change of
   coordinates between goals over a common nonlinear code of the posterior.
 
+**Pair terms — what H does on a belief split between two cells (`studies/7_information_seeking/pair_terms/REPORT.md`, rule in
+`studies/7_information_seeking/pair_terms/PLAN.md`).** Two-cell decisions (top two cells ≥ 0.85 of the mass, the minor ≥ 0.15; 0.12 of
+decisions) of the maze10 models; H against five readings of the pair term, each through a free 4 × 4 map.
+
+- The mixture of the model's own single-cell profiles explains 0.31 of H there; robust (a move optimal from both
+  cells) 0.19, commit (the likelier cell's profile) 0.20, disambiguate (information gain) 0.22, lookahead 0.16; all
+  together 0.45; an MLP on the full belief 0.88. Taken literally, the mixture of the two certain profiles has no
+  explanatory power (R² −0.03), at conflict 0 as at conflict 1.
+- Behaviour: QMDP-optimal moves in 0.96 of near-certain decisions, 0.59 of two-cell ones; a shortest-path move from
+  the likelier cell in 0.30. Not hedging (common moves at chance), not landmark seeking (below chance).
+- Post hoc: an MLP on the pair identity and weight alone reaches 0.77 (a per-pair table 0.66): the pair term is a
+  learned response per aliased pair, not reducible to the two cells' routes. 0 of 7 expectations held.
+
+**Factorial patch — two histories × two goals, every cell into every other (`studies/7_information_seeking/factorial_patch/REPORT.md`,
+rule in `studies/7_information_seeking/factorial_patch/PLAN.md`).** Quartets (h1, h2) × (A, B) of same-step decisions of the
+maze10 models, 24 576 per model; one quantity of a source cell written into a recipient cell's run, all 12 directions,
+scored against the four natural decisions (the source's; the source's history under the recipient's goal; the
+recipient's history under the source's goal; kept).
+
+- The decision is assembled in the decision token during block 1: its residual from the diagonal cell switches the
+  recipient to the source's decision 0.42 entering block 1 (unambiguously 0.27; 0.51 to the source's history under
+  the recipient's goal), 0.85 entering block 2, 0.95 entering block 3; the history tokens' states entering block 2
+  carry 0.05 and blocks 2–3's attention outputs ≤ 0.08.
+- Entering block 1 the decision token's own block-0 state carries the belief (another history: 0.72; the history
+  tokens' states 0.19) and the history tokens' states carry the goal (another goal: 0.41; the decision token's own
+  state 0.35; the goal token itself 0.10, entering block 2 0.01): the goal token is read once, in block 0, and its
+  content travels in every token.
+- Block 0's attention output carries the belief (0.71), block 1's the goal (0.56, the largest single carrier; block
+  0's 0.35); the MLPs of blocks 1–3 carry the combined decision and are overridden half the time (kept 0.49–0.73); no
+  single head carries anything (≤ 0.22 for the belief, ≤ 0.12 for the goal).
+- Additivity: the natural logits' interaction residual is 0.52 of the two-factor change (ι); the attention outputs
+  of blocks 0–1 and block 0's MLP are more additive (0.40–0.50), the MLP outputs of blocks 1–3 less (0.78–0.86), in
+  the order of the components' own interaction content (ρ 0.64–0.93). The four recipients agree (spread ≤ 0.04). 2 of
+  7 registered criteria held (RANK, SYM); the expected locations entering block 1 (the decision in the token, the
+  belief in the history tokens, the goal in the goal token) were all wrong.

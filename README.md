@@ -37,7 +37,10 @@ then reports which held (`REPORT.md`). [FINDINGS.md](FINDINGS.md) has every resu
    The additive policy, run in the environment, keeps four fifths of the goal-directed return; the goal × history
    interaction carries the rest. Moving the goals to interior junctions changes little (three quarters); collecting
    two goals per episode, or drawing the goal from every cell, lowers it to two thirds, although the fully observed
-   task is as additive as ever; with a goal from anywhere the agents pass QMDP.
+   task is as additive as ever; with a goal from anywhere the agents pass QMDP. Patched in every direction over two histories and
+   two goals, the decision token holds the belief entering block 1 and the decision from block 2 on; the goal travels
+   in the history tokens, the goal token being read once, in block 0; no head carries anything alone, and the MLPs'
+   outputs are less additive in goal and history than the logits, the attention outputs more.
 
 ## Layout
 
