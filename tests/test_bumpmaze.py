@@ -68,3 +68,17 @@ def test_minigrid_agrees(world):
             assert term == bool(w.at_goal[s2])
             if term: break
             s = s2
+
+
+def test_goals_and_common_belief(world):
+    w = world
+    goals = BMZ.pick_goals(w.free, 4)
+    assert goals[0] == w.goal and len(set(goals)) == 4
+    w2 = BMZ.World(w.free, goals[1]); assert w2.goal_idx != w.goal_idx and (w2.nxt == w.nxt).all()
+    # the goal-free belief contains every goal-specific belief, and the torch and numpy versions agree
+    gen = torch.Generator().manual_seed(2); e = BMZ.Env(w, 64, gen); common = BMZ.Filter(w, 64, remove_goal=False)
+    for t in range(12):
+        a = torch.randint(3, (64,), generator=gen); _, o = e.step(a); common.update(a, o)
+        assert bool((~e.filter.mask | common.mask).all())
+    i = 0; acts = [int(x[i]) for x in e.acts]; obss = [int(x[i]) for x in e.obss]
+    assert (BMZ.common_mask(w, acts, obss) == common.mask[i].numpy()).all()

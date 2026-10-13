@@ -118,6 +118,32 @@ class World:
         return "\n".join(rows)
 
 
+def cell_distances(free):
+    """BFS move distance between free cells (turns not counted): dict cell -> dict cell -> steps."""
+    cells = [(int(x), int(y)) for y, x in zip(*np.nonzero(free))]; out = {}
+    for c in cells:
+        d = {c: 0}; q = [c]
+        while q:
+            x, y = q.pop(0)
+            for dx, dy in DIRS:
+                n = (x + int(dx), y + int(dy))
+                if free[n[1], n[0]] and n not in d: d[n] = d[(x, y)] + 1; q.append(n)
+        out[c] = d
+    return out
+
+
+def pick_goals(free, k, first=None):
+    """k goal cells spread out: the first as given (or the cell farthest from the centre of mass), then repeatedly
+    the free cell farthest (in moves) from the goals chosen so far."""
+    D = cell_distances(free); cells = list(D)
+    if first is None:
+        cy, cx = np.mean([c[1] for c in cells]), np.mean([c[0] for c in cells]); first = max(cells, key=lambda c: (c[0] - cx) ** 2 + (c[1] - cy) ** 2)
+    goals = [tuple(int(v) for v in first)]
+    while len(goals) < k:
+        goals.append(max((c for c in cells if c not in goals), key=lambda c: min(D[g][c] for g in goals)))
+    return goals
+
+
 def make(seed=0, size=9, loops=4, gamma=0.97, H=40, goal=None):
     free = layout(seed, size, loops)
     if goal is None:                                                   # the free cell farthest (in BFS steps) from the centre of mass
@@ -129,16 +155,23 @@ def make(seed=0, size=9, loops=4, gamma=0.97, H=40, goal=None):
 
 # ------------------------------------------------------------------ exact belief (a set) and the exact solver
 
-def step_belief(w, mask, a, obs):
+def step_belief(w, mask, a, obs, remove_goal=True):
     """mask: bool [n_states] of consistent states; after action a and observation obs (0 moved / 1 bumped; for
     turns obs is ignored). Returns the new mask (states that terminated at the goal are removed: the episode would
-    have ended)."""
+    have ended; remove_goal=False gives the goal-free belief shared by every goal)."""
     if a < 2:
         new = np.zeros_like(mask); new[w.nxt[mask, a]] = True; return new
     keep = mask & (w.bump == bool(obs))
     new = np.zeros_like(mask); new[w.nxt[keep, 2]] = True
-    new &= ~w.at_goal
+    if remove_goal: new &= ~w.at_goal
     return new
+
+
+def common_mask(w, acts, obss):
+    """The goal-free belief after a history: every free cell x heading is a possible start."""
+    m = np.ones(w.n_states, dtype=bool)
+    for a, o in zip(acts, obss): m = step_belief(w, m, a, o, remove_goal=False)
+    return m
 
 
 def solve(w, max_sets=2_000_000, tol=1e-10, iters=10_000):
@@ -193,10 +226,11 @@ def solve(w, max_sets=2_000_000, tol=1e-10, iters=10_000):
 
 class Filter:
     """The exact belief of a batch of episodes as bool masks [N, n_states]; posterior = mask / mask.sum()."""
-    def __init__(self, w, N, device="cpu"):
-        self.w, self.dev = w, device
+    def __init__(self, w, N, device="cpu", remove_goal=True):
+        self.w, self.dev, self.remove_goal = w, device, remove_goal
         self.nxt = torch.as_tensor(w.nxt, device=device); self.bump = torch.as_tensor(w.bump, device=device); self.at_goal = torch.as_tensor(w.at_goal, device=device)
         full = torch.zeros(w.n_states, dtype=torch.bool, device=device); full[torch.as_tensor(w.start_states, device=device)] = True
+        if not remove_goal: full[:] = True                                # the goal-free belief: any cell is a possible start
         self.mask = full[None].repeat(N, 1)
 
     def update(self, a, obs):
@@ -205,7 +239,7 @@ class Filter:
         keep = torch.where((a == 2)[:, None], m & (self.bump[None] == (obs[:, None] == 1)), m)
         tgt = self.nxt[torch.arange(self.w.n_states, device=self.dev)[None].expand(N, -1), a[:, None].expand(N, self.w.n_states)]     # [N, n_states]
         new = torch.zeros(m.shape, dtype=torch.int32, device=self.dev).scatter_add_(1, tgt, keep.int()) > 0     # true where any kept state maps there
-        new &= ~self.at_goal[None]
+        if self.remove_goal: new &= ~self.at_goal[None]
         self.mask = new
 
     @property
@@ -318,3 +352,30 @@ def minigrid_env(w, start_state=None, render_mode=None):
             super().reset(**kw); return 0, {}
 
     return BumpMaze(w, start_state, render_mode=render_mode)
+
+
+
+# ------------------------------------------------------------------ the additive ceiling (no network)
+
+def additive_ceiling(decisions, K, H, steps=3000, lr=0.05, seed=0, device="cpu"):
+    """decisions: list of (common-set key, goal, step, optimal-set bool [3]). Fits argmax_a h[set, a] + g[goal, step, a]
+    by gradient on the log of the softmax mass on the optimal set (as a readout fit), with a free vector per
+    distinct common set, and returns the share of decisions whose argmax is optimal (the additive ceiling for this
+    sample) and the same for a goal-blind rule h[set, a] alone and a history-blind rule g[goal, step, a] alone."""
+    keys = {}; ks = torch.tensor([keys.setdefault(k, len(keys)) for k, _, _, _ in decisions], device=device)
+    gs = torch.tensor([g for _, g, _, _ in decisions], device=device); st = torch.tensor([min(t, H - 1) for _, _, t, _ in decisions], device=device)
+    opt = torch.tensor(np.array([o for _, _, _, o in decisions]), device=device)
+    out = {}
+    for name, use_h, use_g in (("additive", True, True), ("goal_blind", True, False), ("history_blind", False, True)):
+        torch.manual_seed(seed)
+        h = torch.zeros(len(keys), 3, device=device, requires_grad=True); g = torch.zeros(K, H, 3, device=device, requires_grad=True)
+        o_ = torch.optim.Adam([h, g], lr=lr)
+        for i in range(steps):
+            z = (h[ks] if use_h else 0) + (g[gs, st] if use_g else 0)
+            loss = -(torch.logsumexp(torch.log_softmax(z, -1).masked_fill(~opt, -1e9), -1)).mean()
+            o_.zero_grad(); loss.backward(); o_.step()
+        with torch.no_grad():
+            z = (h[ks] if use_h else 0) + (g[gs, st] if use_g else 0)
+            out[name] = float(opt.gather(1, z.argmax(1, keepdim=True)).double().mean())
+    out["sets"] = len(keys)
+    return out
