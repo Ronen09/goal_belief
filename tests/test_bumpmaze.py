@@ -78,7 +78,7 @@ def test_goals_and_common_belief(world):
     # the goal-free belief contains every goal-specific belief, and the torch and numpy versions agree
     gen = torch.Generator().manual_seed(2); e = BMZ.Env(w, 64, gen); common = BMZ.Filter(w, 64, remove_goal=False)
     for t in range(12):
-        a = torch.randint(3, (64,), generator=gen); _, o = e.step(a); common.update(a, o)
+        a = torch.randint(3, (64,), generator=gen); _, o = e.step(a); common.update(e.acts[-1], o)      # the executed action (a turn once the episode has ended)
         assert bool((~e.filter.mask | common.mask).all())
     i = 0; acts = [int(x[i]) for x in e.acts]; obss = [int(x[i]) for x in e.obss]
     assert (BMZ.common_mask(w, acts, obss) == common.mask[i].numpy()).all()
