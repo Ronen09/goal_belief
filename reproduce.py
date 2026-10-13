@@ -204,6 +204,10 @@ EXPERIMENTS = [
           [Step("run.py"), Step("tables.py", tables=True), Step("posthoc.py")], needs=("maze10", "H_simplex")),
     Experiment("factorial_patch", "7_information_seeking/factorial_patch", "Two histories x two goals in the maze10 models, every cell patched into every other (12 directions) for the decision token's residual, the history tokens' and goal token's residuals, the eight sublayer outputs and the 16 heads: where the decision goes (source / the source's history under the recipient's goal / the recipient's history under the source's goal / kept), per-component causal additivity in history and goal, symmetry across recipients", "5 min GPU",
           [Step("run.py", quick=True), Step("tables.py", tables=True)], needs=("maze10",)),
+    Experiment("bump_maze", "8_language_models/bump_maze", "A MiniGrid maze with a known map and goal, an unknown start and heading, one bit of observation per step (moved / bumped): exact belief sets and the exact optimum; small language models zero-shot (Qwen2.5-Instruct 0.5B-7B) and fine-tuned (Qwen2.5-0.5B by supervision from the optimum) against a from-scratch transformer and a GRU; belief probes by layer", "4 h GPU",
+          [Step("design.py"), Step("zero_shot.py", ("--models", "Qwen/Qwen2.5-0.5B-Instruct", "Qwen/Qwen2.5-1.5B-Instruct", "Qwen/Qwen2.5-3B-Instruct", "Qwen/Qwen2.5-7B-Instruct")),
+           Step("zero_shot.py", ("--think", "--models", "Qwen/Qwen2.5-3B-Instruct", "Qwen/Qwen2.5-7B-Instruct")),
+           Step("train.py", ("--model", "llm", "--n_train", "100000", "--save")), Step("train.py", ("--model", "tfm", "--n_train", "100000")), Step("probe.py"), Step("tables.py", tables=True)]),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 

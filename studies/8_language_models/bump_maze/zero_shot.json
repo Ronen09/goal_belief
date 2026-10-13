@@ -1,0 +1,322 @@
+{
+ "Qwen2.5-0.5B-Instruct": {
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "think": false,
+  "decision": {
+   "optimal": 0.45166015625,
+   "ci": [
+    0.43115234375,
+    0.4736328125
+   ],
+   "n": 2048,
+   "known": 0.4722222222222222,
+   "unknown": 0.43308550185873607,
+   "by_size": {
+    "1": 0.4722222222222222,
+    "2-4": 0.35678391959798994,
+    "5-16": 0.4823529411764706,
+    ">16": 0.475177304964539
+   },
+   "marginal": [
+    0.1240234375,
+    0.28271484375,
+    0.59326171875
+   ],
+   "chance": 0.3400065104166666
+  },
+  "closed_loop": {
+   "ret": 0.0,
+   "success": 0.0,
+   "length": 40.0,
+   "n": 128,
+   "marginal": [
+    0.925,
+    0.075,
+    0.0
+   ],
+   "own_decisions_optimal": 0.0,
+   "success_ci": [
+    0.0,
+    0.0
+   ]
+  },
+  "belief": {
+   "cell_auc": [
+    0.5341003009805598,
+    256
+   ],
+   "head_auc": [
+    0.3592641843971631,
+    188
+   ],
+   "mismatched_cell_auc": [
+    0.5263794425401033,
+    256
+   ],
+   "yes_share": 0.8239182692307693
+  },
+  "seconds": 876.8262989521027
+ },
+ "Qwen2.5-1.5B-Instruct": {
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "think": false,
+  "decision": {
+   "optimal": 0.66357421875,
+   "ci": [
+    0.6435546875,
+    0.68310546875
+   ],
+   "n": 2048,
+   "known": 0.684156378600823,
+   "unknown": 0.6449814126394052,
+   "by_size": {
+    "1": 0.684156378600823,
+    "2-4": 0.635678391959799,
+    "5-16": 0.7215686274509804,
+    ">16": 0.607565011820331
+   },
+   "marginal": [
+    0.11083984375,
+    0.01171875,
+    0.87744140625
+   ],
+   "chance": 0.3400065104166666
+  },
+  "closed_loop": {
+   "ret": 0.0907033309340477,
+   "success": 0.1171875,
+   "length": 36.453125,
+   "n": 128,
+   "marginal": [
+    0.5685812258894127,
+    0.05443634804972139,
+    0.37698242606086585
+   ],
+   "own_decisions_optimal": 0.4539219888555508,
+   "success_ci": [
+    0.0625,
+    0.171875
+   ]
+  },
+  "belief": {
+   "cell_auc": [
+    0.5730634493245457,
+    256
+   ],
+   "head_auc": [
+    0.4443705673758865,
+    188
+   ],
+   "mismatched_cell_auc": [
+    0.5648699918226958,
+    256
+   ],
+   "yes_share": 0.0
+  },
+  "seconds": 1168.9835829734802
+ },
+ "Qwen2.5-3B-Instruct": {
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "think": false,
+  "decision": {
+   "optimal": 0.39111328125,
+   "ci": [
+    0.37108154296875,
+    0.4106689453125
+   ],
+   "n": 2048,
+   "known": 0.24794238683127573,
+   "unknown": 0.5204460966542751,
+   "by_size": {
+    "1": 0.24794238683127573,
+    "2-4": 0.43467336683417085,
+    "5-16": 0.43137254901960786,
+    ">16": 0.6548463356973995
+   },
+   "marginal": [
+    0.20458984375,
+    0.3203125,
+    0.47509765625
+   ],
+   "chance": 0.3400065104166666
+  },
+  "closed_loop": {
+   "ret": 0.02082768827676773,
+   "success": 0.0234375,
+   "length": 39.1796875,
+   "n": 128,
+   "marginal": [
+    0.04745762711864407,
+    0.43888334995014955,
+    0.5136590229312064
+   ],
+   "own_decisions_optimal": 0.1946161515453639,
+   "success_ci": [
+    0.0,
+    0.0546875
+   ]
+  },
+  "belief": {
+   "cell_auc": [
+    0.5990276851715471,
+    256
+   ],
+   "head_auc": [
+    0.698581560283688,
+    188
+   ],
+   "mismatched_cell_auc": [
+    0.5766149168317265,
+    256
+   ],
+   "yes_share": 0.05839342948717949
+  },
+  "seconds": 1334.1081957817078
+ },
+ "Qwen2.5-7B-Instruct": {
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "think": false,
+  "decision": {
+   "optimal": 0.5517578125,
+   "ci": [
+    0.53172607421875,
+    0.57373046875
+   ],
+   "n": 2048,
+   "known": 0.448559670781893,
+   "unknown": 0.6449814126394052,
+   "by_size": {
+    "1": 0.448559670781893,
+    "2-4": 0.5251256281407035,
+    "5-16": 0.6745098039215687,
+    ">16": 0.7399527186761229
+   },
+   "marginal": [
+    0.2373046875,
+    0.20654296875,
+    0.55615234375
+   ],
+   "chance": 0.3400065104166666
+  },
+  "closed_loop": {
+   "ret": 0.028442678973078728,
+   "success": 0.0390625,
+   "length": 38.921875,
+   "n": 128,
+   "marginal": [
+    0.46567643516659973,
+    0.32075471698113206,
+    0.21356884785226818
+   ],
+   "own_decisions_optimal": 0.34985949417904455,
+   "success_ci": [
+    0.0078125,
+    0.0703125
+   ]
+  },
+  "belief": {
+   "cell_auc": [
+    0.5263159525356289,
+    256
+   ],
+   "head_auc": [
+    0.7070035460992908,
+    188
+   ],
+   "mismatched_cell_auc": [
+    0.5365974829801536,
+    256
+   ],
+   "yes_share": 0.20843349358974358
+  },
+  "seconds": 1944.7151682376862
+ },
+ "Qwen2.5-3B-Instruct-think": {
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "think": true,
+  "example_reply": "Given the current state of the maze and the sequence of actions taken so far, it seems like you have been moving forward into walls repeatedly. To proceed effectively, let's reassess the situation:\n\n- You've moved into walls multiple times, indicating you might be facing a dead end or a corner.\n- Your last successful move was moving forward after turning left, which suggests you were facing east initially.\n- Now, you're facing north (after the series of left turns).\n\nSince you've encountered walls and need to find an exit, you should try moving in different directions to see if you can find a ",
+  "decision": {
+   "optimal": 0.587890625,
+   "ci": [
+    0.546875,
+    0.626953125
+   ],
+   "n": 512,
+   "known": 0.55078125,
+   "unknown": 0.625,
+   "by_size": {
+    "1": 0.55078125,
+    "2-4": 0.5420560747663551,
+    "5-16": 0.7333333333333333,
+    ">16": 0.651685393258427
+   },
+   "marginal": [
+    0.115234375,
+    0.125,
+    0.759765625
+   ],
+   "chance": 0.3385416666666666
+  },
+  "closed_loop": {
+   "ret": 0.09039391577243805,
+   "success": 0.109375,
+   "length": 36.4375,
+   "n": 64,
+   "marginal": [
+    0.1646655231560892,
+    0.11663807890222985,
+    0.7186963979416809
+   ],
+   "own_decisions_optimal": 0.3829331046312178,
+   "success_ci": [
+    0.046875,
+    0.1875
+   ]
+  },
+  "seconds": 1044.2343912124634
+ },
+ "Qwen2.5-7B-Instruct-think": {
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "think": true,
+  "example_reply": "forward -> moved\n\nBased on the transcript, you have moved through several cells and made turns. Let's summarize your last known position and orientation:\n\n- You started moving forward and kept moving until you bumped into a wall.\n- You turned left, then moved again and bumped into another wall.\n- You turned left twice (which brings you back to facing east) and moved forward twice without bumping into any walls.\n- You turned right and bumped into a wall.\n- You turned left twice (facing north) and moved forward twice without bumping into any walls.\n\nGiven this information, it seems like you are ",
+  "decision": {
+   "optimal": 0.568359375,
+   "ci": [
+    0.5234375,
+    0.611328125
+   ],
+   "n": 512,
+   "known": 0.50390625,
+   "unknown": 0.6328125,
+   "by_size": {
+    "1": 0.50390625,
+    "2-4": 0.5327102803738317,
+    "5-16": 0.7666666666666667,
+    ">16": 0.6629213483146067
+   },
+   "marginal": [
+    0.16015625,
+    0.181640625,
+    0.658203125
+   ],
+   "chance": 0.3385416666666666
+  },
+  "closed_loop": {
+   "ret": 0.04028783738613129,
+   "success": 0.0625,
+   "length": 38.53125,
+   "n": 64,
+   "marginal": [
+    0.18085969180859693,
+    0.18004866180048662,
+    0.6390916463909164
+   ],
+   "own_decisions_optimal": 0.4205190592051906,
+   "success_ci": [
+    0.015625,
+    0.125
+   ]
+  },
+  "seconds": 967.6653599739075
+ }
+}

@@ -1,0 +1,24 @@
+llm_30000: data 100000 episodes (mean length 29.2) 1s
+llm_30000: data 100000 episodes (mean length 29.2) 0s
+  llm step 50/938 loss 0.5325 138s
+  llm step 100/938 loss 0.3890 274s
+  llm step 150/938 loss 0.2384 412s
+  llm step 200/938 loss 0.2301 551s
+  llm step 250/938 loss 0.1731 690s
+  llm step 300/938 loss 0.1877 829s
+  llm step 350/938 loss 0.1037 974s
+  llm step 400/938 loss 0.0912 1123s
+  llm step 450/938 loss 0.1136 1260s
+  llm step 500/938 loss 0.0990 1388s
+  llm step 550/938 loss 0.0910 1500s
+  llm step 600/938 loss 0.0655 1610s
+  llm step 650/938 loss 0.0541 1719s
+  llm step 700/938 loss 0.0792 1828s
+  llm step 750/938 loss 0.0905 1937s
+  llm step 800/938 loss 0.0537 2041s
+  llm step 850/938 loss 0.0300 2158s
+  llm step 900/938 loss 0.0516 2274s
+  llm step 938/938 loss 0.0357 2361s
+llm_30000: trained 2380s
+llm_30000: closed loop return 0.515 success 0.995 length 24.2 (own decisions optimal 1.000)
+llm_30000: teacher-forced decision optimality 1.000 by set size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 2669s

@@ -1,0 +1,5 @@
+data/
+runs/llm_*/model/
+_smoke*
+/*.log
+__pycache__/

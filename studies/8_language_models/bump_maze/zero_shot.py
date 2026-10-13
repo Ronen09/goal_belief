@@ -49,11 +49,12 @@ class Scorer:
             L = max(len(s) for s in seqs)
             ids = torch.full((len(seqs), L), self.tok.pad_token_id); att = torch.zeros(len(seqs), L, dtype=torch.long)
             for r, s in enumerate(seqs): ids[r, L - len(s):] = torch.tensor(s); att[r, L - len(s):] = 1
-            logits = self.model(input_ids=ids.to(self.dev), attention_mask=att.to(self.dev)).logits.float()
-            lp = torch.log_softmax(logits[:, :-1], -1)
+            n_max = max(len(c) for c in cand_ids)
+            h = self.model.model(input_ids=ids.to(self.dev), attention_mask=att.to(self.dev)).last_hidden_state
+            lp = torch.log_softmax(self.model.lm_head(h[:, L - n_max - 1:L - 1]).float(), -1)        # only the positions that predict the candidate tokens
             for r, (i, j) in enumerate(chunk):
                 n = len(cand_ids[j]); tgt = ids[r, L - n:].to(self.dev)
-                out[i, j] = lp[r, L - n - 1:L - 1].gather(1, tgt[:, None]).sum().item()
+                out[i, j] = lp[r, n_max - n:].gather(1, tgt[:, None]).sum().item()
         return out
 
     @torch.no_grad()

@@ -1,0 +1,6 @@
+tfm_30000: data 100000 episodes (mean length 29.2) 0s
+  tfm step 200/236 loss 0.5653 8s
+  tfm step 236/236 loss 0.5739 9s
+tfm_30000: trained 10s
+tfm_30000: closed loop return 0.206 success 0.308 length 32.6 (own decisions optimal 0.667)
+tfm_30000: teacher-forced decision optimality 0.880 by set size 1 0.78 2-4 0.92 5-16 1.00 >16 1.00 16s

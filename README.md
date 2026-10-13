@@ -41,6 +41,12 @@ then reports which held (`REPORT.md`). [FINDINGS.md](FINDINGS.md) has every resu
    two goals, the decision token holds the belief entering block 1 and the decision from block 2 on; the goal travels
    in the history tokens, the goal token being read once, in block 0; no head carries anything alone, and the MLPs'
    outputs are less additive in goal and history than the logits, the attention outputs more.
+8. **[Language models](studies/8_language_models/).** On a MiniGrid maze with a known map, an unknown start and
+   heading and one bit of observation per step, where the exact belief is a set and the exact optimum is computable,
+   small instruction-tuned language models zero-shot decide no better than "always forward" and do not use the
+   history when asked where they could be; fine-tuned by supervision from the optimum, a 0.5B model is exactly
+   optimal after ten thousand episodes, ten times fewer than a transformer or GRU from scratch, and holds the full
+   set of consistent states as a linear readout of its middle layers, which the base model already holds in part.
 
 ## Layout
 
@@ -63,6 +69,9 @@ FINDINGS.md                     every result, by study
 ```bash
 uv venv --system-site-packages --python /usr/bin/python3 .venv    # reuses system torch / numpy / scipy / matplotlib
 uv pip install --python .venv/bin/python pytest
+# study 8 only (MiniGrid and a Hugging Face stack, without a second torch):
+uv pip install --python .venv/bin/python --no-deps minigrid gymnasium transformers accelerate peft
+uv pip install --python .venv/bin/python pygame cloudpickle farama-notifications typing-extensions filelock huggingface_hub packaging pyyaml regex requests tokenizers safetensors tqdm psutil hf-xet httpx
 
 .venv/bin/python reproduce.py list                     # experiments by study: cost, dependencies, question
 .venv/bin/python reproduce.py filter_state             # rerun one experiment end to end
@@ -98,4 +107,5 @@ retraining.
 | `mazeocc` | maze-occupancy | exact occupancy under the solver's policy; a model's own occupancy by rollouts |
 | `multigoal` | hard-cases | multi-goal collection with random values: exact belief graph over (moves left, collected set, belief), Q* for every value setting |
 | `mazebelief`, `mazegraph`, `mazemodel`, `mazeppo`, `mazemeasure` | maze-belief to maze-occupancy | aliased maze with a hidden location: exact filter and solver, belief graph, tokens and transformer, vectorised environment and PPO, decoders and cross-goal patches |
+| `bumpmaze` | bump-maze | a MiniGrid maze with one bit of observation per step: layout, exact set-valued filter, exact solver over reachable belief sets, batched environment, reference policies, the minigrid environment, text for a language model |
 | `plotting`, `style` | all | shared figure style (the representation geometry study, the hidden-goal to K/V-dropout experiments) |

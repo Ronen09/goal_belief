@@ -955,3 +955,29 @@ recipient's history under the source's goal; kept).
   the order of the components' own interaction content (ρ 0.64–0.93). The four recipients agree (spread ≤ 0.04). 2 of
   7 registered criteria held (RANK, SYM); the expected locations entering block 1 (the decision in the token, the
   belief in the history tokens, the goal in the goal token) were all wrong.
+
+## 8. Language models ([experiments](studies/8_language_models/))
+
+Can a small pretrained language model track a hidden state from a history and act on it, zero-shot or trained, on a
+task built to be as partially observed as possible while keeping the exact belief and the exact optimum available?
+
+**Bump maze — a small language model on a one-bit-observation maze (`studies/8_language_models/bump_maze/REPORT.md`, rule in
+`studies/8_language_models/bump_maze/PLAN.md`).** A 9 × 9 MiniGrid maze with a known map and goal, the start cell and
+heading unknown (140 states), the only observation whether a forward move bumped; the belief is the set of consistent
+states (17 285 reachable sets) and the exact optimum is value iteration over them: return 0.512, success 0.996, 24
+moves (the oracle 0.695 and 13.5); QMDP never succeeds (it never pays to localise), random 0.087, always forward 0.028.
+
+- Zero-shot, Qwen2.5-Instruct 0.5B–7B: closed-loop success 0.00–0.12 (a random walk 0.09), teacher-forced decision
+  optimality 0.39–0.66 against 0.71 for "always forward"; with a chain of thought the 3B and 7B 0.59 and 0.57 and
+  success 0.11 and 0.06. Asked whether they could be in a given cell, the models' answers do not depend on the
+  history (AUC 0.53–0.60 against the exact set, the same with another episode's transcript); the 3B and 7B partly
+  track their heading (0.70).
+- Trained by supervision from the exact optimum, Qwen2.5-0.5B is exactly optimal at 10 000 episodes (success 0.995,
+  return 0.514 against 0.512, decision optimality 0.999); a 4-block transformer and a GRU from scratch reach 0.15 and
+  0.13 success at 10 000 and 0.89 and 0.98 at 100 000. The from-scratch models' errors are where the state is already
+  known, not in the localisation phase.
+- Belief probes: in the fine-tuned model a linear probe from layers 16–20 recovers the exact consistent set in 0.97 of
+  decisions (AUC 1.000, log size R² 0.998; an MLP probe adds nothing); in the base model before any training the same
+  probe recovers it in 0.59 (AUC 0.994), in the from-scratch transformer 0.32. 5 of 8 registered criteria held; the
+  AUC-based probe criterion failed because the base model already saturates it, and the uncertainty criterion
+  because the fine-tuned model makes no errors.

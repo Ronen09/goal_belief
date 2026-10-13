@@ -1,0 +1,5 @@
+gru_10000: data 100000 episodes (mean length 29.2) 0s
+  gru step 80/80 loss 0.7857 1s
+gru_10000: trained 2s
+gru_10000: closed loop return 0.119 success 0.134 length 35.3 (own decisions optimal 0.510)
+gru_10000: teacher-forced decision optimality 0.783 by set size 1 0.71 2-4 0.73 5-16 0.85 >16 0.97 7s

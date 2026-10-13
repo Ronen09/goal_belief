@@ -1,0 +1,12 @@
+llm_10000: data 100000 episodes (mean length 29.2) 1s
+llm_10000: data 100000 episodes (mean length 29.2) 0s
+  llm step 50/314 loss 0.5934 135s
+  llm step 100/314 loss 0.3307 271s
+  llm step 150/314 loss 0.2417 410s
+  llm step 200/314 loss 0.1655 547s
+  llm step 250/314 loss 0.1584 686s
+  llm step 300/314 loss 0.1739 825s
+  llm step 314/314 loss 0.1076 861s
+llm_10000: trained 879s
+llm_10000: closed loop return 0.514 success 0.995 length 24.3 (own decisions optimal 0.997)
+llm_10000: teacher-forced decision optimality 0.999 by set size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 1256s
