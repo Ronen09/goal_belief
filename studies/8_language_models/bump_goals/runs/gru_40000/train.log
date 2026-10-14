@@ -1,0 +1,9 @@
+gru_40000: data 120000 episodes 6s
+  gru step 200/314 loss 0.4700 7s
+  gru step 314/314 loss 0.4294 10s
+gru_40000: trained 17s
+gru_40000 goal 0: closed loop return 0.205 success 0.311 length 32.8; teacher-forced optimality 0.867 by size 1 0.83 2-4 0.78 5-16 0.97 >16 0.97 23s
+gru_40000 goal 1: closed loop return 0.435 success 0.642 length 23.6; teacher-forced optimality 0.914 by size 1 0.85 2-4 0.89 5-16 1.00 >16 1.00 35s
+gru_40000 goal 2: closed loop return 0.435 success 0.707 length 25.0; teacher-forced optimality 0.916 by size 1 0.89 2-4 0.82 5-16 0.97 >16 1.00 39s
+gru_40000 goal 3: closed loop return 0.163 success 0.222 length 33.9; teacher-forced optimality 0.856 by size 1 0.78 2-4 0.79 5-16 0.92 >16 1.00 45s
+gru_40000: mean success 0.471 return 0.310 optimality 0.888

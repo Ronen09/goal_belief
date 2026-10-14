@@ -1,0 +1,12 @@
+tfm_120000: data 120000 episodes 6s
+  tfm step 200/938 loss 0.5345 5s
+  tfm step 400/938 loss 0.4030 9s
+  tfm step 600/938 loss 0.3399 14s
+  tfm step 800/938 loss 0.3121 19s
+  tfm step 938/938 loss 0.3082 22s
+tfm_120000: trained 29s
+tfm_120000 goal 0: closed loop return 0.364 success 0.643 length 27.9; teacher-forced optimality 0.969 by size 1 0.94 2-4 0.99 5-16 1.00 >16 1.00 33s
+tfm_120000 goal 1: closed loop return 0.487 success 0.762 length 22.4; teacher-forced optimality 0.978 by size 1 0.95 2-4 0.99 5-16 1.00 >16 1.00 36s
+tfm_120000 goal 2: closed loop return 0.592 success 0.972 length 19.2; teacher-forced optimality 0.993 by size 1 0.98 2-4 1.00 5-16 1.00 >16 1.00 39s
+tfm_120000 goal 3: closed loop return 0.461 success 0.790 length 24.0; teacher-forced optimality 0.974 by size 1 0.94 2-4 0.99 5-16 0.99 >16 1.00 43s
+tfm_120000: mean success 0.792 return 0.476 optimality 0.978

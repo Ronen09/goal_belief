@@ -1,0 +1,82 @@
+llm_120000: data 120000 episodes 6s
+  llm step 50/3750 loss 0.5830 110s
+  llm step 100/3750 loss 0.4483 232s
+  llm step 150/3750 loss 0.3246 334s
+  llm step 200/3750 loss 0.2687 421s
+  llm step 250/3750 loss 0.2488 506s
+  llm step 300/3750 loss 0.1905 591s
+  llm step 350/3750 loss 0.1856 677s
+  llm step 400/3750 loss 0.1796 762s
+  llm step 450/3750 loss 0.1328 848s
+  llm step 500/3750 loss 0.1578 933s
+  llm step 550/3750 loss 0.1438 1019s
+  llm step 600/3750 loss 0.0867 1105s
+  llm step 650/3750 loss 0.1047 1190s
+  llm step 700/3750 loss 0.1103 1276s
+  llm step 750/3750 loss 0.1011 1361s
+  llm step 800/3750 loss 0.0915 1447s
+  llm step 850/3750 loss 0.0867 1532s
+  llm step 900/3750 loss 0.0736 1618s
+  llm step 950/3750 loss 0.0841 1704s
+  llm step 1000/3750 loss 0.0480 1789s
+  llm step 1050/3750 loss 0.0755 1875s
+  llm step 1100/3750 loss 0.0701 1960s
+  llm step 1150/3750 loss 0.0429 2046s
+  llm step 1200/3750 loss 0.0679 2131s
+  llm step 1250/3750 loss 0.0953 2216s
+  llm step 1300/3750 loss 0.0414 2298s
+  llm step 1350/3750 loss 0.0510 2381s
+  llm step 1400/3750 loss 0.0516 2463s
+  llm step 1450/3750 loss 0.0436 2546s
+  llm step 1500/3750 loss 0.0785 2628s
+  llm step 1550/3750 loss 0.0423 2710s
+  llm step 1600/3750 loss 0.0506 2793s
+  llm step 1650/3750 loss 0.0499 2876s
+  llm step 1700/3750 loss 0.0323 2946s
+  llm step 1750/3750 loss 0.0756 2986s
+  llm step 1800/3750 loss 0.0350 3094s
+  llm step 1850/3750 loss 0.0203 3216s
+  llm step 1900/3750 loss 0.0193 3338s
+  llm step 1950/3750 loss 0.0341 3460s
+  llm step 2000/3750 loss 0.0370 3582s
+  llm step 2050/3750 loss 0.0203 3704s
+  llm step 2100/3750 loss 0.0202 3827s
+  llm step 2150/3750 loss 0.0075 3950s
+  llm step 2200/3750 loss 0.0173 4073s
+  llm step 2250/3750 loss 0.0114 4197s
+  llm step 2300/3750 loss 0.0240 4321s
+  llm step 2350/3750 loss 0.0287 4443s
+  llm step 2400/3750 loss 0.0350 4566s
+  llm step 2450/3750 loss 0.0269 4689s
+  llm step 2500/3750 loss 0.0232 4812s
+  llm step 2550/3750 loss 0.0165 4935s
+  llm step 2600/3750 loss 0.0163 5058s
+  llm step 2650/3750 loss 0.0677 5181s
+  llm step 2700/3750 loss 0.0217 5305s
+  llm step 2750/3750 loss 0.0161 5428s
+  llm step 2800/3750 loss 0.0110 5551s
+  llm step 2850/3750 loss 0.0147 5674s
+  llm step 2900/3750 loss 0.0062 5798s
+  llm step 2950/3750 loss 0.0109 5921s
+  llm step 3000/3750 loss 0.0321 6045s
+  llm step 3050/3750 loss 0.0092 6169s
+  llm step 3100/3750 loss 0.0129 6291s
+  llm step 3150/3750 loss 0.0197 6414s
+  llm step 3200/3750 loss 0.0061 6536s
+  llm step 3250/3750 loss 0.0069 6659s
+  llm step 3300/3750 loss 0.0143 6783s
+  llm step 3350/3750 loss 0.0131 6907s
+  llm step 3400/3750 loss 0.0202 7031s
+  llm step 3450/3750 loss 0.0081 7154s
+  llm step 3500/3750 loss 0.0053 7277s
+  llm step 3550/3750 loss 0.0094 7400s
+  llm step 3600/3750 loss 0.0176 7523s
+  llm step 3650/3750 loss 0.0174 7647s
+  llm step 3700/3750 loss 0.0069 7769s
+  llm step 3750/3750 loss 0.0268 7893s
+llm_120000: trained 7946s
+llm_120000 goal 0: closed loop return 0.515 success 0.995 length 24.2; teacher-forced optimality 1.000 by size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 8265s
+llm_120000 goal 1: closed loop return 0.584 success 0.984 length 19.9; teacher-forced optimality 1.000 by size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 8521s
+llm_120000 goal 2: closed loop return 0.616 success 1.000 length 18.0; teacher-forced optimality 1.000 by size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 8744s
+llm_120000 goal 3: closed loop return 0.561 success 1.000 length 21.1; teacher-forced optimality 1.000 by size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 9012s
+llm_120000: mean success 0.995 return 0.569 optimality 1.000

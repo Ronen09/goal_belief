@@ -1,0 +1,32 @@
+llm_40000: data 120000 episodes 6s
+  llm step 50/1250 loss 0.5770 97s
+  llm step 100/1250 loss 0.4357 219s
+  llm step 150/1250 loss 0.3476 326s
+  llm step 200/1250 loss 0.2706 414s
+  llm step 250/1250 loss 0.2854 500s
+  llm step 300/1250 loss 0.2073 585s
+  llm step 350/1250 loss 0.1630 670s
+  llm step 400/1250 loss 0.1412 755s
+  llm step 450/1250 loss 0.1099 840s
+  llm step 500/1250 loss 0.0933 925s
+  llm step 550/1250 loss 0.1399 1010s
+  llm step 600/1250 loss 0.0831 1095s
+  llm step 650/1250 loss 0.0924 1181s
+  llm step 700/1250 loss 0.0692 1266s
+  llm step 750/1250 loss 0.0394 1351s
+  llm step 800/1250 loss 0.0453 1436s
+  llm step 850/1250 loss 0.0703 1521s
+  llm step 900/1250 loss 0.0493 1606s
+  llm step 950/1250 loss 0.0303 1691s
+  llm step 1000/1250 loss 0.0530 1777s
+  llm step 1050/1250 loss 0.0620 1862s
+  llm step 1100/1250 loss 0.0347 1947s
+  llm step 1150/1250 loss 0.0495 2032s
+  llm step 1200/1250 loss 0.0502 2117s
+  llm step 1250/1250 loss 0.0369 2202s
+llm_40000: trained 2251s
+llm_40000 goal 0: closed loop return 0.515 success 0.995 length 24.2; teacher-forced optimality 1.000 by size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 2470s
+llm_40000 goal 1: closed loop return 0.584 success 0.984 length 19.9; teacher-forced optimality 1.000 by size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 2648s
+llm_40000 goal 2: closed loop return 0.616 success 1.000 length 18.0; teacher-forced optimality 1.000 by size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 2803s
+llm_40000 goal 3: closed loop return 0.561 success 1.000 length 21.1; teacher-forced optimality 1.000 by size 1 1.00 2-4 1.00 5-16 1.00 >16 1.00 2989s
+llm_40000: mean success 0.995 return 0.569 optimality 1.000

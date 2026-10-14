@@ -1024,3 +1024,34 @@ moves (the oracle 0.695 and 13.5); QMDP never succeeds (it never pays to localis
   probe recovers it in 0.59 (AUC 0.994), in the from-scratch transformer 0.32. 5 of 8 registered criteria held; the
   AUC-based probe criterion failed because the base model already saturates it, and the uncertainty criterion
   because the fine-tuned model makes no errors.
+
+**Bump goals — the same maze with four goals: additivity in goal and history, and goal swaps in the residual stream
+(`studies/8_language_models/bump_goals/REPORT.md`, rule in `studies/8_language_models/bump_goals/PLAN.md`).** Four
+corner goals (farthest-point placement), one per episode named in the prompt; the exact optimum per goal returns
+0.512–0.616 (mean 0.570), QMDP 0 under every goal; on the optimum's decisions scored under every goal the optimal
+action depends on the goal in 0.57, and the best additive rule argmax h[goal-free set] + g[goal, step] is optimal in
+0.881 of decision-goal pairs (goal-blind 0.820, history-blind 0.598; maze10's exact ceiling 0.963).
+
+- Fine-tuned by supervision from the exact optimum, Qwen2.5-0.5B is exactly optimal under four goals at 40 000
+  episodes (success 0.995, decision optimality 1.000 on 8 192 decisions; the same at 120 000); the from-scratch
+  transformer and GRU succeed in 0.40 and 0.47 at 40 000 and 0.79 and 0.87 at 120 000, erring at known states.
+- The fine-tuned model's logits under the four goals with the history fixed: history 0.75, goal 0.04, goal × history
+  interaction 0.20 of the variance (0.23 at 120 000), the interaction 0.46 at set size 1 and 0.08 above 16. The
+  additive policy argmax H(h) + G(g, step) is offline optimal in 0.806 of decision-goal pairs (the model 0.897, the
+  goal-blind policy 0.788, the ceiling 0.881) and by set size equals the goal-blind policy (0.53 against 0.52 at known
+  states); online it returns 0.316 with success 0.50 (goal-blind 0.274, the model 0.570): it recovers 0.14 of the
+  goal-directed return (maze10: 0.81; 120 000: 0.10).
+- Post hoc, the exact ceiling rule run online: fitted on the optimum's decisions it returns 0.216 (success
+  0.32; the exact goal-blind rule 0.161), recovering 0.13 of the goal-directed return, as the model's
+  additive part does; refitted on its own episodes for 20 rounds it reaches 0.34–0.37 (success 0.52–0.60), about
+  0.5 of the goal-directed return, while its optimality on the optimum's decisions falls to 0.82. The ceiling of
+  0.881 is a property of the optimum's trajectories, along which the step stands for position under each goal; the
+  additive code that recovered 0.81 in maze10 recovers at most about half in a task whose goals force the interaction.
+- Goal swaps of the decision token's residual (1 024 same-step history pairs × 6 goal pairs): the same-goal history
+  swap switches decisions from layer 13 (0.16; 0.58 at layer 15, 0.78 at 19), the same-history goal swap only from
+  layer 20 (0.84; 0.93 at 21, 0.98 at 23; ≤ 0.56 up to 19), both swapped following the history below layer 20: the
+  token holds the belief from the middle layers and reads the goal's consequence for the decision in the last five.
+  At layer 23 a linear map from the state under one goal to the state under the other installs 0.883 of the natural
+  swap's 0.985; the mean goal offset per step 0.080, at the random floor (0.036): a linear change of coordinates with
+  no constant part, where maze10's was two thirds offset. 6 of 8 registered criteria held (ADD-ON 0.14 against
+  0.5–0.85; MAP 0.896 against 0.90); the unique attribution expected is undefined with three actions.

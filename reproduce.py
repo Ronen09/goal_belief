@@ -208,6 +208,10 @@ EXPERIMENTS = [
           [Step("design.py"), Step("zero_shot.py", ("--models", "Qwen/Qwen2.5-0.5B-Instruct", "Qwen/Qwen2.5-1.5B-Instruct", "Qwen/Qwen2.5-3B-Instruct", "Qwen/Qwen2.5-7B-Instruct")),
            Step("zero_shot.py", ("--think", "--models", "Qwen/Qwen2.5-3B-Instruct", "Qwen/Qwen2.5-7B-Instruct")),
            Step("train.py", ("--model", "llm", "--n_train", "100000", "--save")), Step("train.py", ("--model", "tfm", "--n_train", "100000")), Step("probe.py"), Step("tables.py", tables=True)]),
+    Experiment("bump_goals", "8_language_models/bump_goals", "The bump maze with four corner goals, one per episode named in the prompt: the exact optimum per goal and the exact additive ceiling; Qwen2.5-0.5B fine-tuned against a transformer and a GRU from scratch; the fine-tuned model's additive decomposition H(h) + G(g, step) offline and online against the ceiling; goal swaps of the decision token's residual by layer against the mean offset and a linear map; post hoc, the exact additive ceiling rule run online", "8 h GPU",
+          [Step("design.py"), Step("train_goals.py", ("--model", "llm", "--n_train", "40000", "--save")), Step("train_goals.py", ("--model", "tfm", "--n_train", "40000")), Step("train_goals.py", ("--model", "gru", "--n_train", "40000")),
+           Step("train_goals.py", ("--model", "llm", "--n_train", "120000", "--save")), Step("train_goals.py", ("--model", "tfm", "--n_train", "120000")), Step("train_goals.py", ("--model", "gru", "--n_train", "120000")),
+           Step("additive.py", ("--run", "runs/llm_40000")), Step("additive.py", ("--run", "runs/llm_120000")), Step("factorial_llm.py", ("--run", "runs/llm_40000")), Step("posthoc_ceiling.py", ("--rounds", "8")), Step("tables.py", tables=True)], needs=("bump_maze",)),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 
