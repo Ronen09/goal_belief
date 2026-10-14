@@ -906,7 +906,8 @@ decision of their own episodes, fitted as functions of the exact 55-cell posteri
   logits 0.81, chance 0.44); swapping the posterior-predicted component transfers those new decisions 0.74 to the
   donor's, the whole state 0.76, the residual 0.06.
 - The goal changes what is read from the belief: with the history fixed, the goal × history interaction is 0.17 of the
-  state after block 0 and 0.25 at the end, 0.95 predictable from the posterior per goal; a shared belief code plus a
+  state after block 0 and 0.25 at the end (mostly a goal × step offset: the goal × belief part is 0.06 and 0.13, see
+  the gate result below), 0.95 predictable from the posterior per goal; a shared belief code plus a
   goal offset explains 0.72–0.78 of the state, per-goal encoders 0.94–0.97. The goal-free belief edit produces a
   change 0.84 shared across goals (the natural change: 0.56), reproducing 0.87 of the shared part of the natural
   change and 0.26 of its goal-specific part; no single component's interaction matters (≤ 0.10), all together 0.20.
@@ -919,6 +920,48 @@ decision of their own episodes, fitted as functions of the exact 55-cell posteri
   fitted on unrelated pairs, moves B's decision 0.86 on held-out pairs (direct B-written difference 0.91,
   untransformed 0.33, random 0.05; held-out R² 0.95; MLPs 0.89–0.91): a reusable, close-to-linear change of
   coordinates between goals over a common nonlinear code of the posterior.
+- The maps form one consistent system: composed A → B → C they predict the same vector as A → C (R² 0.99 between the
+  predictions in all 144 model × triple cases, decision transfer 0.85 against 0.86), and a round trip A → B → A
+  recovers the original difference (R² 0.98, 4 % shrinkage, decision transfer 0.86 against 0.90 for the difference
+  itself): invertible, composable changes of coordinates between goals, not unrelated encodings.
+- In block 0 the goal cannot change what is retrieved (the decision token's query is goal-free; the goal token's key
+  only rescales the history per head, carrying 0.21 of the goal's effect on the state); the goal token's value, gated
+  per head by the attention mass the goal token wins against the history, carries 0.79 and 0.73–0.78 of the
+  belief-dependent part; block 0's MLP amplifies the change 1.55× and responds nonlinearly (first order 0.27, midpoint
+  0.85, a fixed linear map 0.92). Patched at the token, the value route switches 0.24 of goal-dependent decisions,
+  the pattern route 0.09, the whole block-0 state 0.37.
+- Block 1 does not select the history by goal: the goal-laden query redistributes the decision token's attention over
+  history tokens (total variation 0.14 of the natural 0.24) and the history tokens' goal-laden keys by 0.19, but the
+  query carries 0.04 of block 1's attention-output change and switches decisions at the random rate (0.03), the keys
+  0.02 and 0.04; the history tokens' values alone carry 0.63 and switch 0.29. The token's own block-0 state accounts
+  for 0.41 of the state change after block 1 and 0.70 of its belief-dependent part, the attention sources 0.59 and
+  0.37; block 1's MLP doubles the interaction share (0.13–0.15 to 0.27) and its goal response is a fixed linear map of
+  its input change across decisions (R² 0.97; local Jacobian 0.07). Gated goal content and MLP transformation, not
+  goal-dependent retrieval.
+- The MLPs are approximately affine on the tested inputs: one affine map explains 0.94–0.99 of each MLP's output on
+  held-out decision tokens (per goal 0.97–1.00; from the raw residual as well as from LN(mid), within 0.02). Replaced at
+  every token, block 1's map leaves the return unchanged, 0.98 of decisions and cross-goal transport (0.91 / 0.85)
+  intact; all four replaced keep 0.95 of the goal-directed return and 0.93 of decisions (per-goal maps 0.97 / 0.96),
+  removing all four drops below goal-blind. The Jacobian puzzle is a small-amplitude ripple on an affine map; most of
+  the network's nonlinearity in the belief is made in attention, the MLPs acting mostly as fixed linear maps on what
+  attention assembles, with 5 % of return and 7 % of decisions left for nonlinear exceptions.
+- Block 0's gates on the goal token (each head's attention mass on it, replaced by its mean for that goal and step
+  with the other weights rescaled) make block 0's share of the goal-specific coordinates and half of the final: in the
+  affine-MLP network the goal × belief interaction at block 0's output falls 0.04 → 0.01 and the untransformed
+  A-written difference predicts the B-written one at 0.95 (from 0.80); at the end 0.09 → 0.05 and 0.26 → 0.47, the
+  untransformed difference switching 0.53 of B's decisions (direct 0.88), rebuilt by blocks 1–3's attention from goal
+  content that is then a constant per goal and step. Fixing the gates costs the natural network 0.11 of its
+  goal-directed return, the affine network 0.17 (the simplifications compound). Correction to the goal-belief result:
+  its interaction share counted a goal × step offset; the goal × belief part is 0.06 / 0.09 / 0.13 of the state at
+  the input of block 1 / block 2 / the end, the goal-specific coding gap 0.05 / 0.08 / 0.12, not 0.16–0.24.
+- With block 0's gates fixed in the natural network, the goal × belief interaction block 1 adds comes from its
+  attention in two additive halves: on same-step pairs B's attention weights over A's values carry 0.41 of the
+  belief-dependent goal difference of block 1's attention output and B's values of the other tokens 0.50, both 0.93
+  (the decision token's own key and value 0.12); after block 1's MLP, whose belief-dependent response is a linear map
+  of its input (R² 0.95, gain 1.10), values 0.38, weights 0.22, the residual's carried interaction 0.36. Each half alone
+  switches 0.51 of B's decisions on the A-equivalent, B-different pairs (floor 0.41, ceiling 0.93), both 0.74.
+  Goal-dependent reweighting of the history and goal-conditioned content from other tokens, independently; not a
+  coordination of weights with their values.
 
 **Pair terms — what H does on a belief split between two cells (`studies/7_information_seeking/pair_terms/REPORT.md`, rule in
 `studies/7_information_seeking/pair_terms/PLAN.md`).** Two-cell decisions (top two cells ≥ 0.85 of the mass, the minor ≥ 0.15; 0.12 of

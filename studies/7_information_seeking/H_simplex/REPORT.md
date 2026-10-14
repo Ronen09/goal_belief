@@ -257,6 +257,10 @@ goal offset, f(b) + M(g), and per-goal encoders f_g(b) (MLPs, 12 288 fit decisio
   0.27, blocks 2–3's MLPs 0.32–0.33 interaction shares), the attention outputs carry more of the pure goal offset.
 * So the computation is not b → H(b), L = H(b) + G(g) at the level of the state: the goal changes which features of
   the belief the state holds, already at the first component, and increasingly through the MLPs.
+* **Correction (section 15).** The decomposition counts the step as part of the history, so a goal offset that
+  depends on the step is counted as interaction. With the offset allowed to depend on the step the goal × belief
+  interaction proper is 0.06 / 0.09 / 0.13 at the input of block 1 / of block 2 / at the end, and the encoder gap
+  0.05 / 0.08 / 0.12: the coding is goal-specific, but by less than the figures above say.
 
 **One donor belief component under every recipient goal** (the posterior-part edit at the input of block 2, logits
 read under each of the four goals):
@@ -350,3 +354,319 @@ pair): x1(B) + T(Δ_A), logits read under B.
   between goals, close to linear, not a belief-specific recoding. Together with the shared posterior component
   (section 6) this gives the structure of the decision token's state: a common nonlinear code of the posterior, read
   through a goal-dependent, approximately linear transformation that each goal applies from block 0 onward.
+
+## 11. Post hoc: the pairwise maps form one consistent system (`equiv3.md`)
+
+Exploratory. The 12 linear maps of section 10 composed and inverted, evaluated on actual held-out state differences
+(4 096 random same-step pairs of test decisions, posteriors ≥ 0.5 apart), not as matrices; the effect of a composition
+on the A-equivalent, C-different pairs of section 9, logits read under C.
+
+| | held-out R² for the target difference | R² against the direct map's prediction | norm / direct's | decision to b2's |
+|---|---|---|---|---|
+| direct map M(A→C) Δ_A | 0.95 (0.94–0.96) | 1 | 1 | 0.86 (0.80–0.89) |
+| **composed M(B→C) M(A→B) Δ_A** | 0.94 (0.93–0.95) | **0.99 (0.98–0.99)** | 0.98 | **0.85 (0.79–0.89)** |
+| untransformed Δ_A | 0.36 | | | 0.33 |
+| **round trip M(B→A) M(A→B) Δ_A** (target Δ_A) | **0.98 (0.97–0.98)** | | 0.96 | **0.86 (0.82–0.89)** (Δ_A itself 0.90) |
+| three-cycle M(C→A) M(B→C) M(A→B) Δ_A (target Δ_A) | 0.96 (0.96–0.97) | | 0.94 | 0.84 |
+| random, the target's norm | | | | 0.04–0.06 |
+
+* **Composition commutes with the direct map.** Going A → B → C predicts the same B-independent vector as A → C
+  (R² 0.99 between the two predictions, cosine 0.99, in every one of the 144 model × triple cases 0.97–0.99), fits
+  Δ_C as well (0.94 against 0.95) and moves C's decision as often (0.85 against 0.86; the difference per case
+  −0.01 on average, −0.13 to +0.08).
+* **The round trip returns the difference.** A → B → A recovers Δ_A at R² 0.98 (every model and pair 0.95–0.99) with
+  4 % shrinkage, and switches A's decision in 0.86 of the pairs whose A-decisions differ, against 0.90 for Δ_A itself
+  and 0.06 for random; a three-goal cycle 0.96 and 0.84. The losses are the ridge's shrinkage and the 5 % the maps
+  miss per hop, not a change of content.
+
+**Reading.** The goal-specific representations are related by one system of invertible, composable, close-to-linear
+transformations: a change of coordinates between goals, not a set of unrelated encodings with a pairwise fit between
+each two. With section 6 this gives the decision token's state the structure of a common nonlinear code of the
+posterior carried in goal-specific coordinates, where the coordinates for any goal follow from those of any other by a
+fixed linear map.
+
+## 12. Post hoc: in block 0 the goal does not change what is retrieved; it adds gated content, which the MLP then transforms (`block0.md`)
+
+Exploratory. The goal is one token (position 1). For every decision after the first the decision token's embedding
+is goal-free, so in block 0 its query is goal-free and the goal reaches it by two routes only: the goal token's
+**key**, which reshapes the attention pattern over the history, and the goal token's **value**. History fixed, goal
+A → B over the 12 ordered pairs (8 192 test decisions after step 0), each route swapped alone and block 0's MLP applied
+to the result; the state measured against the natural change x(h, B) − x(h, A), against the fitted change of
+coordinates at the input of block 1, and at the decision.
+
+**Structure.** With a goal-free query, changing the goal rescales every history weight by a single factor per head
+(an identity, checked to 1e-7): the pattern route changes *how much* of the history aggregate enters each head and
+nothing about *which* tokens. The decision token puts 0.23 of its block-0 attention on the goal token. By the same
+algebra the value route's belief-dependent part is exactly four history-dependent scalars (each head's attention mass
+on the goal token) times four fixed goal-difference vectors: a per-head gate on the goal's content.
+
+| route swapped A → B | attention output: projection on the natural change | its interaction part, R² | state after block 0: projection | its interaction part, R² | difference on held-out pairs vs Δ_B, R² (Δ_A: 0.66; M(A→B) Δ_A: 0.98) | decision switches to B's (ceiling 0.37) |
+|---|---|---|---|---|---|---|
+| pattern (goal token's key) | 0.21 (0.18–0.30) | 0.22 | 0.21 | 0.23 | 0.76 | 0.09 |
+| value (goal token's value) | **0.79 (0.70–0.82)** | **0.73** | **0.79** | **0.78** | **0.90** | **0.24** |
+| both (= the natural change) | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 0.37 |
+
+* **The value route carries four fifths of the goal's effect on the block-0 state, and the same share of its
+  belief-dependent part** (0.73–0.78 of the goal × history interaction's change; the pattern route 0.22–0.23). The two
+  routes are additive (projections sum to 1.00). Measured against the change of coordinates, the value-route states'
+  difference reaches R² 0.90 for the B-written difference (untransformed 0.66, the fitted map 0.98; pattern route
+  0.76). At the decision (the token's block-0 state patched under A), the value route switches 0.24 of the decisions
+  that differ between the goals, the pattern route 0.09, both 0.37, which is the ceiling for this token's block-0
+  state (the goal also reaches blocks 1–3 through the goal token and the history tokens; random 0.03).
+* **What the MLP adds.** The goal change at the MLP's input is a large step (0.71 of the state's norm), and the MLP's
+  response is curved: its first-order response at A explains 0.27 of its change (the interaction part 0.39), at the
+  midpoint of the step 0.85, while a single linear map of the attention change fitted over decisions explains 0.92.
+  The MLP amplifies the goal change 1.55× (the value route's 1.53×, the pattern route's 1.42×) and raises the
+  interaction share from 0.13 of the attention output to 0.16 of its own output; the value route's MLP change matches
+  the natural MLP change at R² 0.72, the pattern route's not at all (−0.48).
+
+**Reading.** At block 0 the sharper question has a definite answer: the goal does not change what is retrieved from the
+history, which is structurally impossible here and, through the one lever it has (the goal token's share of
+attention), accounts for a fifth of the effect. The goal's content enters through its value, gated per head by how
+much attention the goal token wins against the history, and block 0's MLP transforms that gated mixture nonlinearly,
+amplifying it and adding interaction. The goal-specific coordinates of sections 8–11 begin as gated goal content plus
+a nonlinear MLP response to it; goal-dependent retrieval can only start in block 1, where the decision token's query
+first carries the goal.
+
+## 13. Post hoc: block 1 does not select the history by goal; it reads goal content the history tokens already carry (`block1.md`)
+
+Exploratory. At the input of block 1 every token but the first carries the goal (each attended to the goal token in
+block 0): the decision token's own state, the history tokens' and the goal token's. Block 1's attention at the
+decision token is recomputed with one source of the goal switched A → B and the rest held at A (8 192 test decisions
+after step 0, 12 ordered goal pairs), block 1's MLP applied to the result. The query route is measured as a
+redistribution over the history tokens (total variation of the per-head attention renormalised over history tokens,
+goal token excluded) and causally; the state patched at the input of block 2 under A for the decision.
+
+| goal source switched A → B | TV over history tokens (natural 0.24) | block-1 attention output: share of the natural change | state after block 1: share | its belief-dependent part, R² | decisions switched to B's (all 0.86, random 0.03) |
+|---|---|---|---|---|---|
+| decision token's **query** | 0.14 | 0.04 | 0.03 | 0.09 | 0.03 |
+| history tokens' **keys** only | 0.19 | 0.02 | 0.03 | 0.06 | 0.04 |
+| history tokens' **values** only | 0 | **0.63** | **0.44** | 0.20 | **0.29** |
+| decision token's own key and value | 0.08 | 0.12 | 0.05 | 0.04 | 0.03 |
+| goal token's key only / value only | 0 / 0 | 0.02 / 0.15 | 0.01 / 0.08 | 0.04 / 0.06 | 0.02 / 0.04 |
+| residual only (block-0 content carried, no attention change) | 0 | 0 | 0.32 | **0.58** | 0.25 |
+| token's own block-0 state (query + self + residual) | 0.17 | 0.17 | 0.41 | **0.70** | 0.37 |
+| attention sources (history + goal tokens) | 0.19 | 0.83 | 0.59 | 0.37 | 0.43 |
+
+* **Selection changes, and does not matter.** The goal-laden query redistributes the decision token's attention over
+  the history tokens by 0.14 of total variation (the natural change 0.24), and the history tokens' goal-laden keys by
+  0.19, as much as keys and values together. Neither has causal weight: the query route carries 0.04 of block 1's
+  attention-output change and switches decisions at the random rate (0.03); the keys-only route 0.02 and 0.04. The
+  decision token's block-1 attention on the goal token is 0.10, and the goal token's key moves it by 0.02.
+* **Content matters.** The history tokens' values alone carry 0.63 of the attention-output change, 0.44 of the state
+  change and switch 0.29 of goal-dependent decisions: the history has been rewritten goal-dependently by block 0
+  (each history token gated the goal's content as the decision token did, section 12) and block 1 reads that content
+  with an unchanged selection. The goal token's own value adds 0.15 at the attention output and 0.04 of decisions.
+* **Continuation and new content, in about equal parts, with different roles.** The token's own block-0 state (the
+  residual carried forward, with the query and self key/value it feeds) accounts for 0.41 of the state change after
+  block 1 and **0.70 of its belief-dependent part**; the attention sources account for 0.59 of the change and 0.37 of
+  the belief-dependent part (the two shares sum to 1.00). What block 1 retrieves from the history is mostly the goal's
+  offset; the goal × history interaction is mostly what block 0 already combined at the token, which block 1's MLP
+  then deepens: the interaction share rises from 0.13–0.15 at the MLP's input to 0.27 at its output (the state after
+  block 1: 0.19). The MLP's goal response is far from its local Jacobian (first order 0.07, midpoint 0.64) but is a
+  single linear map of its input change across decisions (R² 0.97), with gain 0.71.
+
+**Reading.** Block 1 introduces no goal-dependent selection of the history: the goal does change where the decision
+token attends, but what is attended differently carries nothing; the effect comes through content, from the token's
+own block-0 state (most of the belief-dependent part) and from the history tokens' values (most of the goal offset),
+which carry the goal by the same gated block-0 mechanism. Through blocks 0 and 1 the goal × belief interaction is
+therefore made by gating goal content into token states and transforming the mixtures through the MLPs, not by goal-
+dependent retrieval.
+
+## 14. Post hoc: the MLPs are approximately affine on the tested inputs; affine replacements preserve most of the policy (`mlp_affine.md`)
+
+Exploratory. Each MLP sublayer's best affine approximation, fitted by ridge from LN(mid) to the MLP output on every
+live token of the fit episodes under every goal (shared: one map; per goal: one map per goal; constant: the mean
+output, the MLP removed; one variant affine in the residual itself, the layer norm removed too), substituted in the
+network with attention intact. **Scope:** unless marked "decision token only", the replacement is at every live token of
+the sequence, history tokens included, so no nonlinear MLP processing remains upstream in the replaced block. Behaviour: the greedy return on the test
+spawns (recovery of the goal-directed return above the goal-blind H policy), agreement with the natural model's
+own-goal decisions on its test decisions. Transport: section 10's test at the input of block 2 refitted on the variant's
+states (held-out R² of M(A→B); on the A-equivalent, B-different pairs, B's decision switched by the direct B-written
+difference and by M(A→B) Δ_A).
+
+| MLP(s) replaced | fit R² at the decision token (shared / per goal) | recovery | agreement (goal-dependent decisions) | map R² | switch: direct Δ_B / M(A→B) Δ_A |
+|---|---|---|---|---|---|
+| none (natural) | | 1 | 1 | 0.95 | 0.92 / 0.85 |
+| **block 1, shared affine** | 0.96 / 0.99 | **1.00** | **0.98** | 0.95 | 0.91 / 0.85 |
+| block 1, per-goal affine | | 1.00 | 0.99 | 0.95 | 0.92 / 0.86 |
+| block 1, shared, decision token only; LN removed too | | 1.00; 1.00 | 0.98; 0.98 | 0.95 | 0.91 / 0.85 |
+| block 1, constant (removed) | | 0.94 | 0.95 | 0.96 | 0.83 / 0.78 |
+| block 0, shared / per goal | 0.94 / 0.97 | 0.97 / 0.99 | 0.97 / 0.98 | 0.95 | 0.91 / 0.87; 0.92 / 0.85 |
+| blocks 2, 3, each or both, shared | 0.98, 0.99 | 1.00 | 0.99 | 0.95 | 0.92 / 0.85 |
+| **all four, shared affine, every token** | | **0.95 (0.87–0.98)** | **0.93 (0.87–0.96)** | 0.96 | 0.89 / 0.82 |
+| all four, shared affine, decision token only | | 0.94 (0.91–0.97) | 0.94 (0.88–0.96) | 0.95 | 0.89 / 0.82 |
+| all four, shared affine in the residual (layer norms removed too) | | 0.93 (0.86–0.96) | 0.91 (0.87–0.95) | 0.96 | 0.89 / 0.84 |
+| all four, per-goal affine | | 0.97 (0.96–0.99) | 0.96 (0.91–0.98) | 0.95 | 0.91 / 0.85 |
+| all four, constant (removed) | | −0.15 | 0.45 | 0.98 | 0.56 / 0.56 |
+
+* **Block 1's MLP is approximately affine on the inputs it meets.** A single affine map of LN(mid) explains 0.96 of its output on
+  held-out decision tokens; substituted for it, the return is unchanged (recovery 1.00), 0.98 of the natural decisions
+  stand, and cross-goal transport is intact (the map's R² 0.95, the direct difference switches 0.91, the mapped one
+  0.85, as in the natural model). Per-goal maps fit better (0.99) and add 0.01 of agreement; replacing at the decision
+  token only, or removing the layer norm as well, changes nothing. **Normalisation is not doing the work**: on the same
+  held-out inputs an affine map of the raw residual fits as well as one of LN(mid) (block 0: 0.92 against 0.94; block 1:
+  0.96 against 0.96; blocks 2–3: 0.98, 0.99 against 0.98, 0.99), and the no-norm replacement behaves identically at
+  block 1; with all four MLPs and their norms replaced at once it costs a further 0.02 of recovery and of decisions
+  (0.93 / 0.91 against 0.95 / 0.93). Replacing all four at the decision token only, leaving the history tokens their
+  MLPs, gives the same result as at every token (0.94 / 0.94): no nonlinear processing upstream is propping it up. Removing the MLP (its mean output) costs 0.06 of the
+  recovery and 0.05 of decisions, so the MLP does something, and what it does is affine.
+* **So, approximately, are the other three.** Blocks 2 and 3 are affine to 0.98–0.99 and replaceable without loss; block 0 is the least
+  affine (0.94) and its replacement costs 0.03 of the recovery. **All four MLPs replaced by fixed affine maps keep
+  0.95 of the goal-directed return and 0.93 of the decisions** (per-goal maps 0.97 and 0.96), while removing all four
+  drops the policy below goal-blind (−0.15, agreement 0.45). The nonlinear part of the MLPs, the 1–6 % of their output
+  the affine fits miss, is worth about 0.05 of the goal-directed return and 0.07 of decisions: small, but room for
+  meaningful exceptions on particular decisions.
+* **The Jacobian puzzle of sections 12–13 resolves.** The MLP's response to the goal change was a poor fit to its
+  local Jacobian (R² 0.07 at block 1) and an excellent fit to one linear map across decisions (0.97): the function is
+  affine to 0.96 on the natural manifold, with a small-amplitude nonlinear ripple (GELU pre-activations sit near the
+  kink, |h| ≈ 0.5, 46 % positive) whose derivative is large but whose finite differences are small. The secant across
+  the goal step is the affine part; the derivative at a point is the ripple.
+
+**Reading.** Of the two alternatives posed, neither holds on the tested inputs: the MLPs do not perform general
+nonlinear computation on the goal–history mixture there, and the goal does not select among linear responses to the
+history (per-goal maps add 0.01–0.03). Each MLP is close to one fixed affine transformation on the inputs the trained
+policy meets, and the four together, replaced as such at every token, carry 0.95 of the goal-directed return. Most of
+the nonlinearity that makes H a nonlinear function of the posterior (sections 1 and 4) and the posterior's nonlinear
+code (section 6) is then made in attention, by the softmax over gated goal content and history (sections 12–13), with
+the MLPs acting mostly as linear maps on what attention assembles; the layer norms are not where the mixing happens.
+
+**Limit.** The affine maps are fitted and evaluated on the models' own episodes and the four trained goals; off that
+manifold the MLPs are not affine, and the 5 % of return and 7 % of decisions lost when all four are replaced are a real,
+if small, nonlinear contribution whose location (which decisions, which block) is not identified here.
+
+## 15. Post hoc: block 0's gates on the goal token make block 0's share of the goal-specific coordinates, and half of the final; the rest is rebuilt downstream (`gate0.md`)
+
+Exploratory. In block 0 the goal reaches a goal-free decision token through the goal token's key and value only
+(section 12): per head, the attention mass on the goal token is a gate on fixed goal content, and the gate depends on
+the history through the softmax competition with the history tokens' keys. Here that history dependence is removed:
+each head's mass on the goal token is replaced by its mean for that goal and query position (step), the other tokens'
+weights rescaled to keep their relative weights (their total is then 1 − mean, fixed per goal and step). Goal content
+is kept; its gating by the history is not. The test is run in section 14's simplified network (all four MLPs replaced
+by shared affine maps at every token, so that attention softmaxes and layer norms are the only nonlinearities left) and,
+as a control, in the natural network. Measured at the decision token under every goal: the goal × belief interaction
+of the state, the goal-specific coding of the belief (shared encoder plus offset against per-goal encoders), the
+cross-goal coordinate change on the A-equivalent, B-different pairs (R² of the untransformed Δ_A for Δ_B; section 10's
+transport test), and the policy.
+
+**A correction to section 8 first.** The decomposition x = hist(h) + M(g) + I(h, g) there counts the step as part
+of the history, so a goal offset that depends on the step lands in I. Letting the offset depend on the step,
+x = hist(h) + M(g, step) + I'(h, g), the goal × step offset is 0.27 / 0.36 / 0.37 of the state's variance at the
+input of block 1 / of block 2 / at the end, and the interaction beyond it, the goal × belief part proper, is
+**0.06 / 0.09 / 0.13** (section 8's 0.17 / 0.21 / 0.26). Likewise a shared encoder f(step, b) plus a goal × step
+offset explains 0.89 / 0.87 / 0.84 of the state against per-goal encoders' 0.94 / 0.96 / 0.97: the goal-specific
+coding of the belief is a gap of **0.05 / 0.08 / 0.12**, not 0.16–0.24. The same-step pair results of sections 9–11
+are unaffected (the offset cancels in a same-step difference), and so is the conclusion that the coding is
+goal-specific; its size was overstated.
+
+The gates: mass on the goal token 0.23 (0.22–0.28) at decision tokens after the first step; its spread across
+histories within one (goal, head, step) is a std of 0.10, the spread of its means across goals 0.08.
+
+| variant | recovery | agreement | goal × belief interaction I′: site 1 / 2 / 4 | encoder gap: 1 / 2 / 4 | R² of Δ_A for Δ_B: 1 / 2 / 4 | switch: direct Δ_B / M(A→B) Δ_A / Δ_A |
+|---|---|---|---|---|---|---|
+| natural | 1 | 1 | 0.06 / 0.09 / 0.13 | 0.05 / 0.08 / 0.12 | 0.74 / 0.39 / 0.12 | 0.92 / 0.85 / 0.33 |
+| simplified (section 14) | 0.95 | 0.93 | 0.04 / 0.07 / 0.09 | 0.04 / 0.06 / 0.08 | 0.80 / 0.52 / 0.26 | 0.89 / 0.82 / 0.39 |
+| **simplified, block-0 gates fixed per goal and step** | **0.78 (0.68–0.85)** | **0.86** | **0.01 / 0.03 / 0.05** | **0.00 / 0.02 / 0.04** | **0.95 / 0.71 / 0.47** | 0.88 / 0.81 / **0.53** |
+| simplified, gates fixed at the decision token only | 0.77 | 0.87 | 0.01 / 0.04 / 0.06 | 0.00 / 0.03 / 0.05 | 0.95 / 0.65 / 0.42 | 0.86 / 0.80 / 0.51 |
+| natural, block-0 gates fixed | 0.89 (0.74–0.93) | 0.95 | 0.03 / 0.06 / 0.10 | 0.02 / 0.05 / 0.09 | 0.85 / 0.49 / 0.20 | 0.91 / 0.85 / 0.42 |
+| simplified, gates fixed to the goal-averaged mean | 0.67 | 0.82 | 0.00 / 0.02 / 0.04 | 0.00 / 0.02 / 0.03 | 0.98 / 0.77 / 0.54 | 0.87 / 0.85 / 0.58 |
+
+The map's R² for Δ_B stays 0.92–1.00 at every site in every variant.
+
+* **The gates make block 0's share of the goal-specific coordinates.** With them fixed, the goal × belief interaction
+  at block 0's output falls from 0.04 to 0.01 (natural network 0.06 to 0.03), the encoder gap there to 0.00, and the
+  untransformed A-written difference predicts the B-written one at 0.95 (from 0.80): at the input of block 1 the two
+  goals' coordinates are then all but shared. With the gate at its goal-averaged value block 0 adds exactly
+  hist(h) + M(g, step) (I′ 0.00, Δ_A for Δ_B 0.98).
+* **About half of the final goal-specific coordinates survive them, rebuilt downstream from step-constant goal content.**
+  At the input of block 2 the interaction is 0.03 and the gap 0.02 (from 0.07 and 0.06), at the end 0.05 and 0.04 (from
+  0.09 and 0.08); Δ_A predicts Δ_B at 0.71 and 0.47 (from 0.52 and 0.26), and switches B's decision in 0.53 of the
+  differing pairs (from 0.39) against 0.88 for the direct B-written difference. Even when block 0 contributes no
+  interaction at all (the goal-averaged gate) blocks 1–3 make 0.02–0.04 of it and the untransformed Δ_A still only
+  reaches 0.58 of the direct difference's effect. In the simplified network the only places left to do this are the
+  attention softmaxes of blocks 1–3 (and the layer norms): with the gate fixed, the goal enters those blocks as a
+  constant per goal and step at every token, and a history-dependent attention pattern over tokens that carry a
+  goal-dependent constant is itself a goal × history interaction.
+* **The gating matters for the policy, and the two simplifications compound.** Fixing the gates costs the natural
+  network 0.11 of its goal-directed return (0.89; 0.74–0.93) and 0.05 of its decisions; in the simplified network the
+  same change costs 0.17 of recovery (0.78 against 0.95) and 0.07 of decisions. The affine maps were fitted on natural
+  inputs, and the gate-fixed states are off that distribution, so the simplified network is not a faithful substrate
+  for interventions that leave the natural manifold; its own losses must be read against the natural control. Fixing
+  the gate at the decision token only costs the same as at every token (0.77 against 0.78): it is the decision token's
+  own gate, not the history tokens', that the policy uses. Fixing it to the goal-averaged mean costs more (0.67), so the
+  goal-specific mean level of the gate is used too.
+
+**Reading.** The history-dependent gating of goal content in block 0 is where block 0's goal-specific coding of the
+belief is made, as section 12 implied, and it is behaviourally necessary; but it does not explain the goal-specific
+coordinates at the decision. Half of those are made after block 0 by attention in blocks 1–3 from goal content that,
+with the gate fixed, is a constant per goal and step. The goal-specific coding is smaller than section 8 reported
+(0.05–0.12 of the state's variance beyond a goal × step offset, not 0.16–0.24), and it is distributed: block 0's gate
+for the first half, the later blocks' attention for the second.
+
+**Limit.** The gate is fixed to a mean over all histories at that goal and step, so the per-head rescaling of the
+history (1 − mean) still differs across goals; the goal-averaged variant removes that too and gives the same picture
+downstream. Which attention routes in blocks 1–3 rebuild the coordinates (goal-dependent queries, or a history-dependent
+pattern over goal-laden values) is not separated here.
+
+## 16. Post hoc: with block 0's gates fixed, block 1's attention adds the goal × belief interaction in two additive halves, goal-dependent weights and goal-conditioned values, and its MLP transforms the sum linearly (`gate1.md`)
+
+Exploratory. The natural network with block 0's gates fixed per goal and step (section 15's control; no affine MLPs,
+so the inputs are the network's own), decision tokens after the first step, goals A and B with the gates fixed in both.
+Same-step pairs of decisions (posteriors ≥ 0.5 apart), so goal × step offsets cancel: the **belief-dependent goal
+difference** of a quantity y is (y(h2, B) − y(h2, A)) − (y(h1, B) − y(h1, A)). Block 1's attention at the decision
+token is recomputed with the incoming decision-token residual held at A's and B's attention weights (B's query and
+every key) with A's values, B's values of the other tokens (history and goal tokens) with A's weights, or both; a
+route's belief-dependent difference is measured against the natural one at block 1's attention output and, block 1's
+own MLP applied, at the state after block 1 (projection, R²), then propagated to decisions: on the A-equivalent,
+B-different pairs the route's pair difference added under B at the input of block 2 (B's decision switched to the
+donor's; ceiling the direct B-written difference 0.93, floor the A-written one 0.41, random 0.05), and the route's whole
+state patched under A (A's decision switched to B's; the whole state under B 0.85, random 0.03).
+
+**What block 1 receives and what it adds.** With the gates fixed the goal × belief interaction (beyond a goal × step
+offset) is 0.03 of the state's variance at block 1's input (natural 0.06), 0.05 at block 1's attention output, 0.11 at
+its MLP output and 0.06 after block 1 (natural 0.07 / 0.15 / 0.10). On the same-step pairs the belief-dependent goal
+difference is 0.39 of the A-written difference's norm at block 1's input and 0.67 after block 1; carried unchanged,
+the input's difference explains 0.23 of the output's (R²), the attention output's projects 0.31, input plus attention
+(the MLP's input) explain 0.54, and the MLP, whose belief-dependent response is a linear map of its input difference
+across pairs (R² 0.95, gain 1.10), supplies the rest.
+
+| goal source switched A → B at block 1 (residual at A) | pattern change (TV over history) | attention output: projection / R² | after block 1's MLP: projection / R² | B's decision switched by the route's pair difference | A's decision switched by the route's state |
+|---|---|---|---|---|---|
+| **B's weights (query and every key), A's values** | 0.23 | **0.41 / 0.37** | 0.22 / 0.23 | **0.51** | 0.08 |
+| **B's values of the other tokens, A's weights** | 0 | **0.50 / 0.44** | 0.38 / 0.39 | **0.51** | 0.37 |
+| **both** | 0.23 | **0.93 / 0.93** | **0.60 / 0.64** | **0.74** | 0.50 |
+| decision token's own key and value from B | 0.08 | 0.12 / 0.06 | 0.04 / 0.02 | 0.42 | 0.03 |
+| the whole attention sublayer from B | 0.23 | 1.00 / 1.00 | 0.64 / 0.68 | 0.74 | 0.57 |
+| residual only (the token's block-0 state from B) | 0 | 0 / 0 | 0.36 / 0.43 | 0.54 | 0.24 |
+| all (= B) | 0.23 | 1 / 1 | 1 / 1 | 0.93 | 0.85 |
+
+* **Two additive halves, not a coordination.** At block 1's attention output B's weights over A's values carry 0.41 of
+  the natural belief-dependent difference and B's other-token values under A's weights 0.50; together 0.93, the sum of
+  the parts. Of the three readings posed (weights, values, or mostly the joint swap) the answer is the first two at
+  once and in about equal measure, with no excess for the joint swap: goal-dependent weighting recombines the history
+  features A already supplies, and goal-conditioned content arrives from the history and goal tokens, independently.
+  The decision token's own key and value add little (0.12).
+* **The weights do matter once the gates are fixed.** Section 13 found the query route causally null in the natural
+  network (0.04 of the total attention-output change). Here, on the belief-dependent part and with block 0's
+  history-dependent gating removed, goal-dependent weights (query and keys, TV 0.23 over the history) carry 0.41 of
+  block 1's attention contribution and switch 0.51 of B's decisions against the 0.41 floor, as much as the values
+  (0.51). The two are not in conflict: in the natural network the goal × belief content that the values carry from the
+  gates dominated the total change; with that removed the reweighting's share becomes visible. The weights carry no
+  goal offset, so in the whole-state patch under A (which includes the goal × step offset) they move the decision
+  little (0.08) while the values move it 0.37.
+* **After the MLP, the split is values 0.38, weights 0.22, residual 0.36.** The residual route, zero at the attention
+  output by construction, carries block 0's remaining interaction (0.03 of variance) through block 1's MLP to 0.36 of
+  the output's belief-dependent difference; attention's 0.64 and the residual's 0.36 add to one. Both attention routes
+  together switch 0.74 of B's decisions, the residual alone 0.54, everything 0.93.
+
+**Reading.** Beyond what block 0 supplies, the operation that adds goal × belief interaction is block 1's attention,
+in two independent ways: the goal content now constant per goal and step in the decision token's query (and the
+tokens' keys) reweights the history tokens, and the history tokens' values bring goal-conditioned content made at
+their own positions by block 0 (its nonlinear MLP on the goal offset, and the per-head rescaling). Block 1's MLP then
+applies a near-linear map to the sum and amplifies it (gain 1.10), doubling the interaction's variance share through the
+block as in the natural network. Nothing here requires coordinating weights with their value content.
+
+**Limit.** The weights route switches every key as well as the query, so "goal-dependent weighting" includes the
+history tokens' goal-dependent keys; section 13 found the history keys' share small in the natural network. The
+decision test under A includes the goal × step offset and so favours the values; the pair test under B is the
+belief-dependent one.
