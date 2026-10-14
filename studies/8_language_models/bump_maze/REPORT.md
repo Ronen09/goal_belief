@@ -118,6 +118,15 @@ consistent set; "exact" is the share of decisions whose thresholded probe equals
   found for the belief in untrained networks, and here the gap is between a 0.59 exact-set readout and a policy at
   random. Fine-tuning closes it from both sides: the readout becomes nearly exact and the policy optimal.
 
+**Correction (2026-10-14, `../bump_policy/REPORT.md`).** The probe above splits fit and test by episode, and the optimum's
+episodes visit only 247 of the maze's 17 285 reachable belief sets, so held-out decisions share their sets with the
+fit. Split by set, the same probe on the same decisions recovers the set exactly in 0.006–0.027 (Jaccard 0.21–0.26,
+AUC 0.78–0.86), and on decisions uniform over all reachable sets in 0.035 at best. The 0.97 was a lookup over the
+optimum's few situations, not a general linear code of the consistent set; the conclusion of section 3 and of the
+reading below that the model "holds the full set of 140 state hypotheses as a linear readout" is withdrawn. The
+policy study also finds that the model's action is not a function of the set (the same action on every history of a
+set in 0.59 of sets) and that it is optimal on 0.65 of the sets the training data never visits.
+
 ## Scorecard
 
 | | criterion | numbers | held |

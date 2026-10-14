@@ -1023,7 +1023,9 @@ moves (the oracle 0.695 and 13.5); QMDP never succeeds (it never pays to localis
   decisions (AUC 1.000, log size R² 0.998; an MLP probe adds nothing); in the base model before any training the same
   probe recovers it in 0.59 (AUC 0.994), in the from-scratch transformer 0.32. 5 of 8 registered criteria held; the
   AUC-based probe criterion failed because the base model already saturates it, and the uncertainty criterion
-  because the fine-tuned model makes no errors.
+  because the fine-tuned model makes no errors. **Corrected by the policy study below:** the probe's split was by
+  episode over the optimum's 247 sets; split by set the exact recovery is 0.006–0.027, so the "linear set code" was
+  a lookup over the optimum's situations.
 
 **Bump goals — the same maze with four goals: additivity in goal and history, and goal swaps in the residual stream
 (`studies/8_language_models/bump_goals/REPORT.md`, rule in `studies/8_language_models/bump_goals/PLAN.md`).** Four
@@ -1055,3 +1057,29 @@ action depends on the goal in 0.57, and the best additive rule argmax h[goal-fre
   swap's 0.985; the mean goal offset per step 0.080, at the random floor (0.036): a linear change of coordinates with
   no constant part, where maze10's was two thirds offset. 6 of 8 registered criteria held (ADD-ON 0.14 against
   0.5–0.85; MAP 0.896 against 0.90); the unique attribution expected is undefined with three actions.
+
+**Bump policy — what function the fine-tuned model computes (`studies/8_language_models/bump_policy/REPORT.md`, rule in
+`studies/8_language_models/bump_policy/PLAN.md`).** The single-goal model (100k) against the exact optimum, which is a
+function of the belief set over the 17 285 reachable sets; the optimum's own episodes visit 247 of them, the training
+data 6 826.
+
+- The policy is not a function of the set: with up to four histories per set, the model gives the same action on
+  every history for 0.59 of sets (baseline for different sets 0.43; 0.90 of optimum-visited sets, 0.50 of
+  never-visited ones), and the logits cannot be reproduced from the exact membership vector even by an MLP (agreement
+  0.67). On every reachable set reached by its shortest history it is optimal in 0.97 of optimum-visited sets, 0.88
+  of other training-visited sets and 0.65 of never-visited ones, below lookups from membership fitted on the same
+  training sets (0.68 linear, 0.81 MLP); the resulting table is worth 0.95 of V* from the start and 0.83 on average,
+  while the model's own return is 1.00 of the optimum's. On the same training-visited sets a training-like history
+  gets the optimal action in 0.94, a shortest history 0.88, a random walk 0.84, disagreement growing with the
+  difference in length; when the two disagree the training-like history is right in 0.69.
+- The set is not in the state: on held-out sets a linear probe recovers it exactly in ≤ 0.035 (Jaccard 0.41), Q* and V*
+  at R² ≤ 0.42; what the decision token holds from layer 10 is whether forward will bump (R² 0.84). The single-goal
+  study's 0.97 came from a split by episode over 247 sets (split by set: 0.006–0.027), a lookup over the optimum's
+  situations, and is withdrawn. Membership edits along the probe move 0.02 of decisions, as random and a
+  same-subspace control do (natural swap 0.43–0.80); same-set swaps of the decision token's residual change up to 0.21
+  of decisions and follow the donor history in 0.65 where the two histories' decisions differ.
+- No incremental filter: patching the residual of the token ending a prefix with another prefix's moves 0.002 of
+  decisions at any layer; patching every prefix token transfers 0.65 at layer 8 and 0.08 by layer 18, so the later
+  positions read the prefix from its raw tokens in the first eight layers. 0 of 10 registered criteria held; every
+  one presupposed that the model computes the set. The fine-tuned models are exact imitators of the optimum's
+  trajectory distribution, not implementations of its filter-and-plan structure.

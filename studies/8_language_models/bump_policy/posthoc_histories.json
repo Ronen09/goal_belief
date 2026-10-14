@@ -1,0 +1,79 @@
+{
+ "n_sets": 6826,
+ "kinds": {
+  "training-data history": {
+   "optimal": 0.9349545854087313,
+   "optimal_ci": [
+    0.928655142103721,
+    0.9409610313507178
+   ],
+   "by_group": {
+    "optimum-visited": 0.9959514170040485,
+    "training-visited, not by the optimum": 0.9326645386836905
+   },
+   "mean_length": 11.612071491356577
+  },
+  "shortest history": {
+   "optimal": 0.8825080574274832,
+   "optimal_ci": [
+    0.8745971286258424,
+    0.8901259888661002
+   ],
+   "by_group": {
+    "optimum-visited": 0.9676113360323887,
+    "training-visited, not by the optimum": 0.879312965496276
+   },
+   "mean_length": 10.516993847055376
+  },
+  "random-walk history": {
+   "optimal": 0.837901216473692,
+   "optimal_ci": [
+    0.8295471200351752,
+    0.8474314817528946
+   ],
+   "by_group": {
+    "optimum-visited": 0.9635627530364372,
+    "training-visited, not by the optimum": 0.8331812652068127
+   },
+   "mean_length": 14.978015535688114
+  }
+ },
+ "agreement": {
+  "training-data history vs shortest history": 0.8934954585408731,
+  "training-data history vs random-walk history": 0.8447896819580829,
+  "shortest history vs random-walk history": 0.8604719331672285
+ },
+ "disagreement_by_length_difference": {
+  "0": {
+   "n": 4148,
+   "disagree": 0.03326904532304725
+  },
+  "1-2": {
+   "n": 1598,
+   "disagree": 0.18648310387984982
+  },
+  "3-5": {
+   "n": 790,
+   "disagree": 0.2607594936708861
+  },
+  "6-10": {
+   "n": 257,
+   "disagree": 0.2840466926070039
+  },
+  "> 10": {
+   "n": 33,
+   "disagree": 0.36363636363636365
+  }
+ },
+ "disagreement_by_last_action": {
+  "same": 0.07855662983425414,
+  "different": 0.26305609284332687
+ },
+ "when_disagreeing": {
+  "n": 727,
+  "both_optimal": 0.059147180192572216,
+  "only_training_optimal": 0.6932599724896836,
+  "only_shortest_optimal": 0.20082530949105915,
+  "neither": 0.04676753782668501
+ }
+}

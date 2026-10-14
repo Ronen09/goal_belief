@@ -45,8 +45,12 @@ then reports which held (`REPORT.md`). [FINDINGS.md](FINDINGS.md) has every resu
    heading and one bit of observation per step, where the exact belief is a set and the exact optimum is computable,
    small instruction-tuned language models zero-shot decide no better than "always forward" and do not use the
    history when asked where they could be; fine-tuned by supervision from the optimum, a 0.5B model is exactly
-   optimal after ten thousand episodes, ten times fewer than a transformer or GRU from scratch, and holds the full
-   set of consistent states as a linear readout of its middle layers, which the base model already holds in part.
+   optimal after ten thousand episodes, ten times fewer than a transformer or GRU from scratch. It does not compute
+   the belief set: its action depends on the history beyond the set, it is optimal on two thirds of the belief sets
+   its training never visits, and the set is not decodable from its state on held-out sets (what is, is whether the
+   next move will bump); with four goals its policy is a fifth goal × history interaction, the additive part recovers
+   0.14 of the goal-directed return, and the goal is read into the decision token in the last five layers. The
+   fine-tuned models are exact imitators of the optimum's trajectory distribution, not of its filter-and-plan structure.
 
 ## Layout
 

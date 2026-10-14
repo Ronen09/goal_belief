@@ -212,6 +212,8 @@ EXPERIMENTS = [
           [Step("design.py"), Step("train_goals.py", ("--model", "llm", "--n_train", "40000", "--save")), Step("train_goals.py", ("--model", "tfm", "--n_train", "40000")), Step("train_goals.py", ("--model", "gru", "--n_train", "40000")),
            Step("train_goals.py", ("--model", "llm", "--n_train", "120000", "--save")), Step("train_goals.py", ("--model", "tfm", "--n_train", "120000")), Step("train_goals.py", ("--model", "gru", "--n_train", "120000")),
            Step("additive.py", ("--run", "runs/llm_40000")), Step("additive.py", ("--run", "runs/llm_120000")), Step("factorial_llm.py", ("--run", "runs/llm_40000")), Step("posthoc_ceiling.py", ("--rounds", "8")), Step("tables.py", tables=True)], needs=("bump_maze",)),
+    Experiment("bump_policy", "8_language_models/bump_policy", "What function the fine-tuned single-goal bump model computes: set-sufficiency over histories, its action on every reachable belief set against the optimum and the exact value of that table, probes by layer for the set / Q* / V* / P(bump), the readout's form from membership, same-set swaps and membership edits, step-token probes and the prefix patch; post hoc, the same sets by three kinds of history and the single-goal probe split by set", "1.5 h GPU",
+          [Step("design.py"), Step("policy_table.py"), Step("probes.py"), Step("swaps.py"), Step("prefix.py"), Step("posthoc_histories.py"), Step("posthoc_probe.py"), Step("tables.py", tables=True)], needs=("bump_maze",)),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 
