@@ -1,0 +1,12 @@
+sup_gru_100000: 484173 decisions, 5108 deviations (0.011); systematic (set's majority wrong) 0.53, occasional 0.47; 11 of 260 sets wrong by majority; 7 sets carry half, 17 90 %; big sets 260: mixed 14 (tie 4, not tie 10, 0.037 of decisions)
+  known states: 231740 decisions, deviation share 0.013; wrong-majority known states 7: (7,4) e n=276 R vs L gap 0.06; (7,7) s n=148 L vs R gap 0.06; (5,3) e n=138 F vs L gap 0.11; (5,2) s n=138 F vs R gap 0.11; (6,3) e n=138 F vs LR gap 0.06; (7,5) s n=138 F vs R gap 0.11; (7,6) e n=138 F vs L gap 0.03
+  top sets: #189 size 2 n=604 dev 604 freq [0.0, 0.0, 1.0] opt L step 8.0 gap 0.01; #119 size 1 n=2055 dev 438 freq [0.72, 0.07, 0.21] opt LR step 17.7 gap 0.00; #120 size 1 n=3433 dev 438 freq [0.87, 0.13, 0.0] opt L step 17.3 gap 0.00; #1394 size 3 n=407 dev 407 freq [0.0, 0.0, 1.0] opt L step 18.0 gap 0.00; #1592 size 2 n=1112 dev 290 freq [0.74, 0.26, 0.0] opt L step 11.0 gap 0.00; #298 size 2 n=283 dev 283 freq [1.0, 0.0, 0.0] opt R step 8.0 gap 0.06
+#########
+#.....#.#
+#.#..x#.#
+#...#xx.#
+###.#.#x#
+#...#..x#
+#.###.#x#
+#G..#..x#
+#########

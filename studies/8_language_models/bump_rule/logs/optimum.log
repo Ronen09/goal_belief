@@ -1,0 +1,113 @@
+optimum: 20000 greedy episodes, 479711 decisions, return 0.518 success 0.993 length 24.0 3s
+  optimum: optimal 1.000 (known 1.000, unknown 1.000); = QMDP 0.703; forward 0.694; forward-else-right-after-bump 0.735; deviations 0.000: value given up None, IG − opt None; openings [('FLFFLFFF', 0.07975), ('FLFFLFLF', 0.06115), ('FFFFFFLF', 0.05985)]
+  optimum window  0 -     : agree 0.695 (exact key 1.000, 1 keys)
+  optimum window  1 -     : agree 0.774 (exact key 1.000, 5 keys)
+  optimum window  2 -     : agree 0.788 (exact key 1.000, 14 keys)
+  optimum window  3 -     : agree 0.840 (exact key 1.000, 36 keys)
+  optimum window  4 -     : agree 0.863 (exact key 1.000, 83 keys)
+  optimum window  5 -     : agree 0.894 (exact key 1.000, 156 keys)
+  optimum window  6 -     : agree 0.939 (exact key 1.000, 254 keys)
+  optimum window  7 -     : agree 0.962 (exact key 1.000, 361 keys)
+  optimum window  8 -     : agree 0.982 (exact key 1.000, 468 keys)
+  optimum window  9 -     : agree 0.987 (exact key 1.000, 566 keys)
+  optimum window 10 -     : agree 0.991 (exact key 1.000, 666 keys)
+  optimum window 11 -     : agree 0.996 (exact key 1.000, 766 keys)
+  optimum window 12 -     : agree 0.997 (exact key 1.000, 855 keys)
+  optimum window 16 -     : agree 1.000 (exact key 1.000, 1206 keys)
+  optimum window 20 -     : agree 1.000 (exact key 1.000, 1496 keys)
+  optimum window 40 -     : agree 1.000 (exact key 1.000, 1896 keys)
+  optimum window  0 step  : agree 0.695 (exact key 1.000, 40 keys)
+  optimum window  1 step  : agree 0.784 (exact key 1.000, 128 keys)
+  optimum window  2 step  : agree 0.847 (exact key 1.000, 265 keys)
+  optimum window  3 step  : agree 0.898 (exact key 1.000, 447 keys)
+  optimum window  4 step  : agree 0.936 (exact key 1.000, 680 keys)
+  optimum window  5 step  : agree 0.962 (exact key 1.000, 884 keys)
+  optimum window  6 step  : agree 0.985 (exact key 1.000, 1049 keys)
+  optimum window  7 step  : agree 0.990 (exact key 1.000, 1165 keys)
+  optimum window  8 step  : agree 0.995 (exact key 1.000, 1271 keys)
+  optimum window  9 step  : agree 0.996 (exact key 1.000, 1354 keys)
+  optimum window 10 step  : agree 0.999 (exact key 1.000, 1425 keys)
+  optimum window 11 step  : agree 0.999 (exact key 1.000, 1487 keys)
+  optimum window 12 step  : agree 0.999 (exact key 1.000, 1545 keys)
+  optimum window 16 step  : agree 1.000 (exact key 1.000, 1730 keys)
+  optimum window 20 step  : agree 1.000 (exact key 1.000, 1822 keys)
+  optimum window 40 step  : agree 1.000 (exact key 1.000, 1896 keys)
+  optimum window  0 bumps : agree 0.695 (exact key 1.000, 7 keys)
+  optimum window  1 bumps : agree 0.775 (exact key 1.000, 28 keys)
+  optimum window  2 bumps : agree 0.797 (exact key 1.000, 70 keys)
+  optimum window  3 bumps : agree 0.859 (exact key 1.000, 150 keys)
+  optimum window  4 bumps : agree 0.893 (exact key 1.000, 279 keys)
+  optimum window  5 bumps : agree 0.930 (exact key 1.000, 431 keys)
+  optimum window  6 bumps : agree 0.968 (exact key 1.000, 580 keys)
+  optimum window  7 bumps : agree 0.977 (exact key 1.000, 699 keys)
+  optimum window  8 bumps : agree 0.988 (exact key 1.000, 810 keys)
+  optimum window  9 bumps : agree 0.991 (exact key 1.000, 908 keys)
+  optimum window 10 bumps : agree 0.995 (exact key 1.000, 1002 keys)
+  optimum window 11 bumps : agree 0.997 (exact key 1.000, 1091 keys)
+  optimum window 12 bumps : agree 0.997 (exact key 1.000, 1169 keys)
+  optimum window 16 bumps : agree 1.000 (exact key 1.000, 1452 keys)
+  optimum window 20 bumps : agree 1.000 (exact key 1.000, 1652 keys)
+  optimum window 40 bumps : agree 1.000 (exact key 1.000, 1896 keys)
+  optimum window  0 since : agree 0.732 (exact key 1.000, 32 keys)
+  optimum window  1 since : agree 0.777 (exact key 1.000, 81 keys)
+  optimum window  2 since : agree 0.827 (exact key 1.000, 135 keys)
+  optimum window  3 since : agree 0.884 (exact key 1.000, 206 keys)
+  optimum window  4 since : agree 0.900 (exact key 1.000, 297 keys)
+  optimum window  5 since : agree 0.924 (exact key 1.000, 399 keys)
+  optimum window  6 since : agree 0.952 (exact key 1.000, 496 keys)
+  optimum window  7 since : agree 0.971 (exact key 1.000, 587 keys)
+  optimum window  8 since : agree 0.984 (exact key 1.000, 676 keys)
+  optimum window  9 since : agree 0.987 (exact key 1.000, 755 keys)
+  optimum window 10 since : agree 0.992 (exact key 1.000, 835 keys)
+  optimum window 11 since : agree 0.997 (exact key 1.000, 913 keys)
+  optimum window 12 since : agree 0.997 (exact key 1.000, 981 keys)
+  optimum window 16 since : agree 1.000 (exact key 1.000, 1264 keys)
+  optimum window 20 since : agree 1.000 (exact key 1.000, 1514 keys)
+  optimum window 40 since : agree 1.000 (exact key 1.000, 1896 keys)
+  optimum window  0 moved : agree 0.695 (exact key 1.000, 25 keys)
+  optimum window  1 moved : agree 0.784 (exact key 1.000, 79 keys)
+  optimum window  2 moved : agree 0.841 (exact key 1.000, 164 keys)
+  optimum window  3 moved : agree 0.877 (exact key 1.000, 284 keys)
+  optimum window  4 moved : agree 0.909 (exact key 1.000, 462 keys)
+  optimum window  5 moved : agree 0.940 (exact key 1.000, 655 keys)
+  optimum window  6 moved : agree 0.972 (exact key 1.000, 827 keys)
+  optimum window  7 moved : agree 0.984 (exact key 1.000, 955 keys)
+  optimum window  8 moved : agree 0.991 (exact key 1.000, 1060 keys)
+  optimum window  9 moved : agree 0.994 (exact key 1.000, 1146 keys)
+  optimum window 10 moved : agree 0.998 (exact key 1.000, 1218 keys)
+  optimum window 11 moved : agree 0.999 (exact key 1.000, 1285 keys)
+  optimum window 12 moved : agree 0.999 (exact key 1.000, 1344 keys)
+  optimum window 16 moved : agree 1.000 (exact key 1.000, 1570 keys)
+  optimum window 20 moved : agree 1.000 (exact key 1.000, 1718 keys)
+  optimum window 40 moved : agree 1.000 (exact key 1.000, 1896 keys)
+  optimum rule window  0 -      in the environment: return 0.027 success 0.028 length 38.9 819s
+  optimum rule window  1 -      in the environment: return 0.119 success 0.134 length 35.3 819s
+  optimum rule window  2 -      in the environment: return 0.187 success 0.290 length 33.5 819s
+  optimum rule window  3 -      in the environment: return 0.144 success 0.168 length 34.3 820s
+  optimum rule window  4 -      in the environment: return 0.204 success 0.302 length 32.6 820s
+  optimum rule window  6 -      in the environment: return 0.324 success 0.602 length 30.1 821s
+  optimum rule window  8 -      in the environment: return 0.481 success 0.943 length 25.6 823s
+  optimum rule window 12 -      in the environment: return 0.498 success 0.957 length 24.6 830s
+  optimum rule window 20 -      in the environment: return 0.515 success 0.995 length 24.2 842s
+  optimum rule window 40 -      in the environment: return 0.515 success 0.995 length 24.2 918s
+  optimum rule window  0 since  in the environment: return 0.120 success 0.139 length 35.3 918s
+  optimum rule window  1 since  in the environment: return 0.119 success 0.134 length 35.3 919s
+  optimum rule window  2 since  in the environment: return 0.187 success 0.290 length 33.5 919s
+  optimum rule window  3 since  in the environment: return 0.266 success 0.471 length 31.6 920s
+  optimum rule window  4 since  in the environment: return 0.270 success 0.484 length 31.6 921s
+  optimum rule window  6 since  in the environment: return 0.375 success 0.738 length 29.2 922s
+  optimum rule window  8 since  in the environment: return 0.481 success 0.942 length 25.6 926s
+  optimum rule window 12 since  in the environment: return 0.500 success 0.963 length 24.6 932s
+  optimum rule window 20 since  in the environment: return 0.515 success 0.995 length 24.2 948s
+  optimum rule window 40 since  in the environment: return 0.515 success 0.995 length 24.2 1037s
+  optimum rule window  0 bumps  in the environment: return 0.027 success 0.028 length 38.9 1037s
+  optimum rule window  1 bumps  in the environment: return 0.119 success 0.134 length 35.3 1037s
+  optimum rule window  2 bumps  in the environment: return 0.138 success 0.169 length 34.6 1038s
+  optimum rule window  3 bumps  in the environment: return 0.151 success 0.191 length 34.2 1038s
+  optimum rule window  4 bumps  in the environment: return 0.202 success 0.293 length 32.6 1039s
+  optimum rule window  6 bumps  in the environment: return 0.355 success 0.633 length 28.4 1040s
+  optimum rule window  8 bumps  in the environment: return 0.475 success 0.910 length 25.4 1044s
+  optimum rule window 12 bumps  in the environment: return 0.498 success 0.961 length 24.7 1050s
+  optimum rule window 20 bumps  in the environment: return 0.515 success 0.995 length 24.2 1068s
+  optimum rule window 40 bumps  in the environment: return 0.515 success 0.995 length 24.2 1153s
+wrote rule_optimum.json 1153s

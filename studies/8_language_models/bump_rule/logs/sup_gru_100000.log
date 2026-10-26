@@ -1,0 +1,122 @@
+sup_gru_100000: 20000 greedy episodes, 484173 decisions, return 0.511 success 0.979 length 24.2 3s
+  sup_gru_100000: optimal 0.989 (known 0.987, unknown 0.992); = QMDP 0.696; forward 0.693; forward-else-right-after-bump 0.734; deviations 0.011: value given up 0.04068611726416287, IG − opt 0.0; openings [('FLFFLFFF', 0.07975), ('FLFFLFLF', 0.06115), ('FFFFFFLF', 0.05985)]
+  sup_gru_100000 window  0 -     : agree 0.693 (exact key 1.000, 1 keys)
+  sup_gru_100000 window  1 -     : agree 0.774 (exact key 1.000, 5 keys)
+  sup_gru_100000 window  2 -     : agree 0.790 (exact key 1.000, 14 keys)
+  sup_gru_100000 window  3 -     : agree 0.844 (exact key 1.000, 36 keys)
+  sup_gru_100000 window  4 -     : agree 0.863 (exact key 1.000, 79 keys)
+  sup_gru_100000 window  5 -     : agree 0.898 (exact key 1.000, 142 keys)
+  sup_gru_100000 window  6 -     : agree 0.946 (exact key 1.000, 224 keys)
+  sup_gru_100000 window  7 -     : agree 0.967 (exact key 1.000, 311 keys)
+  sup_gru_100000 window  8 -     : agree 0.982 (exact key 1.000, 404 keys)
+  sup_gru_100000 window  9 -     : agree 0.986 (exact key 1.000, 496 keys)
+  sup_gru_100000 window 10 -     : agree 0.992 (exact key 1.000, 594 keys)
+  sup_gru_100000 window 11 -     : agree 0.998 (exact key 1.000, 689 keys)
+  sup_gru_100000 window 12 -     : agree 0.998 (exact key 1.000, 775 keys)
+  sup_gru_100000 window 16 -     : agree 0.999 (exact key 1.000, 1115 keys)
+  sup_gru_100000 window 20 -     : agree 1.000 (exact key 1.000, 1417 keys)
+  sup_gru_100000 window 40 -     : agree 1.000 (exact key 1.000, 1910 keys)
+  sup_gru_100000 window  0 step  : agree 0.693 (exact key 1.000, 40 keys)
+  sup_gru_100000 window  1 step  : agree 0.782 (exact key 1.000, 133 keys)
+  sup_gru_100000 window  2 step  : agree 0.848 (exact key 1.000, 275 keys)
+  sup_gru_100000 window  3 step  : agree 0.896 (exact key 1.000, 461 keys)
+  sup_gru_100000 window  4 step  : agree 0.938 (exact key 1.000, 685 keys)
+  sup_gru_100000 window  5 step  : agree 0.965 (exact key 1.000, 887 keys)
+  sup_gru_100000 window  6 step  : agree 0.988 (exact key 1.000, 1041 keys)
+  sup_gru_100000 window  7 step  : agree 0.993 (exact key 1.000, 1144 keys)
+  sup_gru_100000 window  8 step  : agree 0.995 (exact key 1.000, 1240 keys)
+  sup_gru_100000 window  9 step  : agree 0.996 (exact key 1.000, 1321 keys)
+  sup_gru_100000 window 10 step  : agree 1.000 (exact key 1.000, 1389 keys)
+  sup_gru_100000 window 11 step  : agree 1.000 (exact key 1.000, 1449 keys)
+  sup_gru_100000 window 12 step  : agree 1.000 (exact key 1.000, 1505 keys)
+  sup_gru_100000 window 16 step  : agree 1.000 (exact key 1.000, 1688 keys)
+  sup_gru_100000 window 20 step  : agree 1.000 (exact key 1.000, 1792 keys)
+  sup_gru_100000 window 40 step  : agree 1.000 (exact key 1.000, 1910 keys)
+  sup_gru_100000 window  0 bumps : agree 0.693 (exact key 1.000, 9 keys)
+  sup_gru_100000 window  1 bumps : agree 0.775 (exact key 1.000, 36 keys)
+  sup_gru_100000 window  2 bumps : agree 0.800 (exact key 1.000, 86 keys)
+  sup_gru_100000 window  3 bumps : agree 0.863 (exact key 1.000, 161 keys)
+  sup_gru_100000 window  4 bumps : agree 0.895 (exact key 1.000, 282 keys)
+  sup_gru_100000 window  5 bumps : agree 0.931 (exact key 1.000, 430 keys)
+  sup_gru_100000 window  6 bumps : agree 0.969 (exact key 1.000, 573 keys)
+  sup_gru_100000 window  7 bumps : agree 0.980 (exact key 1.000, 689 keys)
+  sup_gru_100000 window  8 bumps : agree 0.989 (exact key 1.000, 799 keys)
+  sup_gru_100000 window  9 bumps : agree 0.991 (exact key 1.000, 898 keys)
+  sup_gru_100000 window 10 bumps : agree 0.996 (exact key 1.000, 991 keys)
+  sup_gru_100000 window 11 bumps : agree 0.999 (exact key 1.000, 1077 keys)
+  sup_gru_100000 window 12 bumps : agree 0.999 (exact key 1.000, 1151 keys)
+  sup_gru_100000 window 16 bumps : agree 1.000 (exact key 1.000, 1422 keys)
+  sup_gru_100000 window 20 bumps : agree 1.000 (exact key 1.000, 1627 keys)
+  sup_gru_100000 window 40 bumps : agree 1.000 (exact key 1.000, 1910 keys)
+  sup_gru_100000 window  0 since : agree 0.735 (exact key 1.000, 24 keys)
+  sup_gru_100000 window  1 since : agree 0.782 (exact key 1.000, 64 keys)
+  sup_gru_100000 window  2 since : agree 0.836 (exact key 1.000, 106 keys)
+  sup_gru_100000 window  3 since : agree 0.895 (exact key 1.000, 158 keys)
+  sup_gru_100000 window  4 since : agree 0.907 (exact key 1.000, 225 keys)
+  sup_gru_100000 window  5 since : agree 0.930 (exact key 1.000, 301 keys)
+  sup_gru_100000 window  6 since : agree 0.956 (exact key 1.000, 376 keys)
+  sup_gru_100000 window  7 since : agree 0.974 (exact key 1.000, 449 keys)
+  sup_gru_100000 window  8 since : agree 0.983 (exact key 1.000, 528 keys)
+  sup_gru_100000 window  9 since : agree 0.987 (exact key 1.000, 607 keys)
+  sup_gru_100000 window 10 since : agree 0.993 (exact key 1.000, 690 keys)
+  sup_gru_100000 window 11 since : agree 0.998 (exact key 1.000, 769 keys)
+  sup_gru_100000 window 12 since : agree 0.999 (exact key 1.000, 840 keys)
+  sup_gru_100000 window 16 since : agree 0.999 (exact key 1.000, 1136 keys)
+  sup_gru_100000 window 20 since : agree 1.000 (exact key 1.000, 1420 keys)
+  sup_gru_100000 window 40 since : agree 1.000 (exact key 1.000, 1910 keys)
+  sup_gru_100000 window  0 moved : agree 0.693 (exact key 1.000, 25 keys)
+  sup_gru_100000 window  1 moved : agree 0.784 (exact key 1.000, 84 keys)
+  sup_gru_100000 window  2 moved : agree 0.842 (exact key 1.000, 180 keys)
+  sup_gru_100000 window  3 moved : agree 0.880 (exact key 1.000, 308 keys)
+  sup_gru_100000 window  4 moved : agree 0.917 (exact key 1.000, 484 keys)
+  sup_gru_100000 window  5 moved : agree 0.946 (exact key 1.000, 656 keys)
+  sup_gru_100000 window  6 moved : agree 0.977 (exact key 1.000, 809 keys)
+  sup_gru_100000 window  7 moved : agree 0.986 (exact key 1.000, 918 keys)
+  sup_gru_100000 window  8 moved : agree 0.993 (exact key 1.000, 1013 keys)
+  sup_gru_100000 window  9 moved : agree 0.995 (exact key 1.000, 1092 keys)
+  sup_gru_100000 window 10 moved : agree 0.999 (exact key 1.000, 1163 keys)
+  sup_gru_100000 window 11 moved : agree 1.000 (exact key 1.000, 1227 keys)
+  sup_gru_100000 window 12 moved : agree 1.000 (exact key 1.000, 1285 keys)
+  sup_gru_100000 window 16 moved : agree 1.000 (exact key 1.000, 1500 keys)
+  sup_gru_100000 window 20 moved : agree 1.000 (exact key 1.000, 1659 keys)
+  sup_gru_100000 window 40 moved : agree 1.000 (exact key 1.000, 1910 keys)
+  token patch: d1 0.72 d2 0.43 d3 0.49 d4 0.33 d5 0.33 d6 0.29 d7 0.25 d8 0.19 d9 0.16 d10 0.13 d11 0.09 d12 0.07 d13 0.04 d14 0.03 d15 0.02 d16 0.02
+  sup_gru_100000 rule window  0 -      in the environment: return 0.027 success 0.028 length 38.9 922s
+  sup_gru_100000 rule window  1 -      in the environment: return 0.119 success 0.134 length 35.3 922s
+  sup_gru_100000 rule window  2 -      in the environment: return 0.187 success 0.290 length 33.5 923s
+  sup_gru_100000 rule window  3 -      in the environment: return 0.144 success 0.168 length 34.3 923s
+  sup_gru_100000 rule window  4 -      in the environment: return 0.208 success 0.313 length 32.6 924s
+  sup_gru_100000 rule window  6 -      in the environment: return 0.319 success 0.587 length 30.1 925s
+  sup_gru_100000 rule window  8 -      in the environment: return 0.462 success 0.899 length 26.1 928s
+  sup_gru_100000 rule window 12 -      in the environment: return 0.499 success 0.960 length 24.7 931s
+  sup_gru_100000 rule window 20 -      in the environment: return 0.508 success 0.979 length 24.4 945s
+  sup_gru_100000 rule window 40 -      in the environment: return 0.508 success 0.979 length 24.4 1020s
+  sup_gru_100000 rule window  0 since  in the environment: return 0.120 success 0.139 length 35.3 1020s
+  sup_gru_100000 rule window  1 since  in the environment: return 0.119 success 0.134 length 35.3 1021s
+  sup_gru_100000 rule window  2 since  in the environment: return 0.253 success 0.445 length 31.8 1021s
+  sup_gru_100000 rule window  3 since  in the environment: return 0.266 success 0.471 length 31.6 1022s
+  sup_gru_100000 rule window  4 since  in the environment: return 0.266 success 0.471 length 31.6 1023s
+  sup_gru_100000 rule window  6 since  in the environment: return 0.373 success 0.729 length 29.2 1025s
+  sup_gru_100000 rule window  8 since  in the environment: return 0.459 success 0.892 length 26.2 1028s
+  sup_gru_100000 rule window 12 since  in the environment: return 0.503 success 0.971 length 24.6 1034s
+  sup_gru_100000 rule window 20 since  in the environment: return 0.508 success 0.979 length 24.4 1054s
+  sup_gru_100000 rule window 40 since  in the environment: return 0.508 success 0.979 length 24.4 1129s
+  sup_gru_100000 rule window  0 bumps  in the environment: return 0.027 success 0.028 length 38.9 1129s
+  sup_gru_100000 rule window  1 bumps  in the environment: return 0.119 success 0.134 length 35.3 1130s
+  sup_gru_100000 rule window  2 bumps  in the environment: return 0.144 success 0.180 length 34.4 1130s
+  sup_gru_100000 rule window  3 bumps  in the environment: return 0.170 success 0.242 length 33.8 1131s
+  sup_gru_100000 rule window  4 bumps  in the environment: return 0.207 success 0.307 length 32.4 1131s
+  sup_gru_100000 rule window  6 bumps  in the environment: return 0.369 success 0.667 length 28.1 1133s
+  sup_gru_100000 rule window  8 bumps  in the environment: return 0.466 success 0.887 length 25.5 1135s
+  sup_gru_100000 rule window 12 bumps  in the environment: return 0.507 success 0.979 length 24.5 1140s
+  sup_gru_100000 rule window 20 bumps  in the environment: return 0.508 success 0.979 length 24.4 1155s
+  sup_gru_100000 rule window 40 bumps  in the environment: return 0.508 success 0.979 length 24.4 1207s
+  sup_gru_100000 K=  2: action purity 0.878, transition determinism 0.804 / 0.805, machine return 0.119 success 0.134
+  sup_gru_100000 K=  4: action purity 0.813, transition determinism 0.772 / 0.773, machine return 0.057 success 0.062
+  sup_gru_100000 K=  8: action purity 0.833, transition determinism 0.773 / 0.773, machine return 0.119 success 0.134
+  sup_gru_100000 K= 16: action purity 0.911, transition determinism 0.796 / 0.797, machine return 0.139 success 0.168
+  sup_gru_100000 K= 32: action purity 0.964, transition determinism 0.770 / 0.772, machine return 0.160 success 0.208
+  sup_gru_100000 K= 64: action purity 0.955, transition determinism 0.794 / 0.796, machine return 0.131 success 0.152
+  sup_gru_100000 K=128: action purity 0.975, transition determinism 0.839 / 0.839, machine return 0.225 success 0.357
+  sup_gru_100000 K=256: action purity 0.988, transition determinism 0.858 / 0.856, machine return 0.354 success 0.635
+wrote rule_sup_gru_100000.json 1208s

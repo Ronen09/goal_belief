@@ -1,0 +1,122 @@
+ppo_gru_seed0: 20000 greedy episodes, 550510 decisions, return 0.454 success 0.922 length 27.5 5s
+  ppo_gru_seed0: optimal 0.858 (known 0.877, unknown 0.842); = QMDP 0.593; forward 0.680; forward-else-right-after-bump 0.710; deviations 0.142: value given up 0.03626296562108076, IG − opt -0.11391648490652241; openings [('FLFFLFFF', 0.07975), ('FLFFLFLF', 0.06115), ('FLFFFFRF', 0.0567)]
+  ppo_gru_seed0 window  0 -     : agree 0.680 (exact key 1.000, 1 keys)
+  ppo_gru_seed0 window  1 -     : agree 0.786 (exact key 1.000, 5 keys)
+  ppo_gru_seed0 window  2 -     : agree 0.786 (exact key 1.000, 17 keys)
+  ppo_gru_seed0 window  3 -     : agree 0.837 (exact key 1.000, 38 keys)
+  ppo_gru_seed0 window  4 -     : agree 0.873 (exact key 1.000, 69 keys)
+  ppo_gru_seed0 window  5 -     : agree 0.908 (exact key 1.000, 113 keys)
+  ppo_gru_seed0 window  6 -     : agree 0.952 (exact key 1.000, 176 keys)
+  ppo_gru_seed0 window  7 -     : agree 0.975 (exact key 1.000, 244 keys)
+  ppo_gru_seed0 window  8 -     : agree 0.980 (exact key 1.000, 317 keys)
+  ppo_gru_seed0 window  9 -     : agree 0.985 (exact key 1.000, 393 keys)
+  ppo_gru_seed0 window 10 -     : agree 0.988 (exact key 1.000, 477 keys)
+  ppo_gru_seed0 window 11 -     : agree 0.992 (exact key 1.000, 561 keys)
+  ppo_gru_seed0 window 12 -     : agree 0.994 (exact key 1.000, 646 keys)
+  ppo_gru_seed0 window 16 -     : agree 0.998 (exact key 1.000, 984 keys)
+  ppo_gru_seed0 window 20 -     : agree 0.999 (exact key 1.000, 1326 keys)
+  ppo_gru_seed0 window 40 -     : agree 1.000 (exact key 1.000, 2204 keys)
+  ppo_gru_seed0 window  0 step  : agree 0.680 (exact key 1.000, 40 keys)
+  ppo_gru_seed0 window  1 step  : agree 0.793 (exact key 1.000, 150 keys)
+  ppo_gru_seed0 window  2 step  : agree 0.860 (exact key 1.000, 354 keys)
+  ppo_gru_seed0 window  3 step  : agree 0.891 (exact key 1.000, 564 keys)
+  ppo_gru_seed0 window  4 step  : agree 0.933 (exact key 1.000, 802 keys)
+  ppo_gru_seed0 window  5 step  : agree 0.948 (exact key 1.000, 1024 keys)
+  ppo_gru_seed0 window  6 step  : agree 0.984 (exact key 1.000, 1228 keys)
+  ppo_gru_seed0 window  7 step  : agree 0.997 (exact key 1.000, 1367 keys)
+  ppo_gru_seed0 window  8 step  : agree 0.998 (exact key 1.000, 1472 keys)
+  ppo_gru_seed0 window  9 step  : agree 0.998 (exact key 1.000, 1548 keys)
+  ppo_gru_seed0 window 10 step  : agree 1.000 (exact key 1.000, 1624 keys)
+  ppo_gru_seed0 window 11 step  : agree 1.000 (exact key 1.000, 1690 keys)
+  ppo_gru_seed0 window 12 step  : agree 1.000 (exact key 1.000, 1756 keys)
+  ppo_gru_seed0 window 16 step  : agree 1.000 (exact key 1.000, 1933 keys)
+  ppo_gru_seed0 window 20 step  : agree 1.000 (exact key 1.000, 2032 keys)
+  ppo_gru_seed0 window 40 step  : agree 1.000 (exact key 1.000, 2204 keys)
+  ppo_gru_seed0 window  0 bumps : agree 0.680 (exact key 1.000, 11 keys)
+  ppo_gru_seed0 window  1 bumps : agree 0.787 (exact key 1.000, 39 keys)
+  ppo_gru_seed0 window  2 bumps : agree 0.817 (exact key 1.000, 107 keys)
+  ppo_gru_seed0 window  3 bumps : agree 0.853 (exact key 1.000, 203 keys)
+  ppo_gru_seed0 window  4 bumps : agree 0.908 (exact key 1.000, 322 keys)
+  ppo_gru_seed0 window  5 bumps : agree 0.924 (exact key 1.000, 452 keys)
+  ppo_gru_seed0 window  6 bumps : agree 0.966 (exact key 1.000, 590 keys)
+  ppo_gru_seed0 window  7 bumps : agree 0.987 (exact key 1.000, 706 keys)
+  ppo_gru_seed0 window  8 bumps : agree 0.992 (exact key 1.000, 806 keys)
+  ppo_gru_seed0 window  9 bumps : agree 0.993 (exact key 1.000, 890 keys)
+  ppo_gru_seed0 window 10 bumps : agree 0.996 (exact key 1.000, 976 keys)
+  ppo_gru_seed0 window 11 bumps : agree 0.997 (exact key 1.000, 1051 keys)
+  ppo_gru_seed0 window 12 bumps : agree 0.998 (exact key 1.000, 1126 keys)
+  ppo_gru_seed0 window 16 bumps : agree 0.999 (exact key 1.000, 1384 keys)
+  ppo_gru_seed0 window 20 bumps : agree 1.000 (exact key 1.000, 1606 keys)
+  ppo_gru_seed0 window 40 bumps : agree 1.000 (exact key 1.000, 2204 keys)
+  ppo_gru_seed0 window  0 since : agree 0.760 (exact key 1.000, 23 keys)
+  ppo_gru_seed0 window  1 since : agree 0.813 (exact key 1.000, 50 keys)
+  ppo_gru_seed0 window  2 since : agree 0.843 (exact key 1.000, 80 keys)
+  ppo_gru_seed0 window  3 since : agree 0.889 (exact key 1.000, 110 keys)
+  ppo_gru_seed0 window  4 since : agree 0.906 (exact key 1.000, 144 keys)
+  ppo_gru_seed0 window  5 since : agree 0.933 (exact key 1.000, 182 keys)
+  ppo_gru_seed0 window  6 since : agree 0.959 (exact key 1.000, 237 keys)
+  ppo_gru_seed0 window  7 since : agree 0.976 (exact key 1.000, 295 keys)
+  ppo_gru_seed0 window  8 since : agree 0.981 (exact key 1.000, 358 keys)
+  ppo_gru_seed0 window  9 since : agree 0.986 (exact key 1.000, 425 keys)
+  ppo_gru_seed0 window 10 since : agree 0.988 (exact key 1.000, 500 keys)
+  ppo_gru_seed0 window 11 since : agree 0.992 (exact key 1.000, 579 keys)
+  ppo_gru_seed0 window 12 since : agree 0.994 (exact key 1.000, 659 keys)
+  ppo_gru_seed0 window 16 since : agree 0.998 (exact key 1.000, 986 keys)
+  ppo_gru_seed0 window 20 since : agree 0.999 (exact key 1.000, 1326 keys)
+  ppo_gru_seed0 window 40 since : agree 1.000 (exact key 1.000, 2204 keys)
+  ppo_gru_seed0 window  0 moved : agree 0.680 (exact key 1.000, 26 keys)
+  ppo_gru_seed0 window  1 moved : agree 0.791 (exact key 1.000, 93 keys)
+  ppo_gru_seed0 window  2 moved : agree 0.842 (exact key 1.000, 223 keys)
+  ppo_gru_seed0 window  3 moved : agree 0.880 (exact key 1.000, 366 keys)
+  ppo_gru_seed0 window  4 moved : agree 0.924 (exact key 1.000, 554 keys)
+  ppo_gru_seed0 window  5 moved : agree 0.946 (exact key 1.000, 730 keys)
+  ppo_gru_seed0 window  6 moved : agree 0.977 (exact key 1.000, 899 keys)
+  ppo_gru_seed0 window  7 moved : agree 0.991 (exact key 1.000, 1032 keys)
+  ppo_gru_seed0 window  8 moved : agree 0.994 (exact key 1.000, 1141 keys)
+  ppo_gru_seed0 window  9 moved : agree 0.994 (exact key 1.000, 1224 keys)
+  ppo_gru_seed0 window 10 moved : agree 0.996 (exact key 1.000, 1311 keys)
+  ppo_gru_seed0 window 11 moved : agree 0.996 (exact key 1.000, 1387 keys)
+  ppo_gru_seed0 window 12 moved : agree 0.997 (exact key 1.000, 1462 keys)
+  ppo_gru_seed0 window 16 moved : agree 0.999 (exact key 1.000, 1699 keys)
+  ppo_gru_seed0 window 20 moved : agree 1.000 (exact key 1.000, 1863 keys)
+  ppo_gru_seed0 window 40 moved : agree 1.000 (exact key 1.000, 2204 keys)
+  token patch: d1 0.51 d2 0.32 d3 0.31 d4 0.17 d5 0.17 d6 0.16 d7 0.13 d8 0.11 d9 0.10 d10 0.09 d11 0.10 d12 0.06 d13 0.06 d14 0.05 d15 0.05 d16 0.03
+  ppo_gru_seed0 rule window  0 -      in the environment: return 0.027 success 0.028 length 38.9 989s
+  ppo_gru_seed0 rule window  1 -      in the environment: return 0.119 success 0.134 length 35.3 989s
+  ppo_gru_seed0 rule window  2 -      in the environment: return 0.119 success 0.134 length 35.3 989s
+  ppo_gru_seed0 rule window  3 -      in the environment: return 0.143 success 0.168 length 34.4 989s
+  ppo_gru_seed0 rule window  4 -      in the environment: return 0.135 success 0.158 length 34.7 990s
+  ppo_gru_seed0 rule window  6 -      in the environment: return 0.296 success 0.513 length 30.3 991s
+  ppo_gru_seed0 rule window  8 -      in the environment: return 0.394 success 0.733 length 27.8 995s
+  ppo_gru_seed0 rule window 12 -      in the environment: return 0.424 success 0.849 length 28.1 1001s
+  ppo_gru_seed0 rule window 20 -      in the environment: return 0.450 success 0.920 length 27.8 1023s
+  ppo_gru_seed0 rule window 40 -      in the environment: return 0.450 success 0.920 length 27.8 1122s
+  ppo_gru_seed0 rule window  0 since  in the environment: return 0.120 success 0.139 length 35.3 1122s
+  ppo_gru_seed0 rule window  1 since  in the environment: return 0.119 success 0.134 length 35.3 1122s
+  ppo_gru_seed0 rule window  2 since  in the environment: return 0.119 success 0.134 length 35.3 1123s
+  ppo_gru_seed0 rule window  3 since  in the environment: return 0.308 success 0.570 length 30.7 1123s
+  ppo_gru_seed0 rule window  4 since  in the environment: return 0.313 success 0.574 length 30.4 1124s
+  ppo_gru_seed0 rule window  6 since  in the environment: return 0.342 success 0.629 length 29.4 1127s
+  ppo_gru_seed0 rule window  8 since  in the environment: return 0.394 success 0.733 length 27.8 1130s
+  ppo_gru_seed0 rule window 12 since  in the environment: return 0.424 success 0.849 length 28.1 1136s
+  ppo_gru_seed0 rule window 20 since  in the environment: return 0.450 success 0.920 length 27.8 1155s
+  ppo_gru_seed0 rule window 40 since  in the environment: return 0.450 success 0.920 length 27.8 1220s
+  ppo_gru_seed0 rule window  0 bumps  in the environment: return 0.027 success 0.028 length 38.9 1220s
+  ppo_gru_seed0 rule window  1 bumps  in the environment: return 0.119 success 0.134 length 35.3 1221s
+  ppo_gru_seed0 rule window  2 bumps  in the environment: return 0.210 success 0.335 length 32.8 1221s
+  ppo_gru_seed0 rule window  3 bumps  in the environment: return 0.132 success 0.152 length 34.8 1222s
+  ppo_gru_seed0 rule window  4 bumps  in the environment: return 0.163 success 0.206 length 33.7 1223s
+  ppo_gru_seed0 rule window  6 bumps  in the environment: return 0.325 success 0.595 length 29.9 1224s
+  ppo_gru_seed0 rule window  8 bumps  in the environment: return 0.405 success 0.804 length 28.6 1227s
+  ppo_gru_seed0 rule window 12 bumps  in the environment: return 0.446 success 0.910 length 27.8 1232s
+  ppo_gru_seed0 rule window 20 bumps  in the environment: return 0.450 success 0.920 length 27.8 1242s
+  ppo_gru_seed0 rule window 40 bumps  in the environment: return 0.450 success 0.920 length 27.8 1280s
+  ppo_gru_seed0 K=  2: action purity 0.800, transition determinism 0.820 / 0.820, machine return 0.119 success 0.134
+  ppo_gru_seed0 K=  4: action purity 0.812, transition determinism 0.844 / 0.844, machine return 0.119 success 0.134
+  ppo_gru_seed0 K=  8: action purity 0.910, transition determinism 0.774 / 0.774, machine return 0.114 success 0.132
+  ppo_gru_seed0 K= 16: action purity 0.970, transition determinism 0.791 / 0.790, machine return 0.129 success 0.152
+  ppo_gru_seed0 K= 32: action purity 0.955, transition determinism 0.802 / 0.801, machine return 0.132 success 0.154
+  ppo_gru_seed0 K= 64: action purity 0.964, transition determinism 0.794 / 0.794, machine return 0.213 success 0.331
+  ppo_gru_seed0 K=128: action purity 0.992, transition determinism 0.819 / 0.818, machine return 0.235 success 0.379
+  ppo_gru_seed0 K=256: action purity 0.990, transition determinism 0.841 / 0.840, machine return 0.316 success 0.594
+wrote rule_ppo_gru_seed0.json 1282s

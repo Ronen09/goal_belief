@@ -1,0 +1,351 @@
+{
+ "name": "ppo_gru_seed0",
+ "decisions": 550510,
+ "deviations": 77975,
+ "deviation_share": 0.1416413870774373,
+ "sets_visited": 239,
+ "systematic_share": 0.7175889708239821,
+ "occasional_share": 0.28241102917601796,
+ "sets_with_wrong_majority": 45,
+ "sets_for_half_of_deviations": 18,
+ "sets_for_90pct": 47,
+ "big_sets": 239,
+ "big_sets_mixed": 25,
+ "big_sets_mixed_tie": 1,
+ "big_sets_mixed_not_tie": 24,
+ "decisions_in_mixed_not_tie": 0.1678352800130788,
+ "known": {
+  "decisions": 259393,
+  "deviations": 31849,
+  "deviation_share": 0.12278280447043675
+ },
+ "known_wrong": [
+  {
+   "cell": [
+    5,
+    2
+   ],
+   "heading": "north",
+   "n": 6980,
+   "agent": "F",
+   "optimal": "L",
+   "gap": 0.05909999999999999,
+   "share_of_known_deviations": 0.15111934440641778
+  },
+  {
+   "cell": [
+    7,
+    3
+   ],
+   "heading": "east",
+   "n": 3687,
+   "agent": "F",
+   "optimal": "LR",
+   "gap": 0.03000000000000004,
+   "share_of_known_deviations": 0.042010738170743196
+  },
+  {
+   "cell": [
+    7,
+    3
+   ],
+   "heading": "north",
+   "n": 1910,
+   "agent": "F",
+   "optimal": "L",
+   "gap": 0.11470719000000006,
+   "share_of_known_deviations": 0.055511946999905804
+  },
+  {
+   "cell": [
+    4,
+    1
+   ],
+   "heading": "east",
+   "n": 1151,
+   "agent": "F",
+   "optimal": "LR",
+   "gap": 0.059100000000000014,
+   "share_of_known_deviations": 0.03613928223806085
+  },
+  {
+   "cell": [
+    7,
+    2
+   ],
+   "heading": "north",
+   "n": 995,
+   "agent": "F",
+   "optimal": "LR",
+   "gap": 0.05910000000000002,
+   "share_of_known_deviations": 0.031241169267480925
+  },
+  {
+   "cell": [
+    5,
+    5
+   ],
+   "heading": "east",
+   "n": 853,
+   "agent": "F",
+   "optimal": "L",
+   "gap": 0.11470719000000004,
+   "share_of_known_deviations": 0.02678263053785048
+  },
+  {
+   "cell": [
+    5,
+    3
+   ],
+   "heading": "south",
+   "n": 853,
+   "agent": "F",
+   "optimal": "LR",
+   "gap": 0.05909999999999999,
+   "share_of_known_deviations": 0.02678263053785048
+  },
+  {
+   "cell": [
+    5,
+    4
+   ],
+   "heading": "south",
+   "n": 853,
+   "agent": "F",
+   "optimal": "LR",
+   "gap": 0.05909999999999999,
+   "share_of_known_deviations": 0.02678263053785048
+  },
+  {
+   "cell": [
+    6,
+    5
+   ],
+   "heading": "east",
+   "n": 718,
+   "agent": "F",
+   "optimal": "LR",
+   "gap": 0.059100000000000034,
+   "share_of_known_deviations": 0.022543878928694777
+  },
+  {
+   "cell": [
+    1,
+    1
+   ],
+   "heading": "north",
+   "n": 437,
+   "agent": "L",
+   "optimal": "R",
+   "gap": 0.059100000000000014,
+   "share_of_known_deviations": 0.013720995949637351
+  },
+  {
+   "cell": [
+    1,
+    3
+   ],
+   "heading": "north",
+   "n": 284,
+   "agent": "F",
+   "optimal": "R",
+   "gap": 0.11470718999999996,
+   "share_of_known_deviations": 0.008917077459260887
+  },
+  {
+   "cell": [
+    2,
+    3
+   ],
+   "heading": "west",
+   "n": 284,
+   "agent": "F",
+   "optimal": "LR",
+   "gap": 0.05909999999999994,
+   "share_of_known_deviations": 0.008917077459260887
+  }
+ ],
+ "top_sets": [
+  {
+   "set": 44,
+   "size": 1,
+   "n": 6980,
+   "deviations": 4813,
+   "agent_freq": [
+    0.31,
+    0.0,
+    0.69
+   ],
+   "optimal": "L",
+   "majority_optimal": false,
+   "mean_step": 21.16189111747851,
+   "gap_of_majority": 0.05909999999999999
+  },
+  {
+   "set": 47,
+   "size": 1,
+   "n": 9662,
+   "deviations": 3266,
+   "agent_freq": [
+    0.66,
+    0.11,
+    0.23
+   ],
+   "optimal": "L",
+   "majority_optimal": true,
+   "mean_step": 19.258538604843718,
+   "gap_of_majority": 0.0
+  },
+  {
+   "set": 14488,
+   "size": 7,
+   "n": 3206,
+   "deviations": 3206,
+   "agent_freq": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "optimal": "F",
+   "majority_optimal": false,
+   "mean_step": 6.9865876481597,
+   "gap_of_majority": 0.008497980679569066
+  },
+  {
+   "set": 9,
+   "size": 22,
+   "n": 3202,
+   "deviations": 3202,
+   "agent_freq": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "optimal": "R",
+   "majority_optimal": false,
+   "mean_step": 3.0,
+   "gap_of_majority": 0.024393949338342893
+  },
+  {
+   "set": 2164,
+   "size": 2,
+   "n": 2623,
+   "deviations": 2623,
+   "agent_freq": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "optimal": "F",
+   "majority_optimal": false,
+   "mean_step": 17.371711780404116,
+   "gap_of_majority": 0.01926369109287204
+  },
+  {
+   "set": 90,
+   "size": 1,
+   "n": 15373,
+   "deviations": 2167,
+   "agent_freq": [
+    0.0,
+    0.86,
+    0.14
+   ],
+   "optimal": "R",
+   "majority_optimal": true,
+   "mean_step": 27.333636895856372,
+   "gap_of_majority": 0.0
+  },
+  {
+   "set": 2355,
+   "size": 5,
+   "n": 2113,
+   "deviations": 2113,
+   "agent_freq": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "optimal": "F",
+   "majority_optimal": false,
+   "mean_step": 8.002366303833412,
+   "gap_of_majority": 0.016208225677435774
+  },
+  {
+   "set": 12761,
+   "size": 7,
+   "n": 3051,
+   "deviations": 2013,
+   "agent_freq": [
+    0.66,
+    0.34,
+    0.0
+   ],
+   "optimal": "R",
+   "majority_optimal": false,
+   "mean_step": 5.988856112749918,
+   "gap_of_majority": 0.037080968900185245
+  },
+  {
+   "set": 150,
+   "size": 1,
+   "n": 3998,
+   "deviations": 1863,
+   "agent_freq": [
+    0.11,
+    0.36,
+    0.53
+   ],
+   "optimal": "F",
+   "majority_optimal": true,
+   "mean_step": 23.01975987993997,
+   "gap_of_majority": 0.0
+  },
+  {
+   "set": 42,
+   "size": 1,
+   "n": 5770,
+   "deviations": 1851,
+   "agent_freq": [
+    0.15,
+    0.68,
+    0.17
+   ],
+   "optimal": "R",
+   "majority_optimal": true,
+   "mean_step": 22.758232235701907,
+   "gap_of_majority": 0.0
+  },
+  {
+   "set": 120,
+   "size": 1,
+   "n": 1910,
+   "deviations": 1768,
+   "agent_freq": [
+    0.07,
+    0.4,
+    0.52
+   ],
+   "optimal": "L",
+   "majority_optimal": false,
+   "mean_step": 15.849214659685863,
+   "gap_of_majority": 0.11470719000000006
+  },
+  {
+   "set": 11394,
+   "size": 6,
+   "n": 1763,
+   "deviations": 1763,
+   "agent_freq": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "optimal": "R",
+   "majority_optimal": false,
+   "mean_step": 9.498581962563811,
+   "gap_of_majority": 0.001732678838320138
+  }
+ ],
+ "map": "#########\n#x..x.#.#\n#.#..x#x#\n#xx.#x.x#\n###.#x#.#\n#...#xx.#\n#.###.#.#\n#G..#...#\n#########"
+}

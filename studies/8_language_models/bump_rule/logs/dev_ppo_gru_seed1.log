@@ -1,0 +1,12 @@
+ppo_gru_seed1: 542944 decisions, 77361 deviations (0.142); systematic (set's majority wrong) 0.61, occasional 0.39; 46 of 283 sets wrong by majority; 19 sets carry half, 53 90 %; big sets 283: mixed 45 (tie 4, not tie 41, 0.235 of decisions)
+  known states: 253201 decisions, deviation share 0.152; wrong-majority known states 16: (5,4) w n=3730 F vs R gap 0.03; (7,3) s n=3349 F vs R gap 0.11; (5,2) s n=1937 L vs R gap 0.06; (5,4) e n=1554 F vs L gap 0.03; (5,6) w n=1148 F vs R gap 0.03; (4,1) e n=987 F vs LR gap 0.06; (5,3) s n=904 F vs LR gap 0.06; (7,4) e n=750 R vs L gap 0.06; (3,1) e n=739 F vs R gap 0.11; (7,3) n n=558 F vs L gap 0.11
+  top sets: #47 size 1 n=8321 dev 3809 freq [0.54, 0.05, 0.41] opt L step 20.7 gap 0.00; #16929 size 24 n=3466 dev 3466 freq [1.0, 0.0, 0.0] opt F step 4.0 gap 0.03; #44 size 1 n=7429 dev 2611 freq [0.65, 0.16, 0.19] opt L step 22.8 gap 0.00; #149 size 1 n=3650 dev 2238 freq [0.23, 0.39, 0.39] opt R step 25.0 gap 0.00; #14488 size 7 n=2173 dev 2173 freq [0.5, 0.5, 0.0] opt F step 6.5 gap 0.01; #46 size 1 n=4132 dev 2066 freq [0.0, 0.5, 0.5] opt LR step 31.9 gap 0.00
+#########
+#..xx.#.#
+#.#x.x#x#
+#...#xxx#
+###.#x#x#
+#...#x..#
+#.###x#.#
+#G..#...#
+#########
