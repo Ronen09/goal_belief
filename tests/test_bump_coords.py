@@ -82,10 +82,8 @@ def test_swap_pairs_same_step_distinct_histories():
 
 
 def test_probe_decisions_drop_ended():
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "studies" / "8_language_models" / "bump_goals"))
-    from design import worlds_and_solutions
     from goalgeo import bumpmaze as BMZ
-    _, _, worlds, _ = worlds_and_solutions()
+    _, _, worlds, _ = C.worlds()                                            # common puts bump_goals (design.py) on the path, this study first
     P = C.probe_decisions(worlds, n=512, seed=0)
     assert P["masks"].shape[1] == 140 and P["fit"].sum() + P["test"].sum() == len(P["hists"]) and not (P["fit"] & P["test"]).any()
     assert len(P["hists"]) + P["dropped"] == 512 and len(P["steps"]) == len(P["hists"])
@@ -120,3 +118,16 @@ def test_restoration_formula_and_probe_rows():
     assert preserve.restoration(0.4, 0.2, 0.36) == pytest.approx(0.8)
     net = nn.Linear(4, 3); sd = torch.tensor([1., 2., 4., 8.])
     R = preserve.probe_rows(net, sd); assert torch.allclose(R, net.weight.detach() / sd)
+
+
+def test_scorecard_thresholds():
+    import tables
+    mk = lambda r2, lo, hi: dict(by_site={"23": dict(summary=dict(r2_composed_vs_direct=[r2, lo, hi], switch_ratio=[0.99, 0.97, 1.0], keep_round=[0.95, 0.93, 0.97]))}, best_site=23)
+    rank = dict(by_site={"23": dict(summary=dict(rank32_ratio=[0.95, 0.92, 0.98], pooled_at_kc_ratio=[0.95, 0.92, 0.98], k_c_median=16))})
+    pres = dict(by_site={"23": dict(summary=dict(drop=[0.08, 0.06, 0.10], restoration=[0.9, 0.85, 0.95], over_offset=[0.3, 0.2, 0.4], bump_drop=[0.01, -0.01, 0.03]))})
+    sc = {r["criterion"]: r for r in tables.scorecard(mk(0.96, 0.955, 0.965), rank, pres, 23)}
+    assert sc["COMP-R"]["holds"] is True
+    sc = {r["criterion"]: r for r in tables.scorecard(mk(0.96, 0.94, 0.98), rank, pres, 23)}
+    assert sc["COMP-R"]["holds"] is False                                  # the interval must exclude the threshold
+    assert set(sc) == {"COMP-R", "COMP-S", "ROUND", "RANK-C", "RANK-SH", "PRES-D", "PRES-R", "BUMP-SH"}
+    assert sc["BUMP-SH"]["holds"] is True and sc["PRES-R"]["holds"] is True

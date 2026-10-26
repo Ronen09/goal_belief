@@ -170,7 +170,7 @@ def causal_rank(switch_by_k, full, ks=KS):
 # ------------------------------------------------------------------ part 2: the model and the decision pools
 GOALS_DIR, POLICY_DIR = HERE.parent / "bump_goals", HERE.parent / "bump_policy"
 RUN = GOALS_DIR / "runs" / "llm_40000"
-for _p in (HERE.parent / "bump_maze", GOALS_DIR):                       # bump_goals last, so its design.py shadows bump_maze's
+for _p in (HERE.parent / "bump_maze", GOALS_DIR, HERE):                 # bump_goals ahead of bump_maze (its design.py shadows the other's); this study first of all (every study has a tables.py)
     if str(_p) in sys.path: sys.path.remove(str(_p))
     sys.path.insert(0, str(_p))
 

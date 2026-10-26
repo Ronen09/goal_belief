@@ -61,7 +61,7 @@ def r2_cells(pred, y):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--device", default="cuda"); ap.add_argument("--out", default=None); ap.add_argument("--quick", action="store_true")
     ap.add_argument("--cache", default=None); ap.add_argument("--subspaces", default=None); ap.add_argument("--batch", type=int, default=128); ap.add_argument("--probe_steps", type=int, default=800); a = ap.parse_args(); t0 = time.time()
-    out = Path(a.out) if a.out else C.HERE; out.mkdir(parents=True, exist_ok=True); cache = Path(a.cache) if a.cache else (out / "cache" if a.quick else C.CACHE)
+    out = Path(a.out) if a.out else C.HERE; out.mkdir(parents=True, exist_ok=True); cache = Path(a.cache) if a.cache else (out.parent / "collect" / "cache" if a.quick else C.CACHE)      # quick: the smoke collect's cache
     states, maps = C.load_cache(cache); subspaces = torch.load(Path(a.subspaces) if a.subspaces else cache / "rank_subspaces.pt", weights_only=False)
     swap, probe, sites = states["swap"], states["probe"], tuple(states["sites"]); psteps = 50 if a.quick else a.probe_steps
     free, goals, worlds, sols = C.worlds(); M = C.Model(C.RUN / "model", worlds, a.device, a.batch, sites); P = lambda *s: print(*s, f"{time.time() - t0:.0f}s", flush=True)

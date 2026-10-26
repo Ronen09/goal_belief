@@ -35,7 +35,7 @@ def pairs_of(K=C.K):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--device", default="cuda"); ap.add_argument("--out", default=None); ap.add_argument("--quick", action="store_true")
     ap.add_argument("--cache", default=None); ap.add_argument("--batch", type=int, default=128); ap.add_argument("--n_control_sites", type=int, default=2); a = ap.parse_args(); t0 = time.time()
-    out = Path(a.out) if a.out else C.HERE; out.mkdir(parents=True, exist_ok=True); cache = Path(a.cache) if a.cache else (out / "cache" if a.quick else C.CACHE)
+    out = Path(a.out) if a.out else C.HERE; out.mkdir(parents=True, exist_ok=True); cache = Path(a.cache) if a.cache else (out.parent / "collect" / "cache" if a.quick else C.CACHE)      # quick: the smoke collect's cache
     states, maps = C.load_cache(cache); swap, sites = states["swap"], tuple(states["sites"]); KS = (1, 8, 896) if a.quick else C.KS
     free, goals, worlds, sols = C.worlds(); M = C.Model(C.RUN / "model", worlds, a.device, a.batch, sites); P = lambda *s: print(*s, f"{time.time() - t0:.0f}s", flush=True)
     hists, steps, steps_fit = swap["hists_h1"], swap["steps_test"], swap["steps_fit"]; nat = {g: swap["L_h1"][g].argmax(1) for g in range(C.K)}
