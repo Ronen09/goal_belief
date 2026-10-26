@@ -99,3 +99,17 @@ def test_probe_decisions_drop_ended():
 def test_compose_triples():
     import compose
     T = compose.triples(4); assert len(T) == 24 and all(len({a, b, c}) == 3 for a, b, c in T)
+
+
+def test_rank_k_state_endpoints():
+    import rank
+    xA = torch.randn(5, 6, dtype=torch.float64); pred = torch.randn(5, 6, dtype=torch.float64)
+    assert torch.allclose(rank.rank_k_state(xA, pred, torch.eye(6, dtype=torch.float64)), pred)
+    assert torch.allclose(rank.rank_k_state(xA, pred, torch.zeros(6, 6, dtype=torch.float64)), xA)
+
+
+def test_projectors_with_fewer_rows_than_dimensions():
+    D = torch.randn(5, 12, dtype=torch.float64)                       # 5 histories, 12 dimensions: the SVD gives 5 directions
+    assert torch.allclose(C.topk_projector(D, 12, None), torch.eye(12, dtype=torch.float64), atol=1e-8)
+    assert torch.linalg.matrix_rank(C.topk_projector(D, 8, None)) == 8
+    assert torch.allclose(C.topk_projector(D, 3, None) + C.bottomk_projector(D, 9, None), torch.eye(12, dtype=torch.float64), atol=1e-8)

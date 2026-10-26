@@ -103,15 +103,25 @@ def _svd(Dm, centre_by):
     return torch.linalg.svd(_centre(Dm, centre_by), full_matrices=False)
 
 
+def basis(Dm, centre_by=None):
+    """The right singular directions of the centred differences as rows of a full orthonormal basis [d, d], singular
+    value descending; with fewer rows than dimensions the basis is completed by QR (the completion spans the null space)."""
+    Dm = torch.as_tensor(Dm).double(); d = Dm.shape[1]; _, _, Vh = _svd(Dm, centre_by)
+    if Vh.shape[0] < d:
+        Q, _ = torch.linalg.qr(torch.cat([Vh.T, torch.eye(d, dtype=torch.float64)], 1)); Vh = Q[:, :d].T
+    return Vh
+
+
+def projector(Vh, rows):
+    V = Vh[rows]; return V.T @ V
+
+
 def topk_projector(Dm, k, centre_by=None):
-    _, _, Vh = _svd(Dm, centre_by); V = Vh[:k]; return V.T @ V
+    return projector(basis(Dm, centre_by), slice(0, k))
 
 
 def bottomk_projector(Dm, k, centre_by=None):
-    Dm = torch.as_tensor(Dm).double(); d = Dm.shape[1]; _, _, Vh = _svd(Dm, centre_by)
-    if Vh.shape[0] < d:                                                     # fewer rows than dimensions: complete the basis
-        Q, _ = torch.linalg.qr(torch.cat([Vh.T, torch.eye(d, dtype=torch.float64)], 1)); Vh = Q[:, :d].T
-    V = Vh[d - k:]; return V.T @ V
+    Vh = basis(Dm, centre_by); return projector(Vh, slice(Vh.shape[0] - k, None))
 
 
 def random_projector(d, k, seed=0):
