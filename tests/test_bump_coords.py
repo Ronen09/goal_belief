@@ -94,3 +94,8 @@ def test_probe_decisions_drop_ended():
             m = np.zeros(w.n_states, dtype=bool); m[w.start_states] = True
             for a, o in zip(acts, obss): m = BMZ.step_belief(w, m, a, o, remove_goal=True)
             assert m.any()
+
+
+def test_compose_triples():
+    import compose
+    T = compose.triples(4); assert len(T) == 24 and all(len({a, b, c}) == 3 for a, b, c in T)
