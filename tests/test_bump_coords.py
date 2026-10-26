@@ -131,3 +131,27 @@ def test_scorecard_thresholds():
     assert sc["COMP-R"]["holds"] is False                                  # the interval must exclude the threshold
     assert set(sc) == {"COMP-R", "COMP-S", "ROUND", "RANK-C", "RANK-SH", "PRES-D", "PRES-R", "BUMP-SH"}
     assert sc["BUMP-SH"]["holds"] is True and sc["PRES-R"]["holds"] is True
+
+
+def test_swap_pool_split_disjoint_by_history():
+    # duplicated histories, as the optimum's deterministic episodes produce: no history may sit in both halves, none twice in either
+    dec = [dict(step=1 + (i % 5), acts=[i % 40], obss=[0]) for i in range(400)]
+    fit, test = C.split_swap_pool(dec, test_frac=0.25, n_test=1000, seed=1)
+    key = lambda i: (tuple(dec[i]["acts"]), tuple(dec[i]["obss"]), dec[i]["step"])
+    kf, kt = [key(i) for i in fit], [key(i) for i in test]
+    assert len(set(kf)) == len(kf) and len(set(kt)) == len(kt) and not (set(kf) & set(kt))
+    assert len(kf) + len(kt) == len(set(key(i) for i in range(400))) and 0.2 < len(kt) / (len(kf) + len(kt)) < 0.3
+    assert C.split_swap_pool(dec, 0.25, 1000, 1) == (fit, test)
+
+
+def test_cluster_bootstrap_by_group():
+    x = np.array([0., 1., 0., 1.]); lo, hi = C.boot_mean(x, groups=np.array([0, 0, 0, 0])); assert lo == hi == 0.5
+    lo, hi = C.boot_mean(x, groups=np.array([0, 1, 2, 3])); assert lo < 0.5 < hi
+    lo, hi = C.boot_ratio(x, np.ones(4), groups=np.array([0, 0, 0, 0])); assert lo == hi == 0.5
+
+
+def test_basis_uncentred_uses_the_matrix_itself():
+    g = torch.Generator().manual_seed(4); W = torch.randn(12, 12, generator=g, dtype=torch.float64)
+    Vh = torch.linalg.svd(W, full_matrices=False).Vh
+    assert torch.allclose(C.basis(W, None, centre=False)[:3].abs(), Vh[:3].abs(), atol=1e-8)
+    assert not torch.allclose(C.basis(W, None)[:1].abs(), Vh[:1].abs(), atol=1e-3)

@@ -81,7 +81,8 @@ def main():
             by_goal.append(dict(g=g, set_exact=float(((Pm > 0) == masks[tst]).all(1).double().mean()), set_jaccard=j, set_jaccard_floor=jf,
                                 bump_r2=r2_cells(apply_probe(bnet, bmu, bsd, X[g][tst]), pb[tst])[0], bump_r2_floor=r2_cells(apply_probe(fb, fbmu, fbsd, X[g][tst]), pb[tst])[0]))
             P(f"site {s} goal {g}: set exact {by_goal[-1]['set_exact']:.3f} Jaccard {j:.3f} (floor {jf:.3f}); bump R² {by_goal[-1]['bump_r2']:.3f} (floor {by_goal[-1]['bump_r2_floor']:.3f})")
-        rows, pool = [], dict(drop=[], num_back=[], den=[], num_off=[], num_kc=[], den_kc=[], bump_drop=[], overlap=[], overlap_rnd=[], chk_full=[], chk_kc=[], chk_nat=[])
+        rows, pool = [], dict(drop=[], num_back=[], den=[], num_off=[], num_kc=[], den_kc=[], bump_drop=[], overlap=[], overlap_rnd=[], chk_full=[], chk_kc=[], chk_nat=[], g_dec=[], g_den=[], g_kc=[], g_chk=[], g_chk_kc=[])
+        n_te = int(tst.sum()); ar = np.arange(n_te)                                              # the bootstrap's clusters: the test decision (history) a row comes from
         for (A, B) in pairs:
             net, mu, sd = probes[A]["set"]; bnet, bmu, bsd = probes[A]["bump"]; XA, XB, st = X[A][tst].double(), X[B][tst].double(), steps[tst]
             full_back = C.apply_map(maps[(s, B, A)]["W"], XB, st)
@@ -100,9 +101,8 @@ def main():
                        b_A=bmp["A"][0], b_B=bmp["B"][0], b_back=bmp["back"][0], b_off=bmp["off"][0], b_back_kc=bmp["kc"][0] if "kc" in bmp else None, b_BB=bmp["BB"][0])
             bd = (bmp["B"][1] - bmp["A"][1]) / bmp["A"][2]; row["bump_drop"] = [float(bd.mean())] + C.boot_mean(bd)                     # R²_A − R²_B per decision
             # the causal check: the pull-backs installed in the prompt under B, switch to A's decision
-            natB, natA = nat[B][tst], nat[A][tst]
+            natB, natA = nat[B][tst], nat[A][tst]; dep = (natB != natA).nonzero().squeeze(1)
             def check(new):
-                dep = (natB != natA).nonzero().squeeze(1)
                 if len(dep) == 0: return float("nan"), np.zeros(0)
                 L = M.patched([hists_te[i] for i in dep.tolist()], B, s, torch.as_tensor(new)[dep]); per = (L.argmax(1) == natA[dep]).double().numpy(); return float(per.mean()), per
             row["check_switch_full"], cf = check(full_back); row["check_switch_natural"], cn = check(XA); row["check_switch_kc"], ck = check(back_kc) if back_kc is not None else (None, np.zeros(0))
@@ -112,18 +112,20 @@ def main():
                 Q, _ = torch.linalg.qr(probe_rows(net, sd).double().T); Pp = Q @ Q.T; Pk = C.projector(subAB["Vh"].double(), slice(0, subAB["k_c"]))
                 row["probe_overlap_kc"] = C.subspace_overlap(Pp, Pk, subAB["k_c"]); row["probe_overlap_random"] = C.subspace_overlap(Pp, C.random_projector(C.D, subAB["k_c"], 11), subAB["k_c"])
             else: row["probe_overlap_kc"] = row["probe_overlap_random"] = None
-            rows.append(row); pool["drop"].append(drop); pool["bump_drop"].append(bd); pool["chk_full"].append(cf); pool["chk_nat"].append(cn); pool["chk_kc"].append(ck)
-            if dropped: pool["num_back"].append(jac["back"] - jac["B"]); pool["den"].append(drop); pool["num_off"].append(jac["back"] - jac["off"])
-            if dropped and "kc" in jac: pool["num_kc"].append(jac["kc"] - jac["B"]); pool["den_kc"].append(drop)
+            rows.append(row); pool["drop"].append(drop); pool["bump_drop"].append(bd); pool["g_dec"].append(ar); pool["chk_full"].append(cf); pool["chk_nat"].append(cn); pool["g_chk"].append(dep.numpy())
+            if back_kc is not None: pool["chk_kc"].append(ck); pool["g_chk_kc"].append(dep.numpy())
+            if dropped: pool["num_back"].append(jac["back"] - jac["B"]); pool["den"].append(drop); pool["num_off"].append(jac["back"] - jac["off"]); pool["g_den"].append(ar)
+            if dropped and "kc" in jac: pool["num_kc"].append(jac["kc"] - jac["B"]); pool["den_kc"].append(drop); pool["g_kc"].append(ar)
             if row["probe_overlap_kc"] is not None: pool["overlap"].append(row["probe_overlap_kc"]); pool["overlap_rnd"].append(row["probe_overlap_random"])
             P(f"  site {s} {A}->{B}: Jaccard A {row['j_A']:.3f} B {row['j_B']:.3f} back {row['j_back']:.3f} off {row['j_off']:.3f} kc {row['j_back_kc']} BB {row['j_BB']:.3f}; drop {row['drop'][0]:.3f} restoration {row['restoration']}; bump R² A {row['b_A']:.3f} B {row['b_B']:.3f} back {row['b_back']:.3f}; check full {row['check_switch_full']:.3f} nat {row['check_switch_natural']:.3f}; overlap {row['probe_overlap_kc']}")
         cat = lambda k: np.concatenate(pool[k]) if pool[k] else np.zeros(0)
-        d, nb, de, no, nk, dk, bdp = cat("drop"), cat("num_back"), cat("den"), cat("num_off"), cat("num_kc"), cat("den_kc"), cat("bump_drop")
-        summary = dict(drop=[float(d.mean())] + C.boot_mean(d), restoration=([float(nb.mean() / de.mean())] + C.boot_ratio(nb, de)) if len(de) else None,
-                       over_offset=([float(no.mean() / de.mean())] + C.boot_ratio(no, de)) if len(de) else None, restoration_kc=([float(nk.mean() / dk.mean())] + C.boot_ratio(nk, dk)) if len(dk) else None,
-                       bump_drop=[float(bdp.mean())] + C.boot_mean(bdp), pairs_dropped=int(len(pool["den"])), overlap=[float(np.mean(pool["overlap"]))] + C.boot_mean(pool["overlap"]) if pool["overlap"] else None,
-                       overlap_random=float(np.mean(pool["overlap_rnd"])) if pool["overlap_rnd"] else None, check_switch_full=[float(cat("chk_full").mean())] + C.boot_mean(cat("chk_full")),
-                       check_switch_kc=([float(cat("chk_kc").mean())] + C.boot_mean(cat("chk_kc"))) if len(cat("chk_kc")) else None, check_switch_natural=[float(cat("chk_nat").mean())] + C.boot_mean(cat("chk_nat")))
+        d, nb, de, no, nk, dk, bdp = cat("drop"), cat("num_back"), cat("den"), cat("num_off"), cat("num_kc"), cat("den_kc"), cat("bump_drop"); gd, gden, gkc, gchk, gchk_kc = cat("g_dec"), cat("g_den"), cat("g_kc"), cat("g_chk"), cat("g_chk_kc")
+        bm = lambda v, gg: [float(v.mean())] + C.boot_mean(v, groups=gg)                        # cluster bootstrap by test decision
+        summary = dict(drop=bm(d, gd), restoration=([float(nb.mean() / de.mean())] + C.boot_ratio(nb, de, groups=gden)) if len(de) else None,
+                       over_offset=([float(no.mean() / de.mean())] + C.boot_ratio(no, de, groups=gden)) if len(de) else None, restoration_kc=([float(nk.mean() / dk.mean())] + C.boot_ratio(nk, dk, groups=gkc)) if len(dk) else None,
+                       bump_drop=bm(bdp, gd), pairs_dropped=int(len(pool["den"])), overlap=[float(np.mean(pool["overlap"]))] + C.boot_mean(pool["overlap"]) if pool["overlap"] else None,
+                       overlap_random=float(np.mean(pool["overlap_rnd"])) if pool["overlap_rnd"] else None, check_switch_full=bm(cat("chk_full"), gchk),
+                       check_switch_kc=bm(cat("chk_kc"), gchk_kc) if len(cat("chk_kc")) else None, check_switch_natural=bm(cat("chk_nat"), gchk))
         res["by_site"][str(s)] = dict(probes_by_goal=by_goal, pairs=rows, summary=summary)
         P(f"site {s}: drop {summary['drop']}; restoration {summary['restoration']}; over offset {summary['over_offset']}; bump drop {summary['bump_drop']}; check {summary['check_switch_full'][0]:.3f} (natural {summary['check_switch_natural'][0]:.3f}); overlap {summary['overlap']} (random {summary['overlap_random']})")
         (out / "preserve.json").write_text(json.dumps(res, indent=1))

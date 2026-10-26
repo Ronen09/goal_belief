@@ -64,10 +64,10 @@ def main():
             Dm = xf(B) - xf(A); Dcen = C._centre(Dm, steps_fit); Dc[(A, B)] = Dcen
             offset_share[(A, B)] = float(1 - (Dcen ** 2).sum() / (Dm ** 2).sum()); spec[(A, B)] = C.spectrum_ranks(Dm, steps_fit); Vh[(A, B)] = C.basis(Dcen, None)
         pooled_D = torch.cat(list(Dc.values())); Vh_pool = C.basis(pooled_D, None); spec_pool = C.spectrum_ranks(pooled_D, None)
-        rows, per_full, per_32, per_pool_kc, per_full_kc = [], [], [], [], []
+        rows, per_full, per_32, per_pool_kc, per_full_kc, g_full, g_32, g_kc = [], [], [], [], [], [], [], []
         for (A, B) in pairs:
             xA = x(A); W = maps[(s, A, B)]["W"]; full = C.apply_map(W, xA, steps); sw_full, pf = run_dep(A, B, s, full)
-            Vm = C.basis(W[: C.D] - torch.eye(C.D, dtype=torch.float64), None)
+            Vm = C.basis(W[: C.D] - torch.eye(C.D, dtype=torch.float64), None, centre=False)                 # a weight matrix, not centred
             proj = {"top": lambda k: C.projector(Vh[(A, B)], slice(0, k)), "bottom": lambda k: C.projector(Vh[(A, B)], slice(C.D - k, None)),
                     "random0": lambda k: C.random_projector(C.D, k, 0), "random1": lambda k: C.random_projector(C.D, k, 1), "random2": lambda k: C.random_projector(C.D, k, 2),
                     "pooled": lambda k: C.projector(Vh_pool, slice(0, k)), "mapsvd": lambda k: C.projector(Vm, slice(0, k))}
@@ -77,9 +77,9 @@ def main():
             k_c = C.causal_rank(sw["top"], sw_full, KS); k_cp = C.causal_rank(sw["pooled"], sw_full, KS); k_cm = C.causal_rank(sw["mapsvd"], sw_full, KS) if "mapsvd" in sw else None
             rows.append(dict(A=A, B=B, **spec[(A, B)], offset_norm_share=offset_share[(A, B)], switch_full=sw_full, switch_natural=natural[s][(A, B)][0], n_dep=int(len(pf)),
                              switch_by_k={v: {str(k): sw[v][k] for k in KS} for v in variants}, k_c=k_c, k_c_pooled=k_cp, k_c_mapsvd=k_cm))
-            per_full.append(pf)
-            if 32 in KS: per_32.append(per["top"][32])
-            if k_c is not None: per_pool_kc.append(per["pooled"][k_c]); per_full_kc.append(pf)
+            gi = dep_idx[(A, B)].numpy(); per_full.append(pf); g_full.append(gi)
+            if 32 in KS: per_32.append(per["top"][32]); g_32.append(gi)
+            if k_c is not None: per_pool_kc.append(per["pooled"][k_c]); per_full_kc.append(pf); g_kc.append(gi)
             subspaces[(s, A, B)] = dict(Vh=Vh[(A, B)].float(), k_c=k_c)
             P(f"  site {s} {A}->{B}: full {sw_full:.3f} (natural {natural[s][(A, B)][0]:.3f}); top-k " + " ".join(f"{k}:{sw['top'][k]:.2f}" for k in KS) + f"; k_c {k_c} (pooled {k_cp}); k50/90/99 {spec[(A, B)]['k50']}/{spec[(A, B)]['k90']}/{spec[(A, B)]['k99']}")
         kcs = [r["k_c"] for r in rows if r["k_c"] is not None]
@@ -90,12 +90,12 @@ def main():
                 if k1 is None or k2 is None: continue
                 k = min(k1, k2); P1 = C.projector(Vh[(A, B)], slice(0, k)); P2 = C.projector(Vh[(A2, B2)], slice(0, k))
                 overl.append([A, B, A2, B2, k, C.subspace_overlap(P1, P2, k), C.subspace_overlap(P1, C.random_projector(C.D, k, 7), k)])
-        pf_all = np.concatenate(per_full); p32 = np.concatenate(per_32) if per_32 else np.zeros(0)
-        ppk, pfk = (np.concatenate(per_pool_kc), np.concatenate(per_full_kc)) if per_pool_kc else (np.zeros(0), np.zeros(0))
+        pf_all, gf = np.concatenate(per_full), np.concatenate(g_full); p32, g32 = (np.concatenate(per_32), np.concatenate(g_32)) if per_32 else (np.zeros(0), np.zeros(0))
+        ppk, pfk, gkc = (np.concatenate(per_pool_kc), np.concatenate(per_full_kc), np.concatenate(g_kc)) if per_pool_kc else (np.zeros(0), np.zeros(0), np.zeros(0))
         summary = dict(k_c_median=float(np.median(kcs)) if kcs else None, k_c_range=[int(min(kcs)), int(max(kcs))] if kcs else None, k_c_defined=len(kcs),
-                       rank32_ratio=([float(p32.mean() / pf_all.mean())] + C.boot_ratio(p32, pf_all)) if len(p32) else None,
-                       pooled_at_kc_ratio=([float(ppk.mean() / pfk.mean())] + C.boot_ratio(ppk, pfk)) if len(ppk) else None,
-                       switch_full=[float(pf_all.mean())] + C.boot_mean(pf_all), k90_median=float(np.median([r["k90"] for r in rows])), k99_median=float(np.median([r["k99"] for r in rows])),
+                       rank32_ratio=([float(p32.mean() / pf_all.mean())] + C.boot_ratio(p32, pf_all, groups=g32)) if len(p32) else None,       # cluster bootstrap by history
+                       pooled_at_kc_ratio=([float(ppk.mean() / pfk.mean())] + C.boot_ratio(ppk, pfk, groups=gkc)) if len(ppk) else None,
+                       switch_full=[float(pf_all.mean())] + C.boot_mean(pf_all, groups=gf), k90_median=float(np.median([r["k90"] for r in rows])), k99_median=float(np.median([r["k99"] for r in rows])),
                        offset_share_mean=float(np.mean([r["offset_norm_share"] for r in rows])), overlap_mean=float(np.mean([o[5] for o in overl])) if overl else None,
                        overlap_random_mean=float(np.mean([o[6] for o in overl])) if overl else None)
         res["by_site"][str(s)] = dict(variants=list(variants), pairs=rows, pooled=spec_pool, overlap_pairs=overl, summary=summary)

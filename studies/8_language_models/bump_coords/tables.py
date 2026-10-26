@@ -41,7 +41,7 @@ def main():
     J = lambda n: json.loads((out / n).read_text()); comp, rank, pres = J("compose.json"), J("rank.json"), J("preserve.json")
     sites = [str(s) for s in comp["sites"]]; best = str(comp["best_site"]); L = []
     L += ["# Bump coordinates: tables", "", f"Sites: residual entering layers {', '.join(sites)}; the best site (largest natural goal swap) is **{best}**. "
-          f"{comp['n_pairs']} test pairs (A, B); probe pool {pres['n_fit']} fit / {pres['n_test']} test decisions held out by set. Intervals are bootstrap 95 %.", ""]
+          f"{comp['n_test']} test histories held out from the maps' fit histories; probe pool {pres['n_fit']} fit / {pres['n_test']} test decisions held out by set. Intervals are bootstrap 95 %.", ""]
     # A
     L += ["## A1. Composition: the composed map M(B→C) M(A→B) against the direct map M(A→C), mean over the 24 ordered triples", "",
           "| site | R² composed vs direct | R² direct vs x_C | R² composed vs x_C | switch: direct | composed | composed / direct | natural x_C | random |", "|---|---|---|---|---|---|---|---|---|"]

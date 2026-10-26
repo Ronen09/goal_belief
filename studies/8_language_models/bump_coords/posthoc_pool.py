@@ -33,7 +33,8 @@ def main():
     for si, s in enumerate(sites):
         X = {g: probe["X"][g][:, si] for g in range(C.K)}; Xd = {g: X[g].double() for g in range(C.K)}
         probes = {g: dict(set=fit(X[g], masks, trn, "logistic", psteps, dev=a.device), bump=fit(X[g], pb, trn, "ridge", psteps, dev=a.device)) for g in range(C.K)}
-        rows, pool = [], dict(drop=[], num_back=[], den=[], num_off=[], bump_drop=[], bump_back=[], chk=[], chk_nat=[], r2_pool=[], r2_reg=[], r2_id=[])
+        rows, pool = [], dict(drop=[], num_back=[], den=[], num_off=[], bump_drop=[], bump_back=[], chk=[], chk_nat=[], r2_pool=[], r2_reg=[], r2_id=[], g_dec=[], g_den=[], g_chk=[])
+        n_te = int(tst.sum()); ar = np.arange(n_te)                                              # the bootstrap's clusters: the test decision (history) a row comes from
         for (A, B) in pairs:
             # maps on the probe pool: B -> A (the pull-back) fitted on the fit half
             lam, by_lam = C.tune_lambda(Xd[B][trn], steps[trn], Xd[A][trn]); W = C.ridge(Xd[B][trn], steps[trn], Xd[A][trn], lam)
@@ -57,14 +58,15 @@ def main():
                        over_offset=([float((jac["back"] - jac["off"]).mean() / drop.mean())] + C.boot_ratio(jac["back"] - jac["off"], drop)) if dropped else None,
                        b_A=bmp["A"][0], b_B=bmp["B"][0], b_back=bmp["back"][0], b_off=bmp["off"][0], b_BB=bmp["BB"][0], bump_drop=[float(bd.mean())] + C.boot_mean(bd), bump_drop_back=[float(bb.mean())] + C.boot_mean(bb),
                        check_switch_back=chk, check_switch_natural=chn)
-            rows.append(row); pool["drop"].append(drop); pool["bump_drop"].append(bd); pool["bump_back"].append(bb); pool["chk"].append(cp); pool["chk_nat"].append(cn); pool["r2_pool"].append(r2_pool); pool["r2_reg"].append(r2_reg); pool["r2_id"].append(r2_id)
-            if dropped: pool["num_back"].append(jac["back"] - jac["B"]); pool["den"].append(drop); pool["num_off"].append(jac["back"] - jac["off"])
+            rows.append(row); pool["drop"].append(drop); pool["bump_drop"].append(bd); pool["bump_back"].append(bb); pool["g_dec"].append(ar); pool["chk"].append(cp); pool["chk_nat"].append(cn); pool["g_chk"].append(dep.numpy()); pool["r2_pool"].append(r2_pool); pool["r2_reg"].append(r2_reg); pool["r2_id"].append(r2_id)
+            if dropped: pool["num_back"].append(jac["back"] - jac["B"]); pool["den"].append(drop); pool["num_off"].append(jac["back"] - jac["off"]); pool["g_den"].append(ar)
             P(f"  site {s} {A}->{B}: map R² on the probe pool {r2_pool:.3f} (registered {r2_reg:.3f}, identity {r2_id:.3f}); Jaccard A {row['j_A']:.3f} B {row['j_B']:.3f} back {row['j_back']:.3f} off {row['j_off']:.3f} BB {row['j_BB']:.3f}; restoration {row['restoration']}; bump A {row['b_A']:.2f} B {row['b_B']:.2f} back {row['b_back']:.2f}; check back {chk:.3f} natural {chn:.3f}")
-        cat = lambda k: np.concatenate(pool[k]) if pool[k] else np.zeros(0); d, nb, de, no = cat("drop"), cat("num_back"), cat("den"), cat("num_off")
+        cat = lambda k: np.concatenate(pool[k]) if pool[k] else np.zeros(0); d, nb, de, no = cat("drop"), cat("num_back"), cat("den"), cat("num_off"); gd, gden, gchk = cat("g_dec"), cat("g_den"), cat("g_chk")
+        bm = lambda v, gg: [float(v.mean())] + C.boot_mean(v, groups=gg)                        # cluster bootstrap by test decision
         summary = dict(r2_map_probe_pool=float(np.mean(pool["r2_pool"])), r2_registered_map_probe_pool=float(np.mean(pool["r2_reg"])), r2_identity=float(np.mean(pool["r2_id"])),
-                       drop=[float(d.mean())] + C.boot_mean(d), restoration=([float(nb.mean() / de.mean())] + C.boot_ratio(nb, de)) if len(de) else None,
-                       over_offset=([float(no.mean() / de.mean())] + C.boot_ratio(no, de)) if len(de) else None, bump_drop=[float(cat("bump_drop").mean())] + C.boot_mean(cat("bump_drop")),
-                       bump_drop_back=[float(cat("bump_back").mean())] + C.boot_mean(cat("bump_back")), check_switch_back=[float(cat("chk").mean())] + C.boot_mean(cat("chk")), check_switch_natural=[float(cat("chk_nat").mean())] + C.boot_mean(cat("chk_nat")))
+                       drop=bm(d, gd), restoration=([float(nb.mean() / de.mean())] + C.boot_ratio(nb, de, groups=gden)) if len(de) else None,
+                       over_offset=([float(no.mean() / de.mean())] + C.boot_ratio(no, de, groups=gden)) if len(de) else None, bump_drop=bm(cat("bump_drop"), gd),
+                       bump_drop_back=bm(cat("bump_back"), gd), check_switch_back=bm(cat("chk"), gchk), check_switch_natural=bm(cat("chk_nat"), gchk))
         res["by_site"][str(s)] = dict(pairs=rows, summary=summary)
         P(f"site {s}: map R² probe pool {summary['r2_map_probe_pool']:.3f} (registered {summary['r2_registered_map_probe_pool']:.3f}, identity {summary['r2_identity']:.3f}); drop {summary['drop'][0]:.3f}; restoration {summary['restoration']}; over offset {summary['over_offset']}; bump drop {summary['bump_drop'][0]:.3f} after pull-back {summary['bump_drop_back'][0]:.3f}; check back {summary['check_switch_back'][0]:.3f} natural {summary['check_switch_natural'][0]:.3f}")
         (out / "posthoc_pool.json").write_text(json.dumps(res, indent=1))

@@ -20,24 +20,34 @@ CACHE = HERE / "cache"
 SITES = (15, 19, 21, 23)                 # residual entering layer l (index 0 = embeddings), as factorial_llm.Patched records it
 KS = (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 896)
 K, H, D = 4, 40, 896
-LAMBDAS = (1e-3, 1e-2, 1e-1, 1.0, 10.0)
+LAMBDAS = (1e-3, 1e-2, 1e-1, 1.0, 10.0, 100.0)
 
 
 # ------------------------------------------------------------------ bootstrap
-def boot_mean(x, n=1000, seed=0):
-    """95 % percentile interval of the mean over resamples (nans dropped)."""
-    x = np.asarray(x, dtype=float); x = x[~np.isnan(x)]; rng = np.random.default_rng(seed)
+def _resamples(n_rows, groups, n, rng):
+    """Index arrays of n resamples: rows with replacement, or whole groups (clusters) with replacement when groups is given."""
+    if groups is None:
+        for _ in range(n): yield rng.integers(n_rows, size=n_rows)
+    else:
+        groups = np.asarray(groups); u, inv = np.unique(groups, return_inverse=True); members = [np.nonzero(inv == k)[0] for k in range(len(u))]
+        for _ in range(n): yield np.concatenate([members[k] for k in rng.integers(len(u), size=len(u))])
+
+
+def boot_mean(x, n=1000, seed=0, groups=None):
+    """95 % percentile interval of the mean over resamples (nans dropped); with groups (one id per row, e.g. the
+    history a decision comes from) the resampling is by whole groups, so rows that share a history are not independent."""
+    x = np.asarray(x, dtype=float); ok = ~np.isnan(x); x = x[ok]; groups = None if groups is None else np.asarray(groups)[ok]; rng = np.random.default_rng(seed)
     if len(x) == 0: return [float("nan"), float("nan")]
-    b = [x[rng.integers(len(x), size=len(x))].mean() for _ in range(n)]; return [float(np.percentile(b, 2.5)), float(np.percentile(b, 97.5))]
+    b = [x[i].mean() for i in _resamples(len(x), groups, n, rng)]; return [float(np.percentile(b, 2.5)), float(np.percentile(b, 97.5))]
 
 
-def boot_ratio(num, den, n=1000, seed=0):
-    """95 % percentile interval of mean(num) / mean(den) over paired resamples."""
+def boot_ratio(num, den, n=1000, seed=0, groups=None):
+    """95 % percentile interval of mean(num) / mean(den) over paired resamples (by groups when given)."""
     num, den = np.asarray(num, dtype=float), np.asarray(den, dtype=float); rng = np.random.default_rng(seed)
     if len(num) == 0: return [float("nan"), float("nan")]
     b = []
-    for _ in range(n):
-        i = rng.integers(len(num), size=len(num)); d = den[i].mean(); b.append(num[i].mean() / d if d != 0 else float("nan"))
+    for i in _resamples(len(num), groups, n, rng):
+        d = den[i].mean(); b.append(num[i].mean() / d if d != 0 else float("nan"))
     b = np.asarray(b); b = b[~np.isnan(b)]
     return [float(np.percentile(b, 2.5)), float(np.percentile(b, 97.5))] if len(b) else [float("nan"), float("nan")]
 
@@ -103,10 +113,11 @@ def _svd(Dm, centre_by):
     return torch.linalg.svd(_centre(Dm, centre_by), full_matrices=False)
 
 
-def basis(Dm, centre_by=None):
-    """The right singular directions of the centred differences as rows of a full orthonormal basis [d, d], singular
-    value descending; with fewer rows than dimensions the basis is completed by QR (the completion spans the null space)."""
-    Dm = torch.as_tensor(Dm).double(); d = Dm.shape[1]; _, _, Vh = _svd(Dm, centre_by)
+def basis(Dm, centre_by=None, centre=True):
+    """The right singular directions of the (centred, unless centre=False: a weight matrix is not a data matrix)
+    differences as rows of a full orthonormal basis [d, d], singular value descending; with fewer rows than dimensions
+    the basis is completed by QR (the completion spans the null space)."""
+    Dm = torch.as_tensor(Dm).double(); d = Dm.shape[1]; _, _, Vh = _svd(Dm, centre_by) if centre else torch.linalg.svd(Dm, full_matrices=False)
     if Vh.shape[0] < d:
         Q, _ = torch.linalg.qr(torch.cat([Vh.T, torch.eye(d, dtype=torch.float64)], 1)); Vh = Q[:, :d].T
     return Vh
@@ -157,6 +168,18 @@ def swap_pairs(dec, n_fit=6144, n_pairs=1024, seed=1):
         i = int(rng.integers(len(dec))); c = by_step[dec[i]["step"]]; j = c[int(rng.integers(len(c)))]
         if j != i and (dec[i]["acts"], dec[i]["obss"]) != (dec[j]["acts"], dec[j]["obss"]): pairs.append((i, j))
     return pairs[:n_fit], pairs[n_fit:]
+
+
+def split_swap_pool(dec, test_frac=0.25, n_test=1024, seed=1):
+    """Decisions deduplicated by history (the optimum's deterministic episodes repeat prefixes), then split by history:
+    a held-out share of the distinct histories (at most n_test) is the test set, the rest the fit set; no history is in
+    both. Returns (fit indices, test indices) into dec, each sorted."""
+    seen, uniq = set(), []
+    for i, d in enumerate(dec):
+        k = (tuple(d["acts"]), tuple(d["obss"]), d["step"])
+        if k not in seen: seen.add(k); uniq.append(i)
+    rng = np.random.default_rng(seed); perm = rng.permutation(len(uniq)); n_t = min(n_test, int(round(test_frac * len(uniq))))
+    test = sorted(uniq[j] for j in perm[:n_t]); fit = sorted(uniq[j] for j in perm[n_t:]); return fit, test
 
 
 def causal_rank(switch_by_k, full, ks=KS):
@@ -215,10 +238,11 @@ class Model:
         return torch.cat(Z)
 
 
-def swap_decisions(worlds_, sols):
-    """The goal-swap study's decisions: along the optimum under each goal, after the first step."""
+def swap_decisions(worlds_, sols, n_per_goal=1024, seed=700):
+    """Decisions along the optimum under each goal, after the first step (the goal-swap study's construction with more
+    episodes per goal: the optimum is deterministic, so distinct histories are few and more episodes find more of them)."""
     from additive import decisions_with_all_goals
-    return [d for d in decisions_with_all_goals(worlds_, sols, 256, 700) if d["step"] >= 1]
+    return [d for d in decisions_with_all_goals(worlds_, sols, n_per_goal, seed) if d["step"] >= 1]
 
 
 def probe_decisions(worlds_, n=8192, seed=0):
