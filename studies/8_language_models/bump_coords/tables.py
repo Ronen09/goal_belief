@@ -85,6 +85,17 @@ def main():
     L += ["", "Scorecards at the other sites:", "", "| site | " + " | ".join(r["criterion"] for r in scorecard(comp, rank, pres, best)) + " |", "|---|" + "---|" * 8]
     for s in sites:
         if s != best: L.append(f"| {s} | " + " | ".join(("yes" if r["holds"] else "no") + f" ({f(r['value'], 2)})" for r in scorecard(comp, rank, pres, s)) + " |")
+    # post hoc: maps refitted on the probe pool
+    if (out / "posthoc_pool.json").exists():
+        ph = J("posthoc_pool.json")
+        L += ["", "## Post hoc C3. The maps refitted on the probe pool's fit half (`posthoc_pool.py`): the A-probe's cells on its test half", "",
+              "| site | map R² on the probe pool: refitted | registered (swap-pool) map | identity | set: drop | restoration by the refitted inverse map | over the offset control | bump: R²_A − R²_B unmapped | after the pull-back | causal check: pull-back installed under B switches to A's (natural x_A) |", "|---|---|---|---|---|---|---|---|---|---|"]
+        for s in sites:
+            c = ph["by_site"][s]["summary"]
+            L.append(f"| {s} | {f(c['r2_map_probe_pool'])} | {f(c['r2_registered_map_probe_pool'])} | {f(c['r2_identity'])} | {f(c['drop'])} | **{f(c['restoration'])}** | {f(c['over_offset'])} | {f(c['bump_drop'])} | **{f(c['bump_drop_back'])}** | {f(c['check_switch_back'])} ({f(c['check_switch_natural'])}) |")
+        L += ["", f"Per pair at site {best}:", "", "| A → B | λ | map R² refitted / registered / identity | j_A | j_B | j_back | j_off | j_BB | restoration | bump R²: A / B / back / off / BB | check back / natural |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+        for p in ph["by_site"][best]["pairs"]:
+            L.append(f"| {p['A']} → {p['B']} | {p['lam']} | {f(p['r2_map_probe_pool'], 2)} / {f(p['r2_registered_map_probe_pool'], 2)} / {f(p['r2_identity'], 2)} | {f(p['j_A'])} | {f(p['j_B'])} | {f(p['j_back'])} | {f(p['j_off'])} | {f(p['j_BB'])} | {f(p['restoration'])} | {f(p['b_A'], 2)} / {f(p['b_B'], 2)} / {f(p['b_back'], 2)} / {f(p['b_off'], 2)} / {f(p['b_BB'], 2)} | {f(p['check_switch_back'], 2)} / {f(p['check_switch_natural'], 2)} |")
     (out / "tables.md").write_text("\n".join(L) + "\n"); print(f"wrote {out / 'tables.md'}")
 
 

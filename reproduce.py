@@ -215,7 +215,7 @@ EXPERIMENTS = [
     Experiment("bump_policy", "8_language_models/bump_policy", "What function the fine-tuned single-goal bump model computes: set-sufficiency over histories, its action on every reachable belief set against the optimum and the exact value of that table, probes by layer for the set / Q* / V* / P(bump), the readout's form from membership, same-set swaps and membership edits, step-token probes and the prefix patch; post hoc, the same sets by three kinds of history and the single-goal probe split by set", "1.5 h GPU",
           [Step("design.py"), Step("policy_table.py"), Step("probes.py"), Step("swaps.py"), Step("prefix.py"), Step("posthoc_histories.py"), Step("posthoc_probe.py"), Step("tables.py", tables=True)], needs=("bump_maze",)),
     Experiment("bump_coords", "8_language_models/bump_coords", "The four-goal fine-tuned 0.5B's goal-specific states as one coordinate system: composition and inversion of its pairwise linear goal maps by R² and by causal switch, the reconstruction and causal rank of the goal's effect, and whether the soft set probe fitted under one goal is restored under another by the inverse map (the bump probe as control)", "2–3 h GPU",
-          [Step("collect.py", quick=True), Step("compose.py", quick=True), Step("rank.py", quick=True), Step("preserve.py", quick=True), Step("tables.py", tables=True)], needs=("bump_goals", "bump_policy")),
+          [Step("collect.py", quick=True), Step("compose.py", quick=True), Step("rank.py", quick=True), Step("preserve.py", quick=True), Step("posthoc_pool.py", quick=True), Step("tables.py", tables=True)], needs=("bump_goals", "bump_policy")),
 ]
 BY_KEY = {r.key: r for r in EXPERIMENTS}
 
