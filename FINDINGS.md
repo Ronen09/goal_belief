@@ -1084,30 +1084,34 @@ data 6 826.
   one presupposed that the model computes the set. The fine-tuned models are exact imitators of the optimum's
   trajectory distribution, not implementations of its filter-and-plan structure.
 
-**Bump coordinates — the goal maps as one coordinate system, their rank, and whether a belief probe survives the change of goal (`studies/8_language_models/bump_coords/REPORT.md`, rule in `studies/8_language_models/bump_coords/PLAN.md`).** The fine-tuned four-goal model (40 000 episodes) at the decision token's residual entering layers 15, 19, 21, 23; ridge maps between the states under two goals fitted on 6 144 decisions along the optimum's trajectories (λ tuned; held-out state R² 0.99 at 15, 0.89 at 23), 1 024 test pairs; every causal number installs the candidate state in the prompt under the source goal and counts goal-dependent decisions moved to the target's.
+**Bump coordinates — the goal maps as one coordinate system, their rank, and whether a belief probe survives the change of goal (`studies/8_language_models/bump_coords/REPORT.md`, rule in `studies/8_language_models/bump_coords/PLAN.md`).** The fine-tuned four-goal model (40 000 episodes) at the decision token's residual entering layers 15, 19, 21, 23; ridge maps between the states under two goals fitted on 1 979 distinct histories along the optimum's trajectories and scored on 660 held out by history (the plan's construction, inherited from the goal-swap study, had 81 % of its "test" histories among the fit ones; that first run was withdrawn); every causal number installs the candidate state in the prompt under the source goal and counts goal-dependent decisions moved to the target's; bootstraps cluster by history.
 
-- The twelve pairwise maps form one system: A → B → C agrees with A → C at R² 0.997 / 0.982 / 0.964 / 0.949 at layers
-  15 / 19 / 21 / 23 and switches the decision 0.986–0.999 as often as the direct map (0.873 against 0.885 at 23, the
-  natural state 0.985, random 0.04); round trips return x_A at R² 0.94–0.995 and keep A's decision in 0.945–0.992 of
-  the decisions B would switch; three-cycles 0.93–0.99. The composition loses only the maps' own error (the direct map
-  predicts x_C at 0.98 at layer 15, 0.72 at 23).
+- The twelve pairwise maps compose causally: A → B → C switches the decision 0.969 / 0.962 / 0.960 / 1.005 as often
+  as A → C at layers 23 / 21 / 19 / 15 (0.767 against 0.791 at 23, the natural state 0.978, random 0.05); by R² the
+  composed and direct vectors agree at 0.918 / 0.941 / 0.968 / 0.991, tracking the maps' held-out R² (0.61 / 0.70 /
+  0.82 / 0.95); round trips keep A's decision in 0.897 / 0.906 / 0.956 / 0.984 of the decisions B would switch, three-
+  cycles 0.85–0.98. The single map at layer 23 switches 0.79 against the natural 0.98: the goal-swap study's 0.883 /
+  0.985 was measured on the histories its map was fitted on (in-fit R² 0.96, disjoint −0.40) and is flagged there.
 - The goal's effect on the decision is low-rank where it is read: at layer 23 the first singular direction of the
-  per-history goal difference (per-step mean removed) gives 0.31 of the full map's switch, two 0.66, four 0.81, eight
-  0.84 of 0.89; the effective causal rank is 2–8 per pair (median 6; 4–16 at layer 21), the bottom directions and k
-  random directions give nothing until k is half the space, one pooled subspace serves every pair (0.93 of the full
-  effect at each pair's rank) and the pairs' subspaces overlap at 0.69 (random 0.005). Reconstructing the difference
-  needs 160–170 directions for 90 % of its variance (270 pooled): the decision reads one direction in thirty. At layers
-  15 and 19 the difference is 0.61 / 0.31 goal × step offset and the rest diffuse (causal rank 128 / 96).
-- The maps are maps of a distribution. On the policy study's probe pool (8 105 goal-free sets by shortest history,
-  held out by set) the same maps predict the state under A from the state under B at R² 0.78 at layer 15 and −0.5 /
-  −1.2 at 21 / 23, below the identity (0.19–0.46); refitted on that pool they reach 0.96 / 0.81 / 0.71 / 0.63 and
-  switch 0.59 of goal-dependent decisions where the natural state switches 0.94.
+  per-history goal difference (per-step mean removed) gives 0.35 of the full map's switch, two 0.56, four 0.73 of
+  0.79; the effective causal rank is 4 in ten of twelve pairs (median 6 at layer 21), the bottom directions and k
+  random directions give nothing until k is half the space, one pooled subspace serves every pair (0.935 of the full
+  effect at each pair's rank; 0.915 at 21) and the pairs' subspaces overlap at 0.76 (random 0.003). Reconstructing the
+  difference needs 200–220 directions for 90 % of its variance (290 pooled): the decision reads one direction in
+  fifty. At layers 15 and 19 the difference is 0.59 / 0.23 goal × step offset and the rest diffuse (causal rank 128 /
+  64).
+- The maps are maps of a distribution: on the policy study's probe pool (8 105 goal-free sets by shortest history,
+  held out by set) the same maps predict the state under A from the state under B at R² 0.89 / 0.64 / 0.24 / −0.16 at
+  layers 15 / 19 / 21 / 23 (identity 0.19–0.45); refitted on that pool (post hoc) they reach 0.96 / 0.83 / 0.73 / 0.66
+  and switch 0.58 of goal-dependent decisions where the natural state switches 0.94.
 - A soft set probe (Jaccard 0.32–0.34, exact 0.01, floor 0.00; the bump probe R² 0.74–0.80) fitted under one goal
-  loses 0.07 / 0.13 / 0.15 / 0.16 of Jaccard under another at the four layers, and the bump probe 0.82 / 0.31 / 0.27
-  / 0.21 of R². Through the registered (trajectory-pool) inverse map both get worse (restoration −0.4 to −0.5); through
-  the map refitted on the probe pool (post hoc) the set probe recovers 0.53 / 0.53 / 0.49 / 0.42 of the loss and the
-  bump probe all of it (R² within 0.02 of its own), the per-step offset alone nothing; the probe's rows lie outside the
-  causal goal subspace (overlap 0.07 at 23, random 0.16) and the rank-k_c pull-back leaves it where the unmapped state
-  did. 5 of 8 registered criteria held at layer 23 (COMP-S, ROUND, RANK-C, RANK-SH, PRES-D; COMP-R by 0.001 not,
-  PRES-R and BUMP-SH not), 6 of 8 at layer 21. The belief's decodable shadow sits in coordinates the goal transforms,
-  half of it linearly; the goal's effect on the decision is a six-direction readout beside them.
+  loses 0.07 / 0.13 / 0.15 / 0.16 of Jaccard under another at the four layers and the bump probe 0.89 / 0.31 / 0.26 /
+  0.21 of R². Through the registered inverse map both get worse (restoration −0.7 to −1.0); through the map refitted
+  on the probe pool the set probe recovers 0.53 / 0.30 / 0.35 / 0.34 of the loss (0.42 at 23 under a weaker ridge
+  penalty) and the bump probe all of it, the per-step offset alone nothing; the probe's rows lie outside the causal
+  goal subspace (overlap 0.06 at 23, random 0.16) and the rank-k_c pull-back leaves it where the unmapped state did. 4
+  of 8 registered criteria held at layer 23 (COMP-S, RANK-C, RANK-SH, PRES-D; COMP-R 0.918 and ROUND 0.897 miss by
+  the maps' held-out error, PRES-R and BUMP-SH fail through the maps' domain). The belief's decodable shadow sits in
+  coordinates the goal transforms, a third of it linearly; the goal's effect on the decision is a four-direction
+  readout beside them; the linear change of coordinates is exact on the histories a map was fitted on and approximate
+  elsewhere.
