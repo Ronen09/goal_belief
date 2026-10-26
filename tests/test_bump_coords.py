@@ -79,3 +79,18 @@ def test_swap_pairs_same_step_distinct_histories():
     assert len(fit) == 20 and len(test) == 5
     for i, j in fit + test: assert dec[i]["step"] == dec[j]["step"] and (dec[i]["acts"], dec[i]["obss"]) != (dec[j]["acts"], dec[j]["obss"])
     assert C.swap_pairs(dec, 20, 5, 1) == (fit, test)
+
+
+def test_probe_decisions_drop_ended():
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "studies" / "8_language_models" / "bump_goals"))
+    from design import worlds_and_solutions
+    from goalgeo import bumpmaze as BMZ
+    _, _, worlds, _ = worlds_and_solutions()
+    P = C.probe_decisions(worlds, n=512, seed=0)
+    assert P["masks"].shape[1] == 140 and P["fit"].sum() + P["test"].sum() == len(P["hists"]) and not (P["fit"] & P["test"]).any()
+    assert len(P["hists"]) + P["dropped"] == 512 and len(P["steps"]) == len(P["hists"])
+    for acts, obss in P["hists"][:64]:
+        for w in worlds:
+            m = np.zeros(w.n_states, dtype=bool); m[w.start_states] = True
+            for a, o in zip(acts, obss): m = BMZ.step_belief(w, m, a, o, remove_goal=True)
+            assert m.any()

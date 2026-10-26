@@ -154,3 +154,87 @@ def causal_rank(switch_by_k, full, ks=KS):
     for k in ks:
         if k in switch_by_k and switch_by_k[k] >= 0.9 * full: return int(k)
     return None
+
+
+
+# ------------------------------------------------------------------ part 2: the model and the decision pools
+GOALS_DIR, POLICY_DIR = HERE.parent / "bump_goals", HERE.parent / "bump_policy"
+RUN = GOALS_DIR / "runs" / "llm_40000"
+for _p in (HERE.parent / "bump_maze", GOALS_DIR):                       # bump_goals last, so its design.py shadows bump_maze's
+    if str(_p) in sys.path: sys.path.remove(str(_p))
+    sys.path.insert(0, str(_p))
+
+
+def worlds():
+    """-> free, goals, worlds, sols of the four-goal task (bump_goals/design.py)."""
+    from design import worlds_and_solutions
+    return worlds_and_solutions()
+
+
+class Model:
+    """The fine-tuned four-goal model with factorial_llm's hook: natural logits and the residuals at `sites` for a list
+    of histories under goal g, and patched runs with the decision token's residual entering one site replaced."""
+    def __init__(self, run_dir, worlds_, device="cuda", batch=32, sites=SITES):
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        from train_goals import LLMFormatGoals
+        from factorial_llm import Patched
+        tok = AutoTokenizer.from_pretrained(run_dir); tok.padding_side = "left"
+        if tok.pad_token is None: tok.pad_token = tok.eos_token
+        self.tok, self.dev, self.batch, self.sites = tok, device, batch, tuple(sites)
+        self.model = AutoModelForCausalLM.from_pretrained(run_dir, dtype=torch.bfloat16, device_map=device).eval()
+        self.fmt = LLMFormatGoals(tok, worlds_); self.P = Patched(self.model, self.fmt, device)
+
+    def _ids(self, hists, g):
+        from train_goals import pad_left
+        return pad_left([self.fmt.prompt(acts, obss, g) for acts, obss in hists], self.tok.pad_token_id)
+
+    @torch.no_grad()
+    def record(self, hists, g):
+        """-> (centred logits [n, 3] float64, residuals at the sites [n, len(sites), D] float32)."""
+        Z, X = [], []; idx = torch.tensor(self.sites)
+        for b in range(0, len(hists), self.batch):
+            ids, att = self._ids(hists[b:b + self.batch], g); z, x = self.P.run(ids, att, record=True); Z.append(z); X.append(x[:, idx])
+        return torch.cat(Z), torch.cat(X)
+
+    @torch.no_grad()
+    def patched(self, hists, g, site, new):
+        """The prompt under goal g with the decision token's residual entering `site` replaced by new [n, D]; -> logits [n, 3]."""
+        Z = []; new = torch.as_tensor(new).float()
+        for b in range(0, len(hists), self.batch):
+            ids, att = self._ids(hists[b:b + self.batch], g); z, _ = self.P.run(ids, att, patch=(site, new[b:b + self.batch].to(self.dev))); Z.append(z)
+        return torch.cat(Z)
+
+
+def swap_decisions(worlds_, sols):
+    """The goal-swap study's decisions: along the optimum under each goal, after the first step."""
+    from additive import decisions_with_all_goals
+    return [d for d in decisions_with_all_goals(worlds_, sols, 256, 700) if d["step"] >= 1]
+
+
+def probe_decisions(worlds_, n=8192, seed=0):
+    """n of the policy study's 17 285 goal-free reachable sets by their shortest histories, uniform over sets; a history
+    whose filtered belief is empty under some goal (the episode would have ended) is dropped; held out by set: even
+    positions fit, odd positions test."""
+    from goalgeo import bumpmaze as BMZ
+    S = torch.load(POLICY_DIR / "sets.pt"); rng = np.random.default_rng(seed); pick = rng.choice(len(S["keys"]), min(n, len(S["keys"])), replace=False)
+    keep_idx, hists = [], []
+    for i in pick:
+        acts, obss = [int(a) for a in S["acts"][i]], [int(o) for o in S["obss"][i]]; ok = True
+        for w in worlds_:
+            m = np.zeros(w.n_states, dtype=bool); m[w.start_states] = True
+            for a, o in zip(acts, obss): m = BMZ.step_belief(w, m, a, o, remove_goal=True)
+            if not m.any(): ok = False; break
+        if ok: keep_idx.append(int(i)); hists.append((acts, obss))
+    k = len(keep_idx); fit = torch.arange(k) % 2 == 0
+    return dict(idx=np.asarray(keep_idx), hists=hists, masks=S["masks"][keep_idx].bool(), steps=torch.tensor([len(h[0]) for h in hists]),
+                fit=fit, test=~fit, dropped=int(len(pick) - k))
+
+
+def pbump_target(w, masks):
+    """P(bump | forward) under the uniform posterior on the set, [n, 1] (bump_policy/probes.py: targets)."""
+    m = torch.as_tensor(masks).float(); p = m / m.sum(1, keepdim=True).clamp(min=1); return (p @ torch.as_tensor(w.bump).float())[:, None]
+
+
+def load_cache(cache_dir=CACHE):
+    """-> (states, maps) from collect.py."""
+    cache_dir = Path(cache_dir); return torch.load(cache_dir / "states.pt", weights_only=False), torch.load(cache_dir / "maps.pt", weights_only=False)
