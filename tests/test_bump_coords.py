@@ -113,3 +113,10 @@ def test_projectors_with_fewer_rows_than_dimensions():
     assert torch.allclose(C.topk_projector(D, 12, None), torch.eye(12, dtype=torch.float64), atol=1e-8)
     assert torch.linalg.matrix_rank(C.topk_projector(D, 8, None)) == 8
     assert torch.allclose(C.topk_projector(D, 3, None) + C.bottomk_projector(D, 9, None), torch.eye(12, dtype=torch.float64), atol=1e-8)
+
+
+def test_restoration_formula_and_probe_rows():
+    import preserve, torch.nn as nn
+    assert preserve.restoration(0.4, 0.2, 0.36) == pytest.approx(0.8)
+    net = nn.Linear(4, 3); sd = torch.tensor([1., 2., 4., 8.])
+    R = preserve.probe_rows(net, sd); assert torch.allclose(R, net.weight.detach() / sd)
