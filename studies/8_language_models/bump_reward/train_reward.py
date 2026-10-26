@@ -92,11 +92,12 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--kind", choices=["tfm", "gru"], default="tfm"); ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--updates", type=int, default=2000); ap.add_argument("--n_env", type=int, default=4096); ap.add_argument("--lr", type=float, default=1e-4)
     ap.add_argument("--ent", type=float, default=0.03); ap.add_argument("--ent_final", type=float, default=0.003); ap.add_argument("--epochs", type=int, default=3); ap.add_argument("--minibatches", type=int, default=4)
-    ap.add_argument("--eval_every", type=int, default=50); ap.add_argument("--device", default="cuda"); ap.add_argument("--out", default=None); a = ap.parse_args()
+    ap.add_argument("--eval_every", type=int, default=50); ap.add_argument("--mem_fraction", type=float, default=0.08); ap.add_argument("--device", default="cuda"); ap.add_argument("--out", default=None); a = ap.parse_args()
     out = Path(a.out) if a.out else HERE / "runs" / a.kind / f"seed{a.seed}"; out.mkdir(parents=True, exist_ok=True); log = open(out / "train.log", "a")
     def P(*x):
         s = " ".join(str(y) for y in x); print(s, flush=True); log.write(s + "\n"); log.flush()
     w = BMZ.make(SEED, SIZE, LOOPS); dev = a.device; torch.manual_seed(a.seed); model = ActorCritic(w.H, a.kind).to(dev)
+    if dev.startswith("cuda") and a.mem_fraction > 0: torch.cuda.set_per_process_memory_fraction(a.mem_fraction)       # several seeds share one GPU
     opt = torch.optim.Adam(model.parameters(), lr=a.lr, eps=1e-5); gen = torch.Generator(device=dev); gen.manual_seed(1000 + a.seed); egen = torch.Generator(device=dev)
     starts = test_starts(w).to(dev); rows = []; t0 = time.time(); inter = 0
     def evaluate(u):

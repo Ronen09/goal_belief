@@ -5,3 +5,4 @@ __pycache__/
 studies/*/*/_smoke/
 studies/*/*/cache/
 studies/3_reward_trained_agents/pattern_specificity/subspaces/
+studies/**/runs/**/ckpt/
