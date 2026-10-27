@@ -234,3 +234,55 @@ class Small:
 
 def load_small(kind, H=H, device="cpu", run_name=None):
     return Small(kind, GOALS_DIR / "runs" / (run_name or f"{kind}_120000") / "model.pt", H, device)
+
+
+# ------------------------------------------------------------------ part 3: the fine-tuned model, the pool and the recorded states
+class LLM(CC.Model):
+    """The coordinates study's hooked fine-tuned model, plus patched recording (the states at the sites after a patch
+    at one of them; at the patched site the installed value) and Jacobians of the centred logits."""
+    def __init__(self, run_dir=None, worlds_=None, device="cuda", batch=32, sites=SITES_LLM):
+        super().__init__(run_dir or CC.RUN / "model", worlds_, device, batch, sites); self.model.requires_grad_(False)
+
+    @torch.no_grad()
+    def patched_record(self, hists, g, site, new):
+        Z, X = [], []; idx = torch.tensor(self.sites); new = torch.as_tensor(new).float()
+        for b in range(0, len(hists), self.batch):
+            ids, att = self._ids(hists[b:b + self.batch], g); z, x = self.P.run(ids, att, patch=(site, new[b:b + self.batch].to(self.dev)), record=True); Z.append(z); X.append(x[:, idx])
+        X = torch.cat(X)
+        if site in self.sites: X[:, self.sites.index(site)] = new                      # the hook records a layer's input before replacing it
+        return torch.cat(Z), X
+
+    def jacobian(self, hists, g, site, batch=8):
+        """The Jacobian of the three centred logits with respect to the decision token's residual entering `site`, [n, 3, D]."""
+        _, X = self.record(hists, g); si = self.sites.index(site); J = []; P = self.P
+        for b in range(0, len(hists), batch):
+            ids, att = self._ids(hists[b:b + batch], g); leaf = X[b:b + batch, si].clone().to(self.dev).requires_grad_(True)
+            with torch.enable_grad():
+                P._patch, P._rec = (site, leaf), None
+                h = self.model.model(input_ids=ids.to(self.dev), attention_mask=att.to(self.dev)).last_hidden_state[:, -1]
+                z = self.model.lm_head(h).float()[:, self.fmt.act_tok.to(self.dev)]; z = z - z.mean(1, keepdim=True); P._patch = None
+                J.append(torch.stack([torch.autograd.grad(z[:, j].sum(), leaf, retain_graph=j < 2)[0] for j in range(3)], 1).detach().double().cpu())
+        return torch.cat(J)
+
+
+def pool(worlds_, sols, quick=False):
+    """The coordinates study's decision pool: decisions after the first step along the optimum under every goal,
+    deduplicated by history and split by history (fit / test), with each decision's history, step, goal-free set key
+    and (test) size."""
+    dec = CC.swap_decisions(worlds_, sols, 64 if quick else 1024); fit, test = CC.split_swap_pool(dec, 0.25, 16 if quick else 1024); w = worlds_[0]
+    hist = lambda idx: [(dec[i]["acts"], dec[i]["obss"]) for i in idx]; steps = lambda idx: torch.tensor([dec[i]["step"] for i in idx])
+    keys = lambda idx: np.array([set_key(w, dec[i]["acts"], dec[i]["obss"]) for i in idx], dtype=object)
+    return dict(dec=dec, fit_idx=fit, test_idx=test, hists_fit=hist(fit), hists_test=hist(test), steps_fit=steps(fit), steps_test=steps(test), keys_fit=keys(fit), keys_test=keys(test),
+                sizes_test=np.array([dec[i]["size"] for i in test]))
+
+
+def load_states(kind):
+    """The pool's recorded states: for the fine-tuned model the coordinates study's cache (X_fit / X_h1 [n, 4 sites,
+    896], L_fit / L_h1, steps, hists, dec indices); for a from-scratch model this study's cache from subspace_small.py."""
+    if kind == "llm":
+        p = COORDS / "cache" / "states.pt"
+        if not p.exists(): raise FileNotFoundError(f"{p} missing: run bump_coords/collect.py first (it records the pool at sites {SITES_LLM})")
+        st = torch.load(p, weights_only=False); assert tuple(st["sites"]) == SITES_LLM, st["sites"]; return st["swap"]
+    p = CACHE / f"states_{kind}.pt"
+    if not p.exists(): raise FileNotFoundError(f"{p} missing: run subspace_small.py --kind {kind} first")
+    return torch.load(p, weights_only=False)
