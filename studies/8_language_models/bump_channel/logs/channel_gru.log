@@ -1,0 +1,15 @@
+gru: sites (-2, -1, 0), k {-2: 64, -1: 32, 0: 2}, registered site -1 6s
+512 pairs x 4 goals: 791 history-dependent cells (share by goal [0.43, 0.32, 0.38, 0.41]), 303 at known states 6s
+site -2: k 64; overlap goal/readout 0.588, goal/history 0.766, history/readout 0.591, random 0.508 7s
+site -1: k 32; overlap goal/readout 0.436, goal/history 0.645, history/readout 0.449, random 0.246 8s
+site 0: k 2; overlap goal/readout 0.498, goal/history 0.162, history/readout 0.319, random 0.010 8s
+part 2 site -2: natural 0.430; goal 0.92 comp 0.11 bottom 0.11 random0 0.58 readout 0.99 history 0.97 floor 0.40; sweep 1:0.14 2:0.19 4:0.27 8:0.56 16:0.72 32:0.85 64:0.92 128:1.00 13s
+part 2 site -1: natural 0.649; goal 0.89 comp 0.13 bottom 0.03 random0 0.25 readout 0.98 history 0.93 floor 0.21; sweep 1:0.17 2:0.29 4:0.34 8:0.58 16:0.76 32:0.89 64:0.94 128:1.00 17s
+part 2 site 0: natural 1.000; goal 0.64 comp 0.28 bottom 0.00 random0 0.02 readout 1.00 history 0.52 floor 0.09; sweep 1:0.32 2:0.64 4:0.88 8:0.91 16:0.94 32:0.97 64:0.97 128:1.00 23s
+upstream swap at -2 recorded under 4 goals 23s
+upstream swap at -1 recorded under 4 goals 23s
+part 1 -2->-1: upstream switch 0.430, full reproduces 1.0; goal 0.89 comp 0.19 bottom 0.03 random0 0.27 readout 1.00 history 0.91 27s
+part 1 -2->0: upstream switch 0.430, full reproduces 1.0; goal 0.67 comp 0.42 bottom 0.00 random0 0.02 readout 1.00 history 0.57 31s
+part 1 -1->0: upstream switch 0.649, full reproduces 1.0; goal 0.66 comp 0.33 bottom 0.00 random0 0.02 readout 1.00 history 0.62 36s
+registered site -1 (k 32, upstream -2): THRU_D {'value': 0.8869395711500975, 'ci': [0.8464456947547276, 0.9273542999289267], 'holds': True}, THRU_U None, COMP {'values': [0.13060428849902533, 0.18823529411764706], 'holds': True}, CTRL {'values': [0.02729044834307992, 0.24951267056530216, 0.15594541910331383, 0.26705653021442494, 0.032352941176470584, 0.27352941176470585, 0.22941176470588234, 0.3558823529411764], 'holds': False}, DISTINCT {'value': 0.4364419979108868, 'holds': True}, KNOWN {'known': 0.92, 'uncertain': 0.8658146964856229, 'diff_ci': [-0.027539939554623374, 0.13541433952274473], 'holds': False}, reject False 36s
+done 36s

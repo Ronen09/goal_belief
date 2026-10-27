@@ -1,0 +1,21 @@
+tfm: sites (1, 2, 3, 4), k {1: 4, 2: 4, 3: 16, 4: 2}, registered site 3 7s
+512 pairs x 4 goals: 779 history-dependent cells (share by goal [0.41, 0.29, 0.39, 0.43]), 306 at known states 7s
+site 1: k 4; overlap goal/readout 0.080, goal/history 0.291, history/readout 0.276, random 0.038 7s
+site 2: k 4; overlap goal/readout 0.112, goal/history 0.237, history/readout 0.280, random 0.054 8s
+site 3: k 16; overlap goal/readout 0.340, goal/history 0.578, history/readout 0.412, random 0.123 8s
+site 4: k 2; overlap goal/readout 0.815, goal/history 0.842, history/readout 0.634, random 0.033 9s
+part 2 site 1: natural 0.321; goal 0.32 comp 0.94 bottom 0.02 random0 0.04 readout 0.74 history 0.91 floor 0.47; sweep 1:0.23 2:0.26 4:0.32 8:0.40 16:0.47 32:0.57 64:0.68 128:1.00 14s
+part 2 site 2: natural 0.504; goal 0.46 comp 0.70 bottom 0.02 random0 0.05 readout 0.70 history 0.83 floor 0.31; sweep 1:0.14 2:0.28 4:0.46 8:0.62 16:0.73 32:0.84 64:0.89 128:1.00 20s
+part 2 site 3: natural 0.647; goal 0.83 comp 0.24 bottom 0.03 random0 0.13 readout 0.94 history 0.94 floor 0.24; sweep 1:0.49 2:0.53 4:0.65 8:0.72 16:0.83 32:0.92 64:0.96 128:1.00 25s
+part 2 site 4: natural 1.000; goal 0.93 comp 0.04 bottom 0.00 random0 0.04 readout 0.96 history 0.83 floor 0.08; sweep 1:0.59 2:0.93 4:0.93 8:0.96 16:0.97 32:0.98 64:0.99 128:1.00 30s
+upstream swap at 1 recorded under 4 goals 30s
+upstream swap at 2 recorded under 4 goals 30s
+upstream swap at 3 recorded under 4 goals 30s
+part 1 1->2: upstream switch 0.321, full reproduces 1.0; goal 0.44 comp 0.85 bottom 0.03 random0 0.06 readout 0.75 history 0.89 35s
+part 1 1->3: upstream switch 0.321, full reproduces 1.0; goal 0.79 comp 0.44 bottom 0.05 random0 0.16 readout 1.00 history 1.04 39s
+part 1 1->4: upstream switch 0.321, full reproduces 1.0; goal 0.98 comp 0.12 bottom 0.00 random0 0.06 readout 0.99 history 0.98 44s
+part 1 2->3: upstream switch 0.504, full reproduces 1.0; goal 0.83 comp 0.31 bottom 0.03 random0 0.14 readout 0.98 history 0.98 48s
+part 1 2->4: upstream switch 0.504, full reproduces 1.0; goal 0.99 comp 0.08 bottom 0.00 random0 0.04 readout 0.96 history 0.97 53s
+part 1 3->4: upstream switch 0.647, full reproduces 1.0; goal 0.98 comp 0.06 bottom 0.00 random0 0.05 readout 0.96 history 0.92 58s
+registered site 3 (k 16, upstream 2): THRU_D {'value': 0.8253968253968254, 'ci': [0.7644477489096679, 0.8818830632425472], 'holds': True}, THRU_U None, COMP {'values': [0.2380952380952381, 0.3053435114503817], 'holds': False}, CTRL {'values': [0.025793650793650792, 0.1349206349206349, 0.10912698412698411, 0.20436507936507936, 0.03053435114503817, 0.13740458015267176, 0.1272264631043257, 0.24427480916030536], 'holds': False}, DISTINCT {'value': 0.33994515997939123, 'holds': True}, KNOWN {'known': 0.8282828282828282, 'uncertain': 0.823529411764706, 'diff_ci': [-0.13008256366787865, 0.12226241752955204], 'holds': False}, reject False 58s
+done 58s
