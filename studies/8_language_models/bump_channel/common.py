@@ -225,7 +225,7 @@ class Small:
         _, X = self.record(hists, g); si = self.sites.index(site); J = []
         for b in range(0, len(hists), self.batch):
             leaf = X[b:b + self.batch, si].clone().to(self.dev).requires_grad_(True)
-            with torch.enable_grad():
+            with torch.enable_grad(), torch.backends.cudnn.flags(enabled=False):                 # cuDNN's RNN backward wants training mode; the plain kernels differentiate in eval mode
                 z, _ = (self._tfm if self.kind == "tfm" else self._gru)(*[t.to(self.dev) for t in small_tokens(hists[b:b + self.batch], g, self.H)], (site, leaf))
                 z = z - z.mean(1, keepdim=True)
                 J.append(torch.stack([torch.autograd.grad(z[:, j].sum(), leaf, retain_graph=j < 2)[0] for j in range(3)], 1).detach().double().cpu())

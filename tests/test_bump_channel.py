@@ -123,3 +123,9 @@ def test_small_tfm_jacobian_predicts_a_small_change():
     z, X = m.record(hists, g); J = m.jacobian(hists, g, 2); eps = torch.randn(6, CH.D_SMALL) * 1e-3
     zp = m.patched(hists, g, 2, X[:, m.sites.index(2)] + eps)
     assert torch.allclose(zp - z, torch.einsum("njd,nd->nj", J, eps.double()), atol=1e-4)
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="cuDNN RNN backward is the GPU path")
+def test_small_gru_jacobian_runs_on_cuda_in_eval_mode():
+    torch.manual_seed(0); m = CH.Small("gru", None, H=40, device="cuda"); hists, g = _hists()
+    J = m.jacobian(hists, g, -1); assert J.shape == (6, 3, CH.D_SMALL) and torch.isfinite(J).all() and not m.model.training
