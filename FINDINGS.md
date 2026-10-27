@@ -1115,3 +1115,29 @@ data 6 826.
   coordinates the goal transforms, a third of it linearly; the goal's effect on the decision is a four-direction
   readout beside them; the linear change of coordinates is exact on the histories a map was fitted on and approximate
   elsewhere.
+
+**Bump channel — does the belief reach the decision through the goal's four directions (`studies/8_language_models/bump_channel/REPORT.md`, rule in `studies/8_language_models/bump_channel/PLAN.md`).** The four-goal fine-tuned model
+(40 000 episodes) and, with their goal subspaces found first, the from-scratch four-goal transformer and GRU (120 000);
+512 same-step pairs of held-out histories with different belief sets under every goal, 999 / 779 / 791 cells where
+the two histories' natural decisions differ; the difference between their states, or the change a belief swapped in
+upstream induces downstream, restricted to the goal subspace and installed; the through ratio is the share of the
+full swap's decision switches reproduced.
+
+- In the fine-tuned model at layer 23 the four pooled goal directions carry the belief's effect: the natural
+  difference restricted to them switches 0.94 (0.92–0.96) of what the whole difference switches, eight directions at
+  21 0.92, while the complement (0.63 of the difference's norm) switches 0.07, the bottom four and four random
+  directions 0.00–0.01, a random vector of the same norm 0.05; a belief installed at 19 before the goal is read and
+  re-read by layers 20–22 changes the decision at 23 through the four directions in 0.91 of the cases the swap
+  changes it (from 15: 0.84). The sweep is the goal's own: 1 / 2 / 4 directions 0.34 / 0.65 / 0.94 (the goal's 0.44 /
+  0.71 / 0.92). Upstream of the goal (19, 15) the registered subspaces have 64 and 128 directions and carry 0.77 and
+  0.62, random directions of the same count 0.05–0.15.
+- The belief effect's own top-4 directions overlap the goal's at 0.76 (random 0.004) and the logit readout's
+  Jacobian directions at 0.20; the readout's top-4 carry the effect as well (0.92). Known and uncertain states convert
+  alike (0.94 / 0.94). 5 of 6 registered criteria held (KNOWN failed); not a goal channel but the decision's input: the
+  few coordinates the last layer reads, into which the goal layers write the belief's consequence under the goal.
+- The from-scratch models' goal subspaces have causal rank 16 (the transformer, block 3 entrance) and 32 (the GRU, one
+  token before the decision) of 128, not 4. Through them the belief effect passes at 0.83 and 0.89 (the upstream swap
+  0.83 and 0.89), the complement 0.24–0.31 and 0.13–0.19, random subspaces of the same size 0.11–0.24 and 0.16–0.36:
+  concentrated where the goal's is, not confined. At the GRU's decision state, through the linear head, the goal's two
+  directions carry 0.64 of the history effect and the history's own two 0.52, overlapping at 0.16: there goal and
+  history move the decision along different directions, one token earlier along the same.
