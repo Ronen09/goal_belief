@@ -147,3 +147,90 @@ def split_known(per_var, per_ref, groups, known):
             if dk > 0 and du > 0: b.append(vk[ik].mean() / dk - vu[iu].mean() / du)
         if b: out["diff_ci"] = [float(np.percentile(b, 2.5)), float(np.percentile(b, 97.5))]
     return out
+
+
+# ------------------------------------------------------------------ part 2: the from-scratch four-goal models
+def small_tokens(hists, g, H=H):
+    """[n, H + 1] tokens as bump_goals/train_goals.step_tokens builds them: the goal token 7 + g, then 1 + 2a + o per
+    executed step, 0 beyond; and the decision positions [n] (= the number of steps)."""
+    n = len(hists); t = torch.zeros(n, H + 1, dtype=torch.long); ln = torch.tensor([len(a) for a, _ in hists]); t[:, 0] = 7 + g
+    for i, (a, o) in enumerate(hists):
+        if len(a): t[i, 1:1 + len(a)] = 1 + 2 * torch.tensor(a) + torch.tensor(o)
+    return t, ln
+
+
+class Small:
+    """A from-scratch four-goal model (bump_maze/train.py's StepTransformer or StepGRU with the goal as the start
+    token) with recording, patching and Jacobians at the decision position's sites: the transformer's residual
+    entering block l (sites 1–3) and its final residual (4); the GRU's hidden state at position t + s (sites −2, −1,
+    0; a position below 0 is the zero initial state, and a patch there runs every token from it)."""
+    def __init__(self, kind, path, H=H, device="cpu", sites=None, batch=2048):
+        import torch.nn as nn
+        T = _load_by_path("maze_train", MAZE_DIR / "train.py")
+        m = T.StepTransformer(H) if kind == "tfm" else T.StepGRU(H); m.tok = nn.Embedding(7 + K, m.tok.embedding_dim)
+        if path is not None: m.load_state_dict(torch.load(path, map_location=device))
+        self.model, self.kind, self.H, self.dev, self.batch = m.to(device).eval(), kind, H, device, batch
+        self.sites = tuple(sites) if sites is not None else (SITES_TFM if kind == "tfm" else SITES_GRU)
+
+    def _tfm(self, tok, ln, patch=None):
+        """-> (logits [n, 3], states at every entrance 0..4 at the decision position); patch = (site, new [n, d])."""
+        m = self.model; ar = torch.arange(len(tok), device=self.dev); x = m.tok(tok) + m.pos.weight[: tok.shape[1]]; recs = []
+        for l in range(m.nl + 1):
+            if l > 0:
+                b = m.blocks[l - 1]; a = b.attn(x)[0]; mid = x + a; x = mid + b.mlp(b.ln2(mid))
+            if patch is not None and patch[0] == l: x = x.clone(); x[ar, ln] = patch[1].to(x.dtype)
+            recs.append(x[ar, ln])
+        return m.head(m.ln(x))[ar, ln], recs
+
+    def _gru(self, tok, ln, patch=None):
+        """-> (logits [n, 3], {site: state}); the natural run over the whole sequence, and after a patch at site s the
+        remaining −s tokens run from the installed state."""
+        m = self.model; ar = torch.arange(len(tok), device=self.dev); emb = m.tok(tok); h_all, _ = m.gru(emb); d = h_all.shape[-1]
+        def nat(s):
+            p = ln + s; z = torch.zeros(len(tok), d, device=self.dev, dtype=h_all.dtype); ok = p >= 0
+            if ok.any(): z[ok] = h_all[ar[ok], p[ok]]
+            return z
+        states = {s: nat(s) for s in SITES_GRU}
+        if patch is not None:
+            s, new = patch; new = new.to(h_all.dtype); states[s] = new
+            if s < 0:
+                pos = ln[:, None] + torch.arange(s + 1, 1, device=self.dev)[None]                          # the remaining −s positions, ending at the decision
+                rest = emb[ar[:, None], pos]; out, _ = m.gru(rest, new[None].contiguous())
+                for s2 in SITES_GRU:
+                    if s2 > s: states[s2] = out[:, s2 - s - 1]
+        return m.head(states[0]), states
+
+    def _run(self, hists, g, patch=None):
+        tok, ln = small_tokens(hists, g, self.H); tok, ln = tok.to(self.dev), ln.to(self.dev)
+        if self.kind == "tfm": z, recs = self._tfm(tok, ln, patch); X = torch.stack([recs[s] for s in self.sites], 1)
+        else: z, states = self._gru(tok, ln, patch); X = torch.stack([states[s] for s in self.sites], 1)
+        z = z.double(); return (z - z.mean(1, keepdim=True)).cpu(), X.float().cpu()
+
+    @torch.no_grad()
+    def record(self, hists, g):
+        """-> (centred logits [n, 3] float64, states at the sites [n, len(sites), d] float32)."""
+        out = [self._run(hists[b:b + self.batch], g) for b in range(0, len(hists), self.batch)]
+        return torch.cat([o[0] for o in out]), torch.cat([o[1] for o in out])
+
+    @torch.no_grad()
+    def patched_record(self, hists, g, site, new):
+        new = torch.as_tensor(new).float(); out = [self._run(hists[b:b + self.batch], g, (site, new[b:b + self.batch].to(self.dev))) for b in range(0, len(hists), self.batch)]
+        return torch.cat([o[0] for o in out]), torch.cat([o[1] for o in out])
+
+    def patched(self, hists, g, site, new):
+        return self.patched_record(hists, g, site, new)[0]
+
+    def jacobian(self, hists, g, site):
+        """The Jacobian of the three centred logits with respect to the site's state at the decision position, [n, 3, d]."""
+        _, X = self.record(hists, g); si = self.sites.index(site); J = []
+        for b in range(0, len(hists), self.batch):
+            leaf = X[b:b + self.batch, si].clone().to(self.dev).requires_grad_(True)
+            with torch.enable_grad():
+                z, _ = (self._tfm if self.kind == "tfm" else self._gru)(*[t.to(self.dev) for t in small_tokens(hists[b:b + self.batch], g, self.H)], (site, leaf))
+                z = z - z.mean(1, keepdim=True)
+                J.append(torch.stack([torch.autograd.grad(z[:, j].sum(), leaf, retain_graph=j < 2)[0] for j in range(3)], 1).detach().double().cpu())
+        return torch.cat(J)
+
+
+def load_small(kind, H=H, device="cpu", run_name=None):
+    return Small(kind, GOALS_DIR / "runs" / (run_name or f"{kind}_120000") / "model.pt", H, device)

@@ -79,3 +79,47 @@ def test_split_known_diff():
     assert abs(s["known"]["ratio"] - 1) < 1e-12 and 0.4 < s["uncertain"]["ratio"] < 0.6 and s["diff_ci"][0] > 0
     s2 = CH.split_known(var, ref * 0.0, groups, known)
     assert s2["known"]["ratio"] is None and s2["diff_ci"] is None
+
+
+# ------------------------------------------------------------------ task 2: the from-scratch models
+def _hists():
+    """Six histories of steps 1..6 (acts in {0, 1, 2}, obss in {0, 1}) and their goals."""
+    rng = np.random.default_rng(5); hists = [([int(a) for a in rng.integers(0, 3, t)], [int(o) for o in rng.integers(0, 2, t)]) for t in range(1, 7)]
+    return hists, 2
+
+
+@pytest.mark.parametrize("kind", ["tfm", "gru"])
+def test_small_patch_with_natural_state_reproduces_logits(kind):
+    torch.manual_seed(0); m = CH.Small(kind, None, H=40, device="cpu"); hists, g = _hists()
+    z, X = m.record(hists, g)
+    assert z.shape == (6, 3) and X.shape == (6, len(m.sites), CH.D_SMALL) and torch.allclose(z.sum(1), torch.zeros(6, dtype=torch.float64), atol=1e-6)
+    for si, s in enumerate(m.sites):
+        zp = m.patched(hists, g, s, X[:, si])
+        assert torch.allclose(zp, z, atol=1e-5), (kind, s)
+
+
+def test_small_gru_site_below_position_zero_is_the_zero_state():
+    torch.manual_seed(0); m = CH.Small("gru", None, H=40, device="cpu"); hists, g = _hists()
+    z, X = m.record(hists, g); i2 = m.sites.index(-2)
+    assert torch.allclose(X[0, i2], torch.zeros(CH.D_SMALL)) and not torch.allclose(X[1, i2], torch.zeros(CH.D_SMALL))      # step 1: h_{t-2} is before any token
+
+
+@pytest.mark.parametrize("kind", ["tfm", "gru"])
+def test_small_patched_record_matches_natural_when_patch_is_natural(kind):
+    torch.manual_seed(0); m = CH.Small(kind, None, H=40, device="cpu"); hists, g = _hists()
+    z, X = m.record(hists, g); s0 = m.sites[0]
+    zp, Xp = m.patched_record(hists, g, s0, X[:, 0])
+    assert torch.allclose(zp, z, atol=1e-5) and torch.allclose(Xp, X, atol=1e-4)
+
+
+def test_small_gru_jacobian_at_h_t_is_head_rows():
+    torch.manual_seed(0); m = CH.Small("gru", None, H=40, device="cpu"); hists, g = _hists()
+    J = m.jacobian(hists, g, 0); W = m.model.head.weight.detach().double()
+    assert J.shape == (6, 3, CH.D_SMALL) and torch.allclose(J, (W - W.mean(0, keepdim=True))[None].expand(6, -1, -1), atol=1e-5)
+
+
+def test_small_tfm_jacobian_predicts_a_small_change():
+    torch.manual_seed(0); m = CH.Small("tfm", None, H=40, device="cpu"); hists, g = _hists()
+    z, X = m.record(hists, g); J = m.jacobian(hists, g, 2); eps = torch.randn(6, CH.D_SMALL) * 1e-3
+    zp = m.patched(hists, g, 2, X[:, m.sites.index(2)] + eps)
+    assert torch.allclose(zp - z, torch.einsum("njd,nd->nj", J, eps.double()), atol=1e-4)
