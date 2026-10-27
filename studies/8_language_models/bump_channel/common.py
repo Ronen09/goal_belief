@@ -29,7 +29,7 @@ def _load_by_path(name, path):
 CC = _load_by_path("coords_common", COORDS / "common.py")            # bump_coords/common.py, which is also called common.py
 
 SITES_LLM = (15, 19, 21, 23)
-K_LLM = {15: 128, 19: 64, 21: 8, 23: 4}                                # the median pooled causal rank per site (bump_coords/rank.json), rounded up to the grid
+K_LLM = {15: 128, 19: 64, 21: 8, 23: 4}                                # PLAN.md's registered ranks: at 23 and 21 the median pooled causal rank of bump_coords/rank.json rounded up (4, 6 → 8); at 19 and 15 the plan's numbers (the per-pair medians; the pooled medians there are 128 and 128)
 KS_LLM = (1, 2, 4, 8, 16, 32, 64, 128, 896)
 KS_SMALL = (1, 2, 4, 8, 16, 32, 64, 128)
 SITES_TFM = (1, 2, 3, 4)                                                # residual entering block l at the decision position; 4 = the final residual (entering the head's layer norm)
@@ -118,6 +118,25 @@ def norm_share(delta, P):
 
 def overlap(P1, P2, k):
     return CC.subspace_overlap(P1, P2, k)
+
+
+# ------------------------------------------------------------------ bins and caches
+def dep_share_by_bin(known_pair, cells_p, k=K):
+    """The share of a bin's cells (its pairs × k goals) that are history-dependent: known (set size 1) and uncertain."""
+    known_pair, cells_p = np.asarray(known_pair, dtype=bool), np.asarray(cells_p); n = dict(known=int(known_pair.sum()), uncertain=int((~known_pair).sum()))
+    share = lambda m, nb: float(m.sum() / (k * nb)) if nb else float("nan")
+    return dict(known=share(known_pair[cells_p], n["known"]), uncertain=share(~known_pair[cells_p], n["uncertain"]), n_pairs=n)
+
+
+def resolve_cache(kind, quick, cache_arg, out):
+    """The cache holding states_<kind>.pt / subspaces_<kind>.pt: the --cache argument; in quick mode the smoke
+    layouts (reproduce.py's _smoke/subspace_small/cache, then the manual _smoke/subspace_<kind>/cache) when they hold
+    the kind's states; otherwise this study's cache."""
+    if cache_arg: return Path(cache_arg)
+    if quick:
+        for c in (Path(out).parent / "subspace_small" / "cache", Path(out).parent / f"subspace_{kind}" / "cache"):
+            if (c / f"states_{kind}.pt").exists(): return c
+    return CACHE
 
 
 # ------------------------------------------------------------------ through ratios

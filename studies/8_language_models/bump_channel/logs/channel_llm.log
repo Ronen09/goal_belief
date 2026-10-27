@@ -1,22 +1,22 @@
-Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:01<06:40,  1.39s/it]Loading weights:  20%|██        | 59/290 [00:01<00:04, 54.07it/s]Loading weights:  31%|███       | 89/290 [00:01<00:03, 62.71it/s]Loading weights:  38%|███▊      | 109/290 [00:02<00:02, 66.23it/s]Loading weights:  43%|████▎     | 124/290 [00:02<00:02, 62.36it/s]Loading weights:  47%|████▋     | 136/290 [00:02<00:02, 59.32it/s]Loading weights:  53%|█████▎    | 153/290 [00:03<00:02, 52.44it/s]Loading weights:  56%|█████▌    | 161/290 [00:03<00:02, 47.32it/s]Loading weights:  60%|█████▉    | 173/290 [00:03<00:02, 51.19it/s]Loading weights:  63%|██████▎   | 184/290 [00:03<00:01, 58.90it/s]Loading weights:  66%|██████▌   | 192/290 [00:03<00:01, 58.01it/s]Loading weights:  69%|██████▉   | 201/290 [00:04<00:01, 47.31it/s]Loading weights:  76%|███████▌  | 219/290 [00:04<00:01, 65.13it/s]Loading weights:  79%|███████▊  | 228/290 [00:04<00:00, 67.43it/s]Loading weights:  81%|████████▏ | 236/290 [00:04<00:00, 60.39it/s]Loading weights:  89%|████████▊ | 257/290 [00:04<00:00, 86.46it/s]Loading weights:  92%|█████████▏| 268/290 [00:04<00:00, 87.68it/s]Loading weights:  96%|█████████▌| 278/290 [00:04<00:00, 80.35it/s]Loading weights: 100%|██████████| 290/290 [00:04<00:00, 58.70it/s]
-goal basis at 15: pooled k50/90/99 9/171/579, k = 128 60s
-goal basis at 19: pooled k50/90/99 34/348/745, k = 64 64s
-goal basis at 21: pooled k50/90/99 19/319/731, k = 8 68s
-goal basis at 23: pooled k50/90/99 13/290/712, k = 4 72s
-512 pairs x 4 goals: 999 history-dependent cells (share by goal [0.53, 0.47, 0.46, 0.49]), 388 at known states 72s
-site 15: k 128; overlap goal/readout 0.190, goal/history 0.509, history/readout 0.195, random 0.142 90s
-site 19: k 64; overlap goal/readout 0.123, goal/history 0.507, history/readout 0.147, random 0.070 105s
-site 21: k 8; overlap goal/readout 0.133, goal/history 0.590, history/readout 0.149, random 0.010 120s
-site 23: k 4; overlap goal/readout 0.202, goal/history 0.760, history/readout 0.204, random 0.004 133s
-part 2 site 15: natural 0.368; goal 0.62 comp 0.15 bottom 0.03 random0 0.10 readout 0.63 history 0.93 floor 0.23; sweep 1:0.05 2:0.08 4:0.08 8:0.13 16:0.20 32:0.30 64:0.37 128:0.62 896:1.00 174s
-part 2 site 19: natural 0.650; goal 0.77 comp 0.12 bottom 0.02 random0 0.06 readout 0.87 history 0.94 floor 0.09; sweep 1:0.20 2:0.59 4:0.61 8:0.64 16:0.69 32:0.73 64:0.77 128:0.82 896:1.00 216s
-part 2 site 21: natural 0.920; goal 0.92 comp 0.07 bottom 0.01 random0 0.01 readout 0.85 history 0.93 floor 0.05; sweep 1:0.31 2:0.65 4:0.90 8:0.92 16:0.94 32:0.95 64:0.96 128:0.97 896:1.00 259s
-part 2 site 23: natural 0.972; goal 0.94 comp 0.07 bottom 0.00 random0 0.00 readout 0.92 history 0.95 floor 0.05; sweep 1:0.34 2:0.65 4:0.94 8:0.96 16:0.96 32:0.98 64:0.97 128:0.98 896:1.00 301s
-upstream swap at 15 recorded under 4 goals 305s
-upstream swap at 19 recorded under 4 goals 309s
-part 1 15->21: upstream switch 0.369, full reproduces 1.0; goal 0.83 comp 0.14 bottom 0.01 random0 0.02 readout 0.67 history 0.92 351s
-part 1 15->23: upstream switch 0.369, full reproduces 1.002710027100271; goal 0.84 comp 0.13 bottom 0.01 random0 0.01 readout 0.82 history 0.89 392s
-part 1 19->21: upstream switch 0.646, full reproduces 1.0; goal 0.88 comp 0.11 bottom 0.01 random0 0.01 readout 0.82 history 0.94 431s
-part 1 19->23: upstream switch 0.646, full reproduces 1.0; goal 0.91 comp 0.09 bottom 0.01 random0 0.00 readout 0.91 history 0.93 472s
-registered site 23 (k 4, upstream 19): THRU_D {'value': 0.9402677651905254, 'ci': [0.9208396984540796, 0.959522196325004], 'holds': True}, THRU_U {'value': 0.9100775193798449, 'ci': [0.8822485384695687, 0.9404402364064043], 'holds': True}, COMP {'values': [0.06797116374871266, 0.08992248062015504], 'holds': True}, CTRL {'values': [0.003089598352214212, 0.003089598352214212, 0.007209062821833162, 0.008238928939237899, 0.007751937984496124, 0.0031007751937984496, 0.006201550387596899, 0.006201550387596899], 'holds': True}, DISTINCT {'value': 0.2017576837623945, 'holds': True}, KNOWN {'known': 0.9442970822281167, 'uncertain': 0.9377104377104378, 'diff_ci': [-0.029798965554302538, 0.04356137976042489], 'holds': False}, reject False 472s
-done 472s
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:01<05:51,  1.22s/it]Loading weights:  18%|█▊        | 53/290 [00:01<00:04, 53.91it/s]Loading weights:  27%|██▋       | 78/290 [00:01<00:02, 74.61it/s]Loading weights:  34%|███▍      | 100/290 [00:01<00:02, 77.02it/s]Loading weights:  40%|████      | 117/290 [00:01<00:02, 82.71it/s]Loading weights:  45%|████▌     | 131/290 [00:02<00:01, 88.54it/s]Loading weights:  50%|█████     | 145/290 [00:02<00:01, 88.77it/s]Loading weights:  54%|█████▍    | 157/290 [00:02<00:01, 92.26it/s]Loading weights:  59%|█████▉    | 172/290 [00:02<00:01, 84.71it/s]Loading weights:  65%|██████▌   | 189/290 [00:02<00:01, 95.60it/s]Loading weights:  70%|███████   | 203/290 [00:02<00:00, 101.04it/s]Loading weights:  76%|███████▌  | 221/290 [00:02<00:00, 110.66it/s]Loading weights:  82%|████████▏ | 239/290 [00:03<00:00, 113.26it/s]Loading weights:  88%|████████▊ | 256/290 [00:03<00:00, 93.51it/s] Loading weights:  92%|█████████▏| 268/290 [00:03<00:00, 88.45it/s]Loading weights:  97%|█████████▋| 281/290 [00:03<00:00, 93.93it/s]Loading weights: 100%|██████████| 290/290 [00:03<00:00, 80.88it/s]
+goal basis at 15: pooled k50/90/99 9/171/579, k = 128 41s
+goal basis at 19: pooled k50/90/99 34/348/745, k = 64 46s
+goal basis at 21: pooled k50/90/99 19/319/731, k = 8 51s
+goal basis at 23: pooled k50/90/99 13/290/712, k = 4 56s
+512 pairs x 4 goals: 999 history-dependent cells (share by goal [0.53, 0.47, 0.46, 0.49]), 388 at known states 56s
+site 15: k 128; overlap goal/readout 0.190, goal/history 0.509, history/readout 0.195, random 0.142 75s
+site 19: k 64; overlap goal/readout 0.123, goal/history 0.507, history/readout 0.147, random 0.070 90s
+site 21: k 8; overlap goal/readout 0.133, goal/history 0.590, history/readout 0.149, random 0.010 103s
+site 23: k 4; overlap goal/readout 0.202, goal/history 0.760, history/readout 0.204, random 0.004 116s
+part 2 site 15: natural 0.368; goal 0.62 comp 0.15 bottom 0.03 random0 0.10 readout 0.64 history 0.93 floor 0.23; sweep 1:0.05 2:0.08 4:0.08 8:0.13 16:0.20 32:0.30 64:0.37 128:0.62 896:1.00 160s
+part 2 site 19: natural 0.650; goal 0.77 comp 0.12 bottom 0.02 random0 0.06 readout 0.87 history 0.94 floor 0.09; sweep 1:0.20 2:0.59 4:0.61 8:0.64 16:0.69 32:0.73 64:0.77 128:0.82 896:1.00 205s
+part 2 site 21: natural 0.920; goal 0.92 comp 0.07 bottom 0.01 random0 0.01 readout 0.85 history 0.93 floor 0.05; sweep 1:0.31 2:0.65 4:0.90 8:0.92 16:0.94 32:0.95 64:0.96 128:0.97 896:1.00 250s
+part 2 site 23: natural 0.972; goal 0.94 comp 0.07 bottom 0.00 random0 0.00 readout 0.92 history 0.95 floor 0.05; sweep 1:0.34 2:0.65 4:0.94 8:0.96 16:0.96 32:0.98 64:0.97 128:0.98 896:1.00 294s
+upstream swap at 15 recorded under 4 goals 298s
+upstream swap at 19 recorded under 4 goals 302s
+part 1 15->21: upstream switch 0.369, full reproduces 1.0; goal 0.83 comp 0.14 bottom 0.01 random0 0.02 readout 0.67 history 0.92 344s
+part 1 15->23: upstream switch 0.369, full reproduces 1.002710027100271; goal 0.84 comp 0.13 bottom 0.01 random0 0.01 readout 0.82 history 0.89 386s
+part 1 19->21: upstream switch 0.646, full reproduces 1.0; goal 0.88 comp 0.11 bottom 0.01 random0 0.01 readout 0.82 history 0.94 427s
+part 1 19->23: upstream switch 0.646, full reproduces 1.0; goal 0.91 comp 0.09 bottom 0.01 random0 0.00 readout 0.91 history 0.93 468s
+registered site 23 (k 4, upstream 19): THRU_D {'value': 0.9402677651905254, 'ci': [0.9208396984540796, 0.959522196325004], 'holds': True}, THRU_U {'value': 0.9100775193798449, 'ci': [0.8822485384695687, 0.9404402364064043], 'holds': True}, COMP {'values': [0.06797116374871266, 0.08992248062015504], 'cis': [[0.04946923647146035, 0.08691412169711883], [0.06406000146255851, 0.11728530193941754]], 'holds': True}, CTRL {'values': [0.003089598352214212, 0.003089598352214212, 0.007209062821833162, 0.008238928939237899, 0.007751937984496124, 0.0031007751937984496, 0.006201550387596899, 0.006201550387596899], 'cis': [[0.0, 0.00864142864208813], [0.0, 0.008123280703393434], [0.0021097046413502112, 0.013625432338953733], [0.0020919955579456373, 0.015690376569037656], [0.0, 0.018210633663535144], [0.0, 0.007861944733323429], [0.0, 0.014717597964830837], [0.0, 0.014401736334405143]], 'holds': True}, DISTINCT {'value': 0.2017576837623945, 'holds': True}, KNOWN {'known': 0.9442970822281167, 'uncertain': 0.9377104377104378, 'diff_ci': [-0.029798965554302538, 0.04356137976042489], 'holds': False}, reject False 468s
+done 468s

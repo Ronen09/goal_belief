@@ -22,6 +22,23 @@ CC = CH.CC
 THRU, REJECT, COMP_MAX, CTRL_MAX, DISTINCT_MAX = 0.65, 0.40, 0.35, 0.20, 0.50
 
 
+def scorecard(kind, D, k_by, overlaps, part2, part1, reg_site, reg_in):
+    """The registered block of PLAN.md's decision rule from the measured dicts (part2[str(site)], part1["s_in->s_out"]).
+    Part 1 enters THRU-U, COMP and CTRL only where it is decision-bearing (the fine-tuned model); for the from-scratch
+    models its values are reported beside the part-2 verdicts."""
+    if reg_site is None or k_by.get(reg_site) is None: return None
+    p2 = part2[str(reg_site)]; p1 = part1.get(f"{reg_in}->{reg_site}") if reg_in is not None else None; bearing = kind == "llm"
+    crit = lambda r, lo=None, hi=None: None if r is None or r.get("ratio") is None else dict(value=r["ratio"], ci=r["ratio_ci"], holds=bool((lo is None or r["ratio_ci"][0] > lo) and (hi is None or r["ratio_ci"][1] < hi)))
+    both = lambda cs: None if not cs or any(c is None for c in cs) else dict(values=[c["value"] for c in cs], cis=[c["ci"] for c in cs], holds=all(c["holds"] for c in cs))
+    ctrl_names = ("bottom", "random0", "random1", "random2"); parts = [p2] + ([p1] if (bearing and p1 is not None) else [])
+    thru_d = crit(p2["goal"], lo=THRU); thru_u = crit(p1["goal"], lo=THRU) if (bearing and p1 is not None) else None
+    ov = overlaps[reg_site]["goal_readout"]; kn = p2["goal"]["known"]
+    return dict(site=reg_site, k=k_by[reg_site], s_in=reg_in, THRU_D=thru_d, THRU_U=thru_u, COMP=both([crit(p["comp"], hi=COMP_MAX) for p in parts]), CTRL=both([crit(p[n], hi=CTRL_MAX) for p in parts for n in ctrl_names]),
+                COMP_part1=crit(p1["comp"], hi=COMP_MAX) if p1 is not None else None, CTRL_part1=both([crit(p1[n], hi=CTRL_MAX) for n in ctrl_names]) if p1 is not None else None,
+                DISTINCT=dict(value=ov, holds=bool(ov < DISTINCT_MAX)), KNOWN=dict(known=kn["known"]["ratio"], uncertain=kn["uncertain"]["ratio"], diff_ci=kn["diff_ci"], holds=bool(kn["diff_ci"] is not None and kn["diff_ci"][0] > 0)),
+                reject=bool(thru_d is not None and thru_d["ci"][1] < REJECT), part1_decision_bearing=bearing, degenerate=bool(k_by[reg_site] >= D // 2))     # a rank at or above half the space is no subspace: the criteria are vacuous there
+
+
 def _json(o):
     if isinstance(o, (np.floating, np.integer)): return o.item()
     if isinstance(o, np.ndarray): return o.tolist()
@@ -44,7 +61,7 @@ def main():
         for s in sites:
             si = sites_all.index(s); Vh_goal[s], spec = CH.goal_basis({g: swap["X_fit"][g][:, si] for g in range(CH.K)}, swap["steps_fit"]); P(f"goal basis at {s}: pooled k50/90/99 {spec['k50']}/{spec['k90']}/{spec['k99']}, k = {k_by[s]}")
     else:
-        cache = Path(a.cache) if a.cache else CH.CACHE; swap = torch.load(cache / f"states_{kind}.pt", weights_only=False); sub = torch.load(cache / f"subspaces_{kind}.pt", weights_only=False)
+        cache = CH.resolve_cache(kind, a.quick, a.cache, out); swap = torch.load(cache / f"states_{kind}.pt", weights_only=False); sub = torch.load(cache / f"subspaces_{kind}.pt", weights_only=False)
         keys_fit, keys_test, sizes_test = swap["keys_fit"], swap["keys_test"], swap["sizes_test"]; sites_all = tuple(swap["sites"]); sites = sites_all; D = CH.D_SMALL; KS = (1, 4, D) if a.quick else CH.KS_SMALL
         M = CH.load_small(kind, worlds[0].H, a.device); M.batch = a.batch or 2048; k_by = {s: sub[s]["k"] for s in sites}; Vh_goal = {s: sub[s]["Vh"].double() for s in sites}; linear = 4 if kind == "tfm" else 0
         in_out = [(s1, s2) for s1 in sites for s2 in sites if s1 < s2]; reg_site = sub["registered_site"]; reg_in = max([s1 for (s1, s2) in in_out if s2 == reg_site], default=None) if reg_site is not None else None
@@ -53,9 +70,10 @@ def main():
     sidx = lambda s: sites_all.index(s)
 
     # the pairs and the history-dependent cells
-    pairs = CH.draw_pairs(st, keys_test, n_pairs, seed=1); I = torch.tensor([p[0] for p in pairs]); Jx = torch.tensor([p[1] for p in pairs]); known_pair = np.asarray(sizes_test)[I.numpy()] == 1
+    pairs = CH.draw_pairs(st, keys_test, n_pairs, seed=1); I = torch.tensor([p[0] for p in pairs]); Jx = torch.tensor([p[1] for p in pairs]); known_pair = np.asarray(sizes_test)[I.numpy()] == 1; known_pair2 = np.asarray(sizes_test)[Jx.numpy()] == 1
     nat_i = {g: L_h1[g][I].argmax(1) for g in range(CH.K)}; nat_j = {g: L_h1[g][Jx].argmax(1) for g in range(CH.K)}; dep = {g: (nat_i[g] != nat_j[g]).nonzero().squeeze(1) for g in range(CH.K)}
-    cells_g = np.concatenate([np.full(len(dep[g]), g) for g in range(CH.K)]); cells_p = np.concatenate([dep[g].numpy() for g in range(CH.K)]); groups = I.numpy()[cells_p]; known = known_pair[cells_p]
+    cells_g = np.concatenate([np.full(len(dep[g]), g) for g in range(CH.K)]); cells_p = np.concatenate([dep[g].numpy() for g in range(CH.K)]); groups = I.numpy()[cells_p]; known = known_pair[cells_p]; known2 = known_pair2[cells_p]
+    dep_by_bin = dict(h1=CH.dep_share_by_bin(known_pair, cells_p), h2=CH.dep_share_by_bin(known_pair2, cells_p))
     dep_share = [float(len(dep[g]) / n_pairs) for g in range(CH.K)]; hists_I = [ht[i] for i in I.tolist()]
     P(f"{n_pairs} pairs x {CH.K} goals: {len(cells_p)} history-dependent cells (share by goal {[round(x, 2) for x in dep_share]}), {int(known.sum())} at known states")
 
@@ -92,13 +110,13 @@ def main():
         per = {name: run_cells(s, cand) for name, cand in V.items()}; ref = per[ref_name]; res = {}
         dstack = torch.cat([delta[g][dep[g]] for g in range(CH.K)])
         for name in V:
-            r = CH.through(per[name], ref, groups); r["known"] = CH.split_known(per[name], ref, groups, known)
+            r = CH.through(per[name], ref, groups); r["known"] = CH.split_known(per[name], ref, groups, known); r["known_h2"] = CH.split_known(per[name], ref, groups, known2)
             if name in projs[s]: r["norm_share"] = CH.norm_share(dstack, projs[s][name])
             elif name.startswith("k"): r["norm_share"] = CH.norm_share(dstack, CH.projector(bases[s]["goal"], int(name[1:])))
             res[name] = r
         return res, per
 
-    res = dict(kind=kind, sites=list(sites), k={str(s): k_by[s] for s in sites}, ks=list(KS), n_pairs=n_pairs, n_cells=int(len(cells_p)), n_known=int(known.sum()), dep_share_by_goal=dep_share, linear_site=linear,
+    res = dict(kind=kind, sites=list(sites), k={str(s): k_by[s] for s in sites}, ks=list(KS), n_pairs=n_pairs, n_cells=int(len(cells_p)), n_known=int(known.sum()), n_known_h2=int(known2.sum()), dep_share_by_goal=dep_share, dep_share_by_bin=dep_by_bin, linear_site=linear,
                overlap={str(s): overlaps[s] for s in sites}, part2={}, part1={}, registered=None)
     # part 2: the natural history difference at each site
     for s in sites:
@@ -124,17 +142,8 @@ def main():
         P(f"part 1 {s_in}->{s_out}: upstream switch {per_in.mean():.3f}, full reproduces {r1['full_vs_upstream']['ratio']}; " + " ".join(f"{n} {r1[n]['ratio']:.2f}" if r1[n]['ratio'] is not None else f"{n} -" for n in ("goal", "comp", "bottom", "random0", "readout", "history") if n in r1))
         (out / f"channel_{kind}.json").write_text(json.dumps(res, indent=1, default=_json))
     # the registered scorecard
-    if reg_site is not None and k_by.get(reg_site) is not None:
-        p2 = res["part2"][str(reg_site)]; p1 = res["part1"].get(f"{reg_in}->{reg_site}") if reg_in is not None else None
-        crit = lambda r, lo=None, hi=None: None if r is None or r.get("ratio") is None else dict(value=r["ratio"], ci=r["ratio_ci"], holds=bool((lo is None or r["ratio_ci"][0] > lo) and (hi is None or r["ratio_ci"][1] < hi)))
-        thru_d = crit(p2["goal"], lo=THRU); thru_u = crit(p1["goal"], lo=THRU) if (kind == "llm" and p1 is not None) else None
-        comp = [crit(p2["comp"], hi=COMP_MAX)] + ([crit(p1["comp"], hi=COMP_MAX)] if p1 is not None else []); ctrl = [crit(r[n], hi=CTRL_MAX) for r in ([p2] + ([p1] if p1 is not None else [])) for n in ("bottom", "random0", "random1", "random2")]
-        both = lambda cs: None if any(c is None for c in cs) else dict(values=[c["value"] for c in cs], holds=all(c["holds"] for c in cs))
-        ov = overlaps[reg_site]["goal_readout"]; kn = p2["goal"]["known"]
-        res["registered"] = dict(site=reg_site, k=k_by[reg_site], s_in=reg_in, THRU_D=thru_d, THRU_U=thru_u, COMP=both(comp), CTRL=both(ctrl), DISTINCT=dict(value=ov, holds=bool(ov < DISTINCT_MAX)),
-                                 KNOWN=dict(known=kn["known"]["ratio"], uncertain=kn["uncertain"]["ratio"], diff_ci=kn["diff_ci"], holds=bool(kn["diff_ci"] is not None and kn["diff_ci"][0] > 0)),
-                                 reject=bool(thru_d is not None and thru_d["ci"][1] < REJECT), part1_decision_bearing=kind == "llm", degenerate=bool(k_by[reg_site] >= D // 2))     # a rank at or above half the space is no subspace: the criteria are vacuous there
-        P(f"registered site {reg_site} (k {k_by[reg_site]}, upstream {reg_in}): " + ", ".join(f"{c} {res['registered'][c]}" for c in ("THRU_D", "THRU_U", "COMP", "CTRL", "DISTINCT", "KNOWN", "reject")))
+    res["registered"] = scorecard(kind, D, k_by, overlaps, res["part2"], res["part1"], reg_site, reg_in)
+    if res["registered"] is not None: P(f"registered site {reg_site} (k {k_by[reg_site]}, upstream {reg_in}): " + ", ".join(f"{c} {res['registered'][c]}" for c in ("THRU_D", "THRU_U", "COMP", "CTRL", "DISTINCT", "KNOWN", "reject")))
     else: P("no registered site: the scorecard is undefined for this model")
     (out / f"channel_{kind}.json").write_text(json.dumps(res, indent=1, default=_json)); P("done")
 

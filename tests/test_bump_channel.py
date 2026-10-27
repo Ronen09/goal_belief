@@ -129,3 +129,49 @@ def test_small_tfm_jacobian_predicts_a_small_change():
 def test_small_gru_jacobian_runs_on_cuda_in_eval_mode():
     torch.manual_seed(0); m = CH.Small("gru", None, H=40, device="cuda"); hists, g = _hists()
     J = m.jacobian(hists, g, -1); assert J.shape == (6, 3, CH.D_SMALL) and torch.isfinite(J).all() and not m.model.training
+
+
+# ------------------------------------------------------------------ review fixes: the scorecard's parts, the bins' history-dependent share, the quick cache
+_C = Path(__file__).resolve().parents[1] / "studies" / "8_language_models" / "bump_channel" / "channel.py"
+_cspec = importlib.util.spec_from_file_location("channel_script", _C); CHS = importlib.util.module_from_spec(_cspec); sys.modules["channel_script"] = CHS
+_prev = sys.modules.get("common"); sys.modules["common"] = CH                       # channel.py's `import common` must bind the study's module, without leaving it under that name
+try: _cspec.loader.exec_module(CHS)
+finally:
+    if _prev is None: sys.modules.pop("common", None)
+    else: sys.modules["common"] = _prev
+
+
+def _thru(ratio, lo, hi, known=None):
+    r = dict(switch=ratio, switch_ci=[lo, hi], ref=1.0, ratio=ratio, ratio_ci=[lo, hi], n=100)
+    r["known"] = known or dict(known=dict(ratio=ratio), uncertain=dict(ratio=ratio), diff_ci=[-0.1, 0.1]); return r
+
+
+def _parts():
+    ctrl = {n: _thru(0.01, 0.0, 0.02) for n in ("bottom", "random0", "random1", "random2")}
+    p2 = {"23": dict(goal=_thru(0.9, 0.85, 0.95), comp=_thru(0.24, 0.19, 0.29), **ctrl)}
+    p1 = {"19->23": dict(goal=_thru(0.9, 0.85, 0.95), comp=_thru(0.31, 0.25, 0.37), **ctrl)}
+    return p2, p1
+
+
+def test_scorecard_counts_part1_for_the_fine_tuned_model_only():
+    p2, p1 = _parts(); ov = {23: dict(goal_readout=0.2)}
+    small = CHS.scorecard("tfm", 128, {23: 16}, ov, p2, p1, 23, 19); llm = CHS.scorecard("llm", 896, {23: 4}, ov, p2, p1, 23, 19)
+    assert small["COMP"]["holds"] and small["COMP"]["values"] == [0.24] and small["COMP_part1"]["value"] == 0.31 and small["THRU_U"] is None and not small["part1_decision_bearing"]
+    assert not llm["COMP"]["holds"] and llm["COMP"]["values"] == [0.24, 0.31] and llm["THRU_U"]["holds"]
+    assert small["CTRL"]["holds"] and len(small["CTRL"]["values"]) == 4 and len(llm["CTRL"]["values"]) == 8
+
+
+def test_dep_share_by_bin():
+    known_pair = np.array([True, True, False, False, False]); cells_p = np.array([0, 0, 0, 1, 2, 2, 4])          # 4 goals per pair
+    s = CH.dep_share_by_bin(known_pair, cells_p, 4)
+    assert abs(s["known"] - 4 / 8) < 1e-12 and abs(s["uncertain"] - 3 / 12) < 1e-12 and s["n_pairs"] == dict(known=2, uncertain=3)
+
+
+def test_resolve_cache_prefers_the_quick_layouts(tmp_path):
+    out = tmp_path / "_smoke" / "channel"; out.mkdir(parents=True)
+    assert CH.resolve_cache("tfm", True, None, out) == CH.CACHE                                         # nothing quick exists: the real cache
+    rp = tmp_path / "_smoke" / "subspace_small" / "cache"; rp.mkdir(parents=True); (rp / "states_tfm.pt").write_bytes(b"x")
+    assert CH.resolve_cache("tfm", True, None, out) == rp                                              # reproduce.py's layout
+    mp = tmp_path / "_smoke" / "subspace_gru" / "cache"; mp.mkdir(parents=True); (mp / "states_gru.pt").write_bytes(b"x")
+    assert CH.resolve_cache("gru", True, None, out) == mp                                              # the manual smoke layout
+    assert CH.resolve_cache("gru", False, "/elsewhere", out) == Path("/elsewhere") and CH.resolve_cache("gru", False, None, out) == CH.CACHE

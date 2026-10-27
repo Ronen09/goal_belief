@@ -68,12 +68,14 @@ def part1(ch, kind):
 
 
 def part3(ch, kind):
-    L = [f"### {NAMES[kind]}", "", "| part | site | goal subspace: known | uncertain | difference | complement: known | uncertain | cells known / uncertain |", "|---|---|---|---|---|---|---|---|"]
-    for part, key_name in (("2", "part2"), ("1", "part1")):
-        for key, r in ch[key_name].items():
-            if "goal" not in r: continue
-            g, c = r["goal"]["known"], r["comp"]["known"]; site = SITE_NAME[kind](int(key)) if part == "2" else " → ".join(SITE_NAME[kind](int(x)) for x in key.split("->"))
-            L.append(f"| {part} | {site} | {ratio(g['known'])} | {ratio(g['uncertain'])} | {ci(g['diff_ci']).strip() or '–'} | {ratio(c['known'])} | {ratio(c['uncertain'])} | {g['known']['n']} / {g['uncertain']['n']} |")
+    d = ch.get("dep_share_by_bin", {}); d1, d2 = d.get("h1"), d.get("h2")
+    L = [f"### {NAMES[kind]}", "", f"By the receiving history h1's set size" + (f" (history-dependent share of the known pairs' cells {f(d1['known'])}, of the uncertain pairs' {f(d1['uncertain'])}; {d1['n_pairs']['known']} / {d1['n_pairs']['uncertain']} pairs)" if d1 else "") + ":", "",
+         "| part | site | goal subspace: known | uncertain | difference | complement: known | uncertain | cells known / uncertain |", "|---|---|---|---|---|---|---|---|"]
+    rows = lambda field: [f"| {part} | {SITE_NAME[kind](int(key)) if part == '2' else ' → '.join(SITE_NAME[kind](int(x)) for x in key.split('->'))} | {ratio(g['known'])} | {ratio(g['uncertain'])} | {ci(g['diff_ci']).strip() or '–'} | {ratio(c['known'])} | {ratio(c['uncertain'])} | {g['known']['n']} / {g['uncertain']['n']} |"
+                          for part, key_name in (("2", "part2"), ("1", "part1")) for key, r in ch[key_name].items() if "goal" in r for g, c in [(r["goal"][field], r["comp"][field])]]
+    L += rows("known")
+    if d2 and all("known_h2" in r["goal"] for p in ("part2", "part1") for r in ch[p].values() if "goal" in r):
+        L += ["", f"By the donor history h2's set size (history-dependent share of the known pairs' cells {f(d2['known'])}, of the uncertain pairs' {f(d2['uncertain'])}; {d2['n_pairs']['known']} / {d2['n_pairs']['uncertain']} pairs):", "", "| part | site | goal subspace: known | uncertain | difference | complement: known | uncertain | cells known / uncertain |", "|---|---|---|---|---|---|---|---|"] + rows("known_h2")
     return L + [""]
 
 
@@ -94,7 +96,9 @@ def scorecard(chs):
         if v is None: return "–"
         tag = " (vacuous: k ≥ D/2)" if reg.get("degenerate") else ""
         if c in ("THRU_D", "THRU_U"): return f"{f(v['value'])}{ci(v['ci'])}: {'yes' if v['holds'] else 'no'}{tag}"
-        if c in ("COMP", "CTRL"): return f"{', '.join(f(x) for x in v['values'])}: {'yes' if v['holds'] else 'no'}{tag}"
+        if c in ("COMP", "CTRL"):
+            extra = "" if reg.get("part1_decision_bearing") or reg.get(c + "_part1") is None else (f"; part 1 reported: {f(reg[c + '_part1']['value'])}" if c == "COMP" else f"; part 1 reported: {', '.join(f(x) for x in reg[c + '_part1']['values'])}")
+            return f"{', '.join(f(x) + ci(cc) for x, cc in zip(v['values'], v.get('cis', [None] * len(v['values']))))}: {'yes' if v['holds'] else 'no'}{tag}{extra}"
         if c == "DISTINCT": return f"{f(v['value'])}: {'yes' if v['holds'] else 'no'}"
         if c == "KNOWN": return f"{f(v['known'])} vs {f(v['uncertain'])}, diff{ci(v['diff_ci']) or ' –'}: {'yes' if v['holds'] else 'no'}"
     rows = (("THRU-D", "THRU_D", "the natural history difference through the goal subspace ≥ 0.65 × the natural swap"), ("THRU-U", "THRU_U", "the upstream swap's induced change through the goal subspace ≥ 0.65 × the upstream swap (fine-tuned model only)"),
@@ -108,9 +112,12 @@ def scorecard(chs):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--quick", action="store_true"); ap.add_argument("--out", default=None); a = ap.parse_args()
     here = CH.HERE; out = Path(a.out) if a.out else (here / "_smoke" if a.quick else here)
-    load = lambda name, kind: json.loads((here / "_smoke" / f"{name}_{kind}" / f"{name}_{kind}.json").read_text()) if a.quick else json.loads((here / f"{name}_{kind}.json").read_text())
-    subs = {k: load("subspace", k) for k in ("tfm", "gru") if (here / "_smoke" / f"subspace_{k}" / f"subspace_{k}.json" if a.quick else here / f"subspace_{k}.json").exists()}
-    chs = {k: load("channel", k) for k in KINDS if (here / "_smoke" / f"channel_{k}" / f"channel_{k}.json" if a.quick else here / f"channel_{k}.json").exists()}
+    def find(name, kind):
+        """The result file: in quick mode the manual smoke layout (_smoke/<name>_<kind>/) or reproduce.py's (_smoke/<script stem>/)."""
+        cands = [here / "_smoke" / f"{name}_{kind}" / f"{name}_{kind}.json", here / "_smoke" / ("subspace_small" if name == "subspace" else "channel") / f"{name}_{kind}.json"] if a.quick else [here / f"{name}_{kind}.json"]
+        return next((p for p in cands if p.exists()), None)
+    subs = {k: json.loads(find("subspace", k).read_text()) for k in ("tfm", "gru") if find("subspace", k)}
+    chs = {k: json.loads(find("channel", k).read_text()) for k in KINDS if find("channel", k)}
     L = ["# Bump channel: tables", "", "Generated by `tables.py`" + (" (quick)" if a.quick else "") + ". Through ratio = the candidate's switch over the reference's (the natural history swap in part 2, the upstream swap in part 1), on history-dependent cells, 95 % cluster-bootstrap intervals by the receiving history; `undef.` where the reference switches below 0.10.", ""]
     L += ["## 0. The from-scratch models' goal subspaces (part 0)", ""]
     for k, s in subs.items(): L += part0(s, k)

@@ -9,10 +9,13 @@ coordinates study's recorded states; the plan's 2–3 h estimate was wrong by an
 the run; the smoke found that cuDNN's GRU backward refuses eval mode, so the small models' Jacobians run with cuDNN
 disabled (numerically the same kernels). (2) The registered rank is the median over the twelve goal pairs of the
 pooled subspace's causal rank, rounded **up** to the grid, as the plan fixed it; for the fine-tuned model that is 4 at
-23 and 8 at 21 (64 at 19, 128 at 15, read from `../bump_coords/rank.json`), for the from-scratch models part 0's
-numbers. (3) A scorecard whose registered rank reaches half the state's width is flagged vacuous in `channel.py`; no
+23 and 8 at 21 from `../bump_coords/rank.json`; at 19 and 15 the plan's 64 and 128 are that file's per-pair medians,
+not the pooled ones (128 at both), so the registered rule would give 128 at 19, where the sweep reads 0.82 instead
+of 0.77: not a decision-bearing site, and the plan's numbers were kept. For the from-scratch models part 0's numbers. (3) A scorecard whose registered rank reaches half the state's width is flagged vacuous in `channel.py`; no
 model triggered it (ranks 4, 16, 32). (4) The upstream-swap part is decision-bearing for the fine-tuned model only, as
-the plan says: in the from-scratch models the goal is the start token and every state carries it.
+the plan says: in the from-scratch models the goal is the start token and every state carries it; accordingly their
+COMP and CTRL are judged on part 2 alone and part 1's values are reported beside them (under a "both parts" reading
+the transformer's COMP would fail on part 1: 0.31, 0.25–0.37). (5) The run took 12 minutes, not the plan's 2–3 h.
 
 **The question.** The coordinates study found that the goal's effect on the fine-tuned model's decision is read from
 four directions of the decision token's 896-dimensional residual at layer 23 (one pooled subspace, 0.935 of the full
@@ -90,10 +93,12 @@ centred history differences over fit pairs) overlap the goal's at 0.76 (random 0
 readout's top-4 directions (from the Jacobians of the centred logits at 23 over 2 048 fit decisions) overlap the
 goal's at 0.20 (random 0.004) and carry 0.92. **DISTINCT holds** by its threshold, and the goal subspace and the
 readout's principal directions are different four-dimensional objects; but two subspaces that share a fifth of
-their content both carry over nine tenths of the effect, so what the decision reads of a belief change lives in
-their common part, about one direction's worth at 23. The honest description is a shared decision subspace: the
-few directions the last layer is sensitive to, into which the goal layers write both the goal and the belief's
-consequence for the action, rather than a channel that belongs to the goal.
+their content both carry over nine tenths of the effect. A switch needs only the logit pushed past the decision
+boundary, so two saturated ratios do not locate the effect in the subspaces' common part; what they show is that
+neither subspace is necessary (the direct test, the difference restricted to the goal subspace's part outside the
+readout's, was not registered and is left as a post hoc). The description the numbers support is a shared decision
+subspace: a few directions the last layer is sensitive to, into which the goal layers write both the goal and the
+belief's consequence for the action, rather than a channel that belongs to the goal.
 
 **Part 3, known and uncertain states.** At 23 the through ratio is 0.94 at known states (388 cells) and 0.94 at
 uncertain ones (611); at 21 0.95 and 0.91 (difference −0.00 to 0.08); in part 1 0.93 and 0.90. **KNOWN fails**: the
@@ -113,8 +118,8 @@ information-seeking part of the history's effect passing outside the goal's dire
 
 THRU-D holds at 0.83 (expected 0.65–0.7), upstream swaps from block 2 into block 3 through the same subspace 0.83.
 But the subspace is 16 of 128 directions and holds 0.63 of the difference's norm; the complement still moves 0.24
-(0.31 in part 1) and 16 random directions 0.11–0.24, so **COMP and CTRL fail**: the belief's effect is concentrated
-in the goal's directions, not confined to them. At the first two entrances, where the goal's own effect is small
+(0.19–0.29; 0.31 in part 1, reported) and 16 random directions 0.11–0.24: COMP holds on part 2 by its interval while
+**CTRL fails**: the belief's effect is concentrated in the goal's directions, not confined to them. At the first two entrances, where the goal's own effect is small
 (natural goal swap 0.19 and 0.27), the four goal directions carry 0.32 and 0.46 of the belief effect and the
 complement 0.94 and 0.70: before the goal is written in, the belief acts elsewhere, as in the fine-tuned model at
 15. DISTINCT holds (0.34 at block 3; 0.82 at the final residual, the readout by construction). KNOWN fails at the
@@ -134,7 +139,8 @@ THRU-D holds at 0.89 (the author's 0.8); the upstream swap from h_t−2 passes t
 of the state being a quarter of the effect. At the decision state, through the linear head, the goal's two
 directions carry 0.64 of the belief effect and the belief's own two 0.52, and the two pairs overlap at 0.16 (random
 0.01): at the point of readout the GRU moves the decision along different directions for a change of goal and for
-a change of history, both within the head's two rows (readout 1.00). The sweep at h_t−1 reaches 0.58 at eight
+a change of history (the goal's two overlap the head's two rows at 0.50, the history's at 0.32; the readout
+projection itself carries 1.00, by construction). The sweep at h_t−1 reaches 0.58 at eight
 directions and 0.89 at 32: no four-direction channel exists in the GRU.
 
 ## Scorecard (the registered site of each model)
@@ -143,8 +149,8 @@ directions and 0.89 at 32: no four-direction channel exists in the GRU.
 |---|---|---|---|---|
 | THRU-D | the natural difference through the goal subspace ≥ 0.65 × the natural swap | 0.94 (0.92–0.96): **yes** | 0.83 (0.76–0.88): **yes** | 0.89 (0.85–0.93): **yes** |
 | THRU-U | the upstream swap's induced change through the goal subspace ≥ 0.65 (fine-tuned model) | 0.91 (0.88–0.94): **yes** | reported: 0.83 | reported: 0.89 |
-| COMP | the complement ≤ 0.35 in both parts | 0.07, 0.09: yes | 0.24, 0.31: no | 0.13, 0.19: yes |
-| CTRL | bottom-k and every random-k ≤ 0.20 in both parts | 0.00–0.01: yes | random up to 0.24: no | random up to 0.36: no |
+| COMP | the complement ≤ 0.35 (both parts for the fine-tuned model; part 2 for the others, part 1 reported) | 0.07, 0.09: yes | 0.24 (0.19–0.29): yes; part 1 0.31 | 0.13 (0.09–0.18): yes; part 1 0.19 |
+| CTRL | bottom-k and every random-k ≤ 0.20 (the same parts) | 0.00–0.01: yes | random up to 0.20 (0.24 in part 1): no | random up to 0.27 (0.36 in part 1): no |
 | DISTINCT | goal / readout overlap ≤ 0.50 | 0.20: yes | 0.34: yes | 0.44: yes |
 | KNOWN | higher at known states | 0.94 / 0.94: no | 0.83 / 0.82: no | 0.92 / 0.87 (−0.03–0.14): no |
 | rejected (< 0.40) | | no | no | no |
@@ -153,14 +159,14 @@ directions and 0.89 at 32: no four-direction channel exists in the GRU.
 |---|---|---|
 | E1 | THRU-D for every model: GRU ≈ 0.8, the others 0.65–0.7; the sweep saturates by k = 8 (fine-tuned) / 16 (small) | yes, above every expectation (0.94 / 0.83 / 0.89); the fine-tuned sweep saturates at 4; the small models' only at 32–64 |
 | E2 | THRU-U at THRU-D's level | yes: 0.91 against 0.94 |
-| E3 | COMP and CTRL at every registered site | fine-tuned only; the small models' subspaces are an eighth and a quarter of the state and random subspaces of that size carry 0.1–0.4 |
+| E3 | COMP and CTRL at every registered site | COMP yes everywhere, CTRL for the fine-tuned model only: the small models' subspaces are an eighth and a quarter of the state and random subspaces of that size carry 0.1–0.4 |
 | E4 | DISTINCT at 23 / 21 (0.2–0.5) and at the transformer's entrance; ≥ 0.8 at the linear sites | 0.20 / 0.13 and 0.34: yes; the transformer's final residual 0.82: yes; the GRU's h_t 0.50: no (the goal's top-2 at the decision state are half the head's rows) |
 | E5 | history / goal overlap ≥ 0.5 at the registered sites | yes: 0.76 / 0.58 / 0.65 (random 0.004 / 0.12 / 0.25) |
 | E6 | KNOWN: the conversion is complete at known states and partial at uncertain ones | no: equal everywhere at the registered sites |
 | E7 | the from-scratch goal subspaces low-rank (median k_c ≤ 8) | no: 16 and 32 |
 
-5 of 6 criteria hold for the fine-tuned model (KNOWN fails), 2 of its 5 for the transformer (THRU-D, DISTINCT), 3 of
-5 for the GRU (THRU-D, COMP, DISTINCT); no model is rejected.
+5 of 6 criteria hold for the fine-tuned model (KNOWN fails), 3 of their 5 for the transformer and the GRU (THRU-D,
+COMP, DISTINCT); no model is rejected.
 
 ## Reading
 
