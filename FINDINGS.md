@@ -1132,9 +1132,11 @@ full swap's decision switches reproduced.
   0.71 / 0.92). Upstream of the goal (19, 15) the registered subspaces have 64 and 128 directions and carry 0.77 and
   0.62, random directions of the same count 0.05–0.15.
 - The belief effect's own top-4 directions overlap the goal's at 0.76 (random 0.004) and the logit readout's
-  Jacobian directions at 0.20; the readout's top-4 carry the effect as well (0.92). Known and uncertain states convert
-  alike (0.94 / 0.94). 5 of 6 registered criteria held (KNOWN failed); not a goal channel but the decision's input: the
-  few coordinates the last layer reads, into which the goal layers write the belief's consequence under the goal.
+  Jacobian directions at 0.20; the readout's top-4 carry the effect as well (0.92), and post hoc the goal subspace's
+  projection into the readout's directions carries all of its effect (0.92) while its part outside the readout, 0.27 of
+  the change's norm, carries 0.06 (random 0.01). Known and uncertain states convert alike (0.94 / 0.94). 5 of 6
+  registered criteria held (KNOWN failed); not a goal channel but the decision's input: the few coordinates the last
+  layer reads linearly, into which the goal layers write the belief's consequence under the goal.
 - The from-scratch models' goal subspaces have causal rank 16 (the transformer, block 3 entrance) and 32 (the GRU, one
   token before the decision) of 128, not 4. Through them the belief effect passes at 0.83 and 0.89 (the upstream swap
   0.83 and 0.89), the complement 0.24–0.31 and 0.13–0.19, random subspaces of the same size 0.11–0.24 and 0.16–0.36:

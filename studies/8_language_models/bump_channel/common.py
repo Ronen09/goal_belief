@@ -139,6 +139,27 @@ def resolve_cache(kind, quick, cache_arg, out):
     return CACHE
 
 
+def _orth(A, tol=1e-8):
+    """An orthonormal basis [D, r] of the column space of A (columns of at most unit norm), r its numerical rank
+    at an absolute tolerance (a residual that is all floating-point noise has rank 0)."""
+    A = torch.as_tensor(A).double()
+    if A.shape[1] == 0: return A
+    U, S, _ = torch.linalg.svd(A, full_matrices=False); r = int((S > tol).sum()); return U[:, :r]
+
+
+def orth_split(C, Vh_R, kR):
+    """C [D, k] (orthonormal columns) against the readout subspace R = the top-kR rows of Vh_R: (orth((I − P_R) C),
+    orth(P_R C)), the parts of C outside and inside R, as [D, r] matrices of orthonormal columns."""
+    C = torch.as_tensor(C).double(); R = torch.as_tensor(Vh_R).double()[:kR].T; PC = R @ (R.T @ C)
+    return _orth(C - PC), _orth(PC)
+
+
+def random_in_complement(Vh_R, kR, d, k, seed=0):
+    """k random orthonormal directions inside the orthogonal complement of the top-kR rows of Vh_R, [d, k]."""
+    g = torch.Generator().manual_seed(seed); R = torch.as_tensor(Vh_R).double()[:kR].T; X = torch.randn(d, k, generator=g, dtype=torch.float64)
+    return _orth(X - R @ (R.T @ X))[:, :k]
+
+
 # ------------------------------------------------------------------ through ratios
 def through(per_var, per_ref, groups):
     """Per-cell 0/1 switches of a variant and of its reference (same cells, same order), clusters in groups: the

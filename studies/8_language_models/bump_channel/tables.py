@@ -88,6 +88,16 @@ def overlaps(ch, kind):
     return L + [""]
 
 
+def posthoc(ph):
+    L = ["| part | site | k, k_R | overlap C / R | C | R | C⊥R (dim) | C∥R (dim) | C⊥R ∪ R | random, dim of C⊥R | random in R's complement | ‖Δ‖² share: C⊥R / C∥R |", "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    for part in ("part2", "part1"):
+        for site, by_kR in ph.get(part, {}).items():
+            for kR, r in by_kR.items():
+                v = r["variants"]; rnd = lambda pre: (lambda rs: f"{f(min(rs))}–{f(max(rs))}" if rs else "undef.")([v[n]["ratio"] for n in v if n.startswith(pre) and v[n]["ratio"] is not None])
+                L.append(f"| {part[-1]} | {SITE_NAME['llm'](int(site))}{' (19 →)' if part == 'part1' else ''} | {r['k']}, {kR} | {f(r['overlap_C_R'], 3)} | {ratio(v['C'])} | {ratio(v['R'])} | {ratio(v.get('C_perp'))} ({r['k_perp']}) | {ratio(v.get('C_par'))} ({r['k_par']}) | {ratio(v.get('C_perp_plus_R'))} | {rnd('random_full')} | {rnd('random_comp')} | {f(v['C_perp']['norm_share'], 3) if 'C_perp' in v else '–'} / {f(v['C_par']['norm_share'], 3) if 'C_par' in v else '–'} |")
+    return L + [""]
+
+
 def scorecard(chs):
     L = ["| | criterion | " + " | ".join(NAMES[k] for k in chs) + " |", "|---|---|" + "---|" * len(chs)]
     def cell(reg, c):
@@ -129,6 +139,11 @@ def main():
     for k, c in chs.items(): L += part3(c, k)
     L += ["## 4. Overlaps between the subspaces (mean squared cosine of the principal angles at the registered k)", ""]
     for k, c in chs.items(): L += overlaps(c, k)
+    ph = (here / "_smoke" / "posthoc_readout" / "posthoc_readout.json") if a.quick else (here / "posthoc_readout.json")
+    if ph.exists():
+        L += ["## 5. Post hoc (after the review, not registered): the goal subspace outside the readout, fine-tuned model", "",
+              "C = the goal subspace (k directions), R = the top-k_R right-singular directions of the logit Jacobian; C⊥R = orth((I − P_R) C), C∥R = orth(P_R C); through ratios as above (the reference is the natural swap in part 2, the upstream swap in part 1).", ""]
+        L += posthoc(json.loads(ph.read_text()))
     L += ["## Scorecard (each model at its registered site)", ""] + scorecard(chs)
     out.mkdir(parents=True, exist_ok=True); (out / "tables.md").write_text("\n".join(L)); print(f"wrote {out / 'tables.md'} ({len(L)} lines; models {list(chs)}; part 0 {list(subs)})")
 

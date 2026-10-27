@@ -1,0 +1,15 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 3737.39it/s]
+512 pairs, 999 history-dependent cells (as channel.py) 33s
+site 23: goal basis (k 4) and readout basis 48s
+upstream swap at 19 recorded 52s
+part 2 site 23 kR 4: C⊥R dim 4, C∥R dim 4, overlap 0.202; C 0.94 R 0.92 C_perp 0.06 C_par 0.92 C_perp_plus_R 0.98 random_full0 0.01 random_comp0 0.01 76s
+part 1 19->23 kR 4: C 0.91 R 0.91 C_perp 0.07 C_par 0.91 C_perp_plus_R 0.97 random_full0 0.01 random_comp0 0.00 103s
+part 2 site 23 kR 8: C⊥R dim 4, C∥R dim 4, overlap 0.285; C 0.94 R 0.97 C_perp 0.03 C_par 0.95 C_perp_plus_R 0.99 random_full0 0.01 random_comp0 0.00 127s
+part 1 19->23 kR 8: C 0.91 R 0.97 C_perp 0.02 C_par 0.93 C_perp_plus_R 0.98 random_full0 0.01 random_comp0 0.01 150s
+part 2 site 23 kR 16: C⊥R dim 4, C∥R dim 4, overlap 0.340; C 0.94 R 0.98 C_perp 0.02 C_par 0.95 C_perp_plus_R 1.00 random_full0 0.01 random_comp0 0.00 173s
+part 1 19->23 kR 16: C 0.91 R 0.97 C_perp 0.01 C_par 0.94 C_perp_plus_R 0.99 random_full0 0.01 random_comp0 0.01 197s
+site 21: goal basis (k 8) and readout basis 213s
+part 2 site 21 kR 4: C⊥R dim 8, C∥R dim 4, overlap 0.109; C 0.92 R 0.81 C_perp 0.12 C_par 0.81 C_perp_plus_R 0.94 random_full0 0.01 random_comp0 0.01 237s
+part 2 site 21 kR 8: C⊥R dim 8, C∥R dim 8, overlap 0.132; C 0.92 R 0.84 C_perp 0.10 C_par 0.84 C_perp_plus_R 0.96 random_full0 0.01 random_comp0 0.01 261s
+part 2 site 21 kR 16: C⊥R dim 8, C∥R dim 8, overlap 0.165; C 0.92 R 0.91 C_perp 0.07 C_par 0.90 C_perp_plus_R 0.97 random_full0 0.01 random_comp0 0.01 285s
+done 285s

@@ -143,6 +143,34 @@ a change of history (the goal's two overlap the head's two rows at 0.50, the his
 projection itself carries 1.00, by construction). The sweep at h_t−1 reaches 0.58 at eight
 directions and 0.89 at 32: no four-direction channel exists in the GRU.
 
+## Post hoc (after the review, not registered): the goal subspace outside the readout
+
+Proposed in conversation after the report, to settle whether the goal subspace C carries the belief's effect
+through its own directions or through its overlap with the logit readout R (the top-k_R right-singular directions
+of the Jacobian of the centred logits): C⊥R = orth((I − P_R) C), the part of C outside R, against C∥R = orth(P_R C),
+its projection into R, R itself, C⊥R ∪ R, and random subspaces of C⊥R's dimension anywhere and inside R's
+complement (`posthoc_readout.py`; the same pairs, cells and bootstraps as the main run):
+
+| part | site | k, k_R | overlap C / R | C | R | C⊥R | C∥R | C⊥R ∪ R | random (dim of C⊥R) | ‖Δ‖² share: C⊥R / C∥R |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2 | 23 | 4, 4 | 0.20 | 0.94 | 0.92 | **0.06** (0.05–0.08) | **0.92** (0.90–0.94) | 0.98 | 0.00–0.01 | 0.27 / 0.10 |
+| 2 | 23 | 4, 8 | 0.29 | 0.94 | 0.97 | 0.03 | 0.95 | 0.99 | 0.00–0.01 | 0.23 / 0.15 |
+| 2 | 23 | 4, 16 | 0.34 | 0.94 | 0.98 | 0.02 | 0.95 | 1.00 | 0.00–0.01 | 0.20 / 0.17 |
+| 2 | 21 | 8, 4 / 8 / 16 | 0.11–0.17 | 0.92 | 0.81 / 0.84 / 0.91 | 0.12 / 0.10 / 0.07 | 0.81 / 0.84 / 0.90 | 0.94–0.97 | 0.00–0.01 | 0.30 / 0.11 |
+| 1 (19 →) | 23 | 4, 4 / 8 / 16 | 0.20–0.34 | 0.91 | 0.91 / 0.97 / 0.97 | 0.07 / 0.02 / 0.01 | 0.91 / 0.93 / 0.94 | 0.97–0.99 | 0.00–0.01 | 0.17 / 0.07 |
+
+The goal subspace's part outside the readout carries nothing: four directions holding 0.27 of the difference's
+squared norm switch 0.06 of what the whole difference switches, as four random directions do (0.01), and the share
+falls further as the readout is taken wider (0.03, 0.02). Its projection into the readout, 0.10 of the norm, carries
+all of the effect the subspace carries (0.92 against 0.94), as much as the readout's own directions (0.92); the two
+together 0.98. The same for the belief swapped in at 19 and, with eight directions, at layer 21 (C⊥R 0.12 → 0.07,
+C∥R 0.81 → 0.90). With one block between the site and the logits the readout's directions are, to first order, the
+only ones a change can act through, so the finding is less that the readout wins than that nothing else does: the
+block after layer 23 does not turn the goal subspace's other directions into a decision. The four goal directions
+matter through their projection onto the directions the last layer reads, and the belief's effect reaches the
+decision through the same projection; "combined into one subspace" is true of the readout's input coordinates,
+which the goal layers fill with the belief's consequence under the goal.
+
 ## Scorecard (the registered site of each model)
 
 | | criterion | fine-tuned 0.5B, layer 23, k = 4 | transformer, block 3, k = 16 | GRU, h_t−1, k = 32 |
@@ -178,9 +206,11 @@ thirds of the change's norm, switches 0.07 and random or bottom directions nothi
 principal directions are the goal's (overlap 0.76 against 0.004). Two or four directions are enough for both, in
 the same proportion (0.65 at two, 0.94 at four). The goal layers do not add a goal term to a belief code; they write
 the consequence of the belief under the goal into the few directions the last layer reads, the same ones under every
-goal and every belief. Those directions are not the readout's principal axes (overlap 0.20), but the readout's own
-top directions carry the effect as well, so the better name for the subspace is the decision's input: the model's
-last computation reads a few coordinates, and belief and goal are both converted into them by layer 21. Known and
+goal and every belief. Those directions are not the readout's principal axes (overlap 0.20), but the post hoc below shows that only
+their projection into the readout's directions carries the effect (0.92 of the 0.94; the part of the goal subspace
+outside the readout, 0.27 of the change's norm, carries 0.06), so the better name for the subspace is the decision's
+input: the model's last computation reads a few coordinates linearly, and belief and goal are both converted into
+them by layer 21. Known and
 uncertain states convert alike.
 
 In the from-scratch models the same picture holds at lower resolution. Their goal subspaces are an eighth (the

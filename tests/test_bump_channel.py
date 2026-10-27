@@ -175,3 +175,18 @@ def test_resolve_cache_prefers_the_quick_layouts(tmp_path):
     mp = tmp_path / "_smoke" / "subspace_gru" / "cache"; mp.mkdir(parents=True); (mp / "states_gru.pt").write_bytes(b"x")
     assert CH.resolve_cache("gru", True, None, out) == mp                                              # the manual smoke layout
     assert CH.resolve_cache("gru", False, "/elsewhere", out) == Path("/elsewhere") and CH.resolve_cache("gru", False, None, out) == CH.CACHE
+
+
+# ------------------------------------------------------------------ post hoc: the goal subspace outside the readout
+def test_orth_split_separates_a_subspace_against_the_readout():
+    g = torch.Generator().manual_seed(2); D, k, kR = 20, 4, 3
+    Vh_R = CH.CC.basis(torch.randn(10, D, generator=g, dtype=torch.float64), None); R = Vh_R[:kR].T
+    C = torch.linalg.qr(torch.randn(D, k, generator=g, dtype=torch.float64))[0]                      # generic: meets R trivially
+    perp, par = CH.orth_split(C, Vh_R, kR)
+    assert perp.shape == (D, k) and torch.allclose(perp.T @ perp, torch.eye(k, dtype=torch.float64), atol=1e-8)
+    assert torch.allclose(R.T @ perp, torch.zeros(kR, k, dtype=torch.float64), atol=1e-8)            # orthogonal to the readout
+    assert par.shape[1] == min(k, kR) and torch.allclose(par - R @ (R.T @ par), torch.zeros_like(par), atol=1e-8)   # inside the readout
+    inside = R[:, :2]; perp2, par2 = CH.orth_split(inside, Vh_R, kR)                                  # a subspace inside R has no outside part
+    assert perp2.shape[1] == 0 and par2.shape[1] == 2
+    Q = CH.random_in_complement(Vh_R, kR, D, 3, seed=0)
+    assert Q.shape == (D, 3) and torch.allclose(R.T @ Q, torch.zeros(kR, 3, dtype=torch.float64), atol=1e-8) and torch.allclose(Q.T @ Q, torch.eye(3, dtype=torch.float64), atol=1e-8)
