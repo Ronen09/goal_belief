@@ -166,7 +166,7 @@ class Small:
     0; a position below 0 is the zero initial state, and a patch there runs every token from it)."""
     def __init__(self, kind, path, H=H, device="cpu", sites=None, batch=2048):
         import torch.nn as nn
-        T = _load_by_path("maze_train", MAZE_DIR / "train.py")
+        sp = list(sys.path); T = sys.modules.get("maze_train") or _load_by_path("maze_train", MAZE_DIR / "train.py"); sys.path[:] = sp      # train.py puts bump_maze first on sys.path; the other studies' design.py / tables.py must keep winning
         m = T.StepTransformer(H) if kind == "tfm" else T.StepGRU(H); m.tok = nn.Embedding(7 + K, m.tok.embedding_dim)
         if path is not None: m.load_state_dict(torch.load(path, map_location=device))
         self.model, self.kind, self.H, self.dev, self.batch = m.to(device).eval(), kind, H, device, batch
